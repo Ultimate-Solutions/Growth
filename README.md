@@ -6,13 +6,13 @@
 
 <h1 align="center">Holol - Dashboard</h1>
 
-## Without technical experience and with ease, you can sell anywhere and anytime with your online store and with your commercial identity
+### Without technical experience and with ease, you can sell anywhere and anytime with your online store and with your commercial identity
 
 <br /> <br />
 
 # Ultimate Solutions
 
-## International leader in Enterprise Resource Solutions and Software Development
+### International leader in Enterprise Resource Solutions and Software Development
 
 If you're the kind of person who reads source code, you should visit [Our Site](https://ultimate-eg.net) for more awesome things.
 
