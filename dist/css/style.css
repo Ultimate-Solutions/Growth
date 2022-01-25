@@ -1,0 +1,277 @@
+@charset "UTF-8";
+/* #region / Variables */
+/*  __      __        _       _     _           
+/*  \ \    / /       (_)     | |   | |          
+/*   \ \  / /_ _ _ __ _  __ _| |__ | | ___  ___ 
+/*    \ \/ / _` | '__| |/ _` | '_ \| |/ _ \/ __|
+/*     \  / (_| | |  | | (_| | |_) | |  __/\__ \
+/*      \/ \__,_|_|  |_|\__,_|_.__/|_|\___||___/
+/*                                              
+/*                                               */
+:root {
+	/* Viewport */
+	--minimum-viewport-width: 576;
+	--minimum-viewport-widthPX: 576px;
+	--maximum-viewport-width: 1600;
+	--maximum-viewport-widthPX: 1600px;
+
+	/* Fonts */
+	--root-font-size: 16px;
+	--root-font-family: 'Neo Sans Arabic', system-ui, -apple-system, 'Segoe UI',
+		'Roboto', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans',
+		sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+		'Noto Color Emoji';
+	--root-text-align: start;
+	--root-bg: #fff;
+	--font-style-normal: normal;
+	--font-weight-extraLight: 200;
+	--font-weight-light: 300;
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-semiBold: 600;
+	--font-weight-bold: 700;
+	--font-size-12: calc(
+		0.625rem + (0.75 - 0.625) *
+			(
+				(100vw - var(--minimum-viewport-widthPX)) /
+					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
+			)
+	);
+	--font-size-14: calc(
+		0.75rem + (0.875 - 0.75) *
+			(
+				(100vw - var(--minimum-viewport-widthPX)) /
+					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
+			)
+	);
+	--font-size-16: calc(
+		0.875rem + (1 - 0.875) *
+			(
+				(100vw - var(--minimum-viewport-widthPX)) /
+					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
+			)
+	);
+	--font-size-18: calc(
+		1rem + (1.125 - 1) *
+			(
+				(100vw - var(--minimum-viewport-widthPX)) /
+					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
+			)
+	);
+	--font-size-24: calc(
+		1.25rem + (1.5 - 1.25) *
+			(
+				(100vw - var(--minimum-viewport-widthPX)) /
+					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
+			)
+	);
+	--font-size-32: calc(
+		1.75rem + (2 - 1.75) *
+			(
+				(100vw - var(--minimum-viewport-widthPX)) /
+					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
+			)
+	);
+	--font-size-40: calc(
+		2.25rem + (2.5 - 2.25) *
+			(
+				(var(--maximum-viewport-widthPX) - var(--minimum-viewport-widthPX)) /
+					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
+			)
+	);
+	--font-size-56: calc(
+		3.125rem + (3.5 - 3.125) *
+			(
+				(100vw - var(--minimum-viewport-widthPX)) /
+					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
+			)
+	);
+	--font-size-58: calc(
+		3.375rem + (3.625 - 3.375) *
+			(
+				(100vw - var(--minimum-viewport-widthPX)) /
+					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
+			)
+	);
+	--font-size-62: calc(
+		3.875rem + (3.7 - 3.875) *
+			(
+				(100vw - var(--minimum-viewport-widthPX)) /
+					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
+			)
+	);
+	--character-spacing--20: -1.25%;
+	--character-spacing-0: 0%;
+	--character-spacing-20: 1.25%;
+	--line-spacing-normal: normal;
+	--line-spacing-0: 0%;
+	--line-spacing-50: 0.5%;
+	--line-spacing-100: 1%;
+	--line-spacing-120: 1.2%;
+	--line-spacing-140: 1.4%;
+	--line-spacing-160: 1.6%;
+	--line-spacing-180: 1.8%;
+	--line-spacing-200: 2%;
+
+	/* Shadows */
+	--shadow-depth--01: inset 0px 2px 0px rgba(0, 0, 0, 0.05);
+	--shadow-depth-00: none;
+	--shadow-depth-01: 0px 1px 0px rgba(0, 0, 0, 0.05);
+	--shadow-depth-02: 0px 2px 1px rgba(0, 0, 0, 0.05),
+		0px 0px 1px rgba(0, 0, 0, 0.25);
+	--shadow-depth-03: 0px 0px 3px rgba(0, 0, 0, 0.1),
+		0px 4px 20px rgba(0, 0, 0, 0.15);
+	--shadow-depth-04: 0px 0px 3px rgba(0, 0, 0, 0.1),
+		0px 4px 20px rgba(0, 0, 0, 0.15);
+	--shadow-depth-05: 0px 0px 4px rgba(0, 0, 0, 0.1),
+		0px 8px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Themes */
+:root,
+[data-color-mode='light'][data-theme='regular'] {
+}
+[data-color-mode='light'][data-theme='high_contrast'] {
+}
+[data-color-mode='light'][data-theme='colorblind'] {
+}
+[data-color-mode='dark'][data-theme='reqular'] {
+}
+[data-color-mode='dark'][data-theme='high_contrast'] {
+}
+[data-color-mode='dark'][data-theme='colorblind'] {
+}
+[data-color-mode='dark'][data-theme='dimmed'] {
+}
+@media (prefers-color-scheme: light) {
+	[data-color-mode='auto'][data-theme='regular'] {
+	}
+	[data-color-mode='auto'][data-theme='high_contrast'] {
+	}
+	[data-color-mode='auto'][data-theme='colorblind'] {
+	}
+}
+@media (prefers-color-scheme: dark) {
+	[data-color-mode='auto'][data-theme='regular'] {
+	}
+	[data-color-mode='auto'][data-theme='high_contrast'] {
+	}
+	[data-color-mode='auto'][data-theme='colorblind'] {
+	}
+}
+/* #endregion */
+
+/* #region / Main */
+/*   __  __       _       
+/*  |  \/  |     (_)      
+/*  | \  / | __ _ _ _ __  
+/*  | |\/| |/ _` | | '_ \ 
+/*  | |  | | (_| | | | | |
+/*  |_|  |_|\__,_|_|_| |_|
+/*                        
+/*                         */
+/* -----------------------------------------------
+  Main > Set Default
+-------------------------------------------------*/
+html {
+	font-size: var(--root-font-size);
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+body {
+	margin: 0;
+	font-family: var(--root-font-family);
+	font-size: 1rem;
+	font-weight: var(--font-weight-regular);
+	line-height: var(--line-spacing-normal);
+	color: var(--bs-body-color);
+	text-align: var(--root-text-align);
+	background-color: var(--root-bg);
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+[hidden] {
+	display: none !important;
+}
+/* -----------------------------------------------
+  Main > Images & Videos 
+-------------------------------------------------*/
+.video,
+video,
+.image,
+img {
+	max-width: 100%;
+}
+/* #endregion */
+
+/* #region / Bootstrap 5 - Customization */
+/*   ____              _       _                     _____           
+/*  |  _ \            | |     | |                   | ____|          
+/*  | |_) | ___   ___ | |_ ___| |_ _ __ __ _ _ __   | |__            
+/*  |  _ < / _ \ / _ \| __/ __| __| '__/ _` | '_ \  |___ \           
+/*  | |_) | (_) | (_) | |_\__ \ |_| | | (_| | |_) |  ___) |          
+/*  |____/_\___/ \___/ \__|___/\__|_|  \__,_| .__/ _|____/           
+/*   / ____|        | |                (_)  | |   | | (_)            
+/*  | |    _   _ ___| |_ ___  _ __ ___  _ __|_|_ _| |_ _  ___  _ __  
+/*  | |   | | | / __| __/ _ \| '_ ` _ \| |_  / _` | __| |/ _ \| '_ \ 
+/*  | |___| |_| \__ \ || (_) | | | | | | |/ / (_| | |_| | (_) | | | |
+/*   \_____\__,_|___/\__\___/|_| |_| |_|_/___\__,_|\__|_|\___/|_| |_|
+/*                                                                   
+/*                                                                    */
+
+/* #endregion */
+
+/* #region / Responsiveness */
+/*   _____                                 _                               
+/*  |  __ \                               (_)                              
+/*  | |__) |___  ___ _ __   ___  _ __  ___ ___   _____ _ __   ___  ___ ___ 
+/*  |  _  // _ \/ __| '_ \ / _ \| '_ \/ __| \ \ / / _ \ '_ \ / _ \/ __/ __|
+/*  | | \ \  __/\__ \ |_) | (_) | | | \__ \ |\ V /  __/ | | |  __/\__ \__ \
+/*  |_|  \_\___||___/ .__/ \___/|_| |_|___/_| \_/ \___|_| |_|\___||___/___/
+/*                  | |                                                    
+/*                  |_|                                                     */
+/* Small devices (landscape phones, 414px and up) */
+@media (min-width: 414px) {
+}
+/* Extra Small devices (mobile phones, less than 768px) */
+@media (max-width: 413.98px) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+}
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+}
+
+/* Extra large devices (large desktops, 1400px and up) */
+@media (min-width: 1400px) {
+}
+/* Large devices (desktops, less than 1400px) */
+@media (max-width: 1399.98px) {
+}
+
+/* Extra Extra large devices (large desktops, 1600px and up) */
+@media (min-width: 1600px) {
+}
+/* Extra Large devices (desktops, less than 1600px) */
+@media (max-width: 1599.98px) {
+}
+
+/* Extra large devices (large desktops) */
+/* No media query since the extra-large breakpoint has no upper bound on its width */
+/* #endregion */
