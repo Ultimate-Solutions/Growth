@@ -127,7 +127,7 @@
 		0px 8px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* Themes */
+/* #region / Themes */
 :root,
 [data-color-mode='light'][data-theme='regular'] {
 }
@@ -159,6 +159,7 @@
 	[data-color-mode='auto'][data-theme='colorblind'] {
 	}
 }
+/* #endregion */
 /* #endregion */
 
 /* #region / Main */
