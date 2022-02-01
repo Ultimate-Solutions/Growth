@@ -180,6 +180,25 @@
 
 		<!-- Custom Style -->
 		<link href="./dist/css/style.css" rel="stylesheet" />
+
+		<!-- Theme changer -->
+		<script>
+			localStorage.setItem('color mode', 'light');
+			localStorage.setItem('theme', 'regular');
+
+			// Set theme data
+			setAttributes(document.documentElement, {
+				'data-color-mode': localStorage.getItem('color mode'),
+				'data-theme': localStorage.getItem('theme'),
+			});
+
+			// Setting multiple attributes for an element at once
+			function setAttributes(el, attrs) {
+				for (var key in attrs) {
+					el.setAttribute(key, attrs[key]);
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<!-- Scripts -->
