@@ -178,6 +178,7 @@ html {
 	font-size: var(--root-font-size);
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
+	height: 100%;
 }
 body {
 	margin: 0;
@@ -190,10 +191,12 @@ body {
 	background-color: var(--root-bg);
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
+	height: 100%;
 }
 [hidden] {
 	display: none !important;
 }
+
 /* -----------------------------------------------
   Main > Images & Videos 
 -------------------------------------------------*/
@@ -203,6 +206,42 @@ video,
 img {
 	max-width: 100%;
 }
+
+/* -----------------------------------------------
+  Main > Dashboard
+-------------------------------------------------*/
+.dashboard {
+	min-height: 100%;
+}
+
+/* -----------------------------------------------
+  Main > Main Navbar
+-------------------------------------------------*/
+.dashboard .main-navbar {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	width: 16.875rem;
+	height: 100%;
+	padding: 2.1rem 1.2rem;
+	background-color: #17171e;
+	transition: all 0.5s ease;
+}
+.dashboard .main-navbar.collapse {
+	display: block;
+	width: 6.4rem;
+}
+
+/* -----------------------------------------------
+  Main > Content
+-------------------------------------------------*/
+.dashboard .content {
+	width: 100%;
+	min-height: 200%;
+	background-color: rebeccapurple;
+	transition: all 0.5s ease;
+}
+
 /* #endregion */
 
 /* #region / Bootstrap 5 - Customization */
