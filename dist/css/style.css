@@ -30,76 +30,11 @@
 	--font-weight-medium: 500;
 	--font-weight-semiBold: 600;
 	--font-weight-bold: 700;
-	--font-size-12: calc(
-		0.625rem + (0.75 - 0.625) *
-			(
-				(100vw - var(--minimum-viewport-widthPX)) /
-					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
-			)
-	);
-	--font-size-14: calc(
-		0.75rem + (0.875 - 0.75) *
-			(
-				(100vw - var(--minimum-viewport-widthPX)) /
-					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
-			)
-	);
-	--font-size-16: calc(
-		0.875rem + (1 - 0.875) *
-			(
-				(100vw - var(--minimum-viewport-widthPX)) /
-					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
-			)
-	);
-	--font-size-18: calc(
-		1rem + (1.125 - 1) *
-			(
-				(100vw - var(--minimum-viewport-widthPX)) /
-					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
-			)
-	);
-	--font-size-24: calc(
-		1.25rem + (1.5 - 1.25) *
-			(
-				(100vw - var(--minimum-viewport-widthPX)) /
-					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
-			)
-	);
-	--font-size-32: calc(
-		1.75rem + (2 - 1.75) *
-			(
-				(100vw - var(--minimum-viewport-widthPX)) /
-					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
-			)
-	);
-	--font-size-40: calc(
-		2.25rem + (2.5 - 2.25) *
-			(
-				(var(--maximum-viewport-widthPX) - var(--minimum-viewport-widthPX)) /
-					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
-			)
-	);
-	--font-size-56: calc(
-		3.125rem + (3.5 - 3.125) *
-			(
-				(100vw - var(--minimum-viewport-widthPX)) /
-					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
-			)
-	);
-	--font-size-58: calc(
-		3.375rem + (3.625 - 3.375) *
-			(
-				(100vw - var(--minimum-viewport-widthPX)) /
-					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
-			)
-	);
-	--font-size-62: calc(
-		3.875rem + (3.7 - 3.875) *
-			(
-				(100vw - var(--minimum-viewport-widthPX)) /
-					(var(--maximum-viewport-width) - var(--minimum-viewport-width))
-			)
-	);
+	--font-size-16: 1rem;
+	--font-size-18: 1.125rem;
+	--font-size-20: 1.25rem;
+	--font-size-24: 1.5rem;
+	--font-size-28: 1.75rem;
 	--character-spacing--20: -1.25%;
 	--character-spacing-0: 0%;
 	--character-spacing-20: 1.25%;
@@ -125,11 +60,39 @@
 		0px 4px 20px rgba(0, 0, 0, 0.15);
 	--shadow-depth-05: 0px 0px 4px rgba(0, 0, 0, 0.1),
 		0px 8px 40px rgba(0, 0, 0, 0.2);
+
+	/* Animation */
+	--transition-normal: all 0.4s ease;
+
+	/* Main nav */
+	--main-nav-width: 16.875rem;
+	--main-nav-widthAfter: 4rem;
 }
 
 /* #region / Themes */
 :root,
 [data-color-mode='light'][data-theme='regular'] {
+	--scrollbar-background-color: transparent;
+	--scrollbar-track-background-color: transparent;
+	--scrollbar-track-hover-background-color: transparent;
+	--scrollbar-thumb-background-color: #babac0;
+	--scrollbar-thumb-border-color: transparent;
+	--scrollbar-thumb-hover-background-color: #a0a0a5;
+	--scrollbar-thumb-hover-border-color: transparent;
+	--dashboard-sidebar-background-color: #ffffff;
+	--dashboard-content-background-color: #f1f1f1;
+	--dashboard-content-shadow: 4px 0px 20px 0px rgb(0 0 0 / 20%);
+	--dashboard-navbar-link-color: #8f8f8f;
+	--dashboard-navbar-link-hover-color: #1e1e1f;
+	--dashboard-navbar-link-active-icon-color: #05a84b;
+	--dashboard-navbar-link-active-icon-shdow: 0px 0px 10px #05a84b38;
+	--dashboard-navbar-link-active-indicator-color: #05a84b;
+	--dashboard-navbar-link-notifications-color: #fff;
+	--dashboard-navbar-link-notifications-background-color: #dc3545;
+	--dashboard-navbar-link-dropdown-background-color: #00000006;
+	--dashboard-navbar-link-dropdown-shadow-top: inset 0 20px 20px -20px #0000002a;
+	--dashboard-navbar-link-dropdown-shadow-bottom: inset 0 -20px 20px -20px
+		#0000002a;
 }
 [data-color-mode='light'][data-theme='high_contrast'] {
 }
@@ -208,6 +171,37 @@ img {
 }
 
 /* -----------------------------------------------
+  Main > Custon Scrollbar
+-------------------------------------------------*/
+/* Customize website's scrollbar like Mac OS - Not supports in Firefox and IE */
+/* total width */
+.scrollbar-custom::-webkit-scrollbar {
+	background-color: var(--scrollbar-background);
+	width: 5px;
+}
+/* background of the scrollbar except button or resizer */
+.scrollbar-custom::-webkit-scrollbar-track {
+	background-color: var(--scrollbar-track-background);
+}
+.scrollbar-custom::-webkit-scrollbar-track:hover {
+	background-color: var(--scrollbar-track-hover-background);
+}
+/* scrollbar itself */
+.scrollbar-custom::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbar-thumb-background-color);
+	border-radius: 10px;
+	border: 4px solid var(--scrollbar-thumb-border-color);
+}
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+	background-color: var(--scrollbar-thumb-hover-background-color);
+	border: 4px solid var(--scrollbar-thumb-hover-border-color);
+}
+/* set button(top and bottom of the scrollbar)
+.scrollbar-custom::-webkit-scrollbar-button {
+	display: none;
+} */
+
+/* -----------------------------------------------
   Main > Dashboard
 -------------------------------------------------*/
 .dashboard {
@@ -218,28 +212,279 @@ img {
   Main > Main Navbar
 -------------------------------------------------*/
 .dashboard .main-navbar {
-	position: -webkit-sticky;
-	position: sticky;
+	position: fixed;
 	top: 0;
-	width: 16.875rem;
+	right: 0;
+	width: var(--main-nav-width);
 	height: 100%;
-	padding: 2.1rem 1.2rem;
-	background-color: #17171e;
+	background-color: var(--dashboard-sidebar-background-color);
+	background-image: url(../images/sidebar-bg.png);
 	transition: all 0.5s ease;
 }
-.dashboard .main-navbar.collapse {
+.dashboard .main-navbar[collapse] {
 	display: block;
-	width: 6.4rem;
+	width: var(--main-nav-widthAfter);
+}
+.dashboard .main-navbar:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.7);
+	backdrop-filter: blur(85px);
+	z-index: -1;
+}
+.dashboard .main-navbar .content {
+	overflow: hidden auto;
+	height: 100%;
+	width: var(--main-nav-width);
+}
+.dashboard .main-navbar .brand {
+	display: flex;
+	justify-content: center;
+	padding: 1.5rem 1.25rem;
+	width: var(--main-nav-width);
+	transition: var(--transition-normal);
+}
+.dashboard .main-navbar[collapse] .brand {
+	padding: 1.5rem 0.625rem;
+}
+.dashboard .main-navbar[collapse] .brand {
+	width: var(--main-nav-widthAfter);
+}
+.dashboard .main-navbar .brand > * {
+	height: 40px;
+	object-fit: cover;
+}
+.dashboard .main-navbar .brand > [small] {
+	max-height: 2.5rem;
+}
+.dashboard .main-navbar .brand > [small],
+.dashboard .main-navbar[collapse] .brand > [regular] {
+	display: none;
+}
+.dashboard .main-navbar[collapse] .brand > [small] {
+	display: block;
+}
+.dashboard .main-navbar .navbar {
+	padding-bottom: 2.5rem !important;
+	margin: 0;
+}
+.dashboard .main-navbar .navbar,
+.dashboard .main-navbar .navbar .nav-item .dropdown-list > ul {
+	display: block;
+	padding: 0;
+	list-style: none;
+}
+.dashboard .main-navbar .navbar .nav-item {
+	width: 100%;
+}
+.dashboard .main-navbar .navbar .nav-item > .nav-link {
+	position: relative;
+	display: flex;
+	color: var(--dashboard-navbar-link-color);
+	font-size: var(--font-size-16);
+	font-weight: var(--font-weight-medium);
+	padding: 0.5rem 1.25rem;
+	cursor: pointer;
+	transition: var(--transition-normal);
+}
+.dashboard .main-navbar .navbar .nav-item > .nav-link:hover,
+.dashboard .main-navbar .navbar .nav-item > .nav-link:focus,
+.dashboard .main-navbar .navbar .nav-item > .nav-link:active,
+.dashboard .main-navbar .navbar .nav-item > .nav-link.active,
+.dashboard .main-navbar .navbar .nav-item.active > .nav-link {
+	color: var(--dashboard-navbar-link-hover-color);
+}
+.dashboard .main-navbar .navbar .nav-item > .nav-link.active:before,
+.dashboard .main-navbar .navbar .nav-item.active > .nav-link:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0.25rem;
+	height: 100%;
+	background-color: var(--dashboard-navbar-link-active-indicator-color);
+	transition: all 0.5s ease;
+}
+.dashboard .main-navbar[collapse] .navbar .nav-item > .nav-link.active:before,
+.dashboard .main-navbar[collapse] .navbar .nav-item.active > .nav-link:before {
+	left: calc(100% - 63px);
+}
+.dashboard .main-navbar .navbar .nav-item > .nav-link .icon {
+	margin-left: 0.625rem;
+	font-size: var(--font-size-24);
+}
+.dashboard .main-navbar .navbar .nav-item > .nav-link:hover .icon,
+.dashboard .main-navbar .navbar .nav-item > .nav-link:focus .icon,
+.dashboard .main-navbar .navbar .nav-item > .nav-link:active .icon,
+.dashboard .main-navbar .navbar .nav-item > .nav-link.active .icon,
+.dashboard .main-navbar .navbar .nav-item.active > .nav-link .icon {
+	color: var(--dashboard-navbar-link-active-icon-color);
+	text-shadow: var(--dashboard-navbar-link-active-icon-shdow);
+}
+.dashboard .main-navbar .navbar .nav-item > .nav-link:hover .icon:before {
+	animation: swing ease-in-out 0.5s 1 alternate;
+}
+@keyframes swing {
+	0% {
+		transform: rotate(0deg);
+	}
+	10% {
+		transform: rotate(10deg);
+	}
+	30% {
+		transform: rotate(0deg);
+	}
+	40% {
+		transform: rotate(-10deg);
+	}
+	50% {
+		transform: rotate(0deg);
+	}
+	60% {
+		transform: rotate(5deg);
+	}
+	70% {
+		transform: rotate(0deg);
+	}
+	80% {
+		transform: rotate(-5deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+.dashboard .main-navbar .navbar .nav-item .nav-link .text {
+	margin-left: auto;
+	transition: opacity 0.6s ease;
+	opacity: 1;
+}
+.dashboard .main-navbar[collapse] .navbar .nav-item .nav-link .text {
+	opacity: 0;
+	pointer-events: none;
+}
+.dashboard .main-navbar .navbar .nav-item .nav-link .notifications {
+	display: inline-block;
+	padding: 0.35em 0.65em;
+	font-size: 0.75em;
+	font-weight: 500;
+	color: var(--dashboard-navbar-link-notifications-color);
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: 50rem;
+	background-color: var(--dashboard-navbar-link-notifications-background-color);
+}
+.dashboard .main-navbar[collapse] .navbar .nav-item .nav-link .notifications {
+	position: absolute;
+	top: 50%;
+	right: 1.5625rem;
+	height: 1.875rem;
+	color: var(--dashboard-navbar-link-notifications-background-color);
+	transform: translateY(-20%) scale(0.5);
+}
+.dashboard .main-navbar .navbar .nav-item .nav-link.dropdown {
+	padding-left: 3.75rem;
+}
+.dashboard .main-navbar .navbar .nav-item .nav-link.dropdown:after {
+	content: '\f31a';
+	position: absolute;
+	top: 50%;
+	left: 1.25rem;
+	font: normal normal normal 1em/1 'Phosphor';
+	font-size: var(--font-size-18);
+	transform: translateY(-50%);
+	transition: var(--transition-normal);
+}
+.dashboard .main-navbar .navbar .nav-item .nav-link.dropdown.expand:after {
+	transform: rotate(180deg) translateY(50%);
+	color: var(--dashboard-navbar-link-active-icon-color);
+}
+.dashboard .main-navbar .navbar .nav-item .dropdown-list {
+	position: relative;
+	padding: 0;
+	background-color: var(--dashboard-navbar-link-dropdown-background-color);
+	max-height: 0;
+	transition: all 0.4s ease-out;
+	overflow: hidden;
+}
+.dashboard
+	.main-navbar
+	.navbar
+	.nav-item
+	.nav-link.dropdown.expand
+	+ .dropdown-list {
+	padding: 0.625rem 0;
+	max-height: 1000px;
+	transition: all 0.4s ease-in;
+}
+.dashboard .main-navbar .navbar .nav-item .dropdown-list:before,
+.dashboard .main-navbar .navbar .nav-item .dropdown-list:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 1.875rem;
+	-webkit-box-shadow: var(--dashboard-navbar-link-dropdown-shadow-top);
+	-moz--box-shadow: var(--dashboard-navbar-link-dropdown-shadow-top);
+	box-shadow: var(--dashboard-navbar-link-dropdown-shadow-top);
+	z-index: -1;
+}
+.dashboard .main-navbar .navbar .nav-item .dropdown-list:after {
+	position: absolute;
+	top: unset;
+	bottom: 0;
+	-webkit-box-shadow: var(--dashboard-navbar-link-dropdown-shadow-bottom);
+	-moz--box-shadow: var(--dashboard-navbar-link-dropdown-shadow-bottom);
+	box-shadow: var(--dashboard-navbar-link-dropdown-shadow-bottom);
 }
 
 /* -----------------------------------------------
+  Main > Tootltip
+-------------------------------------------------*/
+[tooltip-container] {
+	position: absolute;
+	right: 80px;
+	background-color: white;
+	color: var(--background-color);
+	border-radius: 0.4rem;
+	padding: 0.5rem 0.9rem;
+	font-size: var(--font-size-18);
+	box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+	animation: tooltipView ease-in-out 0.5s 1 alternate;
+	animation-fill-mode: forwards;
+	z-index: 1000;
+}
+@keyframes tooltipView {
+	from {
+		transform: translateY(-20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+/* -----------------------------------------------
   Main > Content
 -------------------------------------------------*/
-.dashboard .content {
+.dashboard > .content {
 	width: 100%;
+	margin-right: var(--main-nav-width);
 	min-height: 200%;
-	background-color: rebeccapurple;
+	background-color: var(--dashboard-content-background-color);
+	-webkit-box-shadow: var(--dashboard-content-shadow);
+	-moz-box-shadow: var(--dashboard-content-shadow);
+	box-shadow: var(--dashboard-content-shadow);
 	transition: all 0.5s ease;
+	z-index: 1;
+}
+.dashboard .main-navbar[collapse] + .content {
+	margin-right: var(--main-nav-widthAfter);
 }
 
 /* #endregion */

@@ -207,98 +207,302 @@
 		<!-- #region / Dashboard -->
 		<div class="dashboard d-flex">
 			<!-- Main navbar -->
-			<nav class="main-navbar">
-				<!-- Brand -->
-				<div class="brand">
-					<img src="/dist/images/brand.png" alt="Holol" class="lazy" regular />
-					<img
-						src="/dist/images/brand-small.png"
-						alt="Holol"
-						class="lazy"
-						small
-					/>
+			<nav class="main-navbar" expand>
+				<!-- Content -->
+				<div class="content scrollbar-custom">
+					<!-- Brand -->
+					<div class="brand">
+						<img
+							src="/dist/images/brand.png"
+							alt="Holol"
+							class="lazy"
+							regular
+						/>
+						<img
+							src="/dist/images/brand-small.png"
+							alt="Holol"
+							class="lazy"
+							small
+						/>
+					</div>
+
+					<!-- Navbar -->
+					<ul class="navbar">
+						<!-- Nav Item BEGIN -->
+						<li class="nav-item active">
+							<a href="#" class="nav-link" data-tooltip title="الرئيسية">
+								<em class="icon ph-storefront"></em>
+								<span class="text">الرئيسية</span>
+							</a>
+						</li>
+						<!-- Nav Item END -->
+
+						<li class="nav-item">
+							<a href="#" class="nav-link" data-tooltip title="الطلبات">
+								<em class="icon ph-shopping-bag-open"></em>
+								<span class="text">الطلبات</span>
+								<span class="notifications">12</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<div class="nav-link dropdown" data-tooltip title="المنتجات">
+								<em class="icon ph-package"></em>
+								<span class="text">المنتجات</span>
+							</div>
+							<!-- Dropdown -->
+							<div class="dropdown-list">
+								<ul>
+									<li class="nav-item">
+										<a href="#" class="nav-link" data-tooltip title="المنتجات">
+											<em class="icon ph-package"></em>
+											<span class="text">المنتجات</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link" data-tooltip title="التصنيفات">
+											<em class="icon ph-bookmarks"></em>
+											<span class="text">التصنيفات</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link" data-tooltip title="المجموعات">
+											<em class="icon ph-cardholder"></em>
+											<span class="text">المجموعات</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link" data-tooltip title="المركات">
+											<em class="icon ph-sketch-logo"></em>
+											<span class="text">المركات</span>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a href="#" class="nav-link" data-tooltip title="الاوسمة">
+											<em class="icon ph-tag-simple"></em>
+											<span class="text">الاوسمة</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link" data-tooltip title="العملاء">
+								<em class="icon ph-users-three"></em>
+								<span class="text">العملاء</span>
+								<span class="tooltip">العملاء</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a
+								href="#"
+								class="nav-link"
+								data-tooltip
+								title="الأسئلة والتقييمات"
+							>
+								<em class="icon ph-chats"></em>
+								<span class="text">الأسئلة والتقييمات</span>
+								<span class="tooltip">الأسئلة والتقييمات</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<div
+								href="#"
+								class="nav-link dropdown"
+								data-tooltip
+								title="التسويق"
+							>
+								<em class="icon ph-megaphone-simple"></em>
+								<span class="text">التسويق</span>
+							</div>
+							<!-- Dropdown -->
+							<ul class="dropdown-list">
+								<li class="nav-item">
+									<a
+										href="#"
+										class="nav-link"
+										data-tooltip
+										title="كوبونات الخصم"
+									>
+										<em class="icon ph-ticket"></em>
+										<span class="text">كوبونات الخصم</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a
+										href="#"
+										class="nav-link"
+										data-tooltip
+										title="التسويق بالعمولة"
+									>
+										<em class="icon ph-currency-dollar"></em>
+										<span class="text">التسويق بالعمولة</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a
+										href="#"
+										class="nav-link"
+										data-tooltip
+										title="العروض الخاصة"
+									>
+										<em class="icon ph-star"></em>
+										<span class="text">العروض الخاصة</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a
+										href="#"
+										class="nav-link"
+										data-tooltip
+										title="الحملات التسويقية"
+									>
+										<em class="icon ph-money"></em>
+										<span class="text">الحملات التسويقية</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a
+										href="#"
+										class="nav-link"
+										data-tooltip
+										title="السلات المتروكة"
+									>
+										<em class="icon ph-shopping-bag"></em>
+										<span class="text">السلات المتروكة</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link" data-tooltip title="الشراكات">
+										<em class="icon ph-users-four"></em>
+										<span class="text">الشراكات</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<div
+								href="#"
+								class="nav-link dropdown"
+								data-tooltip
+								title="إدارة المتجر"
+							>
+								<em class="icon ph-bank"></em>
+								<span class="text">إدارة المتجر</span>
+							</div>
+							<!-- Dropdown -->
+							<ul class="dropdown-list">
+								<li class="nav-item">
+									<a href="#" class="nav-link" data-tooltip title="التقارير">
+										<em class="icon ph-files"></em>
+										<span class="text">التقارير</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link" data-tooltip title="التحليلات">
+										<em class="icon ph-chart-line"></em>
+										<span class="text">التحليلات</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a
+										href="#"
+										class="nav-link"
+										data-tooltip
+										title="المحفظة والفواتير"
+									>
+										<em class="icon ph-wallet"></em>
+										<span class="text">المحفظة والفواتير</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a
+										href="#"
+										class="nav-link"
+										data-tooltip
+										title="الصفحات التعريفية"
+									>
+										<em class="icon ph-newspaper"></em>
+										<span class="text">الصفحات التعريفية</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a
+										href="#"
+										class="nav-link"
+										data-tooltip
+										title="الصفحات القانونية"
+									>
+										<em class="icon ph-scales"></em>
+										<span class="text">الصفحات القانونية</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a
+										href="#"
+										class="nav-link"
+										data-tooltip
+										title="صانع التطبيقات"
+									>
+										<em class="icon ph-device-mobile-camera"></em>
+										<span class="text">صانع التطبيقات</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link" data-tooltip title="تصميم المتجر">
+								<em class="icon ph-layout"></em>
+								<span class="text">تصميم المتجر</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<div
+								href="#"
+								class="nav-link dropdown"
+								data-tooltip
+								title="إعدادات المتجر"
+							>
+								<em class="icon ph-gear"></em>
+								<span class="text">إعدادات المتجر</span>
+							</div>
+							<!-- Dropdown -->
+							<ul class="dropdown-list">
+								<li class="nav-item">
+									<a href="#" class="nav-link" data-tooltip title="عام">
+										<em class="icon ph-hard-drive"></em>
+										<span class="text">عام</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link" data-tooltip title="باقة المتجر">
+										<em class="icon ph-archive"></em>
+										<span class="text">باقة المتجر</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link" data-tooltip title="الدفع">
+										<em class="icon ph-credit-card"></em>
+										<span class="text">الدفع</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link" data-tooltip title="الشحن">
+										<em class="icon ph-truck"></em>
+										<span class="text">الشحن</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
 				</div>
-
-				<!-- Navbar -->
-				<ul class="navbar">
-					<!-- Nav Item BEGIN -->
-					<li class="nav-item">
-						<a href="#" class="nav-link" title="الرئيسية">
-							<em class="ph-storefront-light"></em>
-							<span class="text">الرئيسية</span>
-						</a>
-					</li>
-					<!-- Nav Item END -->
-
-					<li class="nav-item">
-						<a href="#" class="nav-link" title="الطلبات">
-							<em class="ph-shopping-bag-open-light"></em>
-							<span class="text">الطلبات</span>
-							<span class="notifications">12</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<div class="nav-link dropdown">
-							<em class="ph-package-light"></em>
-							<span class="text">المنتجات</span>
-						</div>
-
-						<ul class="dropdown-list">
-							<li class="nav-item">
-								<a href="#" class="nav-link" title="المنتجات">
-									<em class="ph-package-light"></em>
-									<span class="text">المنتجات</span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#" class="nav-link" title="التصنيفات">
-									<em class="ph-bookmarks-light"></em>
-									<span class="text">التصنيفات</span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#" class="nav-link" title="المجموعات">
-									<em class="ph-cardholder-light"></em>
-									<span class="text">المجموعات</span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#" class="nav-link" title="المركات">
-									<em class="ph-sketch-logo-light"></em>
-									<span class="text">المركات</span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#" class="nav-link" title="الاوسمة">
-									<em class="ph-tag-simple-light"></em>
-									<span class="text">الاوسمة</span>
-								</a>
-							</li>
-						</ul>
-					</li>
-					<li class="nav-item">
-						<a href="#" class="nav-link" title="Home">
-							<em class="ph-"></em>
-							<span class="text">الرئيسية</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a href="#" class="nav-link" title="Home">
-							<em class="ph-"></em>
-							<span class="text">الرئيسية</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a href="#" class="nav-link" title="Home">
-							<em class="ph-"></em>
-							<span class="text">الرئيسية</span>
-						</a>
-					</li>
-				</ul>
 			</nav>
 
 			<!-- Content -->
-			<div class="content"></div>
+			<div class="content">
+				<a href="#" sidebar-action>
+					<em class="ph-list"></em>
+				</a>
+			</div>
 		</div>
 		<!-- #endregion -->
 
