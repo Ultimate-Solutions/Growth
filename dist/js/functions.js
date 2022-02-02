@@ -76,16 +76,16 @@ document.addEventListener('DOMContentLoaded', () => {
 			// Expand status
 			if (mainNavbar.hasAttribute('expand-mobile')) {
 				// Add desktop expand
-				mainNavbar.setAttribute('expand');
+				mainNavbar.setAttribute('expand', '');
 				// Remove mobile expand
-				mainNavbar.removeAttribute('expand-mobile', '');
+				mainNavbar.removeAttribute('expand-mobile');
 			}
 			// Collapse status
 			if (mainNavbar.hasAttribute('collapse-mobile')) {
 				// Add desktop expand
-				mainNavbar.setAttribute('collapse');
+				mainNavbar.setAttribute('collapse', '');
 				// Remove mobile expand
-				mainNavbar.removeAttribute('collapse-mobile', '');
+				mainNavbar.removeAttribute('collapse-mobile');
 			}
 		}
 		// On screen resize
@@ -113,16 +113,16 @@ document.addEventListener('DOMContentLoaded', () => {
 					// Expand status
 					if (mainNavbar.hasAttribute('expand-mobile')) {
 						// Add desktop expand
-						mainNavbar.setAttribute('expand');
+						mainNavbar.setAttribute('expand', '');
 						// Remove mobile expand
-						mainNavbar.removeAttribute('expand-mobile', '');
+						mainNavbar.removeAttribute('expand-mobile');
 					}
 					// Collapse status
 					if (mainNavbar.hasAttribute('collapse-mobile')) {
 						// Add desktop expand
-						mainNavbar.setAttribute('collapse');
+						mainNavbar.setAttribute('collapse', '');
 						// Remove mobile expand
-						mainNavbar.removeAttribute('collapse-mobile', '');
+						mainNavbar.removeAttribute('collapse-mobile');
 					}
 				}
 			},
