@@ -98,9 +98,13 @@
 	--dashboard-navbar-link-dropdown-shadow-top: inset 0 20px 20px -20px #0000002a;
 	--dashboard-navbar-link-dropdown-shadow-bottom: inset 0 -20px 20px -20px
 		#0000002a;
+	--dashboard-top-navbar-sticky-background-color: #ffffff;
+	--dashboard-top-navbar-sticky-shadow: 0px 2px 1px rgba(0, 0, 0, 0.05),
+		0px 0px 1px rgba(0, 0, 0, 0.25);
 	--dashboard-top-navbar-data-action-color: #808080;
 	--dashboard-top-navbar-data-action-hover-color: #05a84b;
 	--dashboard-top-navbar-search-bar-background-color: #ffffff;
+	--dashboard-top-navbar-sticky-search-bar-background-color: #f1f1f1;
 	--dashboard-top-navbar-search-bar-shadow: 0px 2px 1px rgb(0 0 0 / 5%),
 		0px 0px 1px rgb(0 0 0 / 25%);
 	--dashboard-top-navbar-search-bar-close-background-color: #dee3e9;
@@ -589,6 +593,35 @@ img {
 .dashboard > .content > .top-navbar {
 	padding: 1.25rem 2.5rem;
 }
+.dashboard > .content > .top-navbar.scrolled {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 1.25rem;
+	margin: 1.25rem 2.5rem;
+	padding: 0.625rem 1.25rem;
+	background-color: var(--dashboard-top-navbar-sticky-background-color);
+	box-shadow: var(--dashboard-top-navbar-sticky-shadow);
+	box-shadow: var(--shadow-depth-02);
+	border-radius: 31.25rem;
+	-webkit-animation: topNavSticky ease-in-out 0.5s 1 alternate;
+	animation: topNavSticky ease-in-out 0.5s 1 alternate;
+}
+@-webkit-keyframes topNavSticky {
+	0% {
+		transform: translateY(-100%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
+@keyframes topNavSticky {
+	0% {
+		transform: translateY(-100%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
 .dashboard > .content > .top-navbar .right {
 	max-width: 43.75rem;
 	flex: 1 1 auto;
@@ -600,6 +633,7 @@ img {
 	color: var(--dashboard-top-navbar-data-action-color);
 	cursor: pointer;
 	align-self: center;
+	line-height: var(--line-spacing-0);
 	transition: var(--transition-normal);
 }
 .dashboard > .content > .top-navbar [data-action]:hover,
@@ -609,28 +643,33 @@ img {
 }
 .dashboard > .content > .top-navbar .search-bar {
 	align-self: center;
-	max-width: 44px;
+	max-width: 2.75rem;
 	overflow: hidden;
 }
 .dashboard > .content > .top-navbar .search-bar.show {
+	box-shadow: var(--dashboard-top-navbar-search-bar-shadow);
 	-webkit-animation: slideSearchbar ease-in-out 0.4s 1 alternate;
 	animation: slideSearchbar ease-in-out 0.4s 1 alternate;
 	animation-fill-mode: forwards;
 }
 @-webkit-keyframes slideSearchbar {
 	0% {
-		max-width: 44px;
+		max-width: 2.75rem;
+		margin-right: 0rem;
 	}
 	100% {
 		max-width: 31.25rem;
+		margin-right: 0.625rem;
 	}
 }
 @keyframes slideSearchbar {
 	0% {
-		max-width: 44px;
+		max-width: 2.75rem;
+		margin-right: 0rem;
 	}
 	100% {
 		max-width: 31.25rem;
+		margin-right: 0.625rem;
 	}
 }
 .dashboard > .content > .top-navbar .search-bar .content {
@@ -638,7 +677,11 @@ img {
 }
 .dashboard > .content > .top-navbar .search-bar.show .content {
 	background-color: var(--dashboard-top-navbar-search-bar-background-color);
-	box-shadow: var(--dashboard-top-navbar-search-bar-shadow);
+}
+.dashboard > .content > .top-navbar.scrolled .search-bar.show .content {
+	background-color: var(
+		--dashboard-top-navbar-sticky-search-bar-background-color
+	);
 }
 .dashboard > .content > .top-navbar .search-bar [icon] {
 	font-size: var(--font-size-24);
@@ -654,6 +697,7 @@ img {
 	font-size: var(--font-size-14);
 	padding: 0.5rem 0.625rem;
 	border: none;
+	background-color: transparent;
 }
 .dashboard > .content > .top-navbar .search-bar input:focus,
 .dashboard > .content > .top-navbar .search-bar select:focus {

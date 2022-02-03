@@ -176,10 +176,20 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
 	// Main navbar
 	const topNavbar = document.querySelector(
-		'.dashboard > .content > .top-navbar'
-	);
+			'.dashboard > .content > .top-navbar'
+		),
+		mainContainer = document.querySelector('.dashboard > .content');
 
 	if (topNavbar) {
+		// Scroll Animation
+		mainContainer.addEventListener('scroll', () => {
+			if (mainContainer.scrollTop > 100) {
+				topNavbar.classList.add('scrolled');
+			} else {
+				topNavbar.classList.remove('scrolled');
+			}
+		});
+
 		// Search bar
 		const searchBar = topNavbar.querySelector('.search-bar');
 		// View Search bar
