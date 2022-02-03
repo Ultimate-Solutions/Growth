@@ -41,7 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	if (mainNavbar) {
 		// Expand / Collapse Main navbar
-		const expandCollapseActions = document.querySelectorAll('[sidebar-action]');
+		const expandCollapseActions = document.querySelectorAll(
+			'[data-action="sidebar-toggler"]'
+		);
 		for (let expandCollapseAction of expandCollapseActions) {
 			expandCollapseAction.addEventListener('click', () => {
 				if (mainNavbar.hasAttribute('collapse')) {
@@ -158,6 +160,41 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			});
 		}
+	}
+});
+// #endregion
+
+// #region / Top Navbar
+//   _______            _   _             _
+//  |__   __|          | \ | |           | |
+//     | | ___  _ __   |  \| | __ ___   _| |__   __ _ _ __
+//     | |/ _ \| '_ \  | . ` |/ _` \ \ / / '_ \ / _` | '__|
+//     | | (_) | |_) | | |\  | (_| |\ V /| |_) | (_| | |
+//     |_|\___/| .__/  |_| \_|\__,_| \_/ |_.__/ \__,_|_|
+//             | |
+//             |_|
+document.addEventListener('DOMContentLoaded', () => {
+	// Main navbar
+	const topNavbar = document.querySelector(
+		'.dashboard > .content > .top-navbar'
+	);
+
+	if (topNavbar) {
+		// Search bar
+		const searchBar = topNavbar.querySelector('.search-bar');
+		// View Search bar
+		searchBar.querySelector('[icon]').addEventListener('click', () => {
+			if (!searchBar.classList.contains('show')) {
+				searchBar.classList.add('show');
+				searchBar.querySelector('input').focus();
+			}
+		});
+		// Hide Search bar
+		searchBar.querySelector('button').addEventListener('click', () => {
+			if (searchBar.classList.contains('show')) {
+				searchBar.classList.remove('show');
+			}
+		});
 	}
 });
 // #endregion
