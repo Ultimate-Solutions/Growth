@@ -37,6 +37,7 @@
 	--font-size-20: 1.25rem;
 	--font-size-24: 1.5rem;
 	--font-size-28: 1.75rem;
+	--font-size-32: 2rem;
 	--character-spacing--20: -1.25%;
 	--character-spacing-0: 0%;
 	--character-spacing-20: 1.25%;
@@ -571,9 +572,10 @@ img {
 .dashboard > .content {
 	width: 100%;
 	height: 100%;
+	min-height: 100%;
 	overflow-x: auto;
 	margin-right: var(--main-nav-width);
-	min-height: 100%;
+	padding: 1.25rem 2.5rem;
 	background-color: var(--dashboard-content-background-color);
 	-webkit-box-shadow: var(--dashboard-content-shadow);
 	-moz-box-shadow: var(--dashboard-content-shadow);
@@ -591,7 +593,7 @@ img {
 	background: var(--dashboard-content-mask-background-color);
 }
 .dashboard > .content > .top-navbar {
-	padding: 1.25rem 2.5rem;
+	margin-bottom: 1.25rem;
 }
 .dashboard > .content > .top-navbar.scrolled {
 	position: -webkit-sticky;
@@ -824,6 +826,20 @@ img {
 	}
 }
 
+/* -----------------------------------------------
+  Main > Content > Master Header
+-------------------------------------------------*/
+.header.master {
+	margin: 2.5rem 0;
+	font-weight: var(--font-weight-medium);
+}
+.header.master h1 {
+	font-size: var(--font-size-32);
+}
+.header.master .info {
+	font-size: var(--font-size-16);
+	color: #808080;
+}
 /* #endregion */
 
 /* #region / Bootstrap 5 - Customization */
