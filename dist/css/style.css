@@ -205,6 +205,33 @@ img {
 } */
 
 /* -----------------------------------------------
+  Main > Tootltip
+-------------------------------------------------*/
+[tooltip-container] {
+	position: absolute;
+	right: 80px;
+	background-color: white;
+	color: var(--background-color);
+	border-radius: 0.4rem;
+	padding: 0.5rem 0.9rem;
+	font-size: var(--font-size-18);
+	box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+	animation: tooltipView ease-in-out 0.5s 1 alternate;
+	animation-fill-mode: forwards;
+	z-index: 1000;
+}
+@keyframes tooltipView {
+	from {
+		transform: translateY(-20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+/* -----------------------------------------------
   Main > Dashboard
 -------------------------------------------------*/
 .dashboard {
@@ -462,33 +489,6 @@ img {
 	}
 	.dashboard .main-navbar[collapse] .brand {
 		width: var(--main-nav-width);
-	}
-}
-
-/* -----------------------------------------------
-  Main > Tootltip
--------------------------------------------------*/
-[tooltip-container] {
-	position: absolute;
-	right: 80px;
-	background-color: white;
-	color: var(--background-color);
-	border-radius: 0.4rem;
-	padding: 0.5rem 0.9rem;
-	font-size: var(--font-size-18);
-	box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
-	animation: tooltipView ease-in-out 0.5s 1 alternate;
-	animation-fill-mode: forwards;
-	z-index: 1000;
-}
-@keyframes tooltipView {
-	from {
-		transform: translateY(-20px);
-		opacity: 0;
-	}
-	to {
-		transform: translateY(0);
-		opacity: 1;
 	}
 }
 
