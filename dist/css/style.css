@@ -499,7 +499,7 @@ img {
 .dashboard > .content {
 	width: 100%;
 	margin-right: var(--main-nav-width);
-	min-height: 200%;
+	min-height: 100%;
 	background-color: var(--dashboard-content-background-color);
 	-webkit-box-shadow: var(--dashboard-content-shadow);
 	-moz-box-shadow: var(--dashboard-content-shadow);
