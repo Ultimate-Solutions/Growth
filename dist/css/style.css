@@ -274,7 +274,7 @@ img {
   Main > Dashboard
 -------------------------------------------------*/
 .dashboard {
-	min-height: 100%;
+	height: 100%;
 }
 
 /* -----------------------------------------------
@@ -566,6 +566,8 @@ img {
 -------------------------------------------------*/
 .dashboard > .content {
 	width: 100%;
+	height: 100%;
+	overflow-x: auto;
 	margin-right: var(--main-nav-width);
 	min-height: 100%;
 	background-color: var(--dashboard-content-background-color);
