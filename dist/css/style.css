@@ -82,6 +82,8 @@
 	--dashboard-sidebar-background-color: #ffffff;
 	--dashboard-content-background-color: #f1f1f1;
 	--dashboard-content-shadow: 4px 0px 20px 0px rgb(0 0 0 / 20%);
+	--dashboard-content-mask-background-color: transparent;
+	--dashboard-navbar-blured-background-color: #ffffffb3;
 	--dashboard-navbar-link-color: #8f8f8f;
 	--dashboard-navbar-link-hover-color: #1e1e1f;
 	--dashboard-navbar-link-active-icon-color: #05a84b;
@@ -155,6 +157,7 @@ body {
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	height: 100%;
+	overflow-x: hidden;
 }
 [hidden] {
 	display: none !important;
@@ -221,10 +224,6 @@ img {
 	background-image: url(../images/sidebar-bg.png);
 	transition: all 0.5s ease;
 }
-.dashboard .main-navbar[collapse] {
-	display: block;
-	width: var(--main-nav-widthAfter);
-}
 .dashboard .main-navbar:before {
 	content: '';
 	position: absolute;
@@ -232,7 +231,7 @@ img {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(255, 255, 255, 0.7);
+	background: var(--dashboard-navbar-blured-background-color);
 	backdrop-filter: blur(85px);
 	z-index: -1;
 }
@@ -248,12 +247,6 @@ img {
 	width: var(--main-nav-width);
 	transition: var(--transition-normal);
 }
-.dashboard .main-navbar[collapse] .brand {
-	padding: 1.5rem 0.625rem;
-}
-.dashboard .main-navbar[collapse] .brand {
-	width: var(--main-nav-widthAfter);
-}
 .dashboard .main-navbar .brand > * {
 	height: 40px;
 	object-fit: cover;
@@ -261,12 +254,8 @@ img {
 .dashboard .main-navbar .brand > [small] {
 	max-height: 2.5rem;
 }
-.dashboard .main-navbar .brand > [small],
-.dashboard .main-navbar[collapse] .brand > [regular] {
+.dashboard .main-navbar .brand > [small] {
 	display: none;
-}
-.dashboard .main-navbar[collapse] .brand > [small] {
-	display: block;
 }
 .dashboard .main-navbar .navbar {
 	padding-bottom: 2.5rem !important;
@@ -308,10 +297,6 @@ img {
 	height: 100%;
 	background-color: var(--dashboard-navbar-link-active-indicator-color);
 	transition: all 0.5s ease;
-}
-.dashboard .main-navbar[collapse] .navbar .nav-item > .nav-link.active:before,
-.dashboard .main-navbar[collapse] .navbar .nav-item.active > .nav-link:before {
-	left: calc(100% - 63px);
 }
 .dashboard .main-navbar .navbar .nav-item > .nav-link .icon {
 	margin-left: 0.625rem;
@@ -362,10 +347,6 @@ img {
 	transition: opacity 0.6s ease;
 	opacity: 1;
 }
-.dashboard .main-navbar[collapse] .navbar .nav-item .nav-link .text {
-	opacity: 0;
-	pointer-events: none;
-}
 .dashboard .main-navbar .navbar .nav-item .nav-link .notifications {
 	display: inline-block;
 	padding: 0.35em 0.65em;
@@ -377,14 +358,6 @@ img {
 	vertical-align: baseline;
 	border-radius: 50rem;
 	background-color: var(--dashboard-navbar-link-notifications-background-color);
-}
-.dashboard .main-navbar[collapse] .navbar .nav-item .nav-link .notifications {
-	position: absolute;
-	top: 50%;
-	right: 1.5625rem;
-	height: 1.875rem;
-	color: var(--dashboard-navbar-link-notifications-background-color);
-	transform: translateY(-20%) scale(0.5);
 }
 .dashboard .main-navbar .navbar .nav-item .nav-link.dropdown {
 	padding-left: 3.75rem;
@@ -442,6 +415,55 @@ img {
 	-moz--box-shadow: var(--dashboard-navbar-link-dropdown-shadow-bottom);
 	box-shadow: var(--dashboard-navbar-link-dropdown-shadow-bottom);
 }
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	.dashboard .main-navbar[collapse] {
+		display: block;
+		width: var(--main-nav-widthAfter);
+	}
+	.dashboard .main-navbar[collapse] .brand {
+		padding: 1.5rem 0.625rem;
+		width: var(--main-nav-widthAfter);
+	}
+	.dashboard .main-navbar[collapse] .brand > [regular] {
+		display: none;
+	}
+	.dashboard .main-navbar[collapse] .brand > [small] {
+		display: block;
+	}
+	.dashboard .main-navbar[collapse] .navbar .nav-item > .nav-link.active:before,
+	.dashboard
+		.main-navbar[collapse]
+		.navbar
+		.nav-item.active
+		> .nav-link:before {
+		left: calc(100% - 63px);
+	}
+	.dashboard .main-navbar[collapse] .navbar .nav-item .nav-link .text {
+		opacity: 0;
+		pointer-events: none;
+	}
+	.dashboard .main-navbar[collapse] .navbar .nav-item .nav-link .notifications {
+		position: absolute;
+		top: 50%;
+		right: 1.5625rem;
+		height: 1.875rem;
+		color: var(--dashboard-navbar-link-notifications-background-color);
+		transform: translateY(-20%) scale(0.5);
+	}
+}
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+	.dashboard .main-navbar[collapse] .brand > [small] {
+		display: none;
+	}
+	.dashboard .main-navbar[collapse] .brand > [regular] {
+		display: block;
+	}
+	.dashboard .main-navbar[collapse] .brand {
+		width: var(--main-nav-width);
+	}
+}
 
 /* -----------------------------------------------
   Main > Tootltip
@@ -469,6 +491,7 @@ img {
 		opacity: 1;
 	}
 }
+
 /* -----------------------------------------------
   Main > Content
 -------------------------------------------------*/
@@ -483,8 +506,34 @@ img {
 	transition: all 0.5s ease;
 	z-index: 1;
 }
-.dashboard .main-navbar[collapse] + .content {
-	margin-right: var(--main-nav-widthAfter);
+.dashboard > .content > [mask] {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--dashboard-content-mask-background-color);
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	.dashboard .main-navbar[collapse] + .content {
+		margin-right: var(--main-nav-widthAfter);
+	}
+}
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+	.dashboard > .content,
+	.dashboard .main-navbar[collapse] + .content {
+		margin-right: 0;
+	}
+	.dashboard .main-navbar[expand] + .content {
+		transform: translateX(calc(-1 * var(--main-nav-width)));
+	}
+	.dashboard .main-navbar[expand] + .content > [mask] {
+		display: block;
+		z-index: 111111111111;
+	}
 }
 
 /* #endregion */

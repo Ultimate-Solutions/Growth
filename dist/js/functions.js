@@ -54,94 +54,57 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 		}
 
-		// Expand / Collapse Main navbar - Mobile
+		// Expand / Collapse Main navbar on click outside for Mobile view
 		var windowWidth = window.innerWidth;
-		// Check window width
-		if (windowWidth <= 992) {
-			// Expand status
+		const dashboardContent = document.querySelector(
+			'.dashboard > .main-navbar + .content > [mask]'
+		);
+
+		// Check Window width
+		if (windowWidth <= 991.98) {
 			if (mainNavbar.hasAttribute('expand')) {
-				// Remove desktop expand
-				mainNavbar.removeAttribute('expand');
-				// Add mobile expand
-				mainNavbar.setAttribute('expand-mobile', '');
-			}
-			// Collapse status
-			if (mainNavbar.hasAttribute('collapse')) {
-				// Remove desktop expand
-				mainNavbar.removeAttribute('collapse');
-				// Add mobile expand
-				mainNavbar.setAttribute('collapse-mobile', '');
-			}
-		} else {
-			// Expand status
-			if (mainNavbar.hasAttribute('expand-mobile')) {
-				// Add desktop expand
-				mainNavbar.setAttribute('expand', '');
-				// Remove mobile expand
-				mainNavbar.removeAttribute('expand-mobile');
-			}
-			// Collapse status
-			if (mainNavbar.hasAttribute('collapse-mobile')) {
-				// Add desktop expand
-				mainNavbar.setAttribute('collapse', '');
-				// Remove mobile expand
-				mainNavbar.removeAttribute('collapse-mobile');
+				dashboardContent.addEventListener('click', () => {
+					mainNavbar.removeAttribute('expand');
+					mainNavbar.setAttribute('collapse', '');
+				});
 			}
 		}
-		// On screen resize
+
 		window.addEventListener(
 			'resize',
 			() => {
 				windowWidth = window.innerWidth;
 
-				if (windowWidth <= 992) {
-					// Expand status
+				if (windowWidth <= 991.98) {
 					if (mainNavbar.hasAttribute('expand')) {
-						// Remove desktop expand
-						mainNavbar.removeAttribute('expand');
-						// Add mobile expand
-						mainNavbar.setAttribute('expand-mobile', '');
-					}
-					// Collapse status
-					if (mainNavbar.hasAttribute('collapse')) {
-						// Remove desktop expand
-						mainNavbar.removeAttribute('collapse');
-						// Add mobile expand
-						mainNavbar.setAttribute('collapse-mobile', '');
+						dashboardContent.addEventListener('click', () => {
+							mainNavbar.removeAttribute('expand');
+							mainNavbar.setAttribute('collapse', '');
+						});
 					}
 				} else {
-					// Expand status
-					if (mainNavbar.hasAttribute('expand-mobile')) {
-						// Add desktop expand
-						mainNavbar.setAttribute('expand', '');
-						// Remove mobile expand
-						mainNavbar.removeAttribute('expand-mobile');
-					}
-					// Collapse status
-					if (mainNavbar.hasAttribute('collapse-mobile')) {
-						// Add desktop expand
-						mainNavbar.setAttribute('collapse', '');
-						// Remove mobile expand
-						mainNavbar.removeAttribute('collapse-mobile');
-					}
+					dashboardContent.removeEventListener('click', () => {});
 				}
 			},
 			true
 		);
-		for (let expandCollapseAction of expandCollapseActions) {
-			expandCollapseAction.addEventListener('click', () => {
-				if (mainNavbar.hasAttribute('collapse-mobile')) {
-					mainNavbar.removeAttribute('collapse-mobile');
-					mainNavbar.setAttribute('expand-mobile', '');
-				} else if (mainNavbar.hasAttribute('expand-mobile')) {
-					mainNavbar.removeAttribute('expand-mobile');
-					mainNavbar.setAttribute('collapse-mobile', '');
+
+		// Actions for dropdown links
+		// Dropdown lists
+		const dropdwonLists = mainNavbar.querySelectorAll('.nav-link.dropdown');
+		for (let dropdownListItem of dropdwonLists) {
+			dropdownListItem.addEventListener('click', () => {
+				if (!dropdownListItem.classList.contains('expand')) {
+					// Collapse All Dropdowns
+					collapseAllDropdown(dropdwonLists);
+					// Expant current dropdown
+					expandDropdown(dropdownListItem);
+				} else {
+					// Collapse All Dropdowns
+					collapseAllDropdown(dropdwonLists);
 				}
 			});
 		}
-
-		// Dropdown lists
-		let dropdwonLists = mainNavbar.querySelectorAll('.nav-link.dropdown');
 
 		// Collapse
 		function collapseAllDropdown(master) {
@@ -156,19 +119,17 @@ document.addEventListener('DOMContentLoaded', () => {
 			el.classList.add('expand');
 		}
 
-		// Actions for dropdown links
-		for (let dropdownListItem of dropdwonLists) {
-			dropdownListItem.addEventListener('click', () => {
-				if (!dropdownListItem.classList.contains('expand')) {
-					// Collapse All Dropdowns
-					collapseAllDropdown(dropdwonLists);
-					// Expant current dropdown
-					expandDropdown(dropdownListItem);
-				} else {
-					// Collapse All Dropdowns
-					collapseAllDropdown(dropdwonLists);
+		// Check activedropdown links
+		// Nav items
+		const navItems = mainNavbar.querySelectorAll('.nav-item');
+		for (let navItem of navItems) {
+			let dropdownList = navItem.querySelector('.dropdown-list');
+			if (dropdownList) {
+				let navItemActive = dropdownList.querySelector('.nav-item.active');
+				if (navItemActive) {
+					navItem.querySelector('.nav-link.dropdown').classList.add('expand');
 				}
-			});
+			}
 		}
 
 		// Enable tooltips
