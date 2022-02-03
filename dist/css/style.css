@@ -836,6 +836,70 @@ img {
 .header.master h1 {
 	font-size: var(--font-size-32);
 }
+.header.master h1 > [icon] {
+	display: inline-block;
+	margin-right: 0.625rem;
+	-webkit-animation: swingHandIcon ease-in-out 0.5s 4s infinite alternate;
+	animation: swingHandIcon ease-in-out 0.5s 4s infinite alternate;
+}
+@-webkit-keyframes swingHandIcon {
+	0% {
+		transform: rotate(0deg);
+	}
+	10% {
+		transform: rotate(10deg);
+	}
+	30% {
+		transform: rotate(0deg);
+	}
+	40% {
+		transform: rotate(-10deg);
+	}
+	50% {
+		transform: rotate(0deg);
+	}
+	60% {
+		transform: rotate(5deg);
+	}
+	70% {
+		transform: rotate(0deg);
+	}
+	80% {
+		transform: rotate(-5deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+@keyframes swingHandIcon {
+	0% {
+		transform: rotate(0deg);
+	}
+	10% {
+		transform: rotate(10deg);
+	}
+	30% {
+		transform: rotate(0deg);
+	}
+	40% {
+		transform: rotate(-10deg);
+	}
+	50% {
+		transform: rotate(0deg);
+	}
+	60% {
+		transform: rotate(5deg);
+	}
+	70% {
+		transform: rotate(0deg);
+	}
+	80% {
+		transform: rotate(-5deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
 .header.master .info {
 	font-size: var(--font-size-16);
 	color: #808080;
