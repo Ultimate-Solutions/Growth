@@ -963,8 +963,27 @@ img {
 	height: 2.5rem;
 	background-color: var(--dashboard-notif-after-background-color);
 	box-shadow: var(--dashboard-notif-after-shadow);
-	opacity: 1;
-	transform: translateY(0);
+}
+[notif]:before {
+	content: '\f33a';
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+	font-size: 100px;
+	font-family: 'Phosphor';
+	opacity: 0.08;
+}
+[notif][data-type='Success']:before {
+	content: '\f33e';
+}
+[notif][data-type='Danger']:before {
+	content: '\f558';
+}
+[notif][data-type='Warning']:before {
+	content: '\f62c';
+}
+[notif][data-type='Info']:before {
+	content: '\f478';
 }
 [notif].remove {
 	transition: var(--transition-normal);
@@ -980,16 +999,20 @@ img {
 	transition: var(--transition-normal);
 	background-color: var(--dashboard-notif-default-nav-background-color);
 }
-[notif][data-type='Success'] > .nav {
+[notif][data-type='Success'] > .nav,
+[notif][data-type='success'] > .nav {
 	background-color: var(--dashboard-notif-success-nav-background-color);
 }
-[notif][data-type='Danger'] > .nav {
+[notif][data-type='Danger'] > .nav,
+[notif][data-type='danger'] > .nav {
 	background-color: var(--dashboard-notif-danger-nav-background-color);
 }
-[notif][data-type='Warning'] > .nav {
+[notif][data-type='Warning'] > .nav,
+[notif][data-type='warning'] > .nav {
 	background-color: var(--dashboard-notif-warning-nav-background-color);
 }
-[notif][data-type='Info'] > .nav {
+[notif][data-type='Info'] > .nav,
+[notif][data-type='info'] > .nav {
 	background-color: var(--dashboard-notif-info-nav-background-color);
 }
 [notif] > .nav [close] {
