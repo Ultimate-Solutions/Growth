@@ -42,14 +42,14 @@
 	--character-spacing-0: 0%;
 	--character-spacing-20: 1.25%;
 	--line-spacing-normal: normal;
-	--line-spacing-0: 0%;
-	--line-spacing-50: 0.5%;
-	--line-spacing-100: 1%;
-	--line-spacing-120: 1.2%;
-	--line-spacing-140: 1.4%;
-	--line-spacing-160: 1.6%;
-	--line-spacing-180: 1.8%;
-	--line-spacing-200: 2%;
+	--line-spacing-0: 0;
+	--line-spacing-50: 0.5;
+	--line-spacing-100: 1;
+	--line-spacing-120: 1.2;
+	--line-spacing-140: 1.4;
+	--line-spacing-160: 1.6;
+	--line-spacing-180: 1.8;
+	--line-spacing-200: 2;
 
 	/* Shadows */
 	--shadow-depth--01: inset 0px 2px 0px rgba(0, 0, 0, 0.05);
@@ -82,7 +82,7 @@
 	--scrollbar-thumb-border-color: transparent;
 	--scrollbar-thumb-hover-background-color: #a0a0a5;
 	--scrollbar-thumb-hover-border-color: transparent;
-	--separator-background-color: #d5d5d5;
+	--separator-background-color: #e7e7e7;
 	--dashboard-sidebar-background-color: #ffffff;
 	--dashboard-content-background-color: #f1f1f1;
 	--dashboard-content-shadow: 4px 0px 20px 0px rgb(0 0 0 / 20%);
@@ -104,6 +104,7 @@
 		0px 0px 1px rgba(0, 0, 0, 0.25);
 	--dashboard-top-navbar-data-action-color: #808080;
 	--dashboard-top-navbar-data-action-hover-color: #05a84b;
+	--dashboard-top-navbar-data-action-notif-background-color: #dc3545;
 	--dashboard-top-navbar-search-bar-background-color: #ffffff;
 	--dashboard-top-navbar-sticky-search-bar-background-color: #f1f1f1;
 	--dashboard-top-navbar-search-bar-shadow: 0px 2px 1px rgb(0 0 0 / 5%),
@@ -114,6 +115,11 @@
 	--dashboard-top-navbar-user-badge-info-badge-color: #333333;
 	--dashboard-top-navbar-user-badge-info-badge-background-color: #dbdbdb;
 	--dashboard-top-navbar-user-badge-info-badge-admin-background-color: #c2e3d0;
+	--dashboard-notif-background-color: #ffffff;
+	--dashboard-notif-after-background-color: #ffffff;
+	--dashboard-notif-after-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2),
+		0px 4px 10px rgba(0, 0, 0, 0.2);
+	--dashboard-notif-success-nav-background-color: #cdeedb;
 }
 [data-color-mode='light'][data-theme='high_contrast'] {
 }
@@ -599,14 +605,15 @@ img {
 	position: -webkit-sticky;
 	position: sticky;
 	top: 1.25rem;
-	margin: 1.25rem 2.5rem;
+	margin: 0;
 	padding: 0.625rem 1.25rem;
 	background-color: var(--dashboard-top-navbar-sticky-background-color);
 	box-shadow: var(--dashboard-top-navbar-sticky-shadow);
 	box-shadow: var(--shadow-depth-02);
-	border-radius: 31.25rem;
+	border-radius: 0.25rem;
 	-webkit-animation: topNavSticky ease-in-out 0.5s 1 alternate;
 	animation: topNavSticky ease-in-out 0.5s 1 alternate;
+	z-index: 1;
 }
 @-webkit-keyframes topNavSticky {
 	0% {
@@ -642,6 +649,19 @@ img {
 .dashboard > .content > .top-navbar [data-action]:focus,
 .dashboard > .content > .top-navbar [data-action]:active {
 	color: var(--dashboard-top-navbar-data-action-hover-color);
+}
+.dashboard > .content > .top-navbar [data-action][data-notif='true'] {
+	position: relative;
+}
+.dashboard > .content > .top-navbar [data-action][data-notif='true']:after {
+	content: '';
+	position: absolute;
+	bottom: 0.5rem;
+	right: 0.5rem;
+	width: 0.75rem;
+	height: 0.75rem;
+	border-radius: 50%;
+	background-color: #dc3545;
 }
 .dashboard > .content > .top-navbar .search-bar {
 	align-self: center;
@@ -839,34 +859,35 @@ img {
 .header.master h1 > [icon] {
 	display: inline-block;
 	margin-right: 0.625rem;
-	-webkit-animation: swingHandIcon ease-in-out 0.5s 4s infinite alternate;
-	animation: swingHandIcon ease-in-out 0.5s 4s infinite alternate;
+	-webkit-animation: swingHandIcon ease-in-out 5s infinite alternate;
+	animation: swingHandIcon ease-in-out 5s infinite alternate;
 }
 @-webkit-keyframes swingHandIcon {
 	0% {
 		transform: rotate(0deg);
 	}
-	10% {
+	2% {
 		transform: rotate(10deg);
 	}
-	30% {
+	4% {
 		transform: rotate(0deg);
 	}
-	40% {
+	6% {
 		transform: rotate(-10deg);
 	}
-	50% {
+	8% {
 		transform: rotate(0deg);
 	}
-	60% {
+	10% {
 		transform: rotate(5deg);
 	}
-	70% {
+	12% {
 		transform: rotate(0deg);
 	}
-	80% {
+	14% {
 		transform: rotate(-5deg);
 	}
+	16%,
 	100% {
 		transform: rotate(0deg);
 	}
@@ -875,27 +896,28 @@ img {
 	0% {
 		transform: rotate(0deg);
 	}
-	10% {
+	2% {
 		transform: rotate(10deg);
 	}
-	30% {
+	4% {
 		transform: rotate(0deg);
 	}
-	40% {
+	6% {
 		transform: rotate(-10deg);
 	}
-	50% {
+	8% {
 		transform: rotate(0deg);
 	}
-	60% {
+	10% {
 		transform: rotate(5deg);
 	}
-	70% {
+	12% {
 		transform: rotate(0deg);
 	}
-	80% {
+	14% {
 		transform: rotate(-5deg);
 	}
+	16%,
 	100% {
 		transform: rotate(0deg);
 	}
@@ -903,6 +925,79 @@ img {
 .header.master .info {
 	font-size: var(--font-size-16);
 	color: #808080;
+}
+
+/* -----------------------------------------------
+  Main > Content > Notifications Tabs
+-------------------------------------------------*/
+[notif] {
+	position: relative;
+	display: flex;
+	margin: 1.25rem 0;
+	background-color: var(--dashboard-notif-background-color);
+	clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%, 0 30px);
+}
+[notif]:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 30px;
+	height: 30px;
+	background-color: var(--dashboard-notif-after-background-color);
+	box-shadow: var(--dashboard-notif-after-shadow);
+	opacity: 1;
+	transform: translateY(0);
+}
+[notif].remove {
+	transition: var(--transition-normal);
+	opacity: 0;
+	transform: translateY(-6.25rem);
+}
+[notif] > .nav {
+	padding: 1.25rem 0.625rem;
+	display: flex;
+	flex-direction: column;
+}
+[notif][data-type='success'] > .nav {
+	background-color: var(--dashboard-notif-success-nav-background-color);
+}
+[notif][data-type='success'] > .nav [close] {
+	margin: auto auto 0;
+	font-size: var(--font-size-24);
+	cursor: pointer;
+}
+[notif] > .nav .list-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 0.625rem;
+}
+[notif] > .nav .list-group > .action {
+	font-size: var(--font-size-32);
+	text-decoration: none;
+	color: inherit;
+	opacity: 0.4;
+	transition: var(--transition-normal);
+}
+[notif] > .nav .list-group > .action.active {
+	opacity: 1;
+}
+[notif] > .content {
+	padding: 1.25rem;
+}
+[notif] > .content .header {
+	margin-bottom: 0.625rem;
+}
+[notif] > .content .header .title {
+	font-size: var(--font-size-18);
+	font-weight: var(--font-weight-medium);
+	line-height: var(--line-spacing-180);
+}
+[notif] > .content .header .subtitle {
+	font-size: var(--font-size-12);
+}
+[notif] > .content .content {
+	font-size: var(--font-size-16);
 }
 /* #endregion */
 

@@ -209,6 +209,31 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 // #endregion
 
+// #region / Notification Tabs
+//   _   _       _   _  __ _           _   _               _______    _
+//  | \ | |     | | (_)/ _(_)         | | (_)             |__   __|  | |
+//  |  \| | ___ | |_ _| |_ _  ___ __ _| |_ _  ___  _ __      | | __ _| |__  ___
+//  | . ` |/ _ \| __| |  _| |/ __/ _` | __| |/ _ \| '_ \     | |/ _` | '_ \/ __|
+//  | |\  | (_) | |_| | | | | (_| (_| | |_| | (_) | | | |    | | (_| | |_) \__ \
+//  |_| \_|\___/ \__|_|_| |_|\___\__,_|\__|_|\___/|_| |_|    |_|\__,_|_.__/|___/
+//
+//
+document.addEventListener('DOMContentLoaded', () => {
+	// Main navbar
+	const notifTabs = document.querySelector('.dashboard > .content [notif]'),
+		notifTabsClose = notifTabs.querySelector('[close]');
+
+	if (notifTabs) {
+		notifTabsClose.addEventListener('click', () => {
+			notifTabs.classList.add('remove');
+			notifTabs.ontransitionend = function () {
+				notifTabs.remove();
+			};
+		});
+	}
+});
+// #endregion
+
 // Element Top Left position helper
 function offset(el) {
 	var rect = el.getBoundingClientRect(),
