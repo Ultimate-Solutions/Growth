@@ -66,10 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (windowWidth <= 991.98) {
 			if (mainNavbar.hasAttribute('expand')) {
 				document.addEventListener('mouseup', function (e) {
-					if (!mainNavbar.contains(e.target)) {
-						mainNavbar.removeAttribute('expand');
-						mainNavbar.setAttribute('collapse', '');
-					}
+					if (windowWidth <= 991.98)
+						if (!mainNavbar.contains(e.target)) {
+							mainNavbar.removeAttribute('expand');
+							mainNavbar.setAttribute('collapse', '');
+						}
 				});
 			}
 		}
@@ -82,10 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (windowWidth <= 991.98) {
 					if (mainNavbar.hasAttribute('expand')) {
 						document.addEventListener('mouseup', function (e) {
-							if (!mainNavbar.contains(e.target)) {
-								mainNavbar.removeAttribute('expand');
-								mainNavbar.setAttribute('collapse', '');
-							}
+							if (windowWidth <= 991.98)
+								if (!mainNavbar.contains(e.target)) {
+									mainNavbar.removeAttribute('expand');
+									mainNavbar.setAttribute('collapse', '');
+								}
 						});
 					}
 				}
