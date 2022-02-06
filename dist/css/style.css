@@ -38,6 +38,8 @@
 	--font-size-24: 1.5rem;
 	--font-size-28: 1.75rem;
 	--font-size-32: 2rem;
+	--font-size-56: 3.5rem;
+	--font-size-68: 4.25rem;
 	--character-spacing--20: -1.25%;
 	--character-spacing-0: 0%;
 	--character-spacing-20: 1.25%;
@@ -584,7 +586,7 @@ img {
 	top: 1.25rem;
 	-webkit-animation: topNavSticky ease-in-out 0.5s 1 alternate;
 	animation: topNavSticky ease-in-out 0.5s 1 alternate;
-	z-index: 1;
+	z-index: 1000009;
 }
 .dashboard > .content > .top-navbar > .content {
 	margin-bottom: 1.25rem;
@@ -1045,6 +1047,7 @@ img {
 	padding: 2.5rem 1.25rem 0.625rem;
 	max-width: 6.25rem;
 	font-size: var(--font-size-16);
+	cursor: pointer;
 }
 [firsttimesettings] .steper .content > *:before,
 [firsttimesettings] .steper .content > *:after {
@@ -1060,6 +1063,7 @@ img {
 	background-color: #aaaaaa;
 	left: 50%;
 	transform: translateX(-50%);
+	z-index: 1;
 }
 [firsttimesettings] .steper .content > *:after {
 	top: 1.1875rem;
@@ -1081,7 +1085,72 @@ img {
 [firsttimesettings] .steper .content > *[passed]:after {
 	background-color: #05a84b;
 }
-[firsttimesettings] .steper {
+
+/* -----------------------------------------------
+  Main > Content > Sections
+-------------------------------------------------*/
+section {
+	margin: 3.125rem 0;
+}
+section > .header {
+	position: relative;
+}
+section > .header [icon] {
+	font-size: var(--font-size-32);
+	margin-left: 1.25rem;
+}
+section > .header .title {
+	font-size: var(--font-size-24);
+	font-weight: var(--font-weight-medium);
+	line-height: var(--line-spacing-160);
+	color: #22447b;
+}
+section > .header .title:before {
+	content: attr(data-shadow);
+	position: absolute;
+	right: -20px;
+	top: -4.25rem;
+	color: #1e1e1f;
+	opacity: 0.04;
+	font-size: var(--font-size-68);
+}
+section > .header .subtitle {
+	font-size: var(--font-size-16);
+	color: #555555;
+}
+section > .header [action] {
+	position: relative;
+	display: flex;
+	align-content: center;
+	text-decoration: none;
+	margin: auto auto auto 0;
+	padding: 0.125rem 0;
+	color: inherit;
+	transition: var(--transition-normal);
+}
+section > .header [action]:before {
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 0;
+	height: 0.125rem;
+	background-color: #05a84b;
+	transition: var(--transition-normal);
+}
+section > .header [action]:hover:before {
+	width: calc(100% - 1.875rem);
+}
+section > .header [action]:hover {
+	color: #05a84b;
+}
+section > .header [action] > em {
+	font-size: var(--font-size-24);
+	margin-right: 0.625rem;
+	transition: var(--transition-normal);
+}
+section > .header [action]:hover > em {
+	transform: translateX(-0.3125rem);
 }
 /* #endregion */
 
