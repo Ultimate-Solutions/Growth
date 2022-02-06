@@ -595,6 +595,7 @@ img {
 .dashboard > .content > .top-navbar > .content {
 	margin-bottom: 1.25rem;
 	border-radius: 0.25rem;
+	overflow: hidden;
 }
 .dashboard > .content > .top-navbar.scrolled > .content {
 	position: relative;
@@ -619,8 +620,8 @@ img {
 		transform: translateY(0%);
 	}
 }
-.dashboard > .content > .top-navbar.scrolled > .content:before,
-.dashboard > .content > .top-navbar.scrolled > .content:after {
+.dashboard > .content > .top-navbar.scrolled:before,
+.dashboard > .content > .top-navbar.scrolled:after {
 	content: '';
 	position: absolute;
 	bottom: 0.625rem;
@@ -630,11 +631,11 @@ img {
 	z-index: -1;
 	transition: var(--transition-normal);
 }
-.dashboard > .content > .top-navbar.scrolled > .content::before {
+.dashboard > .content > .top-navbar.scrolled:before {
 	left: 0.9375rem;
 	transform: skew(-5deg) rotate(-2deg);
 }
-.dashboard > .content > .top-navbar.scrolled > .content::after {
+.dashboard > .content > .top-navbar.scrolled:after {
 	right: 15px;
 	transform: skew(5deg) rotate(2deg);
 }
