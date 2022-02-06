@@ -595,7 +595,6 @@ img {
 .dashboard > .content > .top-navbar > .content {
 	margin-bottom: 1.25rem;
 	border-radius: 0.25rem;
-	overflow: hidden;
 }
 .dashboard > .content > .top-navbar.scrolled > .content {
 	position: relative;
@@ -855,10 +854,58 @@ img {
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 100%;
+		height: 100000000%;
 		background-color: var(--dashboard-content-mask-background-color);
 		backdrop-filter: blur(4px);
 		z-index: 10000001;
+	}
+	.dashboard > .content > .top-navbar .search-bar.show {
+		box-shadow: none;
+		-webkit-animation: unset;
+		animation: unset;
+	}
+	.dashboard > .content > .top-navbar .search-bar .content {
+		min-width: 2.75rem;
+	}
+	.dashboard > .content > .top-navbar .user-badge .info,
+	.dashboard > .content > .top-navbar .search-bar input,
+	.dashboard > .content > .top-navbar .search-bar select,
+	.dashboard > .content > .top-navbar .search-bar button,
+	.dashboard > .content > .top-navbar .search-bar .separator {
+		display: none;
+	}
+	.searchbarFloating {
+		display: flex;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: var(--dashboard-content-mask-background-color);
+		backdrop-filter: blur(40px);
+		z-index: 1;
+	}
+	.searchbarFloating .content {
+		margin: auto;
+		flex-direction: column;
+		justify-content: center;
+	}
+	.searchbarFloating .content [icon] {
+		position: absolute;
+		bottom: 20px;
+		left: 20px;
+		font-size: 140px;
+		opacity: 0.06;
+		z-index: -1;
+	}
+	.searchbarFloating .content input,
+	.searchbarFloating .content select {
+	}
+	.searchbarFloating .content button {
+		position: absolute;
+		top: 0;
+		right: 0;
+		font-size: var(--font-size-32);
 	}
 }
 

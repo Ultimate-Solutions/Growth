@@ -202,6 +202,22 @@ document.addEventListener('DOMContentLoaded', () => {
 				searchBar.classList.add('show');
 				searchBar.querySelector('input').focus();
 			}
+
+			if (window.innerWidth <= 991.98) {
+				if (!document.body.querySelector('.searchbarFloating')) {
+					const div = document.createElement('div');
+					div.classList.add('searchbarFloating');
+					div.innerHTML = searchBar.innerHTML;
+					document.body.appendChild(div);
+
+					document
+						.querySelector('.searchbarFloating button')
+						.addEventListener('click', () => {
+							document.querySelector('.searchbarFloating').remove();
+							searchBar.classList.remove('show');
+						});
+				}
+			}
 		});
 		// Hide Search bar
 		searchBar.querySelector('button').addEventListener('click', () => {
