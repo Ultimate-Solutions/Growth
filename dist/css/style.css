@@ -579,15 +579,6 @@ img {
 	transition: all 0.5s ease;
 	z-index: 1;
 }
-.dashboard > .content > [mask] {
-	display: none;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: var(--dashboard-content-mask-background-color);
-}
 .dashboard > .content > .top-navbar {
 	margin-bottom: 1.25rem;
 }
@@ -827,12 +818,20 @@ img {
 		margin-right: 0;
 	}
 	.dashboard .main-navbar[expand] + .content {
+		position: relative;
 		transform: translateX(calc(-1 * var(--main-nav-width)));
+		overflow: hidden;
 	}
-	.dashboard .main-navbar[expand] + .content > [mask] {
-		display: block;
+	.dashboard .main-navbar[expand] + .content:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: var(--dashboard-content-mask-background-color);
 		backdrop-filter: blur(4px);
-		z-index: 111111111111;
+		z-index: 1;
 	}
 }
 

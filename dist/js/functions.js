@@ -59,15 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
 		// Expand / Collapse Main navbar on click outside for Mobile view
 		var windowWidth = window.innerWidth;
 		const dashboardContent = document.querySelector(
-			'.dashboard > .main-navbar + .content > [mask]'
+			'.dashboard > .main-navbar + .content'
 		);
 
 		// Check Window width
 		if (windowWidth <= 991.98) {
 			if (mainNavbar.hasAttribute('expand')) {
-				dashboardContent.addEventListener('click', () => {
-					mainNavbar.removeAttribute('expand');
-					mainNavbar.setAttribute('collapse', '');
+				document.addEventListener('mouseup', function (e) {
+					if (!mainNavbar.contains(e.target)) {
+						mainNavbar.removeAttribute('expand');
+						mainNavbar.setAttribute('collapse', '');
+					}
 				});
 			}
 		}
@@ -79,13 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				if (windowWidth <= 991.98) {
 					if (mainNavbar.hasAttribute('expand')) {
-						dashboardContent.addEventListener('click', () => {
-							mainNavbar.removeAttribute('expand');
-							mainNavbar.setAttribute('collapse', '');
+						document.addEventListener('mouseup', function (e) {
+							if (!mainNavbar.contains(e.target)) {
+								mainNavbar.removeAttribute('expand');
+								mainNavbar.setAttribute('collapse', '');
+							}
 						});
 					}
-				} else {
-					dashboardContent.removeEventListener('click', () => {});
 				}
 			},
 			true
