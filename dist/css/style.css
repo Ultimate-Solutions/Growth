@@ -858,7 +858,7 @@ img {
 		height: 100%;
 		background-color: var(--dashboard-content-mask-background-color);
 		backdrop-filter: blur(4px);
-		z-index: 1;
+		z-index: 10000001;
 	}
 }
 
@@ -1151,9 +1151,14 @@ section > .header .title:before {
 	position: absolute;
 	right: -20px;
 	top: -4.25rem;
+	max-width: 100%;
 	color: #1e1e1f;
 	opacity: 0.04;
 	font-size: var(--font-size-68);
+	text-align: right;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 section > .header .subtitle {
 	font-size: var(--font-size-16);
@@ -1192,6 +1197,20 @@ section > .header [action] > em {
 }
 section > .header [action]:hover > em {
 	transform: translateX(-0.3125rem);
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	section > .header {
+		display: flex;
+	}
+}
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+	section > .header [action] {
+		display: inline-flex;
+		margin-top: 20px;
+		float: left;
+	}
 }
 /* #endregion */
 
