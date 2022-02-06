@@ -97,8 +97,7 @@
 	--dashboard-navbar-link-dropdown-shadow-bottom: inset 0 -20px 20px -20px
 		#0000002a;
 	--dashboard-top-navbar-sticky-background-color: #ffffff;
-	--dashboard-top-navbar-sticky-shadow: 0px 2px 1px rgba(0, 0, 0, 0.05),
-		0px 0px 1px rgba(0, 0, 0, 0.25);
+	--dashboard-top-navbar-sticky-shadow: 0 0rem 1.5rem rgb(0 0 0 / 70%);
 	--dashboard-top-navbar-data-action-color: #808080;
 	--dashboard-top-navbar-data-action-hover-color: #05a84b;
 	--dashboard-top-navbar-data-action-notif-background-color: #dc3545;
@@ -579,22 +578,23 @@ img {
 	transition: all 0.5s ease;
 	z-index: 1;
 }
-.dashboard > .content > .top-navbar {
+.dashboard > .content > .top-navbar > .content {
 	margin-bottom: 1.25rem;
 }
 .dashboard > .content > .top-navbar.scrolled {
 	position: -webkit-sticky;
 	position: sticky;
 	top: 1.25rem;
-	margin: 0;
-	padding: 0.625rem 1.25rem;
-	background-color: var(--dashboard-top-navbar-sticky-background-color);
-	box-shadow: var(--dashboard-top-navbar-sticky-shadow);
-	box-shadow: var(--shadow-depth-02);
 	border-radius: 0.25rem;
 	-webkit-animation: topNavSticky ease-in-out 0.5s 1 alternate;
 	animation: topNavSticky ease-in-out 0.5s 1 alternate;
 	z-index: 1;
+}
+.dashboard > .content > .top-navbar.scrolled > .content {
+	position: relative;
+	margin: 0;
+	padding: 0.625rem 1.25rem;
+	background-color: var(--dashboard-top-navbar-sticky-background-color);
 }
 @-webkit-keyframes topNavSticky {
 	0% {
@@ -611,6 +611,25 @@ img {
 	100% {
 		transform: translateY(0%);
 	}
+}
+.dashboard > .content > .top-navbar.scrolled > .content:before,
+.dashboard > .content > .top-navbar.scrolled > .content:after {
+	content: '';
+	position: absolute;
+	bottom: 0.625rem;
+	width: 20%;
+	height: 0.625rem;
+	box-shadow: var(--dashboard-top-navbar-sticky-shadow);
+	z-index: -1;
+	transition: var(--transition-normal);
+}
+.dashboard > .content > .top-navbar.scrolled > .content::before {
+	left: 0.9375rem;
+	transform: skew(-5deg) rotate(-2deg);
+}
+.dashboard > .content > .top-navbar.scrolled > .content::after {
+	right: 15px;
+	transform: skew(5deg) rotate(2deg);
 }
 .dashboard > .content > .top-navbar .right {
 	max-width: 43.75rem;

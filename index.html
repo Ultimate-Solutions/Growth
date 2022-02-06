@@ -503,93 +503,95 @@
 			<!-- #region / Content -->
 			<div class="content">
 				<!-- Top Navbar -->
-				<div class="top-navbar d-flex justify-content-between">
-					<!-- Right section -->
-					<div class="right d-flex">
-						<!-- Sidebar Toggler -->
-						<div data-action="sidebar-toggler">
-							<em class="ph-list"></em>
-						</div>
+				<div class="top-navbar">
+					<div class="content d-flex justify-content-between">
+						<!-- Right section -->
+						<div class="right d-flex">
+							<!-- Sidebar Toggler -->
+							<div data-action="sidebar-toggler">
+								<em class="ph-list"></em>
+							</div>
 
-						<!-- Search bar -->
-						<div class="search-bar">
-							<div class="content d-flex">
-								<!-- Icon -->
-								<em icon class="ph-magnifying-glass"></em>
-								<!-- Input -->
-								<input
-									type="text"
-									class="form-control"
-									placeholder="أبحث عن ما تريد ..."
-									aria-label="Rالبحث"
-								/>
+							<!-- Search bar -->
+							<div class="search-bar">
+								<div class="content d-flex">
+									<!-- Icon -->
+									<em icon class="ph-magnifying-glass"></em>
+									<!-- Input -->
+									<input
+										type="text"
+										class="form-control"
+										placeholder="أبحث عن ما تريد ..."
+										aria-label="Rالبحث"
+									/>
 
-								<!-- Separator -->
-								<div class="separator vertical">
-									<span></span>
+									<!-- Separator -->
+									<div class="separator vertical">
+										<span></span>
+									</div>
+
+									<!-- Select Category -->
+									<select class="form-select" aria-label="Search Category">
+										<option value="الطلبات" selected>الطلبات</option>
+										<option value="المنتجات">المنتجات</option>
+										<option value="العملاء">العملاء</option>
+										<option value="الشراكات">الشراكات</option>
+									</select>
+									<!-- Close -->
+									<button type="button" class="btn">
+										<em class="ph-x"></em>
+									</button>
 								</div>
-
-								<!-- Select Category -->
-								<select class="form-select" aria-label="Search Category">
-									<option value="الطلبات" selected>الطلبات</option>
-									<option value="المنتجات">المنتجات</option>
-									<option value="العملاء">العملاء</option>
-									<option value="الشراكات">الشراكات</option>
-								</select>
-								<!-- Close -->
-								<button type="button" class="btn">
-									<em class="ph-x"></em>
-								</button>
 							</div>
 						</div>
-					</div>
 
-					<!-- Left section -->
-					<div class="left d-flex">
-						<!-- View Site -->
-						<div data-action="view-site">
-							<em class="ph-eye"></em>
-						</div>
-						<!-- Notifications -->
-						<div data-action="notifications" data-notif="true">
-							<em class="ph-bell-ringing"></em>
-						</div>
-						<!-- Updates -->
-						<div data-action="updates">
-							<em class="ph-arrows-counter-clockwise"></em>
-						</div>
-
-						<!-- Separator -->
-						<div class="separator vertical">
-							<span></span>
-						</div>
-
-						<!-- User Badge & Actions -->
-						<div class="user-badge">
-							<div
-								class="d-flex"
-								id="user-actions"
-								data-bs-toggle="dropdown"
-								aria-expanded="false"
-							>
-								<!-- User Avatar -->
-								<div class="avatar">
-									<img src="./dist/images/avatar-example.png" alt="Avatar" />
-								</div>
-								<!-- User Info -->
-								<div class="info">
-									<div class="name">ماجد سيف النصر</div>
-									<div class="badge" data-type="admin">مدير المتجر</div>
-								</div>
+						<!-- Left section -->
+						<div class="left d-flex">
+							<!-- View Site -->
+							<div data-action="view-site">
+								<em class="ph-eye"></em>
 							</div>
-							<ul
-								class="dropdown-menu dropdown-menu-start"
-								aria-labelledby="user-actions"
-							>
-								<li><a class="dropdown-item" href="#">Action</a></li>
-								<li><a class="dropdown-item" href="#">Action</a></li>
-								<li><a class="dropdown-item" href="#">Action</a></li>
-							</ul>
+							<!-- Notifications -->
+							<div data-action="notifications" data-notif="true">
+								<em class="ph-bell-ringing"></em>
+							</div>
+							<!-- Updates -->
+							<div data-action="updates">
+								<em class="ph-arrows-counter-clockwise"></em>
+							</div>
+
+							<!-- Separator -->
+							<div class="separator vertical">
+								<span></span>
+							</div>
+
+							<!-- User Badge & Actions -->
+							<div class="user-badge">
+								<div
+									class="d-flex"
+									id="user-actions"
+									data-bs-toggle="dropdown"
+									aria-expanded="false"
+								>
+									<!-- User Avatar -->
+									<div class="avatar">
+										<img src="./dist/images/avatar-example.png" alt="Avatar" />
+									</div>
+									<!-- User Info -->
+									<div class="info">
+										<div class="name">ماجد سيف النصر</div>
+										<div class="badge" data-type="admin">مدير المتجر</div>
+									</div>
+								</div>
+								<ul
+									class="dropdown-menu dropdown-menu-start"
+									aria-labelledby="user-actions"
+								>
+									<li><a class="dropdown-item" href="#">Action</a></li>
+									<li><a class="dropdown-item" href="#">Action</a></li>
+									<li><a class="dropdown-item" href="#">Action</a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
