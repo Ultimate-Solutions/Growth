@@ -228,12 +228,32 @@ document.addEventListener('DOMContentLoaded', () => {
 		notifTabsClose = notifTabs.querySelector('[close]');
 
 	if (notifTabs) {
+		// Close Notification banel
 		notifTabsClose.addEventListener('click', () => {
 			notifTabs.classList.add('remove');
 			notifTabs.ontransitionend = function () {
 				notifTabs.remove();
 			};
 		});
+
+		// Change Notification color
+		let notifTabsLinks = notifTabs.querySelectorAll(
+			'.action[data-bs-toggle="list"]'
+		);
+
+		for (let link of notifTabsLinks) {
+			// Check active link
+			if (link.classList.contains('active')) {
+				let status = link.getAttribute('data-type');
+				notifTabs.setAttribute('data-type', status);
+			}
+
+			// Change on click
+			link.addEventListener('click', () => {
+				let status = link.getAttribute('data-type');
+				notifTabs.setAttribute('data-type', status);
+			});
+		}
 	}
 });
 // #endregion

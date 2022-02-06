@@ -117,7 +117,11 @@
 	--dashboard-notif-after-background-color: #ffffff;
 	--dashboard-notif-after-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2),
 		0px 4px 10px rgba(0, 0, 0, 0.2);
-	--dashboard-notif-success-nav-background-color: #cdeedb;
+	--dashboard-notif-success-nav-background-color: #19875433;
+	--dashboard-notif-danger-nav-background-color: #dc354533;
+	--dashboard-notif-warning-nav-background-color: #ffc10733;
+	--dashboard-notif-info-nav-background-color: #0dcaf033;
+	--dashboard-notif-default-nav-background-color: #22447b33;
 }
 [data-color-mode='light'][data-theme='high_contrast'] {
 }
@@ -597,7 +601,7 @@ img {
 	margin: 0;
 	padding: 0.625rem 1.25rem;
 	background-color: var(--dashboard-top-navbar-sticky-background-color);
-	box-shadow: var(--shadow-depth-03);
+	box-shadow: var(--shadow-depth-02);
 }
 @-webkit-keyframes topNavSticky {
 	0% {
@@ -972,10 +976,23 @@ img {
 	display: flex;
 	flex-direction: column;
 }
-[notif][data-type='success'] > .nav {
+[notif] > .nav {
+	transition: var(--transition-normal);
+	background-color: var(--dashboard-notif-default-nav-background-color);
+}
+[notif][data-type='Success'] > .nav {
 	background-color: var(--dashboard-notif-success-nav-background-color);
 }
-[notif][data-type='success'] > .nav [close] {
+[notif][data-type='Danger'] > .nav {
+	background-color: var(--dashboard-notif-danger-nav-background-color);
+}
+[notif][data-type='Warning'] > .nav {
+	background-color: var(--dashboard-notif-warning-nav-background-color);
+}
+[notif][data-type='Info'] > .nav {
+	background-color: var(--dashboard-notif-info-nav-background-color);
+}
+[notif] > .nav [close] {
 	margin: auto auto 0;
 	font-size: var(--font-size-24);
 	cursor: pointer;
