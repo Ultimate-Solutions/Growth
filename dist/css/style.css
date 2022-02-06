@@ -77,11 +77,8 @@
 [data-color-mode='light'][data-theme='regular'] {
 	--scrollbar-background-color: transparent;
 	--scrollbar-track-background-color: transparent;
-	--scrollbar-track-hover-background-color: transparent;
 	--scrollbar-thumb-background-color: #babac0;
-	--scrollbar-thumb-border-color: transparent;
 	--scrollbar-thumb-hover-background-color: #a0a0a5;
-	--scrollbar-thumb-hover-border-color: transparent;
 	--separator-background-color: #e7e7e7;
 	--dashboard-sidebar-background-color: #ffffff;
 	--dashboard-content-background-color: #f1f1f1;
@@ -202,33 +199,26 @@ img {
 /* -----------------------------------------------
   Main > Custon Scrollbar
 -------------------------------------------------*/
-/* Customize website's scrollbar like Mac OS - Not supports in Firefox and IE */
-/* total width */
-.scrollbar-custom::-webkit-scrollbar {
-	background-color: var(--scrollbar-background);
+/* Scroll 2 */
+::-webkit-scrollbar {
 	width: 5px;
+	height: 5px;
+	background-color: var(--scrollbar-background);
 }
-/* background of the scrollbar except button or resizer */
-.scrollbar-custom::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
 	background-color: var(--scrollbar-track-background);
+	border-radius: 10px;
 }
-.scrollbar-custom::-webkit-scrollbar-track:hover {
-	background-color: var(--scrollbar-track-hover-background);
-}
-/* scrollbar itself */
-.scrollbar-custom::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
 	background-color: var(--scrollbar-thumb-background-color);
 	border-radius: 10px;
-	border: 4px solid var(--scrollbar-thumb-border-color);
 }
-.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-track:hover {
+	background-color: var(--scrollbar-track-hover-background);
+}
+::-webkit-scrollbar-thumb:hover {
 	background-color: var(--scrollbar-thumb-hover-background-color);
-	border: 4px solid var(--scrollbar-thumb-hover-border-color);
 }
-/* set button(top and bottom of the scrollbar)
-.scrollbar-custom::-webkit-scrollbar-button {
-	display: none;
-} */
 
 /* -----------------------------------------------
   Main > Separator
@@ -998,6 +988,42 @@ img {
 }
 [notif] > .content .content {
 	font-size: var(--font-size-16);
+}
+
+/* -----------------------------------------------
+  Main > Content > First Time Settings
+-------------------------------------------------*/
+[firsttimesettings] {
+	margin: 1.25rem 0;
+	padding: 1.25rem;
+}
+[firsttimesettings] .header {
+}
+[firsttimesettings] .header em {
+	font-size: var(--font-size-32);
+	margin-left: 0.625rem;
+}
+[firsttimesettings] .header .title {
+	font-size: var(--font-size-24);
+	font-weight: var(--font-weight-medium);
+	margin-bottom: 0.5rem;
+}
+[firsttimesettings] .header .subtitle {
+	font-size: var(--font-size-16);
+}
+[firsttimesettings] .steper .content {
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+}
+[firsttimesettings] .steper .content > * {
+	scroll-snap-align: start;
+	width: 5rem;
+	text-align: center;
+}
+[firsttimesettings] .steper {
+}
+[firsttimesettings] .steper {
 }
 /* #endregion */
 

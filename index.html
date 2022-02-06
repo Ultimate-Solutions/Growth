@@ -167,6 +167,12 @@
 			rel="stylesheet"
 		/>
 
+		<!-- Beautifying Scrollbar - perfect-scrollbar 1.5.5 -->
+		<link
+			href="./dist/css/libs/perfect-scrollbar/1.5.5/perfect-scrollbar.css"
+			rel="stylesheet"
+		/>
+
 		<!-- Fonts -->
 		<!-- Neo Sans Arabic -->
 		<link
@@ -495,7 +501,7 @@
 			</nav>
 
 			<!-- #region / Content -->
-			<div class="content scrollbar-custom">
+			<div class="content sc2">
 				<!-- Mask for mobile menu -->
 				<div mask></div>
 
@@ -692,6 +698,33 @@
 							</div>
 						</div>
 					</div>
+
+					<!-- First time settings -->
+					<div firstTimeSettings>
+						<div class="row">
+							<div class="col-12 col-md-3 mb-3 mb-md-0">
+								<div class="d-flex header">
+									<em class="ph-gear mb-auto ms-2"></em>
+									<div>
+										<div class="title">إﻋﺪاد اﻟﻤﺘﺠﺮ ﻟﺄول ﻣﺮة</div>
+										<div class="subtitle">اﻟﺨﻄﻮات اﻟﺄﺳﺎﺳﻴﺔ ﻟﺘﻬﻴﺌﺔ ﻣﺘﺠﺮك</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-12 col-md-9">
+								<div class="steper d-flex justify-content-center">
+									<div class="content scrollbar-custom">
+										<div class="step">إﺿﺎﻓﺔ اﻟﻤﻨﺘﺠﺎت</div>
+										<div class="step">إﺿﺎﻓﺔ اﻟﻤﺠﻤﻮﻋﺎت</div>
+										<div class="step">إﻋﺪادات اﻟﺸﺤﻦ</div>
+										<div class="step">وﺳﺎﺋﻞ اﻟﺪﻓﻊ</div>
+										<div class="step">ﺗﺼﻤﻴﻢ اﻟﻤﺘﺠﺮ</div>
+										<div class="step">إﻋﺪادات اﻟﻤﺘﺠﺮ</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div style="height: 1500px"></div>
 			</div>
@@ -710,6 +743,12 @@
 		<script
 			src="./dist/js/libs/lazyload/17.5.0/lazyload.min.js"
 			async
+			name="lazyLoad"
+		></script>
+
+		<!-- Beautifying Scrollbar - perfect-scrollbar 1.5.5 -->
+		<script
+			src="./dist/js/libs/perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"
 			name="lazyLoad"
 		></script>
 		<!-- #endregion -->
