@@ -578,23 +578,24 @@ img {
 	transition: all 0.5s ease;
 	z-index: 1;
 }
-.dashboard > .content > .top-navbar > .content {
-	margin-bottom: 1.25rem;
-}
 .dashboard > .content > .top-navbar.scrolled {
 	position: -webkit-sticky;
 	position: sticky;
 	top: 1.25rem;
-	border-radius: 0.25rem;
 	-webkit-animation: topNavSticky ease-in-out 0.5s 1 alternate;
 	animation: topNavSticky ease-in-out 0.5s 1 alternate;
 	z-index: 1;
+}
+.dashboard > .content > .top-navbar > .content {
+	margin-bottom: 1.25rem;
+	border-radius: 0.25rem;
 }
 .dashboard > .content > .top-navbar.scrolled > .content {
 	position: relative;
 	margin: 0;
 	padding: 0.625rem 1.25rem;
 	background-color: var(--dashboard-top-navbar-sticky-background-color);
+	box-shadow: var(--shadow-depth-03);
 }
 @-webkit-keyframes topNavSticky {
 	0% {
@@ -942,8 +943,10 @@ img {
 	position: relative;
 	display: flex;
 	margin: 1.25rem 0;
+	border-radius: 0.25rem;
 	background-color: var(--dashboard-notif-background-color);
 	clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%, 0 30px);
+	overflow: hidden;
 }
 [notif]:after {
 	content: '';
@@ -1012,10 +1015,11 @@ img {
   Main > Content > First Time Settings
 -------------------------------------------------*/
 [firsttimesettings] {
-	margin: 1.25rem 0;
+	margin: 2.5rem 0;
 	padding: 1.25rem;
-}
-[firsttimesettings] .header {
+	background-color: var(--dashboard-notif-background-color);
+	border-radius: 0.25rem;
+	overflow-y: hidden;
 }
 [firsttimesettings] .header em {
 	font-size: var(--font-size-32);
@@ -1035,11 +1039,47 @@ img {
 	scroll-snap-type: x mandatory;
 }
 [firsttimesettings] .steper .content > * {
+	position: relative;
 	scroll-snap-align: start;
-	width: 5rem;
 	text-align: center;
+	padding: 2.5rem 1.25rem 0.625rem;
+	max-width: 6.25rem;
+	font-size: var(--font-size-16);
 }
-[firsttimesettings] .steper {
+[firsttimesettings] .steper .content > *:before,
+[firsttimesettings] .steper .content > *:after {
+	position: absolute;
+	content: '';
+	top: 0.75rem;
+	left: -50%;
+}
+[firsttimesettings] .steper .content > *:before {
+	width: 1rem;
+	height: 1rem;
+	border-radius: 50%;
+	background-color: #aaaaaa;
+	left: 50%;
+	transform: translateX(-50%);
+}
+[firsttimesettings] .steper .content > *:after {
+	top: 1.1875rem;
+	width: 100%;
+	height: 0.1875rem;
+	background-color: #aaaaaa;
+}
+[firsttimesettings] .steper .content > *:first-child:after {
+	width: 100%;
+}
+[firsttimesettings] .steper .content > *:last-child:after {
+	width: 0%;
+	left: 50%;
+}
+[firsttimesettings] .steper .content > *[current]:before {
+	background-color: #22447b;
+}
+[firsttimesettings] .steper .content > *[passed]:before,
+[firsttimesettings] .steper .content > *[passed]:after {
+	background-color: #05a84b;
 }
 [firsttimesettings] .steper {
 }
