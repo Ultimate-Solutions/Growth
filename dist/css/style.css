@@ -285,7 +285,6 @@ img {
 		opacity: 1;
 	}
 }
-
 /* -----------------------------------------------
   Main > Dashboard
 -------------------------------------------------*/
@@ -294,7 +293,35 @@ img {
 }
 
 /* -----------------------------------------------
-  Main > Main Navbar
+  Main > Dashboard > Badges
+-------------------------------------------------*/
+.badge[data-type='Awaiting payment'] {
+}
+.badge[data-type='Waiting for review'] {
+}
+.badge[data-type='Underway'] {
+}
+.badge[data-type='Done'] {
+}
+.badge[data-type='Delivery in progress'] {
+}
+.badge[data-type='Delivered'] {
+}
+.badge[data-type='Order shipped'] {
+}
+.badge[data-type='Canceled'] {
+}
+.badge[data-type='Retrieved'] {
+}
+.badge[data-type='Being retrieved'] {
+}
+.badge[data-type='Published'] {
+}
+.badge[data-type='Unpublished'] {
+}
+
+/* -----------------------------------------------
+  Main > Dashboard > Main Navbar
 -------------------------------------------------*/
 .dashboard .main-navbar {
 	position: fixed;
@@ -578,7 +605,7 @@ img {
 }
 
 /* -----------------------------------------------
-  Main > Content
+  Main > Dashboard > Content
 -------------------------------------------------*/
 .dashboard > .content {
 	width: 100%;
@@ -979,7 +1006,7 @@ img {
 }
 
 /* -----------------------------------------------
-  Main > Content > Master Header
+  Main > Dashboard > Content > Master Header
 -------------------------------------------------*/
 .header.master {
 	margin: 2.5rem 0;
@@ -1060,7 +1087,7 @@ img {
 }
 
 /* -----------------------------------------------
-  Main > Content > Notifications Tabs
+  Main > Dashboard > Content > Notifications Tabs
 -------------------------------------------------*/
 [notif] {
 	position: relative;
@@ -1171,7 +1198,7 @@ img {
 }
 
 /* -----------------------------------------------
-  Main > Content > First Time Settings
+  Main > Dashboard > Content > First Time Settings
 -------------------------------------------------*/
 [firsttimesettings] {
 	margin: 2.5rem 0;
@@ -1244,7 +1271,7 @@ img {
 }
 
 /* -----------------------------------------------
-  Main > Content > Sections
+  Main > Dashboard > Content > Sections
 -------------------------------------------------*/
 section {
 	margin: 3.125rem 0;
