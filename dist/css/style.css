@@ -134,6 +134,19 @@
 	--dashboard-table-striped-color: #808080;
 	--dashboard-table-hover-striped-color: #1e1e1f;
 	--dashboard-table-header-border-color: #e7e7e7;
+	--dashboard-badge-color: #1e1e1f;
+	--dashboard-badge-awaiting-payment-background-color: #ee9b0033;
+	--dashboard-badge-waiting-review-background-color: #ca670233;
+	--dashboard-badge-underway-background-color: #94d2bd33;
+	--dashboard-badge-done-background-color: #005f7333;
+	--dashboard-badge-delivery-in-progress-background-color: #0a939633;
+	--dashboard-badge-delivered-background-color: #e9d8a633;
+	--dashboard-badge-order-shipped-background-color: #00121933;
+	--dashboard-badge-canceled-background-color: #ae201233;
+	--dashboard-badge-retrieved-background-color: #bb3e0333;
+	--dashboard-badge-being-retrieved-background-color: #9b222633;
+	--dashboard-badge-published-background-color: #05a84b33;
+	--dashboard-badge-unpublished-background-color: #dc354533;
 }
 [data-color-mode='light'][data-theme='high_contrast'] {
 }
@@ -375,29 +388,49 @@ img {
 /* -----------------------------------------------
   Main > Dashboard > Badges
 -------------------------------------------------*/
+.badge {
+	padding: 0.8em 1.2em;
+	color: var(--dashboard-badge-color);
+	font-weight: var(--font-weight-medium);
+	font-size: var(--font-size-12);
+}
 .badge[data-type='Awaiting payment'] {
+	background-color: var(--dashboard-badge-awaiting-payment-background-color);
 }
 .badge[data-type='Waiting for review'] {
+	background-color: var(--dashboard-badge-waiting-review-background-color);
 }
 .badge[data-type='Underway'] {
+	background-color: var(--dashboard-badge-underway-background-color);
 }
 .badge[data-type='Done'] {
+	background-color: var(--dashboard-badge-done-background-color);
 }
 .badge[data-type='Delivery in progress'] {
+	background-color: var(
+		--dashboard-badge-delivery-in-progress-background-color
+	);
 }
 .badge[data-type='Delivered'] {
+	background-color: var(--dashboard-badge-delivered-background-color);
 }
 .badge[data-type='Order shipped'] {
+	background-color: var(--dashboard-badge-order-shipped-background-color);
 }
 .badge[data-type='Canceled'] {
+	background-color: var(--dashboard-badge-canceled-background-color);
 }
 .badge[data-type='Retrieved'] {
+	background-color: var(--dashboard-badge-retrieved-background-color);
 }
 .badge[data-type='Being retrieved'] {
+	background-color: var(--dashboard-badge-being-retrieved-background-color);
 }
 .badge[data-type='Published'] {
+	background-color: var(--dashboard-badge-published-background-color);
 }
 .badge[data-type='Unpublished'] {
+	background-color: var(--dashboard-badge-unpublished-background-color);
 }
 
 /* -----------------------------------------------
