@@ -67,18 +67,19 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (mainNavbar.hasAttribute('collapse')) {
 					mainNavbar.removeAttribute('collapse');
 					mainNavbar.setAttribute('expand', '');
+					if (window.innerWidth <= 991.98)
+						document.body.classList.add('overflow-hidden');
 				} else if (mainNavbar.hasAttribute('expand')) {
 					mainNavbar.removeAttribute('expand');
 					mainNavbar.setAttribute('collapse', '');
+					if (window.innerWidth <= 991.98)
+						document.body.classList.remove('overflow-hidden');
 				}
 			});
 		}
 
 		// Expand / Collapse Main navbar on click outside for Mobile view
 		var windowWidth = window.innerWidth;
-		const dashboardContent = document.querySelector(
-			'.dashboard > .main-navbar + .content'
-		);
 
 		// Check Window width
 		if (windowWidth <= 991.98) {
@@ -88,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						if (!mainNavbar.contains(e.target)) {
 							mainNavbar.removeAttribute('expand');
 							mainNavbar.setAttribute('collapse', '');
+							document.body.classList.remove('overflow-hidden');
 						}
 			});
 		}
@@ -102,9 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
 						if (mainNavbar.hasAttribute('expand'))
 							if (windowWidth <= 991.98)
 								if (!mainNavbar.contains(e.target)) {
-									console.log('asdasdd');
 									mainNavbar.removeAttribute('expand');
 									mainNavbar.setAttribute('collapse', '');
+									document.body.classList.add('overflow-hidden');
 								}
 					});
 				}
