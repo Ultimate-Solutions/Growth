@@ -68,12 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
 					mainNavbar.removeAttribute('collapse');
 					mainNavbar.setAttribute('expand', '');
 					if (window.innerWidth <= 991.98)
-						document.body.classList.add('overflow-hidden');
+						document.body.classList.add('overflow-hidden', 'h-100');
 				} else if (mainNavbar.hasAttribute('expand')) {
 					mainNavbar.removeAttribute('expand');
 					mainNavbar.setAttribute('collapse', '');
 					if (window.innerWidth <= 991.98)
-						document.body.classList.remove('overflow-hidden');
+						document.body.classList.remove('overflow-hidden', 'h-100');
 				}
 			});
 		}
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						if (!mainNavbar.contains(e.target)) {
 							mainNavbar.removeAttribute('expand');
 							mainNavbar.setAttribute('collapse', '');
-							document.body.classList.remove('overflow-hidden');
+							document.body.classList.remove('overflow-hidden', 'h-100');
 						}
 			});
 		}
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								if (!mainNavbar.contains(e.target)) {
 									mainNavbar.removeAttribute('expand');
 									mainNavbar.setAttribute('collapse', '');
-									document.body.classList.add('overflow-hidden');
+									document.body.classList.add('overflow-hidden', 'h-100');
 								}
 					});
 				}
