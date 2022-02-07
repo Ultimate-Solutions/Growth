@@ -1420,6 +1420,8 @@ section > .content table {
 	font-size: var(--font-size-14);
 	font-weight: var(--font-weight-regular);
 	margin: 0;
+	table-layout: fixed;
+	min-width: 50rem;
 }
 section > .content table > :not(caption) > * > * {
 	padding: 1rem 1rem;
@@ -1429,6 +1431,26 @@ section > .content table > :not(caption) > * > * {
 }
 section > .content table.table-borderless > thead > tr > * {
 	border-bottom: 1px solid var(--dashboard-table-header-border-color) !important;
+}
+section > .content table.table-borderless > thead > tr > *[actions] {
+	width: 4rem;
+}
+section > .content table.table-borderless > thead > tr > *[status],
+section > .content table.table-borderless > thead > tr > *[payment],
+section > .content table.table-borderless > thead > tr > *[cash],
+section > .content table.table-borderless > thead > tr > *[date],
+section > .content table.table-borderless > thead > tr > *[id] {
+	width: 9.375rem;
+}
+section
+	> .content
+	table.table-borderless
+	> tbody
+	> tr
+	> *[actions]
+	.dropdown
+	em {
+	font-size: var(--font-size-32);
 }
 section > .content table > thead > tr,
 section > .content table > tbody > tr:nth-of-type(even) {
