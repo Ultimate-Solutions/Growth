@@ -147,6 +147,9 @@
 	--dashboard-badge-being-retrieved-background-color: #9b222633;
 	--dashboard-badge-published-background-color: #05a84b33;
 	--dashboard-badge-unpublished-background-color: #dc354533;
+	--dashboard-tooltips-background-color: #ffffff;
+	--dashboard-tooltips-color: #1e1e1f;
+	--dashboard-tooltips-shadow: 0 5px 10px rgb(0 0 0 / 20%);
 }
 [data-color-mode='light'][data-theme='high_contrast'] {
 }
@@ -279,12 +282,12 @@ img {
 [tooltip-container] {
 	position: absolute;
 	right: 80px;
-	background-color: white;
-	color: var(--background-color);
+	background-color: var(--dashboard-tooltips-background-color);
+	color: var(--dashboard-tooltips-color);
 	border-radius: 0.4rem;
 	padding: 0.5rem 0.9rem;
 	font-size: var(--font-size-18);
-	box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+	box-shadow: var(--dashboard-tooltips-shadow);
 	animation: tooltipView ease-in-out 0.5s 1 alternate;
 	animation-fill-mode: forwards;
 	z-index: 1000;
@@ -1500,8 +1503,32 @@ section > .content table th {
 /*   \_____\__,_|___/\__\___/|_| |_| |_|_/___\__,_|\__|_|\___/|_| |_|
 /*                                                                   
 /*                                                                    */
+/* -----------------------------------------------
+  Bootstrap > Dropdown
+-------------------------------------------------*/
 [data-bs-toggle='dropdown'] {
 	cursor: pointer;
+}
+
+/* -----------------------------------------------
+  Bootstrap > Tooltip
+-------------------------------------------------*/
+.bs-tooltip-auto[data-popper-placement^='bottom'] .tooltip-arrow,
+.bs-tooltip-bottom .tooltip-arrow {
+	display: none;
+}
+.bs-tooltip-auto[data-popper-placement^='bottom'],
+.bs-tooltip-bottom {
+	padding: 0;
+}
+.tooltip-inner {
+	border-radius: 0.4rem;
+	padding: 0.5rem 0.9rem;
+	background-color: var(--dashboard-tooltips-background-color);
+	color: var(--dashboard-tooltips-color);
+	font-size: var(--font-size-18);
+	box-shadow: var(--dashboard-tooltips-shadow);
+	z-index: 1000;
 }
 /* #endregion */
 
