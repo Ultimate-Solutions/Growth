@@ -1467,6 +1467,7 @@ section > .content table > :not(caption) > * > * {
 	padding: 1rem 1rem;
 	background-color: var(--dashboard-table-accent-background-color);
 	box-shadow: none;
+	min-width: 8rem;
 }
 section > .content table.table-borderless > thead > tr > * {
 	border-bottom: 1px solid var(--dashboard-table-header-border-color) !important;
