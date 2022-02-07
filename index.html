@@ -160,47 +160,7 @@
 		/>
 		<!-- #endregion -->
 
-		<!-- #region / Plugins -->
-		<!-- Bootstrap CSS -->
-		<link
-			href="./dist/css/libs/bootstrap/5.1.3/bootstrap.rtl.min.css"
-			rel="stylesheet"
-		/>
-
-		<!-- Fonts -->
-		<!-- Neo Sans Arabic -->
-		<link
-			href="./dist/fonts/neo-sans-arabic/stylesheet-min.css"
-			rel="stylesheet"
-		/>
-
-		<!-- Phosphor 1.4.2 Icons -->
-		<link href="./dist/fonts/phosphor/1.4.2/icons-min.css" rel="stylesheet" />
-		<!-- #endregion -->
-
-		<!-- Custom Style -->
-		<link href="./dist/css/style.css" rel="stylesheet" />
-
-		<!-- Theme changer -->
-		<script>
-			localStorage.setItem('color mode', 'light');
-			localStorage.setItem('theme', 'regular');
-
-			// Set theme data
-			setAttributes(document.documentElement, {
-				'data-color-mode': localStorage.getItem('color mode'),
-				'data-theme': localStorage.getItem('theme'),
-			});
-
-			// Setting multiple attributes for an element at once
-			function setAttributes(el, attrs) {
-				for (var key in attrs) {
-					el.setAttribute(key, attrs[key]);
-				}
-			}
-		</script>
-
-		<!-- Loader -->
+		<!-- #region / Loader Spinner -->
 		<style>
 			#page-loader {
 				display: flex;
@@ -287,8 +247,50 @@
 				}
 			});
 		</script>
+		<!-- #endregion -->
+
+		<!-- #region / Plugins -->
+		<!-- Bootstrap CSS -->
+		<link
+			href="./dist/css/libs/bootstrap/5.1.3/bootstrap.rtl.min.css"
+			rel="stylesheet"
+		/>
+
+		<!-- Fonts -->
+		<!-- Neo Sans Arabic -->
+		<link
+			href="./dist/fonts/neo-sans-arabic/stylesheet-min.css"
+			rel="stylesheet"
+		/>
+
+		<!-- Phosphor 1.4.2 Icons -->
+		<link href="./dist/fonts/phosphor/1.4.2/icons-min.css" rel="stylesheet" />
+		<!-- #endregion -->
+
+		<!-- Custom Style -->
+		<link href="./dist/css/style.css" rel="stylesheet" />
+
+		<!-- Theme changer -->
+		<script>
+			localStorage.setItem('color mode', 'light');
+			localStorage.setItem('theme', 'regular');
+
+			// Set theme data
+			setAttributes(document.documentElement, {
+				'data-color-mode': localStorage.getItem('color mode'),
+				'data-theme': localStorage.getItem('theme'),
+			});
+
+			// Setting multiple attributes for an element at once
+			function setAttributes(el, attrs) {
+				for (var key in attrs) {
+					el.setAttribute(key, attrs[key]);
+				}
+			}
+		</script>
 	</head>
 	<body dashboard>
+		<!-- #region / Loader Spinner -->
 		<div id="page-loader">
 			<div class="spinner"></div>
 			<div class="text"><strong>Holol</strong> - Dashboard</div>
@@ -298,6 +300,7 @@
 				, Inc.
 			</div>
 		</div>
+		<!-- #endregion -->
 
 		<!-- #region / Dashboard -->
 		<div class="dashboard d-flex">
