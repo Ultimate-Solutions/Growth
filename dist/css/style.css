@@ -1513,8 +1513,7 @@ section > .content table th {
 /* -----------------------------------------------
   Bootstrap > Tooltip
 -------------------------------------------------*/
-.bs-tooltip-auto[data-popper-placement^='bottom'] .tooltip-arrow,
-.bs-tooltip-bottom .tooltip-arrow {
+.tooltip .tooltip-arrow {
 	display: none;
 }
 .bs-tooltip-auto[data-popper-placement^='bottom'],

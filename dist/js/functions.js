@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					const tooltipContainer = document.createElement('div');
 					tooltipContainer.setAttribute('tooltip-container', '');
 					// Set tooltip data
-					tooltipContainer.innerText = tooltip.getAttribute('title');
+					tooltipContainer.innerText = tooltip.getAttribute('data-title');
 					// Append tooltip to view
 					document.body.appendChild(tooltipContainer);
 
