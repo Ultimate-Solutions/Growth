@@ -199,14 +199,16 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
 	// Main navbar
 	const topNavbar = document.querySelector(
-			'.dashboard > .content > .top-navbar'
-		),
-		mainContainer = document.querySelector('.dashboard > .content');
+		'.dashboard > .content > .top-navbar'
+	);
 
 	if (topNavbar) {
 		// Scroll Animation
-		mainContainer.addEventListener('scroll', () => {
-			if (mainContainer.scrollTop > 100) {
+		window.addEventListener('scroll', () => {
+			if (
+				document.body.scrollTop > 100 ||
+				document.documentElement.scrollTop > 100
+			) {
 				topNavbar.classList.add('scrolled');
 			} else {
 				topNavbar.classList.remove('scrolled');

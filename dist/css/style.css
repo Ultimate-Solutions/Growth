@@ -722,7 +722,6 @@ img {
 .dashboard > .content {
 	width: 100%;
 	min-height: 100%;
-	overflow-x: auto;
 	margin-right: var(--main-nav-width);
 	padding: 1.25rem 2.5rem;
 	background-color: var(--dashboard-content-background-color);
