@@ -1117,7 +1117,16 @@ img {
 		font-size: var(--font-size-32);
 	}
 }
-
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+	.dashboard > .content > .top-navbar .left [data-action] {
+		display: none;
+	}
+	.dashboard > .content,
+	.dashboard .main-navbar[collapse] + .content {
+		padding: 1.25rem;
+	}
+}
 /* -----------------------------------------------
   Main > Dashboard > Content > Master Header
 -------------------------------------------------*/
