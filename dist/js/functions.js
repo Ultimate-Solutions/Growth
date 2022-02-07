@@ -95,25 +95,25 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 		}
 
-		window.addEventListener(
-			'resize',
-			() => {
-				windowWidth = window.innerWidth;
+		// window.addEventListener(
+		// 	'resize',
+		// 	() => {
+		// 		windowWidth = window.innerWidth;
 
-				if (windowWidth <= 991.98) {
-					document.addEventListener('mouseup', function (e) {
-						if (mainNavbar.hasAttribute('expand'))
-							if (windowWidth <= 991.98)
-								if (!mainNavbar.contains(e.target)) {
-									mainNavbar.removeAttribute('expand');
-									mainNavbar.setAttribute('collapse', '');
-									document.body.classList.add('overflow-hidden', 'h-100');
-								}
-					});
-				}
-			},
-			true
-		);
+		// 		if (windowWidth <= 991.98) {
+		// 			document.addEventListener('mouseup', function (e) {
+		// 				if (mainNavbar.hasAttribute('expand'))
+		// 					if (windowWidth <= 991.98)
+		// 						if (!mainNavbar.contains(e.target)) {
+		// 							mainNavbar.removeAttribute('expand');
+		// 							mainNavbar.setAttribute('collapse', '');
+		// 							document.body.classList.add('overflow-hidden', 'h-100');
+		// 						}
+		// 			});
+		// 		}
+		// 	},
+		// 	true
+		// );
 
 		// Actions for dropdown links
 		// Dropdown lists
