@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			el.classList.add('expand');
 		}
 
-		// Check activedropdown links
+		// Check active dropdown links
 		// Nav items
 		const navItems = mainNavbar.querySelectorAll('.nav-item');
 		for (let navItem of navItems) {

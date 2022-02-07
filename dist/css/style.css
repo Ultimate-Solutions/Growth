@@ -352,7 +352,7 @@ img {
 	min-height: calc(100% - 1rem);
 }
 /* -----------------------------------------------
-  Main > Tootltip
+  Main > Tooltip
 -------------------------------------------------*/
 [tooltip-container] {
 	position: absolute;
@@ -388,7 +388,7 @@ img {
   Main > Dashboard > Badges
 -------------------------------------------------*/
 .badge {
-	padding: 0.8em 1.2em;
+	padding: 0.6em 1.2em;
 	color: var(--dashboard-badge-color);
 	font-weight: var(--font-weight-medium);
 	font-size: var(--font-size-12);
@@ -1469,6 +1469,7 @@ section > .content {
 section > .content table {
 	font-size: var(--font-size-14);
 	font-weight: var(--font-weight-regular);
+	margin: 0;
 }
 section > .content table > :not(caption) > * > * {
 	padding: 1rem 1rem;
@@ -1518,14 +1519,6 @@ section > .content table td[sticky] {
 }
 section > .content table th {
 	font-weight: var(--font-weight-medium);
-}
-section > .content table {
-}
-section > .content table {
-}
-section > .content table {
-}
-section > .content table {
 }
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
