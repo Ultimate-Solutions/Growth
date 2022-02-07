@@ -734,10 +734,23 @@ img {
 	position: absolute;
 	bottom: 0.5rem;
 	right: 0.5rem;
-	width: 0.75rem;
-	height: 0.75rem;
+	width: 0.625rem;
+	height: 0.625rem;
 	border-radius: 50%;
-	background-color: #dc3545;
+	background-color: var(
+		--dashboard-top-navbar-data-action-notif-background-color
+	);
+	animation: animationBlink 1s steps(5, start) infinite;
+}
+@-webkit-keyframes animationBlink {
+	to {
+		visibility: hidden;
+	}
+}
+@keyframes animationBlink {
+	to {
+		visibility: hidden;
+	}
 }
 .dashboard > .content > .top-navbar .search-bar {
 	align-self: center;
