@@ -1,3 +1,21 @@
+// #region / Loader Spinner
+//   _                     _              _____       _
+//  | |                   | |            / ____|     (_)
+//  | |     ___   __ _  __| | ___ _ __  | (___  _ __  _ _ __  _ __   ___ _ __
+//  | |    / _ \ / _` |/ _` |/ _ \ '__|  \___ \| '_ \| | '_ \| '_ \ / _ \ '__|
+//  | |___| (_) | (_| | (_| |  __/ |     ____) | |_) | | | | | | | |  __/ |
+//  |______\___/ \__,_|\__,_|\___|_|    |_____/| .__/|_|_| |_|_| |_|\___|_|
+//                                             | |
+//                                             |_|
+document.addEventListener('DOMContentLoaded', () => {
+	const loader = document.querySelector('#page-loader');
+
+	if (loader) {
+		loader.remove();
+	}
+});
+// #endregion
+
 // #region / LazyLoad
 //   _                     _                     _
 //  | |                   | |                   | |

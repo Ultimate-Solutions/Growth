@@ -167,12 +167,6 @@
 			rel="stylesheet"
 		/>
 
-		<!-- Beautifying Scrollbar - perfect-scrollbar 1.5.5 -->
-		<link
-			href="./dist/css/libs/perfect-scrollbar/1.5.5/perfect-scrollbar.css"
-			rel="stylesheet"
-		/>
-
 		<!-- Fonts -->
 		<!-- Neo Sans Arabic -->
 		<link
@@ -207,10 +201,20 @@
 		</script>
 	</head>
 	<body dashboard>
+		<div id="page-loader">
+			<div class="spinner"></div>
+			<div class="text"><strong>Holol</strong> - Dashboard</div>
+			<div class="text-small">
+				© 2022
+				<a href="#">Ultimate Solutions</a>
+				, Inc.
+			</div>
+		</div>
+
 		<!-- #region / Dashboard -->
 		<div class="dashboard d-flex">
 			<!-- Main navbar -->
-			<nav class="main-navbar" expand>
+			<nav class="main-navbar" collapse>
 				<!-- Content -->
 				<div class="content scrollbar-custom">
 					<!-- Brand -->
@@ -869,12 +873,6 @@
 		<script
 			src="./dist/js/libs/lazyload/17.5.0/lazyload.min.js"
 			async
-			name="lazyLoad"
-		></script>
-
-		<!-- Beautifying Scrollbar - perfect-scrollbar 1.5.5 -->
-		<script
-			src="./dist/js/libs/perfect-scrollbar/1.5.5/perfect-scrollbar.min.js"
 			name="lazyLoad"
 		></script>
 		<!-- #endregion -->
