@@ -82,15 +82,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		// Check Window width
 		if (windowWidth <= 991.98) {
-			if (mainNavbar.hasAttribute('expand')) {
-				document.addEventListener('mouseup', function (e) {
+			document.addEventListener('mouseup', function (e) {
+				if (mainNavbar.hasAttribute('expand'))
 					if (windowWidth <= 991.98)
 						if (!mainNavbar.contains(e.target)) {
 							mainNavbar.removeAttribute('expand');
 							mainNavbar.setAttribute('collapse', '');
 						}
-				});
-			}
+			});
 		}
 
 		window.addEventListener(
@@ -99,15 +98,15 @@ document.addEventListener('DOMContentLoaded', () => {
 				windowWidth = window.innerWidth;
 
 				if (windowWidth <= 991.98) {
-					if (mainNavbar.hasAttribute('expand')) {
-						document.addEventListener('mouseup', function (e) {
+					document.addEventListener('mouseup', function (e) {
+						if (mainNavbar.hasAttribute('expand'))
 							if (windowWidth <= 991.98)
 								if (!mainNavbar.contains(e.target)) {
+									console.log('asdasdd');
 									mainNavbar.removeAttribute('expand');
 									mainNavbar.setAttribute('collapse', '');
 								}
-						});
-					}
+					});
 				}
 			},
 			true
