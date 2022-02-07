@@ -619,10 +619,22 @@ img {
 	.dashboard .main-navbar[collapse] .navbar .nav-item .nav-link .notifications {
 		position: absolute;
 		top: 50%;
-		right: 1.5625rem;
-		height: 1.875rem;
+		right: 1.875rem;
+		height: 1.5625rem;
+		width: 1.5625rem;
 		color: var(--dashboard-navbar-link-notifications-background-color);
 		transform: translateY(-20%) scale(0.5);
+		animation: animationBlink 1s steps(5, start) infinite;
+	}
+	@-webkit-keyframes animationBlink {
+		to {
+			visibility: hidden;
+		}
+	}
+	@keyframes animationBlink {
+		to {
+			visibility: hidden;
+		}
 	}
 }
 /* Medium devices (tablets, less than 992px) */
