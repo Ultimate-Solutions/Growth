@@ -196,20 +196,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		// Search bar
 		const searchBar = topNavbar.querySelector('.search-bar');
-		// View Search bar
+
 		searchBar.querySelector('[icon]').addEventListener('click', () => {
-			if (!searchBar.classList.contains('show')) {
+			if (!searchBar.classList.contains('show') && window.innerWidth > 991.98) {
+				// View Search bar
 				searchBar.classList.add('show');
 				searchBar.querySelector('input').focus();
+				// Hide Search bar on click close
+				searchBar.querySelector('button').addEventListener('click', () => {
+					if (searchBar.classList.contains('show')) {
+						searchBar.classList.remove('show');
+					}
+				});
 			}
 
 			if (window.innerWidth <= 991.98) {
 				if (!document.body.querySelector('.searchbarFloating')) {
+					// View Search bar
 					const div = document.createElement('div');
 					div.classList.add('searchbarFloating');
 					div.innerHTML = searchBar.innerHTML;
 					document.body.appendChild(div);
-
+					// Hide Search bar on click close
 					document
 						.querySelector('.searchbarFloating button')
 						.addEventListener('click', () => {
@@ -217,12 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
 							searchBar.classList.remove('show');
 						});
 				}
-			}
-		});
-		// Hide Search bar
-		searchBar.querySelector('button').addEventListener('click', () => {
-			if (searchBar.classList.contains('show')) {
-				searchBar.classList.remove('show');
 			}
 		});
 	}

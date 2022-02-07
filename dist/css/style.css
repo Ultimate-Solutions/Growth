@@ -717,6 +717,12 @@ img {
 	padding: 0.5rem 0.625rem;
 	opacity: 0.4;
 	cursor: pointer;
+	transition: var(--transition-normal);
+}
+.dashboard > .content > .top-navbar .search-bar:not(.show) [icon]:hover,
+.dashboard > .content > .top-navbar .search-bar:not(.show) [icon]:focus,
+.dashboard > .content > .top-navbar .search-bar:not(.show) [icon]:active {
+	color: var(--dashboard-top-navbar-data-action-hover-color);
 }
 .dashboard > .content > .top-navbar .search-bar.show [icon] {
 	cursor: unset;
@@ -884,14 +890,56 @@ img {
 		background-color: var(--dashboard-content-mask-background-color);
 		backdrop-filter: blur(40px);
 		z-index: 1;
+		-webkit-animation: mobileSearchbarView ease-in-out 0.4s 1 alternate;
+		animation: mobileSearchbarView ease-in-out 0.4s 1 alternate;
+	}
+	@-webkit-keyframes mobileSearchbarView {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+	@keyframes mobileSearchbarView {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
 	}
 	.searchbarFloating .content {
+		position: relative;
 		margin: auto;
-		flex-direction: column;
+		padding: 0.625rem 1.25rem;
 		justify-content: center;
+		border-radius: 0.25rem;
+		width: 80%;
+		background-color: var(--dashboard-top-navbar-sticky-background-color);
+		box-shadow: var(--shadow-depth-02);
+	}
+	.searchbarFloating .content:before,
+	.searchbarFloating .content:after {
+		content: '';
+		position: absolute;
+		bottom: 0.625rem;
+		width: 20%;
+		height: 0.625rem;
+		box-shadow: var(--dashboard-top-navbar-sticky-shadow);
+		z-index: -1;
+		transition: var(--transition-normal);
+	}
+	.searchbarFloating .content:before {
+		left: 0.9375rem;
+		transform: skew(-5deg) rotate(-2deg);
+	}
+	.searchbarFloating .content:after {
+		right: 15px;
+		transform: skew(5deg) rotate(2deg);
 	}
 	.searchbarFloating .content [icon] {
-		position: absolute;
+		position: fixed;
 		bottom: 20px;
 		left: 20px;
 		font-size: 140px;
@@ -900,9 +948,20 @@ img {
 	}
 	.searchbarFloating .content input,
 	.searchbarFloating .content select {
+		font-size: var(--font-size-14);
+		padding: 0.5rem 0.625rem;
+		border: none;
+		background-color: transparent;
+	}
+	.searchbarFloating .content input:focus,
+	.searchbarFloating .content select:focus {
+		box-shadow: none;
+	}
+	.searchbarFloating .content select {
+		width: 8.75rem;
 	}
 	.searchbarFloating .content button {
-		position: absolute;
+		position: fixed;
 		top: 0;
 		right: 0;
 		font-size: var(--font-size-32);
