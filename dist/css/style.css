@@ -199,6 +199,7 @@ html {
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	height: 100%;
+	overflow-x: hidden;
 }
 body {
 	margin: 0;
@@ -591,6 +592,49 @@ img {
 	-moz--box-shadow: var(--dashboard-navbar-link-dropdown-shadow-bottom);
 	box-shadow: var(--dashboard-navbar-link-dropdown-shadow-bottom);
 }
+
+.dashboard .main-navbar[collapse] {
+	display: block;
+	width: var(--main-nav-widthAfter);
+}
+.dashboard .main-navbar[collapse] .brand {
+	padding: 1.5rem 0.625rem;
+	width: var(--main-nav-widthAfter);
+}
+.dashboard .main-navbar[collapse] .brand > [regular] {
+	display: none;
+}
+.dashboard .main-navbar[collapse] .brand > [small] {
+	display: block;
+}
+.dashboard .main-navbar[collapse] .navbar .nav-item > .nav-link.active:before,
+.dashboard .main-navbar[collapse] .navbar .nav-item.active > .nav-link:before {
+	left: calc(100% - 63px);
+}
+.dashboard .main-navbar[collapse] .navbar .nav-item .nav-link .text {
+	opacity: 0;
+	pointer-events: none;
+}
+.dashboard .main-navbar[collapse] .navbar .nav-item .nav-link .notifications {
+	position: absolute;
+	top: 50%;
+	right: 1.875rem;
+	height: 1.5625rem;
+	width: 1.5625rem;
+	color: var(--dashboard-navbar-link-notifications-background-color);
+	transform: translateY(-20%) scale(0.5);
+	animation: animationBlink 1s steps(5, start) infinite;
+}
+@-webkit-keyframes animationBlink {
+	to {
+		visibility: hidden;
+	}
+}
+@keyframes animationBlink {
+	to {
+		visibility: hidden;
+	}
+}
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
 	.dashboard .main-navbar[collapse] {
@@ -944,7 +988,9 @@ img {
 @media (max-width: 991.98px) {
 	.dashboard > .content,
 	.dashboard .main-navbar[collapse] + .content {
-		margin-right: 0;
+		margin-right: var(--main-nav-widthAfter);
+		transform: translateX(0);
+		transition: var(--transition-normal);
 	}
 	.dashboard .main-navbar[expand] + .content {
 		position: relative;

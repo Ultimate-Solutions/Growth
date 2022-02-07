@@ -56,7 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 document.addEventListener('DOMContentLoaded', () => {
 	// Main navbar
+	const dashboard = document.querySelector('.dashboard');
 	const mainNavbar = document.querySelector('.dashboard > .main-navbar');
+	const mainContainer = document.querySelector('.dashboard > .content');
 
 	if (mainNavbar) {
 		// Expand / Collapse Main navbar
@@ -68,13 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (mainNavbar.hasAttribute('collapse')) {
 					mainNavbar.removeAttribute('collapse');
 					mainNavbar.setAttribute('expand', '');
-					if (window.innerWidth <= 991.98)
+					if (window.innerWidth <= 991.98) {
 						document.body.classList.add('overflow-hidden', 'h-100');
+					}
 				} else if (mainNavbar.hasAttribute('expand')) {
 					mainNavbar.removeAttribute('expand');
 					mainNavbar.setAttribute('collapse', '');
-					if (window.innerWidth <= 991.98)
+					if (window.innerWidth <= 991.98) {
 						document.body.classList.remove('overflow-hidden', 'h-100');
+					}
 				}
 			});
 		}
@@ -87,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.addEventListener('mouseup', function (e) {
 				if (mainNavbar.hasAttribute('expand'))
 					if (windowWidth <= 991.98)
-						if (!mainNavbar.contains(e.target)) {
+						if (mainContainer.contains(e.target)) {
 							mainNavbar.removeAttribute('expand');
 							mainNavbar.setAttribute('collapse', '');
 							document.body.classList.remove('overflow-hidden', 'h-100');
@@ -95,25 +99,25 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 		}
 
-		// window.addEventListener(
-		// 	'resize',
-		// 	() => {
-		// 		windowWidth = window.innerWidth;
+		window.addEventListener(
+			'resize',
+			() => {
+				windowWidth = window.innerWidth;
 
-		// 		if (windowWidth <= 991.98) {
-		// 			document.addEventListener('mouseup', function (e) {
-		// 				if (mainNavbar.hasAttribute('expand'))
-		// 					if (windowWidth <= 991.98)
-		// 						if (!mainNavbar.contains(e.target)) {
-		// 							mainNavbar.removeAttribute('expand');
-		// 							mainNavbar.setAttribute('collapse', '');
-		// 							document.body.classList.add('overflow-hidden', 'h-100');
-		// 						}
-		// 			});
-		// 		}
-		// 	},
-		// 	true
-		// );
+				if (windowWidth <= 991.98) {
+					document.addEventListener('mouseup', function (e) {
+						if (mainNavbar.hasAttribute('expand'))
+							if (windowWidth <= 991.98)
+								if (!mainNavbar.contains(e.target)) {
+									mainNavbar.removeAttribute('expand');
+									mainNavbar.setAttribute('collapse', '');
+									document.body.classList.add('overflow-hidden', 'h-100');
+								}
+					});
+				}
+			},
+			true
+		);
 
 		// Actions for dropdown links
 		// Dropdown lists
