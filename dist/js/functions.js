@@ -10,9 +10,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 	const loader = document.querySelector('#page-loader');
 
-	if (loader) {
-		loader.remove();
-	}
+	// if (loader) {
+	// 	loader.remove();
+	// }
 });
 // #endregion
 

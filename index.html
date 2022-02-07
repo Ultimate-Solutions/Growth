@@ -199,6 +199,17 @@
 				}
 			}
 		</script>
+
+		<!-- Loader -->
+		<script>
+			window.addEventListener('load', () => {
+				const loader = document.querySelector('#page-loader');
+
+				if (loader) {
+					loader.remove();
+				}
+			});
+		</script>
 	</head>
 	<body dashboard>
 		<div id="page-loader">
