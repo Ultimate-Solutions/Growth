@@ -1445,13 +1445,6 @@ section > .content table.table-borderless > thead > tr > * {
 section > .content table.table-borderless > thead > tr > *[actions] {
 	width: 4rem;
 }
-section > .content table.table-borderless > thead > tr > *[status],
-section > .content table.table-borderless > thead > tr > *[payment],
-section > .content table.table-borderless > thead > tr > *[cash],
-section > .content table.table-borderless > thead > tr > *[date],
-section > .content table.table-borderless > thead > tr > *[id] {
-	width: 9.375rem;
-}
 section
 	> .content
 	table.table-borderless
