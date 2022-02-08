@@ -1243,13 +1243,43 @@ img {
 	font-size: var(--font-size-24);
 	cursor: pointer;
 }
+[notif] > .nav [close] > em {
+	opacity: 0.4;
+}
+[notif] > .nav [close] > em:hover,
+[notif] > .nav [close] > em:focus,
+[notif] > .nav [close] > em:active {
+	-webkit-animation: rotate-close ease-in-out 0.5s 1 alternate;
+	animation: rotate-close ease-in-out 0.5s 1 alternate;
+	opacity: 1;
+}
+@-webkit-keyframes rotate-close {
+	0% {
+		-webkit-transform: rotateZ(0);
+		transform: rotateZ(0);
+	}
+	100% {
+		-webkit-transform: rotateZ(360deg);
+		transform: rotateZ(360deg);
+	}
+}
+@keyframes rotate-close {
+	0% {
+		-webkit-transform: rotateZ(0);
+		transform: rotateZ(0);
+	}
+	100% {
+		-webkit-transform: rotateZ(360deg);
+		transform: rotateZ(360deg);
+	}
+}
 [notif] > .nav .list-group {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 0.625rem;
 }
 [notif] > .nav .list-group > .action {
-	font-size: var(--font-size-32);
+	font-size: var(--font-size-24);
 	text-decoration: none;
 	color: inherit;
 	opacity: 0.4;
