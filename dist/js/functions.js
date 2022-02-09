@@ -8,9 +8,7 @@
 //                                                           | |                               __/ |
 //                                                           |_|                              |___/
 document.addEventListener('DOMContentLoaded', () => {
-  var tooltipTriggerList = [].slice.call(
-    document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  );
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl);
   });
@@ -62,9 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (mainNavbar) {
     // Expand / Collapse Main navbar
-    const expandCollapseActions = document.querySelectorAll(
-      '[data-action="sidebar-toggler"]'
-    );
+    const expandCollapseActions = document.querySelectorAll('[data-action="sidebar-toggler"]');
     for (let expandCollapseAction of expandCollapseActions) {
       expandCollapseAction.addEventListener('click', () => {
         if (mainNavbar.hasAttribute('collapse')) {
@@ -203,17 +199,12 @@ document.addEventListener('DOMContentLoaded', () => {
 //             |_|
 document.addEventListener('DOMContentLoaded', () => {
   // Main navbar
-  const topNavbar = document.querySelector(
-    '.dashboard > .content > .top-navbar'
-  );
+  const topNavbar = document.querySelector('.dashboard > .content > .top-navbar');
 
   if (topNavbar) {
     // Scroll Animation
     window.addEventListener('scroll', () => {
-      if (
-        document.body.scrollTop > 100 ||
-        document.documentElement.scrollTop > 100
-      ) {
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
         topNavbar.classList.add('scrolled');
       } else {
         topNavbar.classList.remove('scrolled');
@@ -244,12 +235,10 @@ document.addEventListener('DOMContentLoaded', () => {
           div.innerHTML = searchBar.innerHTML;
           document.body.appendChild(div);
           // Hide Search bar on click close
-          document
-            .querySelector('.searchbarFloating button')
-            .addEventListener('click', () => {
-              document.querySelector('.searchbarFloating').remove();
-              searchBar.classList.remove('show');
-            });
+          document.querySelector('.searchbarFloating button').addEventListener('click', () => {
+            document.querySelector('.searchbarFloating').remove();
+            searchBar.classList.remove('show');
+          });
         }
       }
     });
@@ -281,9 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Change Notification color
-    let notifTabsLinks = notifTabs.querySelectorAll(
-      '.action[data-bs-toggle="list"]'
-    );
+    let notifTabsLinks = notifTabs.querySelectorAll('.action[data-bs-toggle="list"]');
 
     for (let link of notifTabsLinks) {
       // Check active link
