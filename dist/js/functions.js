@@ -8,12 +8,12 @@
 //                                                           | |                               __/ |
 //                                                           |_|                              |___/
 document.addEventListener('DOMContentLoaded', () => {
-	var tooltipTriggerList = [].slice.call(
-		document.querySelectorAll('[data-bs-toggle="tooltip"]')
-	);
-	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-		return new bootstrap.Tooltip(tooltipTriggerEl);
-	});
+  var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
 });
 // #endregion
 
@@ -28,20 +28,20 @@ document.addEventListener('DOMContentLoaded', () => {
 //                   |___/
 //
 document.addEventListener('DOMContentLoaded', () => {
-	function logElementEvent(eventName, element) {
-		console.log(Date.now(), eventName, element.getAttribute('data-src'));
-	}
+  function logElementEvent(eventName, element) {
+    console.log(Date.now(), eventName, element.getAttribute('data-src'));
+  }
 
-	var callback_error = function (element) {
-		logElementEvent('💀 ERROR', element);
-		element.src = 'https://via.placeholder.com/440x560/?text=Error+Placeholder';
-	};
+  var callback_error = function (element) {
+    logElementEvent('💀 ERROR', element);
+    element.src = 'https://via.placeholder.com/440x560/?text=Error+Placeholder';
+  };
 
-	window.lazyLoadOptions = {
-		threshold: 0,
-		// Assign the callbacks defined above
-		callback_error: callback_error,
-	};
+  window.lazyLoadOptions = {
+    threshold: 0,
+    // Assign the callbacks defined above
+    callback_error: callback_error,
+  };
 });
 // #endregion
 
@@ -55,140 +55,140 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 //
 document.addEventListener('DOMContentLoaded', () => {
-	// Main navbar
-	const dashboard = document.querySelector('.dashboard');
-	const mainNavbar = document.querySelector('.dashboard > .main-navbar');
-	const mainContainer = document.querySelector('.dashboard > .content');
+  // Main navbar
+  const dashboard = document.querySelector('.dashboard');
+  const mainNavbar = document.querySelector('.dashboard > .main-navbar');
+  const mainContainer = document.querySelector('.dashboard > .content');
 
-	if (mainNavbar) {
-		// Expand / Collapse Main navbar
-		const expandCollapseActions = document.querySelectorAll(
-			'[data-action="sidebar-toggler"]'
-		);
-		for (let expandCollapseAction of expandCollapseActions) {
-			expandCollapseAction.addEventListener('click', () => {
-				if (mainNavbar.hasAttribute('collapse')) {
-					mainNavbar.removeAttribute('collapse');
-					mainNavbar.setAttribute('expand', '');
-					if (window.innerWidth <= 991.98) {
-						document.body.classList.add('overflow-hidden', 'h-100');
-					}
-				} else if (mainNavbar.hasAttribute('expand')) {
-					mainNavbar.removeAttribute('expand');
-					mainNavbar.setAttribute('collapse', '');
-					if (window.innerWidth <= 991.98) {
-						document.body.classList.remove('overflow-hidden', 'h-100');
-					}
-				}
-			});
-		}
+  if (mainNavbar) {
+    // Expand / Collapse Main navbar
+    const expandCollapseActions = document.querySelectorAll(
+      '[data-action="sidebar-toggler"]'
+    );
+    for (let expandCollapseAction of expandCollapseActions) {
+      expandCollapseAction.addEventListener('click', () => {
+        if (mainNavbar.hasAttribute('collapse')) {
+          mainNavbar.removeAttribute('collapse');
+          mainNavbar.setAttribute('expand', '');
+          if (window.innerWidth <= 991.98) {
+            document.body.classList.add('overflow-hidden', 'h-100');
+          }
+        } else if (mainNavbar.hasAttribute('expand')) {
+          mainNavbar.removeAttribute('expand');
+          mainNavbar.setAttribute('collapse', '');
+          if (window.innerWidth <= 991.98) {
+            document.body.classList.remove('overflow-hidden', 'h-100');
+          }
+        }
+      });
+    }
 
-		// Expand / Collapse Main navbar on click outside for Mobile view
-		var windowWidth = window.innerWidth;
+    // Expand / Collapse Main navbar on click outside for Mobile view
+    var windowWidth = window.innerWidth;
 
-		// Check Window width
-		if (windowWidth <= 991.98) {
-			document.addEventListener('mouseup', function (e) {
-				if (mainNavbar.hasAttribute('expand'))
-					if (windowWidth <= 991.98)
-						if (mainContainer.contains(e.target)) {
-							mainNavbar.removeAttribute('expand');
-							mainNavbar.setAttribute('collapse', '');
-							document.body.classList.remove('overflow-hidden', 'h-100');
-						}
-			});
-		}
+    // Check Window width
+    if (windowWidth <= 991.98) {
+      document.addEventListener('mouseup', function (e) {
+        if (mainNavbar.hasAttribute('expand'))
+          if (windowWidth <= 991.98)
+            if (mainContainer.contains(e.target)) {
+              mainNavbar.removeAttribute('expand');
+              mainNavbar.setAttribute('collapse', '');
+              document.body.classList.remove('overflow-hidden', 'h-100');
+            }
+      });
+    }
 
-		window.addEventListener(
-			'resize',
-			() => {
-				windowWidth = window.innerWidth;
+    window.addEventListener(
+      'resize',
+      () => {
+        windowWidth = window.innerWidth;
 
-				if (windowWidth <= 991.98) {
-					document.addEventListener('mouseup', function (e) {
-						if (mainNavbar.hasAttribute('expand'))
-							if (windowWidth <= 991.98)
-								if (!mainNavbar.contains(e.target)) {
-									mainNavbar.removeAttribute('expand');
-									mainNavbar.setAttribute('collapse', '');
-									document.body.classList.add('overflow-hidden', 'h-100');
-								}
-					});
-				}
-			},
-			true
-		);
+        if (windowWidth <= 991.98) {
+          document.addEventListener('mouseup', function (e) {
+            if (mainNavbar.hasAttribute('expand'))
+              if (windowWidth <= 991.98)
+                if (!mainNavbar.contains(e.target)) {
+                  mainNavbar.removeAttribute('expand');
+                  mainNavbar.setAttribute('collapse', '');
+                  document.body.classList.add('overflow-hidden', 'h-100');
+                }
+          });
+        }
+      },
+      true
+    );
 
-		// Actions for dropdown links
-		// Dropdown lists
-		const dropdwonLists = mainNavbar.querySelectorAll('.nav-link.dropdown');
-		for (let dropdownListItem of dropdwonLists) {
-			dropdownListItem.addEventListener('click', () => {
-				if (!dropdownListItem.classList.contains('expand')) {
-					// Collapse All Dropdowns
-					collapseAllDropdown(dropdwonLists);
-					// Expant current dropdown
-					expandDropdown(dropdownListItem);
-				} else {
-					// Collapse All Dropdowns
-					collapseAllDropdown(dropdwonLists);
-				}
-			});
-		}
+    // Actions for dropdown links
+    // Dropdown lists
+    const dropdwonLists = mainNavbar.querySelectorAll('.nav-link.dropdown');
+    for (let dropdownListItem of dropdwonLists) {
+      dropdownListItem.addEventListener('click', () => {
+        if (!dropdownListItem.classList.contains('expand')) {
+          // Collapse All Dropdowns
+          collapseAllDropdown(dropdwonLists);
+          // Expant current dropdown
+          expandDropdown(dropdownListItem);
+        } else {
+          // Collapse All Dropdowns
+          collapseAllDropdown(dropdwonLists);
+        }
+      });
+    }
 
-		// Collapse
-		function collapseAllDropdown(master) {
-			// Collapse dropdown
-			for (let el of master) {
-				el.classList.remove('expand');
-			}
-		}
+    // Collapse
+    function collapseAllDropdown(master) {
+      // Collapse dropdown
+      for (let el of master) {
+        el.classList.remove('expand');
+      }
+    }
 
-		// Expand
-		function expandDropdown(el) {
-			el.classList.add('expand');
-		}
+    // Expand
+    function expandDropdown(el) {
+      el.classList.add('expand');
+    }
 
-		// Check active dropdown links
-		// Nav items
-		const navItems = mainNavbar.querySelectorAll('.nav-item');
-		for (let navItem of navItems) {
-			let dropdownList = navItem.querySelector('.dropdown-list');
-			if (dropdownList) {
-				let navItemActive = dropdownList.querySelector('.nav-item.active');
-				if (navItemActive) {
-					navItem.querySelector('.nav-link.dropdown').classList.add('expand');
-				}
-			}
-		}
+    // Check active dropdown links
+    // Nav items
+    const navItems = mainNavbar.querySelectorAll('.nav-item');
+    for (let navItem of navItems) {
+      let dropdownList = navItem.querySelector('.dropdown-list');
+      if (dropdownList) {
+        let navItemActive = dropdownList.querySelector('.nav-item.active');
+        if (navItemActive) {
+          navItem.querySelector('.nav-link.dropdown').classList.add('expand');
+        }
+      }
+    }
 
-		// Enable tooltips
-		const tooltips = mainNavbar.querySelectorAll('[data-tooltip');
-		for (let tooltip of tooltips) {
-			tooltip.addEventListener('mouseenter', () => {
-				if (mainNavbar.hasAttribute('collapse')) {
-					// Create Tooltip container
-					const tooltipContainer = document.createElement('div');
-					tooltipContainer.setAttribute('tooltip-container', '');
-					// Set tooltip data
-					tooltipContainer.innerText = tooltip.getAttribute('data-title');
-					// Append tooltip to view
-					document.body.appendChild(tooltipContainer);
+    // Enable tooltips
+    const tooltips = mainNavbar.querySelectorAll('[data-tooltip');
+    for (let tooltip of tooltips) {
+      tooltip.addEventListener('mouseenter', () => {
+        if (mainNavbar.hasAttribute('collapse')) {
+          // Create Tooltip container
+          const tooltipContainer = document.createElement('div');
+          tooltipContainer.setAttribute('tooltip-container', '');
+          // Set tooltip data
+          tooltipContainer.innerText = tooltip.getAttribute('data-title');
+          // Append tooltip to view
+          document.body.appendChild(tooltipContainer);
 
-					// Set tooltip position
-					var divOffset = offset(tooltip);
-					tooltipContainer.style.top = divOffset.top + 'px';
-				}
-			});
+          // Set tooltip position
+          var divOffset = offset(tooltip);
+          tooltipContainer.style.top = divOffset.top + 'px';
+        }
+      });
 
-			tooltip.addEventListener('mouseleave', () => {
-				let el = document.querySelector('[tooltip-container]');
-				if (el) {
-					el.remove();
-				}
-			});
-		}
-	}
+      tooltip.addEventListener('mouseleave', () => {
+        let el = document.querySelector('[tooltip-container]');
+        if (el) {
+          el.remove();
+        }
+      });
+    }
+  }
 });
 // #endregion
 
@@ -202,58 +202,58 @@ document.addEventListener('DOMContentLoaded', () => {
 //             | |
 //             |_|
 document.addEventListener('DOMContentLoaded', () => {
-	// Main navbar
-	const topNavbar = document.querySelector(
-		'.dashboard > .content > .top-navbar'
-	);
+  // Main navbar
+  const topNavbar = document.querySelector(
+    '.dashboard > .content > .top-navbar'
+  );
 
-	if (topNavbar) {
-		// Scroll Animation
-		window.addEventListener('scroll', () => {
-			if (
-				document.body.scrollTop > 100 ||
-				document.documentElement.scrollTop > 100
-			) {
-				topNavbar.classList.add('scrolled');
-			} else {
-				topNavbar.classList.remove('scrolled');
-			}
-		});
+  if (topNavbar) {
+    // Scroll Animation
+    window.addEventListener('scroll', () => {
+      if (
+        document.body.scrollTop > 100 ||
+        document.documentElement.scrollTop > 100
+      ) {
+        topNavbar.classList.add('scrolled');
+      } else {
+        topNavbar.classList.remove('scrolled');
+      }
+    });
 
-		// Search bar
-		const searchBar = topNavbar.querySelector('.search-bar');
+    // Search bar
+    const searchBar = topNavbar.querySelector('.search-bar');
 
-		searchBar.querySelector('[icon]').addEventListener('click', () => {
-			if (!searchBar.classList.contains('show') && window.innerWidth > 991.98) {
-				// View Search bar
-				searchBar.classList.add('show');
-				searchBar.querySelector('input').focus();
-				// Hide Search bar on click close
-				searchBar.querySelector('button').addEventListener('click', () => {
-					if (searchBar.classList.contains('show')) {
-						searchBar.classList.remove('show');
-					}
-				});
-			}
+    searchBar.querySelector('[icon]').addEventListener('click', () => {
+      if (!searchBar.classList.contains('show') && window.innerWidth > 991.98) {
+        // View Search bar
+        searchBar.classList.add('show');
+        searchBar.querySelector('input').focus();
+        // Hide Search bar on click close
+        searchBar.querySelector('button').addEventListener('click', () => {
+          if (searchBar.classList.contains('show')) {
+            searchBar.classList.remove('show');
+          }
+        });
+      }
 
-			if (window.innerWidth <= 991.98) {
-				if (!document.body.querySelector('.searchbarFloating')) {
-					// View Search bar
-					const div = document.createElement('div');
-					div.classList.add('searchbarFloating');
-					div.innerHTML = searchBar.innerHTML;
-					document.body.appendChild(div);
-					// Hide Search bar on click close
-					document
-						.querySelector('.searchbarFloating button')
-						.addEventListener('click', () => {
-							document.querySelector('.searchbarFloating').remove();
-							searchBar.classList.remove('show');
-						});
-				}
-			}
-		});
-	}
+      if (window.innerWidth <= 991.98) {
+        if (!document.body.querySelector('.searchbarFloating')) {
+          // View Search bar
+          const div = document.createElement('div');
+          div.classList.add('searchbarFloating');
+          div.innerHTML = searchBar.innerHTML;
+          document.body.appendChild(div);
+          // Hide Search bar on click close
+          document
+            .querySelector('.searchbarFloating button')
+            .addEventListener('click', () => {
+              document.querySelector('.searchbarFloating').remove();
+              searchBar.classList.remove('show');
+            });
+        }
+      }
+    });
+  }
 });
 // #endregion
 
@@ -267,45 +267,45 @@ document.addEventListener('DOMContentLoaded', () => {
 //
 //
 document.addEventListener('DOMContentLoaded', () => {
-	// Main navbar
-	const notifTabs = document.querySelector('.dashboard > .content [notif]'),
-		notifTabsClose = notifTabs.querySelector('[close]');
+  // Main navbar
+  const notifTabs = document.querySelector('.dashboard > .content [notif]'),
+    notifTabsClose = notifTabs.querySelector('[close]');
 
-	if (notifTabs) {
-		// Close Notification banel
-		notifTabsClose.addEventListener('click', () => {
-			notifTabs.classList.add('remove');
-			notifTabs.ontransitionend = function () {
-				notifTabs.remove();
-			};
-		});
+  if (notifTabs) {
+    // Close Notification banel
+    notifTabsClose.addEventListener('click', () => {
+      notifTabs.classList.add('remove');
+      notifTabs.ontransitionend = function () {
+        notifTabs.remove();
+      };
+    });
 
-		// Change Notification color
-		let notifTabsLinks = notifTabs.querySelectorAll(
-			'.action[data-bs-toggle="list"]'
-		);
+    // Change Notification color
+    let notifTabsLinks = notifTabs.querySelectorAll(
+      '.action[data-bs-toggle="list"]'
+    );
 
-		for (let link of notifTabsLinks) {
-			// Check active link
-			if (link.classList.contains('active')) {
-				let status = link.getAttribute('data-type');
-				notifTabs.setAttribute('data-type', status);
-			}
+    for (let link of notifTabsLinks) {
+      // Check active link
+      if (link.classList.contains('active')) {
+        let status = link.getAttribute('data-type');
+        notifTabs.setAttribute('data-type', status);
+      }
 
-			// Change on click
-			link.addEventListener('click', () => {
-				let status = link.getAttribute('data-type');
-				notifTabs.setAttribute('data-type', status);
-			});
-		}
-	}
+      // Change on click
+      link.addEventListener('click', () => {
+        let status = link.getAttribute('data-type');
+        notifTabs.setAttribute('data-type', status);
+      });
+    }
+  }
 });
 // #endregion
 
 // Element Top Left position helper
 function offset(el) {
-	var rect = el.getBoundingClientRect(),
-		scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-	return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+  var rect = el.getBoundingClientRect(),
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
 }
