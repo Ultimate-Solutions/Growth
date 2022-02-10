@@ -17,10 +17,9 @@
 
   /* Fonts */
   --root-font-size: 16px;
-  --root-font-family: 'Neo Sans Arabic', system-ui, -apple-system, 'Segoe UI',
-    'Roboto', 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans',
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
+  --root-font-family: 'Neo Sans Arabic', system-ui, -apple-system, 'Segoe UI', 'Roboto',
+    'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --root-text-align: start;
   --root-bg: #fff;
   --font-style-normal: normal;
@@ -57,14 +56,10 @@
   --shadow-depth--01: inset 0px 2px 0px rgba(0, 0, 0, 0.05);
   --shadow-depth-00: none;
   --shadow-depth-01: 0px 1px 0px rgba(0, 0, 0, 0.05);
-  --shadow-depth-02: 0px 2px 1px rgba(0, 0, 0, 0.05),
-    0px 0px 1px rgba(0, 0, 0, 0.25);
-  --shadow-depth-03: 0px 0px 3px rgba(0, 0, 0, 0.1),
-    0px 4px 20px rgba(0, 0, 0, 0.15);
-  --shadow-depth-04: 0px 0px 3px rgba(0, 0, 0, 0.1),
-    0px 4px 20px rgba(0, 0, 0, 0.15);
-  --shadow-depth-05: 0px 0px 4px rgba(0, 0, 0, 0.1),
-    0px 8px 40px rgba(0, 0, 0, 0.2);
+  --shadow-depth-02: 0px 2px 1px rgba(0, 0, 0, 0.05), 0px 0px 1px rgba(0, 0, 0, 0.25);
+  --shadow-depth-03: 0px 0px 3px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.15);
+  --shadow-depth-04: 0px 0px 3px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.15);
+  --shadow-depth-05: 0px 0px 4px rgba(0, 0, 0, 0.1), 0px 8px 40px rgba(0, 0, 0, 0.2);
 
   /* Animation */
   --transition-normal: all 0.4s ease;
@@ -98,8 +93,7 @@
   --dashboard-navbar-link-notifications-background-color: #dc3545;
   --dashboard-navbar-link-dropdown-background-color: #00000006;
   --dashboard-navbar-link-dropdown-shadow-top: inset 0 20px 20px -20px #0000002a;
-  --dashboard-navbar-link-dropdown-shadow-bottom: inset 0 -20px 20px -20px
-    #0000002a;
+  --dashboard-navbar-link-dropdown-shadow-bottom: inset 0 -20px 20px -20px #0000002a;
   --dashboard-top-navbar-sticky-background-color: #ffffff;
   --dashboard-top-navbar-sticky-shadow: 0 0rem 1.5rem rgb(0 0 0 / 70%);
   --dashboard-top-navbar-data-action-color: #808080;
@@ -117,14 +111,15 @@
   --dashboard-top-navbar-user-badge-info-badge-admin-background-color: #c2e3d0;
   --dashboard-notif-background-color: #ffffff;
   --dashboard-notif-after-background-color: #ffffff;
-  --dashboard-notif-after-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2),
-    0px 4px 10px rgba(0, 0, 0, 0.2);
+  --dashboard-notif-after-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2), 0px 4px 10px rgba(0, 0, 0, 0.2);
   --dashboard-notif-success-nav-background-color: #19875433;
   --dashboard-notif-danger-nav-background-color: #dc354533;
   --dashboard-notif-warning-nav-background-color: #ffc10733;
   --dashboard-notif-info-nav-background-color: #0dcaf033;
   --dashboard-notif-default-nav-background-color: #22447b33;
   --dashboard-section-content-background-color: #ffffff;
+  --dashboard-table-tabs-tab-active-background-color: #05a84b;
+  --dashboard-table-tabs-tab-active-color: #05a84b;
   --dashboard-table-background-color: #ffffff;
   --dashboard-table-hover-background-color: #f4f5f8;
   --dashboard-table-accent-striped-background-color: #ffffff;
@@ -140,7 +135,7 @@
   --dashboard-badge-underway-background-color: #94d2bd33;
   --dashboard-badge-done-background-color: #005f7333;
   --dashboard-badge-delivery-in-progress-background-color: #0a939633;
-  --dashboard-badge-delivered-background-color: #e9d8a633;
+  --dashboard-badge-delivered-background-color: #0014ff33;
   --dashboard-badge-order-shipped-background-color: #00121933;
   --dashboard-badge-canceled-background-color: #ae201233;
   --dashboard-badge-retrieved-background-color: #bb3e0333;
@@ -330,9 +325,7 @@ img {
   background-color: var(--dashboard-badge-done-background-color);
 }
 .badge[data-type='Delivery in progress'] {
-  background-color: var(
-    --dashboard-badge-delivery-in-progress-background-color
-  );
+  background-color: var(--dashboard-badge-delivery-in-progress-background-color);
 }
 .badge[data-type='Delivered'] {
   background-color: var(--dashboard-badge-delivered-background-color);
@@ -559,12 +552,7 @@ img {
   transition: all 0.4s ease-out;
   overflow: hidden;
 }
-.dashboard
-  .main-navbar
-  .navbar
-  .nav-item
-  .nav-link.dropdown.expand
-  + .dropdown-list {
+.dashboard .main-navbar .navbar .nav-item .nav-link.dropdown.expand + .dropdown-list {
   padding: 0.625rem 0;
   max-height: 1000px;
   transition: all 0.4s ease-in;
@@ -608,11 +596,7 @@ img {
     display: block;
   }
   .dashboard .main-navbar[collapse] .navbar .nav-item > .nav-link.active:before,
-  .dashboard
-    .main-navbar[collapse]
-    .navbar
-    .nav-item.active
-    > .nav-link:before {
+  .dashboard .main-navbar[collapse] .navbar .nav-item.active > .nav-link:before {
     left: calc(100% - 63px);
   }
   .dashboard .main-navbar[collapse] .navbar .nav-item .nav-link .text {
@@ -764,9 +748,7 @@ img {
   width: 0.625rem;
   height: 0.625rem;
   border-radius: 50%;
-  background-color: var(
-    --dashboard-top-navbar-data-action-notif-background-color
-  );
+  background-color: var(--dashboard-top-navbar-data-action-notif-background-color);
   animation: animationBlink 1s steps(5, start) infinite;
 }
 @-webkit-keyframes animationBlink {
@@ -817,9 +799,7 @@ img {
   background-color: var(--dashboard-top-navbar-search-bar-background-color);
 }
 .dashboard > .content > .top-navbar.scrolled .search-bar.show .content {
-  background-color: var(
-    --dashboard-top-navbar-sticky-search-bar-background-color
-  );
+  background-color: var(--dashboard-top-navbar-sticky-search-bar-background-color);
 }
 .dashboard > .content > .top-navbar .search-bar [icon] {
   font-size: var(--font-size-24);
@@ -854,9 +834,7 @@ img {
 .dashboard > .content > .top-navbar .search-bar button {
   font-size: var(--font-size-24);
   padding: 0.5rem 0.625rem;
-  background-color: var(
-    --dashboard-top-navbar-search-bar-close-background-color
-  );
+  background-color: var(--dashboard-top-navbar-search-bar-close-background-color);
   line-height: var(--line-spacing-0);
   border-radius: 0;
   transition: var(--transition-normal);
@@ -864,9 +842,7 @@ img {
 .dashboard > .content > .top-navbar .search-bar button:hover,
 .dashboard > .content > .top-navbar .search-bar button:focus,
 .dashboard > .content > .top-navbar .search-bar button:active {
-  background-color: var(
-    --dashboard-top-navbar-search-bar-close-hover-background-color
-  );
+  background-color: var(--dashboard-top-navbar-search-bar-close-hover-background-color);
 }
 .dashboard > .content > .top-navbar .search-bar button:hover em,
 .dashboard > .content > .top-navbar .search-bar button:focus em,
@@ -930,21 +906,12 @@ img {
   font-size: var(--font-size-12);
   font-weight: var(--font-weight-regular);
   color: var(--dashboard-top-navbar-user-badge-info-badge-color);
-  background-color: var(
-    --dashboard-top-navbar-user-badge-info-badge-background-color
-  );
+  background-color: var(--dashboard-top-navbar-user-badge-info-badge-background-color);
   border-radius: 6.25rem;
   padding: 0.25rem 0.625rem;
 }
-.dashboard
-  > .content
-  > .top-navbar
-  .user-badge
-  .info
-  .badge[data-type='admin'] {
-  background-color: var(
-    --dashboard-top-navbar-user-badge-info-badge-admin-background-color
-  );
+.dashboard > .content > .top-navbar .user-badge .info .badge[data-type='admin'] {
+  background-color: var(--dashboard-top-navbar-user-badge-info-badge-admin-background-color);
 }
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
@@ -1456,6 +1423,35 @@ section > .content {
   background-color: var(--dashboard-section-content-background-color);
   padding: 1.25rem;
 }
+section > .content .table-tabs > .list-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1.25rem 0;
+}
+section > .content .table-tabs > .list-group > .action {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  font-size: var(--font-size-16);
+  transition: var(--transition-normal);
+  padding: 0.5rem 0.625rem 0.75rem;
+}
+section > .content .table-tabs > .list-group > .action:hover,
+section > .content .table-tabs > .list-group > .action:focus,
+section > .content .table-tabs > .list-group > .action:active,
+section > .content .table-tabs > .list-group > .action.active {
+  color: var(--dashboard-table-tabs-tab-active-color);
+}
+section > .content .table-tabs > .list-group > .action.active:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.125rem;
+  background-color: var(--dashboard-table-tabs-tab-active-background-color);
+}
 section > .content table {
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-regular);
@@ -1475,37 +1471,27 @@ section > .content table.table-borderless > thead > tr > * {
 section > .content table.table-borderless > thead > tr > *[actions] {
   width: 4rem;
 }
-section
-  > .content
-  table.table-borderless
-  > tbody
-  > tr
-  > *[actions]
-  .dropdown
-  em {
+section > .content table.table-borderless > tbody > tr > *[actions] .dropdown em {
   font-size: var(--font-size-32);
+}
+section > .content table > :not(caption) > * > *[thumbnail] > * {
+  max-width: 50px;
 }
 section > .content table > thead > tr,
 section > .content table > tbody > tr:nth-of-type(even) {
-  --dashboard-table-accent-background-color: var(
-    --dashboard-table-background-color
-  );
+  --dashboard-table-accent-background-color: var(--dashboard-table-background-color);
   color: var(--dashboard-table-color);
   transition: var(--transition-normal);
 }
 section > .content table > tbody > tr:nth-of-type(odd) {
-  --dashboard-table-accent-background-color: var(
-    --dashboard-table-accent-striped-background-color
-  );
+  --dashboard-table-accent-background-color: var(--dashboard-table-accent-striped-background-color);
   color: var(--dashboard-table-striped-color);
   transition: var(--transition-normal);
 }
 section > .content table > tbody > tr:nth-of-type(even):hover,
 section > .content table > tbody > tr:nth-of-type(even):focus,
 section > .content table > tbody > tr:nth-of-type(even):active {
-  --dashboard-table-accent-background-color: var(
-    --dashboard-table-hover-background-color
-  );
+  --dashboard-table-accent-background-color: var(--dashboard-table-hover-background-color);
   color: var(--dashboard-table-hover-color);
 }
 section > .content table > tbody > tr:nth-of-type(odd):hover,

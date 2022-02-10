@@ -693,6 +693,7 @@
             <span></span>
           </div>
 
+          <!-- Orders Table -->
           <section>
             <!-- Header -->
             <div class="header">
@@ -738,7 +739,7 @@
                       <td>دفع عند الاستلام</td>
                       <td>24000 ر.س</td>
                       <td>
-                        <span class="badge rounded-pill" data-type="done"> تم التوصيل </span>
+                        <span class="badge rounded-pill" data-type="Delivered"> تم التوصيل </span>
                       </td>
                       <!-- Actions -->
                       <td actions>
@@ -771,7 +772,9 @@
                       <td>دفع عند الاستلام</td>
                       <td>24000 ر.س</td>
                       <td>
-                        <span class="badge rounded-pill" data-type="done"> بانتظار الدفع </span>
+                        <span class="badge rounded-pill" data-type="Awaiting payment">
+                          بانتظار الدفع
+                        </span>
                       </td>
                       <!-- Actions -->
                       <td actions>
@@ -804,7 +807,9 @@
                       <td>دفع عند الاستلام</td>
                       <td>24000 ر.س</td>
                       <td>
-                        <span class="badge rounded-pill" data-type="done"> بانتظار المراجعة </span>
+                        <span class="badge rounded-pill" data-type="Waiting for review">
+                          بانتظار المراجعة
+                        </span>
                       </td>
                       <!-- Actions -->
                       <td actions>
@@ -837,7 +842,9 @@
                       <td>دفع عند الاستلام</td>
                       <td>24000 ر.س</td>
                       <td>
-                        <span class="badge rounded-pill" data-type="done"> جاري التوصيل </span>
+                        <span class="badge rounded-pill" data-type="Delivery in progress">
+                          جاري التوصيل
+                        </span>
                       </td>
                       <!-- Actions -->
                       <td actions>
@@ -870,7 +877,9 @@
                       <td>دفع عند الاستلام</td>
                       <td>24000 ر.س</td>
                       <td>
-                        <span class="badge rounded-pill" data-type="done"> قيد الاسترجاع </span>
+                        <span class="badge rounded-pill" data-type="Being retrieved">
+                          قيد الاسترجاع
+                        </span>
                       </td>
                       <!-- Actions -->
                       <td actions>
@@ -897,6 +906,960 @@
                     </tr>
                   </tbody>
                 </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- Products Table -->
+          <section>
+            <!-- Header -->
+            <div class="header">
+              <div class="d-flex">
+                <em class="ph-chart-line" icon></em>
+                <div>
+                  <div class="title" data-shadow="المنتجات">المنتجات</div>
+                  <div class="subtitle">
+                    هذا النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني
+                  </div>
+                </div>
+              </div>
+
+              <a href="#" action>
+                عرض كل المنتجات
+
+                <em class="ph-caret-left"></em>
+              </a>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+              <div class="table-tabs">
+                <!-- Triggers -->
+                <div class="list-group" role="tablist">
+                  <!-- Tab Trigger BEGIN -->
+                  <a
+                    class="action active"
+                    id="table-ex1"
+                    data-bs-toggle="list"
+                    data-type="Warning"
+                    href="#table-ex1-content"
+                    role="tab"
+                    aria-controls="table-ex1-content"
+                    >كل المنتجات</a
+                  >
+                  <!-- Tab Trigger END -->
+                  <a
+                    class="action"
+                    id="table-ex2"
+                    data-bs-toggle="list"
+                    data-type="Success"
+                    href="#table-ex2-content"
+                    role="tab"
+                    aria-controls="table-ex2-content"
+                    >المنتجات الاكثر مبيعاً</a
+                  >
+                  <a
+                    class="action"
+                    id="table-ex3"
+                    data-bs-toggle="list"
+                    data-type="Success"
+                    href="#table-ex3-content"
+                    role="tab"
+                    aria-controls="table-ex3-content"
+                    >منتجات قاربت على النفاذ</a
+                  >
+                  <a
+                    class="action"
+                    id="table-ex4"
+                    data-bs-toggle="list"
+                    data-type="Success"
+                    href="#table-ex4-content"
+                    role="tab"
+                    aria-controls="table-ex4-content"
+                    >المنتجات التى نفذت</a
+                  >
+                </div>
+
+                <div class="tab-content" id="nav-tabContent">
+                  <!-- Tab BEGIN -->
+                  <div
+                    class="tab-pane fade show active"
+                    id="table-ex1-content"
+                    role="tabpanel"
+                    aria-labelledby="table-ex1">
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">المنتج</th>
+                            <th scope="col">الاسم</th>
+                            <th scope="col">رمز المنتج</th>
+                            <th scope="col">المجموعة</th>
+                            <th scope="col">الماركة</th>
+                            <th scope="col">التصنيف</th>
+                            <th scope="col">الوسم</th>
+                            <th scope="col">الكمية</th>
+                            <th scope="col">السعر</th>
+                            <th scope="col">النشر على المتجر</th>
+                            <th scope="col" actions></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/01.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/02.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Unpublished">
+                                غير مفعل
+                              </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/03.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/04.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/05.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <!-- Tab END -->
+                  <div
+                    class="tab-pane fade"
+                    id="table-ex2-content"
+                    role="tabpanel"
+                    aria-labelledby="table-ex2">
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">المنتج</th>
+                            <th scope="col">الاسم</th>
+                            <th scope="col">رمز المنتج</th>
+                            <th scope="col">المجموعة</th>
+                            <th scope="col">الماركة</th>
+                            <th scope="col">التصنيف</th>
+                            <th scope="col">الوسم</th>
+                            <th scope="col">الكمية</th>
+                            <th scope="col">السعر</th>
+                            <th scope="col">النشر على المتجر</th>
+                            <th scope="col" actions></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/01.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/02.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Unpublished">
+                                غير مفعل
+                              </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/03.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/04.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/05.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div
+                    class="tab-pane fade"
+                    id="table-ex3-content"
+                    role="tabpanel"
+                    aria-labelledby="table-ex3">
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">المنتج</th>
+                            <th scope="col">الاسم</th>
+                            <th scope="col">رمز المنتج</th>
+                            <th scope="col">المجموعة</th>
+                            <th scope="col">الماركة</th>
+                            <th scope="col">التصنيف</th>
+                            <th scope="col">الوسم</th>
+                            <th scope="col">الكمية</th>
+                            <th scope="col">السعر</th>
+                            <th scope="col">النشر على المتجر</th>
+                            <th scope="col" actions></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/01.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/02.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Unpublished">
+                                غير مفعل
+                              </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/03.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/04.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/05.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div
+                    class="tab-pane fade"
+                    id="table-ex4-content"
+                    role="tabpanel"
+                    aria-labelledby="table-ex4">
+                    <div class="table-responsive">
+                      <table class="table table-hover table-striped table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">المنتج</th>
+                            <th scope="col">الاسم</th>
+                            <th scope="col">رمز المنتج</th>
+                            <th scope="col">المجموعة</th>
+                            <th scope="col">الماركة</th>
+                            <th scope="col">التصنيف</th>
+                            <th scope="col">الوسم</th>
+                            <th scope="col">الكمية</th>
+                            <th scope="col">السعر</th>
+                            <th scope="col">النشر على المتجر</th>
+                            <th scope="col" actions></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/01.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/02.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Unpublished">
+                                غير مفعل
+                              </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/03.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/04.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row" thumbnail>
+                              <img src="./dist/images/product-examples/05.png" alt="Product" />
+                            </th>
+                            <td>اسم المنتج</td>
+                            <td>SKU000215</td>
+                            <td>منتج جاهز</td>
+                            <td>سعودى</td>
+                            <td>ميك اب</td>
+                            <td>سعودى</td>
+                            <td>200</td>
+                            <td>24000 ر.س</td>
+                            <td>
+                              <span class="badge rounded-pill" data-type="Published"> مفعل </span>
+                            </td>
+                            <!-- Actions -->
+                            <td actions>
+                              <div class="dropdown">
+                                <em
+                                  class="ph-dots-three-vertical"
+                                  type="button"
+                                  id="data-1"
+                                  data-bs-toggle="dropdown"
+                                  aria-expanded="false"></em>
+                                <ul class="dropdown-menu" aria-labelledby="data-1">
+                                  <li>
+                                    <a class="dropdown-item" href="#">Action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                  </li>
+                                  <li>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
