@@ -118,6 +118,9 @@
   --dashboard-notif-info-nav-background-color: #0dcaf033;
   --dashboard-notif-default-nav-background-color: #22447b33;
   --dashboard-section-content-background-color: #ffffff;
+  --dashboard-stepper-default-background-color: #dddddd;
+  --dashboard-stepper-passed-background-color: #05a84b;
+  --dashboard-stepper-current-background-color: #22447b;
   --dashboard-table-tabs-tab-active-background-color: #05a84b;
   --dashboard-table-tabs-tab-active-color: #05a84b;
   --dashboard-table-background-color: #ffffff;
@@ -223,29 +226,170 @@ img {
 }
 
 /* -----------------------------------------------
-  Main > Custon Scrollbar
+  Main > Custom Scrollbar
 -------------------------------------------------*/
-/* Scroll 2 */
-::-webkit-scrollbar {
+[scroll]::-webkit-scrollbar {
   width: 5px;
   height: 5px;
   background-color: var(--scrollbar-background);
 }
-::-webkit-scrollbar-track {
+[scroll]::-webkit-scrollbar-track {
+  border-radius: 0.625rem;
   background-color: var(--scrollbar-track-background);
-  border-radius: 10px;
 }
-::-webkit-scrollbar-thumb {
+[scroll]::-webkit-scrollbar-thumb {
+  border-radius: 0.625rem;
   background-color: var(--scrollbar-thumb-background-color);
-  border-radius: 10px;
 }
-::-webkit-scrollbar-track:hover {
+[scroll]::-webkit-scrollbar-track:hover {
   background-color: var(--scrollbar-track-hover-background);
 }
-::-webkit-scrollbar-thumb:hover {
+[scroll]::-webkit-scrollbar-thumb:hover {
   background-color: var(--scrollbar-thumb-hover-background-color);
 }
+.scroll {
+  overflow: overlay;
+  position: relative;
+}
+.scroll-x {
+  overflow-x: overlay;
+  position: relative;
+}
+.scroll-y {
+  overflow-y: overlay;
+  position: relative;
+}
+.hover-scroll {
+  position: relative;
+}
+.hover-scroll-y {
+  position: relative;
+}
+.hover-scroll-x {
+  position: relative;
+}
+.hover-scroll-overlay-x {
+  overflow-y: hidden;
+  position: relative;
+}
+.hover-scroll-overlay-x:hover {
+  overflow-x: overlay;
+}
+@-moz-document url-prefix() {
+  .hover-scroll-overlay-x {
+    overflow-x: scroll;
+    position: relative;
+  }
+}
+.hover-scroll-overlay-y {
+  overflow-y: hidden;
+  position: relative;
+}
+.hover-scroll-overlay-y:hover {
+  overflow-y: overlay;
+}
+@-moz-document url-prefix() {
+  .hover-scroll-overlay-y {
+    overflow-y: scroll;
+    position: relative;
+  }
+}
+.scroll-ps {
+  padding-left: 0.4rem !important;
+}
+.scroll-ms {
+  margin-left: 0.4rem !important;
+}
+.scroll-pe {
+  padding-right: 0.4rem !important;
+}
+.scroll-me {
+  margin-right: 0.4rem !important;
+}
+.scroll-px {
+  padding-left: 0.4rem !important;
+  padding-right: 0.4rem !important;
+}
+.scroll-mx {
+  margin-left: 0.4rem !important;
+  margin-right: 0.4rem !important;
+}
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  .scroll {
+    overflow: auto;
+  }
+  .scroll-x {
+    overflow-x: auto;
+  }
+  .scroll-y {
+    overflow-y: auto;
+  }
+  .hover-scroll {
+    overflow: auto;
+  }
+  .hover-scroll-y {
+    overflow-y: auto;
+  }
+  .hover-scroll-x {
+    overflow-x: auto;
+  }
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .hover-scroll {
+    overflow: hidden;
+    border-right: 0.4rem solid transparent;
+    border-bottom: 0.4rem solid transparent;
+    margin-right: -0.4rem;
+    margin-bottom: -0.4rem;
+  }
+  .hover-scroll:hover {
+    overflow: scroll;
+    border-right: 0;
+    border-bottom: 0;
+  }
+  @-moz-document url-prefix() {
+    .hover-scroll {
+      overflow: scroll;
+      position: relative;
+      border-right: 0;
+      border-bottom: 0;
+    }
+  }
+  .hover-scroll-y {
+    overflow-y: hidden;
+    border-right: 0.4rem solid transparent;
+    margin-right: -0.4rem;
+  }
 
+  .hover-scroll-y:hover {
+    overflow-y: scroll;
+    border-right: 0;
+  }
+  @-moz-document url-prefix() {
+    .hover-scroll-y {
+      overflow-y: scroll;
+      position: relative;
+      border-right: 0;
+    }
+  }
+  .hover-scroll-x {
+    overflow-x: hidden;
+    border-bottom: 0.4rem solid transparent;
+  }
+  .hover-scroll-x:hover {
+    overflow-x: scroll;
+    border-bottom: 0;
+  }
+  @-moz-document url-prefix() {
+    .hover-scroll-x {
+      overflow-x: scroll;
+      position: relative;
+      border-bottom: 0;
+    }
+  }
+}
 /* -----------------------------------------------
   Main > Separator
 -------------------------------------------------*/
@@ -374,9 +518,14 @@ img {
   z-index: -1;
 }
 .dashboard .main-navbar .content {
-  overflow: hidden auto;
   height: 100%;
   width: var(--main-nav-width);
+  transition: all 0.5s ease;
+}
+.dashboard .main-navbar[collapse] .content {
+  overflow-x: hidden;
+  height: 100%;
+  width: var(--main-nav-widthAfter);
 }
 .dashboard .main-navbar .brand {
   display: flex;
@@ -398,6 +547,10 @@ img {
 .dashboard .main-navbar .navbar {
   padding-bottom: 2.5rem !important;
   margin: 0;
+  transition: all 0.5s ease;
+}
+.dashboard .main-navbar[collapse] .navbar {
+  width: var(--main-nav-width);
 }
 .dashboard .main-navbar .navbar,
 .dashboard .main-navbar .navbar .nav-item .dropdown-list > ul {
@@ -1295,12 +1448,12 @@ img {
 [firsttimesettings] .header .subtitle {
   font-size: var(--font-size-16);
 }
-[firsttimesettings] .steper .content {
+[firsttimesettings] .stepper .content {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
 }
-[firsttimesettings] .steper .content > * {
+[firsttimesettings] .stepper .content > * {
   position: relative;
   scroll-snap-align: start;
   text-align: center;
@@ -1309,41 +1462,41 @@ img {
   font-size: var(--font-size-16);
   cursor: pointer;
 }
-[firsttimesettings] .steper .content > *:before,
-[firsttimesettings] .steper .content > *:after {
+[firsttimesettings] .stepper .content > *:before,
+[firsttimesettings] .stepper .content > *:after {
   position: absolute;
   content: '';
   top: 0.75rem;
   left: -50%;
 }
-[firsttimesettings] .steper .content > *:before {
+[firsttimesettings] .stepper .content > *:before {
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
-  background-color: #aaaaaa;
+  background-color: var(--dashboard-stepper-default-background-color);
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
 }
-[firsttimesettings] .steper .content > *:after {
+[firsttimesettings] .stepper .content > *:after {
   top: 1.1875rem;
   width: 100%;
   height: 0.1875rem;
-  background-color: #aaaaaa;
+  background-color: var(--dashboard-stepper-default-background-color);
 }
-[firsttimesettings] .steper .content > *:first-child:after {
+[firsttimesettings] .stepper .content > *:first-child:after {
   width: 100%;
 }
-[firsttimesettings] .steper .content > *:last-child:after {
+[firsttimesettings] .stepper .content > *:last-child:after {
   width: 0%;
   left: 50%;
 }
-[firsttimesettings] .steper .content > *[current]:before {
-  background-color: #22447b;
+[firsttimesettings] .stepper .content > *[current]:before {
+  background-color: var(--dashboard-stepper-current-background-color);
 }
-[firsttimesettings] .steper .content > *[passed]:before,
-[firsttimesettings] .steper .content > *[passed]:after {
-  background-color: #05a84b;
+[firsttimesettings] .stepper .content > *[passed]:before,
+[firsttimesettings] .stepper .content > *[passed]:after {
+  background-color: var(--dashboard-stepper-passed-background-color);
 }
 
 /* -----------------------------------------------
