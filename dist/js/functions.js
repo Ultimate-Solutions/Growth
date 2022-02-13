@@ -228,17 +228,59 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (window.innerWidth <= 991.98) {
-        if (!document.body.querySelector('.searchbarFloating')) {
+        const targetContainer = document.body.querySelector('.searchbarFloating');
+        if (!targetContainer) {
           // View Search bar
           const div = document.createElement('div');
           div.classList.add('searchbarFloating');
           div.innerHTML = searchBar.innerHTML;
-          document.body.appendChild(div);
-          // Hide Search bar on click close
-          document.querySelector('.searchbarFloating button').addEventListener('click', () => {
-            document.querySelector('.searchbarFloating').remove();
-            searchBar.classList.remove('show');
+          document.querySelector('.dashboard > .content').appendChild(div);
+          document.querySelector('.searchbarFloating button').remove();
+          document.querySelector('.searchbarFloating [icon]').remove();
+          document.querySelector('.searchbarFloating input').focus();
+
+          // Hide Search bar on click outside
+          document.addEventListener('mouseup', function (e) {
+            if (
+              document.body.querySelector('.searchbarFloating') &&
+              !document.body.querySelector('.searchbarFloating').contains(e.target)
+            ) {
+              let target = document.body.querySelector('.searchbarFloating');
+              let stepper = 0;
+              var fadeEffect = setInterval(function () {
+                if (!target.style.transform) {
+                  stepper = 0;
+                  target.style.transform = 'translateY(0%)';
+                }
+                if (stepper > -300) {
+                  stepper = stepper - 10;
+                  target.style.transform = 'translateY(' + stepper + '%)';
+                } else {
+                  clearInterval(fadeEffect);
+                  document.body.querySelector('.searchbarFloating').remove();
+                  document.querySelector('.searchbarFloating input').focusout();
+                }
+              }, 10);
+            }
           });
+        } else {
+          // Hide Search bar on click
+          let target = document.body.querySelector('.searchbarFloating');
+          let stepper = 0;
+          var fadeEffect = setInterval(function () {
+            if (!target.style.transform) {
+              stepper = 0;
+              target.style.transform = 'translateY(0%)';
+            }
+            if (stepper > -300) {
+              stepper = stepper - 10;
+              target.style.transform = 'translateY(' + stepper + '%)';
+            } else {
+              clearInterval(fadeEffect);
+              document.body.querySelector('.searchbarFloating').remove();
+              document.querySelector('.searchbarFloating input').focusout();
+            }
+          }, 10);
         }
       }
     });

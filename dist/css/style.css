@@ -96,13 +96,13 @@
   --dashboard-navbar-link-dropdown-shadow-bottom: inset 0 -20px 20px -20px #0000002a;
   --dashboard-top-navbar-sticky-background-color: #ffffff;
   --dashboard-top-navbar-sticky-shadow: 0 0rem 1.5rem rgb(0 0 0 / 70%);
+  --dashboard-top-navbar-search-bar-sticky-shadow: 0 0rem 1.5rem rgb(0 0 0 / 70%);
   --dashboard-top-navbar-data-action-color: #808080;
   --dashboard-top-navbar-data-action-hover-color: #05a84b;
   --dashboard-top-navbar-data-action-notif-background-color: #dc3545;
   --dashboard-top-navbar-search-bar-background-color: #ffffff;
   --dashboard-top-navbar-sticky-search-bar-background-color: #f1f1f1;
-  --dashboard-top-navbar-search-bar-shadow: 0px 2px 1px rgb(0 0 0 / 5%),
-    0px 0px 1px rgb(0 0 0 / 25%);
+  --dashboard-top-navbar-search-bar-shadow: 0 0 0 2px #05a84b59;
   --dashboard-top-navbar-search-bar-close-background-color: #dee3e9;
   --dashboard-top-navbar-search-bar-close-hover-background-color: #ccd9e9;
   --dashboard-top-navbar-user-badge-dropdown-active-icon-color: #05a84b;
@@ -1108,43 +1108,39 @@ img {
     display: none;
   }
   .searchbarFloating {
-    display: flex;
     position: fixed;
-    top: 0;
+    top: 5.625rem;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: var(--dashboard-content-mask-background-color);
-    backdrop-filter: blur(40px);
+    padding: 0 1.25rem;
     z-index: 1;
-    -webkit-animation: mobileSearchbarView ease-in-out 0.4s 1 alternate;
-    animation: mobileSearchbarView ease-in-out 0.4s 1 alternate;
+    -webkit-animation: mobileSearchbarView ease-in-out 0.5s 1 alternate;
+    animation: mobileSearchbarView ease-in-out 0.5s 1 alternate;
   }
   @-webkit-keyframes mobileSearchbarView {
     0% {
-      opacity: 0;
+      transform: translateY(-300%);
     }
     100% {
-      opacity: 1;
+      transform: translateY(0%);
     }
   }
   @keyframes mobileSearchbarView {
     0% {
-      opacity: 0;
+      transform: translateY(-300%);
     }
     100% {
-      opacity: 1;
+      transform: translateY(0%);
     }
   }
   .searchbarFloating .content {
     position: relative;
-    margin: auto;
-    padding: 0.625rem 1.25rem;
     justify-content: center;
     border-radius: 0.25rem;
-    width: 80%;
+    padding: 0.25rem;
+    width: 100%;
     background-color: var(--dashboard-top-navbar-sticky-background-color);
-    box-shadow: var(--shadow-depth-02);
+    box-shadow: var(--dashboard-top-navbar-search-bar-shadow);
   }
   .searchbarFloating .content:before,
   .searchbarFloating .content:after {
@@ -1166,12 +1162,11 @@ img {
     transform: skew(5deg) rotate(2deg);
   }
   .searchbarFloating .content [icon] {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    font-size: 140px;
-    opacity: 0.06;
-    z-index: -1;
+    font-size: var(--font-size-24);
+    padding: 0.5rem 0.625rem;
+    opacity: 0.4;
+    cursor: pointer;
+    transition: var(--transition-normal);
   }
   .searchbarFloating .content input,
   .searchbarFloating .content select {
@@ -1185,13 +1180,18 @@ img {
     box-shadow: none;
   }
   .searchbarFloating .content select {
-    width: 8.75rem;
+    width: 12.5rem;
   }
   .searchbarFloating .content button {
-    position: fixed;
-    top: 0;
-    right: 0;
-    font-size: var(--font-size-32);
+    font-size: var(--font-size-24);
+    padding: 0.5rem 0.625rem;
+    background-color: var(--dashboard-top-navbar-search-bar-close-background-color);
+    line-height: var(--line-spacing-0);
+    border-radius: 0;
+    transition: var(--transition-normal);
+  }
+  .searchbarFloating .content .separator.vertical {
+    margin: 0 0.625rem;
   }
 }
 /* Small devices (landscape phones, less than 768px) */
