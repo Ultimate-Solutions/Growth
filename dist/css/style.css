@@ -102,7 +102,8 @@
   --dashboard-top-navbar-data-action-notif-background-color: #dc3545;
   --dashboard-top-navbar-search-bar-background-color: #ffffff;
   --dashboard-top-navbar-sticky-search-bar-background-color: #f1f1f1;
-  --dashboard-top-navbar-search-bar-shadow: 0 0 0 2px #05a84b59;
+  --dashboard-top-navbar-search-bar-shadow: 0 0 0 2px #0000000d;
+  --dashboard-top-navbar-search-bar-mobile-shadow: 0 0 0 2px #05a84b59;
   --dashboard-top-navbar-search-bar-close-background-color: #dee3e9;
   --dashboard-top-navbar-search-bar-close-hover-background-color: #ccd9e9;
   --dashboard-top-navbar-user-badge-dropdown-active-icon-color: #05a84b;
@@ -1141,7 +1142,7 @@ img {
     padding: 0.25rem;
     width: 100%;
     background-color: var(--dashboard-top-navbar-sticky-background-color);
-    box-shadow: var(--dashboard-top-navbar-search-bar-shadow);
+    box-shadow: var(--dashboard-top-navbar-search-bar-mobile-shadow);
   }
   .searchbarFloating .content:before,
   .searchbarFloating .content:after {
