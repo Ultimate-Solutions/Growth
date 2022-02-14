@@ -92,6 +92,7 @@
   --dashboard-navbar-link-notifications-color: #fff;
   --dashboard-navbar-link-notifications-background-color: #dc3545;
   --dashboard-navbar-link-dropdown-background-color: #00000006;
+  --dashboard-navbar-collapse-link-dropdown-background-color: #ffffff;
   --dashboard-navbar-link-dropdown-shadow-top: inset 0 20px 20px -20px #0000002a;
   --dashboard-navbar-link-dropdown-shadow-bottom: inset 0 -20px 20px -20px #0000002a;
   --dashboard-top-navbar-sticky-background-color: #ffffff;
@@ -760,7 +761,7 @@ img {
   .dashboard .main-navbar[collapse] .navbar .nav-item .nav-link .notifications {
     position: absolute;
     top: 50%;
-    right: 1.875rem;
+    right: 0.625rem;
     height: 1.5625rem;
     width: 1.5625rem;
     color: var(--dashboard-navbar-link-notifications-background-color);
@@ -776,6 +777,19 @@ img {
     to {
       visibility: hidden;
     }
+  }
+  .dashboard .main-navbar[collapse] .navbar .nav-item .nav-link.dropdown:after {
+    display: flex;
+    top: 28px;
+    right: 35px;
+    left: unset;
+    width: 16px;
+    height: 16px;
+    background-color: var(--dashboard-navbar-collapse-link-dropdown-background-color);
+    border-radius: 50%;
+    font-size: 14px;
+    justify-content: center;
+    align-items: center;
   }
 }
 /* Medium devices (tablets, less than 992px) */
