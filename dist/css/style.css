@@ -120,6 +120,8 @@
   --dashboard-notif-info-nav-background-color: #0dcaf033;
   --dashboard-notif-default-nav-background-color: #22447b33;
   --dashboard-section-content-background-color: #ffffff;
+  --dashboard-section-content-shadow: 0px 2px 1px rgba(0, 0, 0, 0.05),
+    0px 0px 1px rgba(0, 0, 0, 0.25);
   --dashboard-stepper-default-background-color: #dddddd;
   --dashboard-stepper-passed-background-color: #05a84b;
   --dashboard-stepper-current-background-color: #22447b;
@@ -1530,7 +1532,7 @@ section > .header [icon] {
   margin-left: 1.25rem;
 }
 section > .header .title {
-  font-size: var(--font-size-24);
+  font-size: var(--font-size-32);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-spacing-160);
   color: #22447b;
@@ -1538,7 +1540,7 @@ section > .header .title {
 section > .header .title:before {
   content: attr(data-shadow);
   position: absolute;
-  right: -20px;
+  right: -1.25rem;
   top: -4.25rem;
   max-width: 100%;
   color: #1e1e1f;
@@ -1553,17 +1555,35 @@ section > .header .subtitle {
   font-size: var(--font-size-16);
   color: #555555;
 }
-section > .header [action] {
+section > .header > [action],
+section > .header > [actions],
+[statistics] > .content .statistics.big .header > [actions] {
   position: relative;
   display: flex;
   align-content: center;
   text-decoration: none;
-  margin: auto auto auto 0;
   padding: 0.125rem 0;
   color: inherit;
   transition: var(--transition-normal);
 }
-section > .header [action]:before {
+section > .header > [actions] > *,
+[statistics] > .content .statistics.big > .header > [actions] > * {
+  position: relative;
+  display: flex;
+  align-content: center;
+  text-decoration: none;
+  padding: 0.125rem 0;
+  color: inherit;
+  transition: var(--transition-normal);
+  cursor: pointer;
+}
+section > .header > [actions] > *:not(:last-child),
+[statistics] > .content .statistics.big > .header > [actions] > *:not(:last-child) {
+  margin: 0 0 0 1.25rem;
+}
+section > .header > [action]:before,
+section > .header > [actions] > *:before,
+[statistics] > .content .statistics.big > .header > [actions] > *:before {
   content: '';
   position: absolute;
   right: 0;
@@ -1573,24 +1593,57 @@ section > .header [action]:before {
   background-color: #05a84b;
   transition: var(--transition-normal);
 }
-section > .header [action]:hover:before {
+section > .header > [actions] > *:before,
+[statistics] > .content .statistics.big > .header > [actions] > *:before {
+  right: 1.875rem;
+}
+section > .header > [action]:hover:before,
+section > .header > [actions] > *:hover:before,
+[statistics] > .content .statistics.big > .header > [actions] > *:hover:before {
+  width: calc(100% - 1.3rem);
+}
+section > .header > [actions] > *:hover:before {
   width: calc(100% - 1.875rem);
 }
-section > .header [action]:hover {
+section > .header > [action]:hover,
+section > .header > [actions] > *:hover,
+[statistics] > .content .statistics.big > .header > [actions] > *:hover {
   color: #05a84b;
 }
-section > .header [action] > em {
+section > .header > [action] > em,
+section > .header > [actions] > * > em,
+[statistics] > .content .statistics.big > .header > [actions] > * > em {
   font-size: var(--font-size-24);
-  margin-right: 0.625rem;
   transition: var(--transition-normal);
 }
-section > .header [action]:hover > em {
+section > .header > [action] > *:not(:last-child),
+section > .header > [actions] > * > *:not(:last-child),
+[statistics] > .content .statistics.big > .header > [actions] > * > *:not(:last-child) {
+  margin-right: 0.625rem;
+}
+section > .header > [actions] > * > *:not(:last-child),
+[statistics] > .content .statistics.big > .header > [actions] > * > *:not(:last-child) {
+  margin-left: 0.625rem;
+  margin-right: 0;
+}
+section > .header > [action]:hover > em {
   transform: translateX(-0.3125rem);
+}
+section > .header > [actions] > *:hover > em:before,
+[statistics] > .content .statistics.big > .header > [actions] > *:hover > em:before {
+  -webkit-animation: swing ease-in-out 0.5s 1 alternate;
+  animation: swing ease-in-out 0.5s 1 alternate;
+}
+section > .header > [actions] .separator.vertical > *,
+[statistics] > .content .statistics.big > .header > [actions] .separator.vertical > * {
+  min-height: 100%;
 }
 section > .content {
   clear: both;
   background-color: var(--dashboard-section-content-background-color);
   padding: 1.25rem;
+  border-radius: 0.25rem;
+  box-shadow: var(--dashboard-section-content-shadow);
 }
 section > .content .table-tabs > .list-group {
   display: flex;
@@ -1680,20 +1733,58 @@ section > .content table td[sticky] {
 section > .content table th {
   font-weight: var(--font-weight-medium);
 }
+[statistics] > .content {
+  background-color: none;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+[statistics] > .content .statistics {
+  clear: both;
+  background-color: var(--dashboard-section-content-background-color);
+  padding: 1.25rem;
+  border-radius: 0.25rem;
+  box-shadow: var(--dashboard-section-content-shadow);
+}
+[statistics] > .content .statistics.big > .header .title {
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-spacing-160);
+}
+[statistics] > .content .statistics.big > .header .subtitle {
+  font-size: var(--font-size-16);
+  color: #555555;
+}
+
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  section > .header {
+  section > .header,
+  [statistics] > .content .statistics.big > .header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  section > .header > [action],
+  section > .header > [actions],
+  [statistics] > .content .statistics.big .header > [actions] {
+    margin-right: 1.25rem;
   }
 }
 /* Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) {
-  section > .header [action] {
+  section > .header > [action] {
     display: inline-flex;
     margin-top: 20px;
     float: left;
   }
-  section > .header {
+  section > .header > [actions],
+  [statistics] > .header > [actions],
+  [statistics] > .content .statistics.big .header > [actions] {
+    display: inline-flex;
+    margin-top: 20px;
+  }
+  section > .header,
+  [statistics] > .content .statistics.big > .header {
     margin-bottom: 5rem;
   }
 }
