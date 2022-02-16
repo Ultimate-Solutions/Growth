@@ -747,19 +747,27 @@
                         <!-- Action -->
                         <!-- Export Action -->
                         <div class="dropdown">
-                          <div
-                            id="dropdownMenuButton1"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                          <div id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <div action data-bs-toggle="tooltip" data-bs-original-title="تصدير">
                               <em class="ph-export"></em>
                             </div>
                           </div>
 
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          <ul class="dropdown-menu" aria-labelledby="exportDropdown">
+                            <li>
+                              <div class="dropdown-item" action-export="copy">
+                                Copy to clipboard
+                              </div>
+                            </li>
+                            <li>
+                              <div class="dropdown-item" action-export="excel">Export as Excel</div>
+                            </li>
+                            <li>
+                              <div class="dropdown-item" action-export="csv">Export as CSV</div>
+                            </li>
+                            <li>
+                              <div class="dropdown-item" action-export="pdf">Export as PDF</div>
+                            </li>
                           </ul>
                         </div>
 
