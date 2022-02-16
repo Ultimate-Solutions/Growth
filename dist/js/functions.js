@@ -214,20 +214,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Search bar
     const searchBar = topNavbar.querySelector('.search-bar');
 
-    searchBar.querySelector('[icon]').addEventListener('click', () => {
-      if (!searchBar.classList.contains('show') && window.innerWidth > 991.98) {
-        // View Search bar
-        searchBar.classList.add('show');
-        searchBar.querySelector('input').focus();
-        // Hide Search bar on click close
-        searchBar.querySelector('button').addEventListener('click', () => {
-          if (searchBar.classList.contains('show')) {
-            searchBar.classList.remove('show');
-          }
-        });
-      }
+    if (window.innerWidth <= 991.98) {
+      searchBar.addEventListener('click', () => {
+        // Toggle Active
+        searchBar.classList.toggle('active');
 
-      if (window.innerWidth <= 991.98) {
         const targetContainer = document.body.querySelector('.searchbarFloating');
         if (!targetContainer) {
           // View Search bar
@@ -235,7 +226,6 @@ document.addEventListener('DOMContentLoaded', () => {
           div.classList.add('searchbarFloating');
           div.innerHTML = searchBar.innerHTML;
           document.querySelector('.dashboard > .content').appendChild(div);
-          document.querySelector('.searchbarFloating button').remove();
           document.querySelector('.searchbarFloating [icon]').remove();
           document.querySelector('.searchbarFloating input').focus();
 
@@ -243,8 +233,12 @@ document.addEventListener('DOMContentLoaded', () => {
           document.addEventListener('mouseup', function (e) {
             if (
               document.body.querySelector('.searchbarFloating') &&
+              !searchBar.contains(e.target) &&
               !document.body.querySelector('.searchbarFloating').contains(e.target)
             ) {
+              // Toggle Active
+              searchBar.classList.remove('active');
+
               let target = document.body.querySelector('.searchbarFloating');
               let stepper = 0;
               var fadeEffect = setInterval(function () {
@@ -282,8 +276,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }, 10);
         }
-      }
-    });
+      });
+    }
   }
 });
 // #endregion
