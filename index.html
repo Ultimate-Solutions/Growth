@@ -719,11 +719,6 @@
                   <span>هدف الشهر</span>
                 </a>
 
-                <!-- Separator -->
-                <div class="separator vertical">
-                  <span></span>
-                </div>
-
                 <a href="#" action>
                   <em class="ph-files"></em>
                   <span>المزيد من التقارير</span>
@@ -785,10 +780,18 @@
                         </div>
 
                         <!-- Calendar Action -->
-                        <div id="datePickerRange" action date-picker picker-type="range">
-                          <em class="ph-calendar-blank"></em>
-                          <span>آخر اسبوعين</span>
-                        </div>
+                        <form>
+                          <div
+                            class="input-group"
+                            action
+                            date-picker
+                            id="datePickerRange"
+                            picker-type="range"
+                            picker-container="input-group">
+                            <em class="ph-calendar-blank"></em>
+                            <input id="datePickerRangeValue" readonly placeholder="1/1/2000" />
+                          </div>
+                        </form>
                       </div>
                     </div>
                   </div>

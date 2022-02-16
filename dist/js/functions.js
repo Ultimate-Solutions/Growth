@@ -354,9 +354,18 @@ document.addEventListener('DOMContentLoaded', () => {
       var start = moment().subtract(29, 'days');
       var end = moment();
 
-      function cb(start, end) {
-        ele.find('span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
-      }
+      if (ele.attr('picker-container') == 'input')
+        function cb(start, end) {
+          ele.val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+        }
+      else if (ele.attr('picker-container') == 'span')
+        function cb(start, end) {
+          ele.find('span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+        }
+      else if (ele.attr('picker-container') == 'input-group')
+        function cb(start, end) {
+          ele.find('input').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+        }
 
       ele.daterangepicker(
         {
@@ -378,6 +387,16 @@ document.addEventListener('DOMContentLoaded', () => {
       );
 
       cb(start, end);
+
+      // Set active state on picker opened
+      ele.on('show.daterangepicker', function (ev, picker) {
+        ele.addClass('active');
+      });
+
+      // Remove active state on picker closed
+      ele.on('hide.daterangepicker', function (ev, picker) {
+        ele.removeClass('active');
+      });
     }
   }
 });
