@@ -1469,7 +1469,6 @@ img {
 .dashboard .main-navbar[collapse] .content {
   overflow-x: hidden;
   height: 100%;
-  width: var(--main-nav-widthAfter);
 }
 .dashboard .main-navbar .brand {
   display: flex;
@@ -1702,7 +1701,7 @@ img {
 -------------------------------------------------*/
 .dashboard > .content {
   position: relative;
-  width: 100%;
+  width: calc(100% - var(--main-nav-width));
   min-height: 100%;
   margin-right: var(--main-nav-width);
   padding: 1.25rem 2.5rem;
@@ -1860,6 +1859,7 @@ img {
 @media (min-width: 992px) {
   .dashboard .main-navbar[collapse] + .content {
     margin-right: var(--main-nav-widthAfter);
+    width: calc(100% - var(--main-nav-widthAfter));
   }
   .dashboard > .content > .top-navbar .search-bar {
     align-self: center;
@@ -1868,6 +1868,7 @@ img {
     max-width: 31.25rem;
     margin-right: 0.625rem;
     box-shadow: var(--dashboard-top-navbar-search-bar-shadow);
+    width: 100%;
   }
   .dashboard > .content > .top-navbar .search-bar .content {
     background-color: var(--dashboard-top-navbar-search-bar-background-color);
@@ -1904,6 +1905,7 @@ img {
   .dashboard > .content,
   .dashboard .main-navbar[collapse] + .content {
     margin-right: 0;
+    width: 100%;
   }
   .dashboard .main-navbar[expand] + .content {
     position: relative;
