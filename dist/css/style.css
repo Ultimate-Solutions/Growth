@@ -92,6 +92,16 @@
   --dashboard-content-background-color: #f1f1f1;
   --dashboard-content-shadow: 4px 0px 20px 0px rgb(0 0 0 / 20%);
   --dashboard-content-mask-background-color: #ffffff00;
+  --dashboard-section-header-master-title-color: #808080;
+  --dashboard-section-header-title-color: #22447b;
+  --dashboard-section-header-title-shadow-text-color: #1e1e1f;
+  --dashboard-section-header-subtitle-color: #555555;
+  --dashboard-section-header-action-hover-color: #05a84b;
+  --dashboard-section-header-action-hover-background-color: #d2efdf;
+  --dashboard-section-content-background-color: #ffffff;
+  --dashboard-section-content-shadow: 0px 2px 1px rgba(0, 0, 0, 0.05),
+    0px 0px 1px rgba(0, 0, 0, 0.25);
+  --dashboard-section-content-statistics-subtitle-color: #555555;
   --dashboard-navbar-blurred-background-color: #ffffffb3;
   --dashboard-navbar-link-color: #8f8f8f;
   --dashboard-navbar-link-hover-color: #1e1e1f;
@@ -128,9 +138,6 @@
   --dashboard-notif-warning-nav-background-color: #ffc10733;
   --dashboard-notif-info-nav-background-color: #0dcaf033;
   --dashboard-notif-default-nav-background-color: #22447b33;
-  --dashboard-section-content-background-color: #ffffff;
-  --dashboard-section-content-shadow: 0px 2px 1px rgba(0, 0, 0, 0.05),
-    0px 0px 1px rgba(0, 0, 0, 0.25);
   --dashboard-stepper-default-background-color: #dddddd;
   --dashboard-stepper-passed-background-color: #05a84b;
   --dashboard-stepper-current-background-color: #22447b;
@@ -1306,7 +1313,7 @@ img {
 }
 .header.master .info {
   font-size: var(--font-size-16);
-  color: #808080;
+  color: var(--dashboard-section-header-master-title-color);
 }
 
 /* -----------------------------------------------
@@ -1541,7 +1548,7 @@ section > .header .title {
   font-size: var(--font-size-32);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-spacing-160);
-  color: #22447b;
+  color: var(--dashboard-section-header-title-color);
   margin: -0.625rem 0 0.25rem;
 }
 section > .header .title:before {
@@ -1550,7 +1557,7 @@ section > .header .title:before {
   right: -1.25rem;
   top: -4.25rem;
   max-width: 100%;
-  color: #1e1e1f;
+  color: var(--dashboard-section-header-title-shadow-text-color);
   opacity: 0.04;
   font-size: var(--font-size-68);
   text-align: right;
@@ -1560,7 +1567,7 @@ section > .header .title:before {
 }
 section > .header .subtitle {
   font-size: var(--font-size-16);
-  color: #555555;
+  color: var(--dashboard-section-header-subtitle-color);
 }
 section > .header > [action],
 section > .header > [actions],
@@ -1591,8 +1598,8 @@ section > .header > [action]:hover,
 section > .header > [actions] > *:hover,
 [statistics] > .content .statistics.big > .header > [actions] [action]:hover,
 [statistics] > .content .statistics.big > .header > [actions] [action].active {
-  color: #05a84b;
-  background-color: #d2efdf;
+  color: var(--dashboard-section-header-action-hover-color);
+  background-color: var(--dashboard-section-header-action-hover-background-color);
 }
 section > .header > [action] > em,
 section > .header > [actions] > * > em,
@@ -1754,7 +1761,7 @@ section > .content table th {
 }
 [statistics] > .content .statistics.big > .header .subtitle {
   font-size: var(--font-size-16);
-  color: #555555;
+  color: var(--dashboard-section-content-statistics-subtitle-color);
 }
 
 /* Large devices (desktops, 992px and up) */
