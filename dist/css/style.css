@@ -79,6 +79,11 @@
   --scrollbar-thumb-background-color: #babac0;
   --scrollbar-thumb-hover-background-color: #a0a0a5;
   --separator-background-color: #e7e7e7;
+  --dropdown-menu-background-color: #ffffff;
+  --dropdown-menu-shadow: 0 0 50px 0 rgb(82 63 105 / 15%);
+  --dropdown-menu-border-color: rgb(0 0 0 / 8%);
+  --dropdown-menu-item-hover-background-color: #e0ffee;
+  --dropdown-menu-item-hover-color: #05a84b;
   --dashboard-sidebar-background-color: #ffffff;
   --dashboard-content-background-color: #f1f1f1;
   --dashboard-content-shadow: 4px 0px 20px 0px rgb(0 0 0 / 20%);
@@ -1815,6 +1820,33 @@ section > .content table th {
 -------------------------------------------------*/
 [data-bs-toggle='dropdown'] {
   cursor: pointer;
+}
+.dropdown-menu.show {
+  border-radius: 0.475rem;
+  background-color: var(--dropdown-menu-background-color);
+  box-shadow: var(--dropdown-menu-shadow);
+  border: 0.0625rem solid var(--dropdown-menu-border-color);
+  margin: 0.625rem 0 !important;
+}
+.dropdown-menu.show > * {
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+.dropdown-menu .dropdown-item {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  flex: 0 0 100%;
+  padding: 0.5rem 1rem;
+  transition: none;
+  outline: 0 !important;
+  border-radius: 0.475rem;
+}
+.dropdown-menu .dropdown-item:hover:not(.disabled):not(.active):not(.here) {
+  transition: color 0.2s ease, background-color 0.2s ease;
+  background-color: var(--dropdown-menu-item-hover-background-color);
+  color: var(--dropdown-menu-item-hover-color);
 }
 
 /* -----------------------------------------------
