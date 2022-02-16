@@ -331,6 +331,57 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 // #endregion
 
+// #region / Date Range Picker
+document.addEventListener('DOMContentLoaded', () => {
+  // Get all Date Pickers
+  const datePickers = $('[date-picker]');
+
+  // Check if exist
+  if (datePickers) {
+    // Loop all pickers
+    datePickers.each(function () {
+      // Get picker type
+      var datePickerType = $(this).attr('picker-type');
+
+      // Picker type = range
+      if (datePickerType == 'range') {
+        rangeDatePicker($(this));
+      }
+    });
+
+    // Range Function
+    function rangeDatePicker(ele) {
+      var start = moment().subtract(29, 'days');
+      var end = moment();
+
+      function cb(start, end) {
+        ele.find('span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+      }
+
+      ele.daterangepicker(
+        {
+          startDate: start,
+          endDate: end,
+          ranges: {
+            Today: [moment(), moment()],
+            Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [
+              moment().subtract(1, 'month').startOf('month'),
+              moment().subtract(1, 'month').endOf('month'),
+            ],
+          },
+        },
+        cb
+      );
+
+      cb(start, end);
+    }
+  }
+});
+
 // Element Top Left position helper
 function offset(el) {
   var rect = el.getBoundingClientRect(),
