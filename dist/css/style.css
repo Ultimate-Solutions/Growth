@@ -1605,7 +1605,6 @@ section > .header > [action] > em,
 section > .header > [actions] > * > em,
 [statistics] > .content .statistics.big > .header > [actions] [action] > em {
   font-size: var(--font-size-24);
-  transition: var(--transition-normal);
 }
 [statistics] > .content .statistics.big > .header > [actions] [action] > input {
   background-color: transparent;
