@@ -119,6 +119,7 @@
   --dashboard-top-navbar-search-bar-sticky-shadow: 0 0rem 1.5rem rgb(0 0 0 / 70%);
   --dashboard-top-navbar-data-action-color: #808080;
   --dashboard-top-navbar-data-action-hover-color: #05a84b;
+  --dashboard-top-navbar-data-action-hover-background-color: #d2efdf;
   --dashboard-top-navbar-data-action-notif-background-color: #dc3545;
   --dashboard-top-navbar-search-bar-background-color: #ffffff;
   --dashboard-top-navbar-sticky-search-bar-background-color: #f1f1f1;
@@ -909,7 +910,8 @@ img {
 }
 .dashboard > .content > .top-navbar [data-action] {
   font-size: var(--font-size-24);
-  padding: 0.5rem 0.625rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.475rem;
   color: var(--dashboard-top-navbar-data-action-color);
   cursor: pointer;
   align-self: center;
@@ -918,8 +920,10 @@ img {
 }
 .dashboard > .content > .top-navbar [data-action]:hover,
 .dashboard > .content > .top-navbar [data-action]:focus,
-.dashboard > .content > .top-navbar [data-action]:active {
+.dashboard > .content > .top-navbar [data-action]:active,
+.dashboard > .content > .top-navbar [data-action].active {
   color: var(--dashboard-top-navbar-data-action-hover-color);
+  background-color: var(--dashboard-top-navbar-data-action-hover-background-color);
 }
 .dashboard > .content > .top-navbar [data-action][data-notif='true'] {
   position: relative;
