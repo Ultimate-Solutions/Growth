@@ -214,8 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Search bar
     const searchBar = topNavbar.querySelector('.search-bar');
 
-    if (window.innerWidth <= 991.98) {
-      searchBar.addEventListener('click', () => {
+    searchBar.addEventListener('click', () => {
+      if (window.innerWidth <= 991.98) {
         // Toggle Active
         searchBar.classList.toggle('active');
 
@@ -276,8 +276,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }, 10);
         }
-      });
-    }
+      }
+    });
   }
 });
 // #endregion

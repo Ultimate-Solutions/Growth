@@ -1866,6 +1866,7 @@ img {
     overflow: hidden;
     border-radius: 0.475rem;
     max-width: 31.25rem;
+    margin-right: 0.625rem;
     box-shadow: var(--dashboard-top-navbar-search-bar-shadow);
   }
   .dashboard > .content > .top-navbar .search-bar .content {
