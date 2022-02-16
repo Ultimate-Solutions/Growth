@@ -84,6 +84,10 @@
   --dropdown-menu-border-color: rgb(0 0 0 / 8%);
   --dropdown-menu-item-hover-background-color: #e0ffee;
   --dropdown-menu-item-hover-color: #05a84b;
+  --tooltips-background-color: #ffffff;
+  --tooltips-border-color: #ffffff;
+  --tooltips-color: #1e1e1f;
+  --tooltips-shadow: 0 5px 10px rgb(0 0 0 / 20%);
   --dashboard-sidebar-background-color: #ffffff;
   --dashboard-content-background-color: #f1f1f1;
   --dashboard-content-shadow: 4px 0px 20px 0px rgb(0 0 0 / 20%);
@@ -154,9 +158,6 @@
   --dashboard-badge-being-retrieved-background-color: #9b222633;
   --dashboard-badge-published-background-color: #05a84b33;
   --dashboard-badge-unpublished-background-color: #dc354533;
-  --dashboard-tooltips-background-color: #ffffff;
-  --dashboard-tooltips-color: #1e1e1f;
-  --dashboard-tooltips-shadow: 0 5px 10px rgb(0 0 0 / 20%);
 }
 [data-color-mode='light'][data-theme='high_contrast'] {
 }
@@ -429,12 +430,12 @@ img {
 [tooltip-container] {
   position: absolute;
   right: 80px;
-  background-color: var(--dashboard-tooltips-background-color);
-  color: var(--dashboard-tooltips-color);
+  background-color: var(--tooltips-background-color);
+  color: var(--tooltips-color);
   border-radius: 0.4rem;
   padding: 0.5rem 0.9rem;
   font-size: var(--font-size-18);
-  box-shadow: var(--dashboard-tooltips-shadow);
+  box-shadow: var(--tooltips-shadow);
   animation: tooltipView ease-in-out 0.5s 1 alternate;
   animation-fill-mode: forwards;
   z-index: 1000;
@@ -1852,20 +1853,53 @@ section > .content table th {
 /* -----------------------------------------------
   Bootstrap > Tooltip
 -------------------------------------------------*/
-.tooltip .tooltip-arrow {
-  display: none;
+.tooltip {
+  position: absolute;
+  z-index: 1080;
+  display: block;
+  margin: 0;
+  font-family: var(--bs-font-sans-serif);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  text-align: start;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-break: normal;
+  word-spacing: normal;
+  white-space: normal;
+  line-break: auto;
+  font-size: 0.925rem;
+  word-wrap: break-word;
+  opacity: 0;
 }
-.bs-tooltip-auto[data-popper-placement^='bottom'],
-.bs-tooltip-bottom {
-  padding: 0;
+.bs-tooltip-top .tooltip-arrow::before {
+  top: -1px;
+  border-top-color: var(--tooltips-border-color);
+}
+.bs-tooltip-bottom .tooltip-arrow::before {
+  bottom: -1px;
+  border-bottom-color: var(--tooltips-border-color);
+}
+.bs-tooltip-start .tooltip-arrow::before {
+  right: -1px;
+  border-right-color: var(--tooltips-border-color);
+}
+.bs-tooltip-end .tooltip-arrow::before {
+  left: -1px;
+  border-left-color: var(--tooltips-border-color);
 }
 .tooltip-inner {
-  border-radius: 0.4rem;
-  padding: 0.5rem 0.9rem;
-  background-color: var(--dashboard-tooltips-background-color);
-  color: var(--dashboard-tooltips-color);
-  font-size: var(--font-size-18);
-  box-shadow: var(--dashboard-tooltips-shadow);
+  max-width: 200px;
+  padding: 0.75rem 1rem;
+  color: var(--tooltips-color);
+  text-align: center;
+  background-color: var(--tooltips-background-color);
+  border-radius: 0.475rem;
+  box-shadow: var(--tooltips-shadow);
   z-index: 1000;
 }
 /* #endregion */
