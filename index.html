@@ -732,43 +732,52 @@
             <div class="content bg-transparent">
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col-12 col-xl-7">
-                    <div class="statistics big">
-                      <!-- Header -->
-                      <div class="header">
-                        <div>
-                          <div class="title" data-shadow="نشاط واحصائيات متجرك الإلكتروني">
-                            نشاط واحصائيات متجرك الإلكتروني
+                  <!-- Statistics Big -->
+                  <div class="statistics big col-12 col-xl-7">
+                    <!-- Header -->
+                    <div class="header">
+                      <div>
+                        <div class="title">نشاط واحصائيات متجرك الإلكتروني</div>
+                        <div class="subtitle">
+                          هذا النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني
+                        </div>
+                      </div>
+
+                      <div actions>
+                        <!-- Action -->
+                        <!-- Export Action -->
+                        <div class="dropdown">
+                          <div
+                            id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <div action data-bs-toggle="tooltip" data-bs-original-title="تصدير">
+                              <em class="ph-export"></em>
+                            </div>
                           </div>
-                          <div class="subtitle">
-                            هذا النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني
-                          </div>
+
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          </ul>
                         </div>
 
-                        <div actions>
-                          <!-- Action -->
-                          <div action data-bs-toggle="tooltip" data-bs-original-title="تصدير">
-                            <em class="ph-export"></em>
-                          </div>
+                        <!-- Print Action -->
+                        <a href="#" action data-bs-toggle="tooltip" data-bs-original-title="طباعة">
+                          <em class="ph-printer"></em>
+                        </a>
 
-                          <a
-                            href="#"
-                            action
-                            data-bs-toggle="tooltip"
-                            data-bs-original-title="طباعة">
-                            <em class="ph-printer"></em>
-                          </a>
-
-                          <!-- Separator -->
-                          <div class="separator vertical">
-                            <span></span>
-                          </div>
-
-                          <a href="#" action>
-                            <em class="ph-calendar-blank"></em>
-                            <span>آخر اسبوعين</span>
-                          </a>
+                        <!-- Separator -->
+                        <div class="separator vertical">
+                          <span></span>
                         </div>
+
+                        <!-- Calendar Action -->
+                        <a href="#" action>
+                          <em class="ph-calendar-blank"></em>
+                          <span>آخر اسبوعين</span>
+                        </a>
                       </div>
                     </div>
                   </div>
