@@ -326,6 +326,14 @@ document.addEventListener('DOMContentLoaded', () => {
 // #endregion
 
 // #region / Date Range Picker
+//   _____        _         _____                          _____ _      _
+//  |  __ \      | |       |  __ \                        |  __ (_)    | |
+//  | |  | | __ _| |_ ___  | |__) |__ _ _ __   __ _  ___  | |__) |  ___| | _____ _ __
+//  | |  | |/ _` | __/ _ \ |  _  // _` | '_ \ / _` |/ _ \ |  ___/ |/ __| |/ / _ \ '__|
+//  | |__| | (_| | ||  __/ | | \ \ (_| | | | | (_| |  __/ | |   | | (__|   <  __/ |
+//  |_____/ \__,_|\__\___| |_|  \_\__,_|_| |_|\__, |\___| |_|   |_|\___|_|\_\___|_|
+//                                             __/ |
+//                                            |___/
 document.addEventListener('DOMContentLoaded', () => {
   // Get all Date Pickers
   const datePickers = $('[date-picker]');
@@ -483,6 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+// #endregion
 
 // Element Top Left position helper
 function offset(el) {
