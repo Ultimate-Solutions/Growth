@@ -1680,8 +1680,8 @@ img {
   }
   .dashboard .main-navbar[expand] {
     -webkit-box-shadow: var(--dashboard-content-shadow);
-    -moz-box-shadow: -4px 0px 20px 0px rgb(0 0 0 / 20%);
-    box-shadow: -4px 0px 20px 0px rgb(0 0 0 / 20%);
+    -moz-box-shadow: var(--dashboard-content-shadow);
+    box-shadow: var(--dashboard-content-shadow);
     transform: translateX(0);
     z-index: 10;
   }
@@ -1791,7 +1791,7 @@ img {
 .dashboard > .content > .top-navbar .content .left [data-action] {
   display: none;
 }
-.dashboard > .content > .top-navbar .content[min-width~='700px'] .left [data-action] {
+.dashboard > .content > .top-navbar .content[min-width~='400px'] .left [data-action] {
   display: unset;
 }
 .dashboard > .content > .top-navbar [data-action][data-notif='true'] {
@@ -2255,7 +2255,7 @@ img {
   opacity: 1;
 }
 [notif] > .content {
-  padding: 1.25rem;
+  padding: 1.25rem 1.25rem 1.25rem 2.5rem;
 }
 [notif] > .content .header {
   margin-bottom: 0.625rem;
@@ -2579,23 +2579,23 @@ section > .content table th {
     justify-content: space-between;
     align-items: end;
   }
-  section > .header[min-width~='400px'],
-  [statistics] > .content .statistics.big > .header[min-width~='400px'] {
+  section > .header[min-width~='0px'],
+  [statistics] > .content .statistics.big > .header[min-width~='0px'] {
     display: block;
   }
   section > .header[min-width~='700px'],
   [statistics] > .content .statistics.big > .header[min-width~='700px'] {
     display: flex;
   }
-  [statistics] > .content .statistics.big > .header[min-width~='400px'] > *:first-child {
+  [statistics] > .content .statistics.big > .header[min-width~='0px'] > *:first-child {
     margin-bottom: 0.625rem;
   }
   [statistics] > .content .statistics.big > .header[min-width~='700px'] > *:first-child {
     margin-bottom: 0;
   }
-  section > .header[min-width~='400px'] > [action],
-  section > .header[min-width~='400px'] > [actions],
-  [statistics] > .content .statistics.big .header[min-width~='400px'] > [actions] {
+  section > .header[min-width~='0px'] > [action],
+  section > .header[min-width~='0px'] > [actions],
+  [statistics] > .content .statistics.big .header[min-width~='0px'] > [actions] {
     margin-right: 0;
   }
   section > .header[min-width~='700px'] > [action],
@@ -2608,17 +2608,15 @@ section > .content table th {
 @media (max-width: 991.98px) {
   section > .header > [action] {
     display: inline-flex;
-    margin-top: 20px;
+    margin-top: 1.25rem;
     float: left;
   }
   section > .header > [actions],
   [statistics] > .header > [actions],
   [statistics] > .content .statistics.big .header > [actions] {
     display: inline-flex;
-    margin-top: 20px;
-  }
-  section > .header {
-    margin-bottom: 5rem;
+    flex-wrap: wrap;
+    margin-top: 1.25rem;
   }
   [statistics] > .content .statistics.big > .header {
     margin-bottom: 2.5rem;
