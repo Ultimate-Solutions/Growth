@@ -243,7 +243,9 @@ body {
 }
 .animate__animated,
 [class*='animate__']:hover,
-*:hover > [class*='animate__'] {
+*:hover > [class*='animate__'],
+[class*='animate__'].active,
+*.active > [class*='animate__'] {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;
   -webkit-animation-duration: var(--animate-duration);
@@ -251,77 +253,77 @@ body {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
-.animate__animated.animate__infinite {
+.animate__infinite {
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
 }
-.animate__animated.animate__repeat-1 {
+.animate__repeat-1 {
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1;
   -webkit-animation-iteration-count: var(--animate-repeat);
   animation-iteration-count: var(--animate-repeat);
 }
-.animate__animated.animate__repeat-2 {
+.animate__repeat-2 {
   -webkit-animation-iteration-count: 2;
   animation-iteration-count: 2;
   -webkit-animation-iteration-count: calc(var(--animate-repeat) * 2);
   animation-iteration-count: calc(var(--animate-repeat) * 2);
 }
-.animate__animated.animate__repeat-3 {
+.animate__repeat-3 {
   -webkit-animation-iteration-count: 3;
   animation-iteration-count: 3;
   -webkit-animation-iteration-count: calc(var(--animate-repeat) * 3);
   animation-iteration-count: calc(var(--animate-repeat) * 3);
 }
-.animate__animated.animate__delay-1s {
+.animate__delay-1s {
   -webkit-animation-delay: 1s;
   animation-delay: 1s;
   -webkit-animation-delay: var(--animate-delay);
   animation-delay: var(--animate-delay);
 }
-.animate__animated.animate__delay-2s {
+.animate__delay-2s {
   -webkit-animation-delay: 2s;
   animation-delay: 2s;
   -webkit-animation-delay: calc(var(--animate-delay) * 2);
   animation-delay: calc(var(--animate-delay) * 2);
 }
-.animate__animated.animate__delay-3s {
+.animate__delay-3s {
   -webkit-animation-delay: 3s;
   animation-delay: 3s;
   -webkit-animation-delay: calc(var(--animate-delay) * 3);
   animation-delay: calc(var(--animate-delay) * 3);
 }
-.animate__animated.animate__delay-4s {
+.animate__delay-4s {
   -webkit-animation-delay: 4s;
   animation-delay: 4s;
   -webkit-animation-delay: calc(var(--animate-delay) * 4);
   animation-delay: calc(var(--animate-delay) * 4);
 }
-.animate__animated.animate__delay-5s {
+.animate__delay-5s {
   -webkit-animation-delay: 5s;
   animation-delay: 5s;
   -webkit-animation-delay: calc(var(--animate-delay) * 5);
   animation-delay: calc(var(--animate-delay) * 5);
 }
-.animate__animated.animate__faster {
+.animate__faster {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;
   -webkit-animation-duration: calc(var(--animate-duration) / 2);
   animation-duration: calc(var(--animate-duration) / 2);
 }
-.animate__animated.animate__fast {
+.animate__fast {
   -webkit-animation-duration: 0.8s;
   animation-duration: 0.8s;
   -webkit-animation-duration: calc(var(--animate-duration) * 0.8);
   animation-duration: calc(var(--animate-duration) * 0.8);
 }
-.animate__animated.animate__slow {
+.animate__slow {
   -webkit-animation-duration: 2s;
   animation-duration: 2s;
   -webkit-animation-duration: calc(var(--animate-duration) * 2);
   animation-duration: calc(var(--animate-duration) * 2);
 }
-.animate__animated.animate__slower {
+.animate__slower {
   -webkit-animation-duration: 3s;
   animation-duration: 3s;
   -webkit-animation-duration: calc(var(--animate-duration) * 3);
@@ -330,7 +332,9 @@ body {
 @media (prefers-reduced-motion: reduce), print {
   .animate__animated,
   [class^='animate__']:hover,
-  *:hover > [class^='animate__'] {
+  *:hover > [class^='animate__'],
+  [class^='animate__'].active,
+  *.active > [class^='animate__'] {
     -webkit-animation-duration: 1ms !important;
     animation-duration: 1ms !important;
     -webkit-animation-iteration-count: 1 !important;
@@ -414,9 +418,11 @@ body {
     transform: translate3d(0, -4px, 0) scaleY(1.02);
   }
 }
-.animate__bounce:not(.hover):not(.hover-parent),
+.animate__animated.animate__bounce,
 .animate__bounce.hover:hover,
-*:hover > .animate__bounce.hover-parent {
+*:hover > .animate__bounce.hover-parent,
+.animate__bounce.active,
+*.active > .animate__bounce.active-parent {
   -webkit-animation-name: bounce;
   animation-name: bounce;
   -webkit-transform-origin: center bottom;
@@ -449,9 +455,11 @@ body {
   }
 }
 
-.animate__flash:not(.hover):not(.hover-parent),
+.animate__animated.animate__flash,
 .animate__flash.hover:hover,
-*:hover > .animate__flash.hover-parent {
+*:hover > .animate__flash.hover-parent,
+.animate__flash.active,
+*.active > .animate__flash.active-parent {
   -webkit-animation-name: flash;
   animation-name: flash;
 }
@@ -488,9 +496,9 @@ body {
   }
 }
 
-.animate__pulse:not(.hover):not(.hover-parent),
-.animate__pulse.hover:hover,
-*:hover > .animate__pulse.hover-parent {
+.animate__animated.animate__pulse,
+.animate__pulse.active,
+*.active > .animate__pulse.active-parent {
   -webkit-animation-name: pulse;
   animation-name: pulse;
   -webkit-animation-timing-function: ease-in-out;
@@ -561,9 +569,11 @@ body {
   }
 }
 
-.animate__rubberBand:not(.hover):not(.hover-parent),
+.animate__animated.animate__rubberBand,
 .animate__rubberBand.hover:hover,
-*:hover > .animate__rubberBand.hover-parent {
+*:hover > .animate__rubberBand.hover-parent,
+.animate__rubberBand.active,
+*.active > .animate__rubberBand.active-parent {
   -webkit-animation-name: rubberBand;
   animation-name: rubberBand;
 }
@@ -616,9 +626,11 @@ body {
   }
 }
 
-.animate__shakeX:not(.hover):not(.hover-parent),
+.animate__animated.animate__shakeX,
 .animate__shakeX.hover:hover,
-*:hover > .animate__shakeX.hover-parent {
+*:hover > .animate__shakeX.hover-parent,
+.animate__shakeX.active,
+*.active > .animate__shakeX.active-parent {
   -webkit-animation-name: shakeX;
   animation-name: shakeX;
 }
@@ -671,9 +683,11 @@ body {
   }
 }
 
-.animate__shakeY:not(.hover):not(.hover-parent),
+.animate__animated.animate__shakeY,
 .animate__shakeY.hover:hover,
-*:hover > .animate__shakeY.hover-parent {
+*:hover > .animate__shakeY.hover-parent,
+.animate__shakeY.active,
+*.active > .animate__shakeY.active-parent {
   -webkit-animation-name: shakeY;
   animation-name: shakeY;
 }
@@ -734,9 +748,11 @@ body {
   }
 }
 
-.animate__headShake:not(.hover):not(.hover-parent),
+.animate__animated.animate__headShake,
 .animate__headShake.hover:hover,
-*:hover > .animate__headShake.hover-parent {
+*:hover > .animate__headShake.hover-parent,
+.animate__headShake.active,
+*.active > .animate__headShake.active-parent {
   -webkit-animation-name: headShake;
   animation-name: headShake;
   -webkit-animation-timing-function: ease-in-out;
@@ -791,9 +807,11 @@ body {
   }
 }
 
-.animate__swing:not(.hover):not(.hover-parent),
+.animate__animated.animate__swing,
 .animate__swing.hover:hover,
-*:hover > .animate__swing.hover-parent {
+*:hover > .animate__swing.hover-parent,
+.animate__swing.active,
+*.active > .animate__swing.active-parent {
   -webkit-animation-name: swing;
   animation-name: swing;
   -webkit-transform-origin: top center;
@@ -862,9 +880,11 @@ body {
   }
 }
 
-.animate__swing2:not(.hover):not(.hover-parent),
+.animate__animated.animate__swing2,
 .animate__swing2.hover:hover,
-*:hover > .animate__swing2.hover-parent {
+*:hover > .animate__swing2.hover-parent,
+.animate__swing2.active,
+*.active > .animate__swing2.active-parent {
   webkit-animation-duration: 1.3s;
   animation-duration: 1.3s;
   -webkit-animation-duration: calc(var(--animate-duration) * 0.5);
@@ -935,9 +955,11 @@ body {
   }
 }
 
-.animate__tada:not(.hover):not(.hover-parent),
+.animate__animated.animate__tada,
 .animate__tada.hover:hover,
-*:hover > .animate__tada.hover-parent {
+*:hover > .animate__tada.hover-parent,
+.animate__tada.active,
+*.active > .animate__tada.active-parent {
   -webkit-animation-name: tada;
   animation-name: tada;
 }
@@ -1006,9 +1028,11 @@ body {
   }
 }
 
-.animate__wobble:not(.hover):not(.hover-parent),
+.animate__animated.animate__wobble,
 .animate__wobble.hover:hover,
-*:hover > .animate__wobble.hover-parent {
+*:hover > .animate__wobble.hover-parent,
+.animate__wobble.active,
+*.active > .animate__wobble.active-parent {
   -webkit-animation-name: wobble;
   animation-name: wobble;
 }
@@ -1089,9 +1113,11 @@ body {
   }
 }
 
-.animate__jello:not(.hover):not(.hover-parent),
+.animate__animated.animate__jello,
 .animate__jello.hover:hover,
-*:hover > .animate__jello.hover-parent {
+*:hover > .animate__jello.hover-parent,
+.animate__jello.active,
+*.active > .animate__jello.active-parent {
   -webkit-animation-name: jello;
   animation-name: jello;
   -webkit-transform-origin: center;
@@ -1146,9 +1172,11 @@ body {
   }
 }
 
-.animate__heartBeat:not(.hover):not(.hover-parent),
+.animate__animated.animate__heartBeat,
 .animate__heartBeat.hover:hover,
-*:hover > .animate__heartBeat.hover-parent {
+*:hover > .animate__heartBeat.hover-parent,
+.animate__heartBeat.active,
+*.active > .animate__heartBeat.active-parent {
   -webkit-animation-duration: 1.3s;
   animation-duration: 1.3s;
   -webkit-animation-duration: calc(var(--animate-duration) * 1.3);
