@@ -361,8 +361,76 @@ document.addEventListener('DOMContentLoaded', () => {
           ele.find('input').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         }
 
+      var local;
+      var lang = document.getElementsByTagName('html')[0].getAttribute('lang'),
+        dir = document.getElementsByTagName('html')[0].getAttribute('dir');
+
+      if (dir == 'rtl' && lang == 'ar')
+        local = {
+          direction: 'rtl',
+          applyLabel: 'تاكيد',
+          cancelLabel: 'الغاء',
+          fromLabel: 'من',
+          toLabel: 'الى',
+          todayRangeLabel: 'اليوم',
+          yesterdayRangeLabel: 'امس',
+          last7daysRangeLabel: 'أخر 7 ايام',
+          last30daysRangeLabel: 'أخر 30 يوم',
+          thisMonthRangeLabel: 'هذا الشهر',
+          lastMonthRangeLabel: 'أخر شهر',
+          customRangeLabel: 'مخصص',
+          weekLabel: 'W',
+          daysOfWeek: ['الأحد', 'الأثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعة', 'السبت'],
+          monthNames: [
+            'يناير',
+            'فبراير',
+            'مارس',
+            'ابريل',
+            'مايو',
+            'يونيو',
+            'يوليو',
+            'اغسطس',
+            'سيبتمبر',
+            'اكتوبر',
+            'نوفمبر',
+            'ديسمبر',
+          ],
+        };
+      else
+        local = {
+          direction: 'ltr',
+          applyLabel: 'Apply',
+          cancelLabel: 'Cancel',
+          fromLabel: 'From',
+          toLabel: 'To',
+          todayRangeLabel: 'Today',
+          yesterdayRangeLabel: 'Yesterday',
+          last7daysRangeLabel: 'Last 7 Days',
+          last30daysRangeLabel: 'Last 30 Days',
+          thisMonthRangeLabel: 'This Month',
+          lastMonthRangeLabel: 'Last Month',
+          customRangeLabel: 'Custom',
+          weekLabel: 'W',
+          daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+          monthNames: [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+          ],
+        };
+
       ele.daterangepicker(
         {
+          locale: local,
           startDate: start,
           endDate: end,
           ranges: {
@@ -385,6 +453,27 @@ document.addEventListener('DOMContentLoaded', () => {
       // Set active state on picker opened
       ele.on('show.daterangepicker', function (ev, picker) {
         ele.addClass('active');
+
+        // Change Local date range menu text
+        const daterangepickers = document.querySelectorAll('.daterangepicker');
+        for (let daterangepicker of daterangepickers) {
+          var rangeToday = daterangepicker.querySelector('.ranges [data-range-key="Today"'),
+            rangeYesterday = daterangepicker.querySelector('.ranges [data-range-key="Yesterday"'),
+            rangeLast7Days = daterangepicker.querySelector('.ranges [data-range-key="Last 7 Days"'),
+            rangeLast30Days = daterangepicker.querySelector(
+              '.ranges [data-range-key="Last 30 Days"'
+            ),
+            rangeThisMonth = daterangepicker.querySelector('.ranges [data-range-key="This Month"'),
+            rangeLastMonth = daterangepicker.querySelector('.ranges [data-range-key="Last Month"');
+
+          // Change Text
+          rangeToday.innerHTML = local.todayRangeLabel;
+          rangeYesterday.innerHTML = local.yesterdayRangeLabel;
+          rangeLast7Days.innerHTML = local.last7daysRangeLabel;
+          rangeLast30Days.innerHTML = local.last30daysRangeLabel;
+          rangeThisMonth.innerHTML = local.thisMonthRangeLabel;
+          rangeLastMonth.innerHTML = local.lastMonthRangeLabel;
+        }
       });
 
       // Remove active state on picker closed
