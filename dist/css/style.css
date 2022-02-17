@@ -94,7 +94,7 @@
   --dashboard-sidebar-background-color: #fff;
   --dashboard-content-background-color: #f1f1f1;
   --dashboard-content-shadow: 4px 0px 20px 0px rgb(0 0 0 / 20%);
-  --dashboard-content-mask-background-color: #fff00;
+  --dashboard-content-mask-background-color: #ffffff00;
   --dashboard-section-header-master-title-color: #808080;
   --dashboard-section-header-title-color: #22447b;
   --dashboard-section-header-title-shadow-text-color: #1e1e1f;
@@ -105,7 +105,7 @@
   --dashboard-section-content-shadow: 0px 2px 1px rgba(0, 0, 0, 0.05),
     0px 0px 1px rgba(0, 0, 0, 0.25);
   --dashboard-section-content-statistics-subtitle-color: #555555;
-  --dashboard-navbar-blurred-background-color: #fffb3;
+  --dashboard-navbar-blurred-background-color: #ffffffb3;
   --dashboard-navbar-link-color: #8f8f8f;
   --dashboard-navbar-link-hover-color: #1e1e1f;
   --dashboard-navbar-link-active-icon-color: #05a84b;
