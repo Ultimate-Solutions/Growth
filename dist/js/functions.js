@@ -493,6 +493,40 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 // #endregion
 
+// #region / SELECT2
+//    _____ ______ _      ______ _____ _______ ___
+//   / ____|  ____| |    |  ____/ ____|__   __|__ \
+//  | (___ | |__  | |    | |__ | |       | |     ) |
+//   \___ \|  __| | |    |  __|| |       | |    / /
+//   ____) | |____| |____| |___| |____   | |   / /_
+//  |_____/|______|______|______\_____|  |_|  |____|
+//
+//
+document.addEventListener('DOMContentLoaded', () => {
+  // Get all SELECT2 elements
+  var initSelect2 = function () {
+    var elements = [].slice.call(document.querySelectorAll('[data-control="select2"]'));
+
+    elements.map(function (element) {
+      var options = {
+        dir: document.getElementsByTagName('html')[0].getAttribute('dir'),
+        theme: 'bootstrap5',
+        width: '100%',
+        selectionCssClass: ':all:',
+      };
+
+      if (element.getAttribute('data-hide-search') == 'true') {
+        options.minimumResultsForSearch = Infinity;
+      }
+
+      $(element).select2(options);
+    });
+  };
+
+  initSelect2();
+});
+// #endregion
+
 // Element Top Left position helper
 function offset(el) {
   var rect = el.getBoundingClientRect(),
