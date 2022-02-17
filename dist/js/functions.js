@@ -1,3 +1,145 @@
+'use strict';
+
+// Class definition
+var HololApp = function () {
+  var initPageLoader = function () {
+    // CSS3 Transitions only after page load(.page-loading class added to body tag and remove with JS on page load)
+    document.body.classList.remove('page-loading');
+  };
+
+  var initBootstrapTooltip = function (el, options) {
+    var delay = {};
+
+    // Handle delay options
+    if (el.hasAttribute('data-bs-delay-hide')) {
+      delay['hide'] = el.getAttribute('data-bs-delay-hide');
+    }
+
+    if (el.hasAttribute('data-bs-delay-show')) {
+      delay['show'] = el.getAttribute('data-bs-delay-show');
+    }
+
+    if (delay) {
+      options['delay'] = delay;
+    }
+
+    // Check dismiss options
+    if (el.hasAttribute('data-bs-dismiss') && el.getAttribute('data-bs-dismiss') == 'click') {
+      options['dismiss'] = 'click';
+    }
+
+    // Initialize popover
+    var tp = new bootstrap.Tooltip(el, options);
+
+    // Handle dismiss
+    if (options['dismiss'] && options['dismiss'] === 'click') {
+      // Hide popover on element click
+      el.addEventListener('click', function (e) {
+        tp.hide();
+      });
+    }
+
+    return tp;
+  };
+
+  var initBootstrapTooltips = function (el, options) {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      initBootstrapTooltip(tooltipTriggerEl, {});
+    });
+  };
+
+  var initBootstrapPopover = function (el, options) {
+    var delay = {};
+
+    // Handle delay options
+    if (el.hasAttribute('data-bs-delay-hide')) {
+      delay['hide'] = el.getAttribute('data-bs-delay-hide');
+    }
+
+    if (el.hasAttribute('data-bs-delay-show')) {
+      delay['show'] = el.getAttribute('data-bs-delay-show');
+    }
+
+    if (delay) {
+      options['delay'] = delay;
+    }
+
+    // Handle dismiss option
+    if (el.getAttribute('data-bs-dismiss') == 'true') {
+      options['dismiss'] = true;
+    }
+
+    if (options['dismiss'] === true) {
+      options['template'] =
+        '<div class="popover" role="tooltip"><div class="popover-arrow"></div><span class="popover-dismiss btn btn-icon"><i class="bi bi-x fs-2"></i></span><h3 class="popover-header"></h3><div class="popover-body"></div></div>';
+    }
+
+    // Initialize popover
+    var popover = new bootstrap.Popover(el, options);
+
+    // Handle dismiss click
+    if (options['dismiss'] === true) {
+      var dismissHandler = function (e) {
+        popover.hide();
+      };
+
+      el.addEventListener('shown.bs.popover', function () {
+        var dismissEl = document.getElementById(el.getAttribute('aria-describedby'));
+        dismissEl.addEventListener('click', dismissHandler);
+      });
+
+      el.addEventListener('hide.bs.popover', function () {
+        var dismissEl = document.getElementById(el.getAttribute('aria-describedby'));
+        dismissEl.removeEventListener('click', dismissHandler);
+      });
+    }
+
+    return popover;
+  };
+
+  var initBootstrapPopovers = function () {
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+      initBootstrapPopover(popoverTriggerEl, {});
+    });
+  };
+
+  var initScrollSpy = function () {
+    var elements = [].slice.call(document.querySelectorAll('[data-bs-spy="scroll"]'));
+
+    elements.map(function (element) {
+      var sel = element.getAttribute('data-bs-target');
+      var scrollContent = document.querySelector(element.getAttribute('data-bs-target'));
+      var scrollSpy = bootstrap.ScrollSpy.getInstance(scrollContent);
+      if (scrollSpy) {
+        scrollSpy.refresh();
+      }
+    });
+  };
+
+  var initSelect2 = function () {
+    var elements = [].slice.call(document.querySelectorAll('[data-control="select2"]'));
+
+    elements.map(function (element) {
+      var options = {
+        dir: document.getElementsByTagName('html')[0].getAttribute('dir'),
+        theme: 'bootstrap5',
+        width: '100%',
+        selectionCssClass: ':all:',
+      };
+
+      if (element.getAttribute('data-hide-search') == 'true') {
+        options.minimumResultsForSearch = Infinity;
+      }
+
+      $(element).select2(options);
+    });
+  };
+};
+
 // #region / Enable tooltips everywhere
 //   ______             _     _        _              _ _   _                                                _
 //  |  ____|           | |   | |      | |            | | | (_)                                              | |
