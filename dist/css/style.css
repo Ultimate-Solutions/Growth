@@ -142,7 +142,7 @@
   --dashboard-stepper-default-background-color: #dddddd;
   --dashboard-stepper-passed-background-color: #05a84b;
   --dashboard-stepper-current-background-color: #22447b;
-  --dashboard-table-tabs-tab-active-background-color: #05a84b;
+  --dashboard-table-tabs-tab-active-background-color: #d2efdf;
   --dashboard-table-tabs-tab-active-color: #05a84b;
   --dashboard-table-background-color: #ffffff;
   --dashboard-table-hover-background-color: #f4f5f8;
@@ -2468,30 +2468,25 @@ section > .content .table-tabs > .list-group > .action {
   font-size: var(--font-size-18);
   font-weight: var(--font-weight-medium);
   transition: var(--transition-normal);
-  padding: 0.5rem 0.625rem 0.75rem;
   text-align: center;
   align-self: flex-end;
   min-width: max-content;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.475rem;
   opacity: 0.4;
 }
 section > .content .table-tabs > .list-group > .action:not(:last-child) {
   margin-left: 1.25rem;
 }
-section > .content .table-tabs > .list-group > .action:hover,
+section > .content .table-tabs > .list-group > .action:hover {
+  opacity: 1;
+}
 section > .content .table-tabs > .list-group > .action:focus,
 section > .content .table-tabs > .list-group > .action:active,
 section > .content .table-tabs > .list-group > .action.active {
   color: var(--dashboard-table-tabs-tab-active-color);
-  opacity: 1;
-}
-section > .content .table-tabs > .list-group > .action.active:after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 0.125rem;
   background-color: var(--dashboard-table-tabs-tab-active-background-color);
+  opacity: 1;
 }
 section > .content table {
   font-size: var(--font-size-14);
