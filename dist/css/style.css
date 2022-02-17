@@ -1788,6 +1788,12 @@ img {
   color: var(--dashboard-top-navbar-data-action-hover-color);
   background-color: var(--dashboard-top-navbar-data-action-hover-background-color);
 }
+.dashboard > .content > .top-navbar .content .left [data-action] {
+  display: none;
+}
+.dashboard > .content > .top-navbar .content[min-width~='700px'] .left [data-action] {
+  display: unset;
+}
 .dashboard > .content > .top-navbar [data-action][data-notif='true'] {
   position: relative;
 }
@@ -2039,9 +2045,6 @@ img {
 }
 /* Small devices (landscape phones, less than 768px) */
 @media (max-width: 767.98px) {
-  .dashboard > .content > .top-navbar .left [data-action] {
-    display: none;
-  }
   .dashboard > .content,
   .dashboard .main-navbar[collapse] + .content {
     padding: 1.25rem;
@@ -2576,9 +2579,28 @@ section > .content table th {
     justify-content: space-between;
     align-items: end;
   }
-  section > .header > [action],
-  section > .header > [actions],
-  [statistics] > .content .statistics.big .header > [actions] {
+  section > .header[min-width~='400px'],
+  [statistics] > .content .statistics.big > .header[min-width~='400px'] {
+    display: block;
+  }
+  section > .header[min-width~='700px'],
+  [statistics] > .content .statistics.big > .header[min-width~='700px'] {
+    display: flex;
+  }
+  [statistics] > .content .statistics.big > .header[min-width~='400px'] > *:first-child {
+    margin-bottom: 0.625rem;
+  }
+  [statistics] > .content .statistics.big > .header[min-width~='700px'] > *:first-child {
+    margin-bottom: 0;
+  }
+  section > .header[min-width~='400px'] > [action],
+  section > .header[min-width~='400px'] > [actions],
+  [statistics] > .content .statistics.big .header[min-width~='400px'] > [actions] {
+    margin-right: 0;
+  }
+  section > .header[min-width~='700px'] > [action],
+  section > .header[min-width~='700px'] > [actions],
+  [statistics] > .content .statistics.big .header[min-width~='700px'] > [actions] {
     margin-right: 2.5rem;
   }
 }
@@ -2595,9 +2617,11 @@ section > .content table th {
     display: inline-flex;
     margin-top: 20px;
   }
-  section > .header,
-  [statistics] > .content .statistics.big > .header {
+  section > .header {
     margin-bottom: 5rem;
+  }
+  [statistics] > .content .statistics.big > .header {
+    margin-bottom: 2.5rem;
   }
 }
 /* #endregion */
