@@ -2456,8 +2456,10 @@ section > .content {
 section > .content .table-tabs > .list-group {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   padding: 1.25rem 0;
+}
+section > .content .table-tabs > .list-group[min-width~='700px'] {
+  justify-content: center;
 }
 section > .content .table-tabs > .list-group > .action {
   position: relative;
@@ -2467,6 +2469,9 @@ section > .content .table-tabs > .list-group > .action {
   font-weight: var(--font-weight-medium);
   transition: var(--transition-normal);
   padding: 0.5rem 0.625rem 0.75rem;
+  text-align: center;
+  align-self: flex-end;
+  min-width: max-content;
   opacity: 0.4;
 }
 section > .content .table-tabs > .list-group > .action:not(:last-child) {
@@ -2609,7 +2614,6 @@ section > .content table th {
   section > .header > [action] {
     display: inline-flex;
     margin-top: 1.25rem;
-    float: left;
   }
   section > .header > [actions],
   [statistics] > .header > [actions],
