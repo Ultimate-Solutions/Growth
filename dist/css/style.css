@@ -166,6 +166,27 @@
   --dashboard-badge-being-retrieved-background-color: #9b222633;
   --dashboard-badge-published-background-color: #05a84b33;
   --dashboard-badge-unpublished-background-color: #dc354533;
+  --dashboard-date-picker-background-color: #fff;
+  --dashboard-date-picker-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.15);
+  --dashboard-date-picker-ranges-border-color: #eff2f5;
+  --dashboard-date-picker-ranges-item-color: #7e8299;
+  --dashboard-date-picker-ranges-item-hover-background-color: #f1faff;
+  --dashboard-date-picker-ranges-item-hover-color: #05a84b;
+  --dashboard-date-picker-ranges-item-active-color: #05a84b;
+  --dashboard-date-picker-ranges-item-active-background-color: #cae4d8;
+  --dashboard-date-picker-drop-calender-header-color: #3f4254;
+  --dashboard-date-picker-drop-calender-header-next-prev-color: #7e8299;
+  --dashboard-date-picker-drop-calender-color: #5e6278;
+  --dashboard-date-picker-drop-calender-available-color: #b5b5c3;
+  --dashboard-date-picker-drop-calender-active-color: #fff;
+  --dashboard-date-picker-drop-calender-active-background-color: #eff9f4;
+  --dashboard-date-picker-drop-buttons-border-color: #eff2f5;
+  --dashboard-date-picker-drop-buttons-apply-background-color: #05a84b;
+  --dashboard-date-picker-drop-buttons-apply-color: #fff;
+  --dashboard-date-picker-drop-buttons-apply-border-color: #05a84b;
+  --dashboard-date-picker-drop-buttons-cancel-background-color: #f5f8fa;
+  --dashboard-date-picker-drop-buttons-cancel-color: #7e8299;
+  --dashboard-date-picker-drop-buttons-cancel-border-color: #f5f8fa;
 }
 [data-color-mode='light'][data-theme='high_contrast'] {
 }
@@ -1463,6 +1484,315 @@ img {
 }
 .badge[data-type='Unpublished'] {
   background-color: var(--dashboard-badge-unpublished-background-color);
+}
+
+/* -----------------------------------------------
+  Main > Dashboard > Date Picker
+-------------------------------------------------*/
+.daterangepicker {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: auto;
+  background-color: var(--dashboard-date-picker-background-color);
+  box-shadow: var(--dashboard-date-picker-shadow);
+  /* font-family: Poppins, Helvetica, sans-serif; */
+  z-index: 1000;
+  border-radius: 0.475rem;
+}
+.daterangepicker:after,
+.daterangepicker:before {
+  display: none;
+}
+.daterangepicker td.off,
+.daterangepicker td.off.end-date,
+.daterangepicker td.off.in-range,
+.daterangepicker td.off.start-date {
+  background-color: transparent;
+}
+.modal-open .daterangepicker {
+  z-index: 1056;
+}
+.daterangepicker .calendar-table {
+  background-color: var(--dashboard-date-picker-background-color);
+  border: 0;
+}
+.daterangepicker .ranges {
+  border-radius: 0.475rem;
+  background-color: var(--dashboard-date-picker-background-color);
+}
+.daterangepicker .ranges ul {
+  padding: 1rem 0.5rem;
+  width: 12rem;
+}
+.daterangepicker .ranges li {
+  padding: 0.7rem 1.75rem;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 0.475rem;
+  color: var(--dashboard-date-picker-ranges-item-color);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.daterangepicker .ranges li:hover {
+  background-color: var(--dashboard-date-picker-ranges-item-hover-background-color);
+  color: var(--dashboard-date-picker-ranges-item-hover-color);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.daterangepicker .ranges li.active {
+  background-color: var(--dashboard-date-picker-ranges-item-active-background-color);
+  color: var(--dashboard-date-picker-ranges-item-active-color);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+.daterangepicker.show-calendar .ranges {
+  border-radius: 0;
+  border-top-left-radius: 0.475rem;
+  margin-top: 0;
+  height: 297px;
+}
+.daterangepicker.show-ranges.show-calendar .ranges {
+  border-right: 1px solid var(--dashboard-date-picker-ranges-border-color);
+}
+.daterangepicker.show-ranges .drp-calendar.left {
+  border-left: 0;
+}
+.daterangepicker .drp-buttons {
+  padding: 1rem 1.75rem;
+  border-top: 1px solid var(--dashboard-date-picker-drop-buttons-border-color);
+}
+.daterangepicker .drp-buttons .btn {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.475rem;
+}
+.daterangepicker .drp-buttons .applyBtn {
+  color: var(--dashboard-date-picker-drop-buttons-apply-color);
+  border-color: var(--dashboard-date-picker-drop-buttons-apply-border-color);
+  background-color: var(--dashboard-date-picker-drop-buttons-apply-background-color);
+}
+.daterangepicker .drp-buttons .cancelBtn {
+  color: var(--dashboard-date-picker-drop-buttons-cancel-color);
+  border-color: var(--dashboard-date-picker-drop-buttons-cancel-border-color);
+  background-color: var(--dashboard-date-picker-drop-buttons-cancel-background-color);
+}
+.daterangepicker .drp-buttons .cancelBtn i {
+  color: var(--dashboard-date-picker-drop-buttons-cancel-color);
+}
+.daterangepicker .drp-buttons .cancelBtn .svg-icon svg [fill]:not(.permanent):not(g) {
+  transition: fill 0.3s ease;
+  fill: var(--dashboard-date-picker-drop-buttons-cancel-color);
+}
+.daterangepicker .drp-buttons .cancelBtn .svg-icon svg:hover [fill]:not(.permanent):not(g) {
+  transition: fill 0.3s ease;
+}
+.daterangepicker .drp-buttons .cancelBtn.dropdown-toggle:after {
+  color: var(--dashboard-date-picker-drop-buttons-cancel-color);
+}
+
+.btn-check:active + .daterangepicker .drp-buttons .cancelBtn,
+.btn-check:checked + .daterangepicker .drp-buttons .cancelBtn,
+.daterangepicker .drp-buttons .cancelBtn.active,
+.daterangepicker .drp-buttons .cancelBtn.show,
+.daterangepicker .drp-buttons .cancelBtn:active:not(.btn-active),
+.daterangepicker .drp-buttons .cancelBtn:focus:not(.btn-active),
+.daterangepicker .drp-buttons .cancelBtn:hover:not(.btn-active),
+.show > .daterangepicker .drp-buttons .cancelBtn {
+  color: var(--dashboard-date-picker-drop-buttons-cancel-color);
+  border-color: var(--dashboard-date-picker-drop-buttons-border-color);
+  background-color: var(--dashboard-date-picker-drop-buttons-border-color) !important;
+}
+.btn-check:active + .daterangepicker .drp-buttons .cancelBtn i,
+.btn-check:checked + .daterangepicker .drp-buttons .cancelBtn i,
+.daterangepicker .drp-buttons .cancelBtn.active i,
+.daterangepicker .drp-buttons .cancelBtn.show i,
+.daterangepicker .drp-buttons .cancelBtn:active:not(.btn-active) i,
+.daterangepicker .drp-buttons .cancelBtn:focus:not(.btn-active) i,
+.daterangepicker .drp-buttons .cancelBtn:hover:not(.btn-active) i,
+.show > .daterangepicker .drp-buttons .cancelBtn i {
+  color: var(--dashboard-date-picker-drop-buttons-cancel-color);
+}
+.btn-check:active
+  + .daterangepicker
+  .drp-buttons
+  .cancelBtn
+  .svg-icon
+  svg
+  [fill]:not(.permanent):not(g),
+.btn-check:checked
+  + .daterangepicker
+  .drp-buttons
+  .cancelBtn
+  .svg-icon
+  svg
+  [fill]:not(.permanent):not(g),
+.daterangepicker .drp-buttons .cancelBtn.active .svg-icon svg [fill]:not(.permanent):not(g),
+.daterangepicker .drp-buttons .cancelBtn.show .svg-icon svg [fill]:not(.permanent):not(g),
+.daterangepicker
+  .drp-buttons
+  .cancelBtn:active:not(.btn-active)
+  .svg-icon
+  svg
+  [fill]:not(.permanent):not(g),
+.daterangepicker
+  .drp-buttons
+  .cancelBtn:focus:not(.btn-active)
+  .svg-icon
+  svg
+  [fill]:not(.permanent):not(g),
+.daterangepicker
+  .drp-buttons
+  .cancelBtn:hover:not(.btn-active)
+  .svg-icon
+  svg
+  [fill]:not(.permanent):not(g),
+.show > .daterangepicker .drp-buttons .cancelBtn .svg-icon svg [fill]:not(.permanent):not(g) {
+  transition: fill 0.3s ease;
+  fill: var(--dashboard-date-picker-drop-buttons-cancel-color);
+}
+.btn-check:active
+  + .daterangepicker
+  .drp-buttons
+  .cancelBtn
+  .svg-icon
+  svg:hover
+  [fill]:not(.permanent):not(g),
+.btn-check:checked
+  + .daterangepicker
+  .drp-buttons
+  .cancelBtn
+  .svg-icon
+  svg:hover
+  [fill]:not(.permanent):not(g),
+.daterangepicker .drp-buttons .cancelBtn.active .svg-icon svg:hover [fill]:not(.permanent):not(g),
+.daterangepicker .drp-buttons .cancelBtn.show .svg-icon svg:hover [fill]:not(.permanent):not(g),
+.daterangepicker
+  .drp-buttons
+  .cancelBtn:active:not(.btn-active)
+  .svg-icon
+  svg:hover
+  [fill]:not(.permanent):not(g),
+.daterangepicker
+  .drp-buttons
+  .cancelBtn:focus:not(.btn-active)
+  .svg-icon
+  svg:hover
+  [fill]:not(.permanent):not(g),
+.daterangepicker
+  .drp-buttons
+  .cancelBtn:hover:not(.btn-active)
+  .svg-icon
+  svg:hover
+  [fill]:not(.permanent):not(g),
+.show > .daterangepicker .drp-buttons .cancelBtn .svg-icon svg:hover [fill]:not(.permanent):not(g) {
+  transition: fill 0.3s ease;
+}
+.btn-check:active + .daterangepicker .drp-buttons .cancelBtn.dropdown-toggle:after,
+.btn-check:checked + .daterangepicker .drp-buttons .cancelBtn.dropdown-toggle:after,
+.daterangepicker .drp-buttons .cancelBtn.active.dropdown-toggle:after,
+.daterangepicker .drp-buttons .cancelBtn.show.dropdown-toggle:after,
+.daterangepicker .drp-buttons .cancelBtn:active:not(.btn-active).dropdown-toggle:after,
+.daterangepicker .drp-buttons .cancelBtn:focus:not(.btn-active).dropdown-toggle:after,
+.daterangepicker .drp-buttons .cancelBtn:hover:not(.btn-active).dropdown-toggle:after,
+.show > .daterangepicker .drp-buttons .cancelBtn.dropdown-toggle:after {
+  color: var(--dashboard-date-picker-drop-buttons-cancel-color);
+}
+.daterangepicker .drp-selected {
+  font-size: 0.9rem;
+}
+.daterangepicker .drp-calendar.left,
+.daterangepicker .drp-calendar.right {
+  padding: 1rem 1rem;
+}
+.daterangepicker .drp-calendar.left {
+  border-left: 0 !important;
+}
+.daterangepicker .drp-calendar td,
+.daterangepicker .drp-calendar th {
+  font-size: 1rem;
+  font-weight: 400;
+  width: 33px;
+  height: 33px;
+}
+.daterangepicker .drp-calendar td.available:hover,
+.daterangepicker .drp-calendar th.available:hover {
+  border-radius: 0.475rem;
+  background-color: var(--dashboard-date-picker-ranges-item-hover-background-color);
+  color: var(--dashboard-date-picker-ranges-item-hover-color);
+}
+.daterangepicker .drp-calendar th {
+  font-weight: 500;
+  color: var(--dashboard-date-picker-drop-header-calender-color);
+}
+.daterangepicker .drp-calendar th.month {
+  font-weight: 500;
+  color: var(--dashboard-date-picker-drop-header-calender-color);
+}
+.daterangepicker .drp-calendar th.next span,
+.daterangepicker .drp-calendar th.prev span {
+  border-width: 0 1px 1px 0;
+  border-color: var(--dashboard-date-picker-drop-calender-header-next-prev-color);
+}
+.daterangepicker .drp-calendar th.next.available:hover span,
+.daterangepicker .drp-calendar th.prev.available:hover span {
+  border-color: var(--dashboard-date-picker-ranges-item-hover-color);
+}
+.daterangepicker .drp-calendar th.next span {
+  margin-right: 1px;
+}
+.daterangepicker .drp-calendar th.prev span {
+  margin-left: 1px;
+}
+.daterangepicker .drp-calendar td {
+  color: var(--dashboard-date-picker-drop-calender-color);
+}
+.daterangepicker .drp-calendar td.available.off {
+  color: var(--dashboard-date-picker-drop-calender-available-color);
+}
+.daterangepicker .drp-calendar td.active {
+  background-color: var(--dashboard-date-picker-ranges-item-hover-color) !important;
+  color: var(--dashboard-date-picker-drop-calender-active-color) !important;
+  border-radius: 0.475rem;
+}
+.daterangepicker .drp-calendar td.active.start-date {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.daterangepicker .drp-calendar td.active.end-date {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.daterangepicker .drp-calendar td.active.start-date.end-date {
+  border-radius: 0.475rem;
+}
+.daterangepicker .drp-calendar td.today,
+.daterangepicker .drp-calendar td.today.active {
+  background: var(--dashboard-date-picker-drop-calender-active-background-color) !important;
+  color: var(--dashboard-date-picker-ranges-item-hover-color) !important;
+  border-radius: 0.475rem;
+}
+.daterangepicker .drp-calendar td.in-range.available:not(.active):not(.off):not(.today) {
+  background-color: var(--dashboard-date-picker-drop-calender-active-background-color);
+  color: var(--dashboard-date-picker-ranges-item-hover-color);
+}
+.daterangepicker .drp-calendar td:hover {
+  background-color: var(--dashboard-date-picker-drop-calender-active-background-color);
+  color: var(--dashboard-date-picker-ranges-item-hover-color);
+}
+@media (max-width: 767.98px) {
+  .daterangepicker.show-calendar .ranges {
+    float: none !important;
+    height: auto !important;
+  }
+  .daterangepicker.show-calendar .ranges ul {
+    width: 100%;
+  }
+  .daterangepicker.show-calendar .drp-calendar {
+    float: none !important;
+    max-width: unset !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 /* -----------------------------------------------
