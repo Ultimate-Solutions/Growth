@@ -90,6 +90,8 @@
   --dropdown-menu-item-active-background-color: #05a84b;
   --dropdown-menu-item-active-color: #fff;
   --dropdown-menu-item-arrow-color: #05a84b;
+  --dropdown-toggle-button-hover-background-color: #d2efdf;
+  --button-shadow: 0 0 0 0.25rem rgb(5 168 75 / 25%);
   --tooltips-background-color: #fff;
   --tooltips-border-color: #fff;
   --tooltips-color: #1e1e1f;
@@ -2807,8 +2809,13 @@ section > .header > [action]:hover,
 section > .header > [actions] > *:hover,
 [statistics] > .content .statistics.big > .header > [actions] [action]:hover,
 [statistics] > .content .statistics.big > .header > [actions] [action].active {
-  color: var(--dashboard-section-header-action-hover-color);
   background-color: var(--dashboard-section-header-action-hover-background-color);
+}
+section > .header > [action]:hover > em,
+section > .header > [actions] > *:hover > em,
+[statistics] > .content .statistics.big > .header > [actions] [action]:hover > em,
+[statistics] > .content .statistics.big > .header > [actions] [action].active > em {
+  color: var(--dashboard-section-header-action-hover-color);
 }
 section > .header > [action] > em,
 section > .header > [actions] > * > em,
@@ -3072,6 +3079,11 @@ section > .content table tr > *:last-child {
 .dropdown-toggle.btn {
   padding-left: 2.5rem;
 }
+.dropdown-toggle.btn:hover,
+.dropdown-toggle.btn:focus,
+.dropdown-toggle.btn:active {
+  box-shadow: none;
+}
 .dropdown-toggle ~ select {
   display: none;
 }
@@ -3094,6 +3106,12 @@ section > .content table tr > *:last-child {
 .dropdown-item:active {
   background-color: var(--dropdown-menu-item-active-background-color);
   color: var(--dropdown-menu-item-active-color);
+}
+/* -----------------------------------------------
+  Bootstrap > Buttons
+-------------------------------------------------*/
+.btn:focus {
+  box-shadow: var(--button-shadow);
 }
 
 /* -----------------------------------------------
