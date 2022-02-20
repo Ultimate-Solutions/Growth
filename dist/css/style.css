@@ -2376,24 +2376,12 @@ img {
     width: 100%;
     padding: 0 1.25rem;
     z-index: 1;
-    -webkit-animation: mobileSearchbarView ease-in-out 0.5s 1 alternate;
-    animation: mobileSearchbarView ease-in-out 0.5s 1 alternate;
+    transform: translateY(-300%);
+    -webkit-transition: var(--transition-normal);
+    transition: var(--transition-normal);
   }
-  @-webkit-keyframes mobileSearchbarView {
-    0% {
-      transform: translateY(-300%);
-    }
-    100% {
-      transform: translateY(0%);
-    }
-  }
-  @keyframes mobileSearchbarView {
-    0% {
-      transform: translateY(-300%);
-    }
-    100% {
-      transform: translateY(0%);
-    }
+  .searchbarFloating.active {
+    transform: translateY(0);
   }
   .searchbarFloating .content {
     position: relative;
@@ -2443,14 +2431,6 @@ img {
   }
   .searchbarFloating .content select {
     width: 12.5rem;
-  }
-  .searchbarFloating .content button {
-    font-size: var(--font-size-24);
-    padding: 0.5rem 0.625rem;
-    background-color: var(--dashboard-top-navbar-search-bar-close-background-color);
-    line-height: var(--line-spacing-0);
-    border-radius: 0;
-    transition: var(--transition-normal);
   }
   .searchbarFloating .content .separator.vertical {
     margin: 0 0.625rem;

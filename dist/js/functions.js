@@ -216,66 +216,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchBar.addEventListener('click', () => {
       if (window.innerWidth <= 991.98) {
-        // Toggle Active
-        searchBar.classList.toggle('active');
-
-        const targetContainer = document.body.querySelector('.searchbarFloating');
-        if (!targetContainer) {
-          // View Search bar
-          const div = document.createElement('div');
-          div.classList.add('searchbarFloating');
-          div.innerHTML = searchBar.innerHTML;
-          document.querySelector('.dashboard > .content').appendChild(div);
-          document.querySelector('.searchbarFloating [icon]').remove();
+        // Get Floating search bar
+        var searchbarFloating = document.querySelector('.searchbarFloating');
+        // Check active state
+        if (!searchbarFloating.classList.contains('active')) {
+          // View Search bar on click
+          searchBar.classList.add('active');
+          searchbarFloating.classList.add('active');
           document.querySelector('.searchbarFloating input').focus();
-
-          // Hide Search bar on click outside
-          document.addEventListener('mouseup', function (e) {
-            if (
-              document.body.querySelector('.searchbarFloating') &&
-              !searchBar.contains(e.target) &&
-              !document.body.querySelector('.searchbarFloating').contains(e.target)
-            ) {
-              // Toggle Active
-              searchBar.classList.remove('active');
-
-              let target = document.body.querySelector('.searchbarFloating');
-              let stepper = 0;
-              var fadeEffect = setInterval(function () {
-                if (!target.style.transform) {
-                  stepper = 0;
-                  target.style.transform = 'translateY(0%)';
-                }
-                if (stepper > -300) {
-                  stepper = stepper - 10;
-                  target.style.transform = 'translateY(' + stepper + '%)';
-                } else {
-                  clearInterval(fadeEffect);
-                  document.body.querySelector('.searchbarFloating').remove();
-                  document.querySelector('.searchbarFloating input').focusout();
-                }
-              }, 10);
-            }
-          });
         } else {
           // Hide Search bar on click
-          let target = document.body.querySelector('.searchbarFloating');
-          let stepper = 0;
-          var fadeEffect = setInterval(function () {
-            if (!target.style.transform) {
-              stepper = 0;
-              target.style.transform = 'translateY(0%)';
-            }
-            if (stepper > -300) {
-              stepper = stepper - 10;
-              target.style.transform = 'translateY(' + stepper + '%)';
-            } else {
-              clearInterval(fadeEffect);
-              document.body.querySelector('.searchbarFloating').remove();
-              document.querySelector('.searchbarFloating input').focusout();
-            }
-          }, 10);
+          searchBar.classList.remove('active');
+          searchbarFloating.classList.remove('active');
         }
+
+        // Hide Search bar on click outside
+        document.addEventListener('mouseup', function (e) {
+          if (searchbarFloating.classList.contains('active'))
+            if (window.innerWidth <= 991.98)
+              if (!searchbarFloating.contains(e.target) && !searchBar.contains(e.target)) {
+                searchBar.classList.remove('active');
+                searchbarFloating.classList.remove('active');
+              }
+        });
       }
     });
   }

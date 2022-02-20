@@ -1988,7 +1988,55 @@
             </div>
           </section>
         </div>
+
+        <!-- Search floating bar -->
+        <div class="searchbarFloating">
+          <div class="content d-flex">
+            <!-- Icon -->
+            <em icon class="ph-magnifying-glass"></em>
+            <!-- Input -->
+            <input
+              type="text"
+              class="form-control"
+              placeholder="أبحث عن ما تريد ..."
+              aria-label="البحث" />
+
+            <!-- Separator -->
+            <div class="separator vertical">
+              <span></span>
+            </div>
+
+            <!-- Select Floating Category -->
+            <div>
+              <button
+                class="btn dropdown-toggle"
+                type="button"
+                id="search-floating-category-dropdown"
+                data-select="search-floating-category"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Dropdown button
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-start"
+                aria-labelledby="search-floating-category-dropdown">
+                <li><div class="dropdown-item active" value="الطلبات">الطلبات</div></li>
+                <li><div class="dropdown-item" value="المنتجات">المنتجات</div></li>
+                <li><div class="dropdown-item" value="العملاء">العملاء</div></li>
+                <li><div class="dropdown-item" value="الشراكات">الشراكات</div></li>
+              </ul>
+
+              <select class="form-select" id="search-floating-category">
+                <option value="الطلبات" selected>الطلبات</option>
+                <option value="المنتجات">المنتجات</option>
+                <option value="العملاء">العملاء</option>
+                <option value="الشراكات">الشراكات</option>
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
+
       <!-- #endregion -->
     </div>
     <!-- #endregion -->
