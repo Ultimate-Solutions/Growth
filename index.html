@@ -502,22 +502,32 @@
                   </div>
 
                   <!-- Select Category -->
-                  <select
-                    class="form-select"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    id="search-category">
-                    <option hidden value="الطلبات" selected>الطلبات</option>
-                    <option hidden value="المنتجات">المنتجات</option>
-                    <option hidden value="العملاء">العملاء</option>
-                    <option hidden value="الشراكات">الشراكات</option>
-                  </select>
+                  <div>
+                    <button
+                      class="btn dropdown-toggle"
+                      type="button"
+                      id="search-category-dropdown"
+                      data-select="search-category"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Dropdown button
+                    </button>
+                    <ul
+                      class="dropdown-menu dropdown-menu-start"
+                      aria-labelledby="search-category-dropdown">
+                      <li><div class="dropdown-item active" value="الطلبات">الطلبات</div></li>
+                      <li><div class="dropdown-item" value="المنتجات">المنتجات</div></li>
+                      <li><div class="dropdown-item" value="العملاء">العملاء</div></li>
+                      <li><div class="dropdown-item" value="الشراكات">الشراكات</div></li>
+                    </ul>
 
-                  <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="search-category">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                  </ul>
+                    <select class="form-select" id="search-category">
+                      <option value="الطلبات" selected>الطلبات</option>
+                      <option value="المنتجات">المنتجات</option>
+                      <option value="العملاء">العملاء</option>
+                      <option value="الشراكات">الشراكات</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>

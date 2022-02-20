@@ -493,6 +493,58 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 // #endregion
 
+// #region / Dropdown with selector
+//   _____                      _                                _ _   _                _           _
+//  |  __ \                    | |                              (_) | | |              | |         | |
+//  | |  | |_ __ ___  _ __   __| | _____      ___ __   __      ___| |_| |__    ___  ___| | ___  ___| |_ ___  _ __
+//  | |  | | '__/ _ \| '_ \ / _` |/ _ \ \ /\ / / '_ \  \ \ /\ / / | __| '_ \  / __|/ _ \ |/ _ \/ __| __/ _ \| '__|
+//  | |__| | | | (_) | |_) | (_| | (_) \ V  V /| | | |  \ V  V /| | |_| | | | \__ \  __/ |  __/ (__| || (_) | |
+//  |_____/|_|  \___/| .__/ \__,_|\___/ \_/\_/ |_| |_|   \_/\_/ |_|\__|_| |_| |___/\___|_|\___|\___|\__\___/|_|
+//                   | |
+//                   |_|
+document.addEventListener('DOMContentLoaded', () => {
+  // Get all dDropdown with selector
+  const dropdownItems = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="dropdown"][data-select]')
+  );
+  // Loop all items
+  // Check exist
+  dropdownItems.map(function (dropdownItem) {
+    if (dropdownItem) {
+      // Get select container
+      var selector = document.querySelector('#' + dropdownItem.getAttribute('data-select'));
+      // Get all options
+      var options = dropdownItem.nextElementSibling.querySelectorAll('.dropdown-item');
+
+      for (let option of options) {
+        // Set active value
+        if (option.classList.contains('active')) {
+          // Set active
+          selector.value = option.getAttribute('value');
+
+          // Set dropdown text
+          dropdownItem.innerText = option.getAttribute('value');
+        }
+
+        option.addEventListener('click', () => {
+          // Remove active for all
+          for (let optionInner of options) optionInner.classList.remove('active');
+
+          // Add active for current
+          option.classList.add('active');
+
+          // Add active value to selector
+          selector.value = option.getAttribute('value');
+
+          // Set dropdown text
+          dropdownItem.innerText = option.getAttribute('value');
+        });
+      }
+    }
+  });
+});
+// #endregion
+
 // Element Top Left position helper
 function offset(el) {
   var rect = el.getBoundingClientRect(),
