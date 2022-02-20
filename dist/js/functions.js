@@ -318,6 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function rangeDatePicker(ele) {
       var start = moment().subtract(29, 'days');
       var end = moment();
+      var local;
 
       if (ele.attr('picker-container') == 'input')
         function cb(start, end) {
@@ -332,7 +333,6 @@ document.addEventListener('DOMContentLoaded', () => {
           ele.find('input').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         }
 
-      var local;
       var lang = document.getElementsByTagName('html')[0].getAttribute('lang'),
         dir = document.getElementsByTagName('html')[0].getAttribute('dir');
 
@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
           last30daysRangeLabel: 'أخر 30 يوم',
           thisMonthRangeLabel: 'هذا الشهر',
           lastMonthRangeLabel: 'أخر شهر',
-          customRangeLabel: 'مخصص',
+          lastRangeCustom: 'مخصص',
           weekLabel: 'W',
           daysOfWeek: ['الأحد', 'الأثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعة', 'السبت'],
           monthNames: [
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
           last30daysRangeLabel: 'Last 30 Days',
           thisMonthRangeLabel: 'This Month',
           lastMonthRangeLabel: 'Last Month',
-          customRangeLabel: 'Custom',
+          lastRangeCustom: 'Custom Range',
           weekLabel: 'W',
           daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
           monthNames: [
@@ -435,7 +435,8 @@ document.addEventListener('DOMContentLoaded', () => {
               '.ranges [data-range-key="Last 30 Days"'
             ),
             rangeThisMonth = daterangepicker.querySelector('.ranges [data-range-key="This Month"'),
-            rangeLastMonth = daterangepicker.querySelector('.ranges [data-range-key="Last Month"');
+            rangeLastMonth = daterangepicker.querySelector('.ranges [data-range-key="Last Month"'),
+            rangeCustom = daterangepicker.querySelector('.ranges [data-range-key="Custom Range"');
 
           // Change Text
           rangeToday.innerHTML = local.todayRangeLabel;
@@ -444,6 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
           rangeLast30Days.innerHTML = local.last30daysRangeLabel;
           rangeThisMonth.innerHTML = local.thisMonthRangeLabel;
           rangeLastMonth.innerHTML = local.lastMonthRangeLabel;
+          rangeCustom.innerHTML = local.lastRangeCustom;
         }
       });
 
