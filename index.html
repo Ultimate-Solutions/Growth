@@ -502,12 +502,22 @@
                   </div>
 
                   <!-- Select Category -->
-                  <select class="form-select" aria-label="Search Category">
-                    <option value="الطلبات" selected>الطلبات</option>
-                    <option value="المنتجات">المنتجات</option>
-                    <option value="العملاء">العملاء</option>
-                    <option value="الشراكات">الشراكات</option>
+                  <select
+                    class="form-select"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    id="search-category">
+                    <option hidden value="الطلبات" selected>الطلبات</option>
+                    <option hidden value="المنتجات">المنتجات</option>
+                    <option hidden value="العملاء">العملاء</option>
+                    <option hidden value="الشراكات">الشراكات</option>
                   </select>
+
+                  <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="search-category">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                  </ul>
                 </div>
               </div>
             </div>
