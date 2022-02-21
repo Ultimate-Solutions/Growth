@@ -1357,6 +1357,14 @@ img {
   .hover-scroll-x {
     overflow-x: auto;
   }
+  .hover-scroll-overlay-x {
+    overflow-x: overlay;
+    position: relative;
+  }
+  .hover-scroll-overlay-y {
+    overflow-y: overlay;
+    position: relative;
+  }
 }
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
