@@ -1471,6 +1471,189 @@ img {
   transform: translate(0px, 0px);
 }
 
+.apexcharts-legend-text,
+.apexcharts-text,
+.apexcharts-title-text {
+  font-family: Poppins, Helvetica, sans-serif !important;
+}
+
+.apexcharts-title-text {
+  font-weight: 400;
+}
+
+.apexcharts-pie-label {
+  font-weight: 400;
+  font-size: 0.925rem;
+}
+
+.apexcharts-toolbar {
+  text-align: left !important;
+}
+
+.apexcharts-menu {
+  background: #fff;
+  border: 0 !important;
+  padding: 0.5rem 0 !important;
+  box-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.15);
+  border-radius: 0.65rem !important;
+  overflow: hidden;
+  min-width: 10rem !important;
+}
+
+.apexcharts-menu .apexcharts-menu-item {
+  padding: 0.25rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.apexcharts-menu .apexcharts-menu-item:hover {
+  background-color: rgba(245, 248, 250, 0.8) !important;
+}
+
+.apexcharts-tooltip {
+  border-radius: 0.65rem;
+  box-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.15);
+  border: 0 !important;
+  background: #fff !important;
+  color: #3f4254;
+  text-align: center;
+}
+
+.apexcharts-tooltip .apexcharts-tooltip-title {
+  background: #fff !important;
+  font-weight: 500;
+  color: #3f4254;
+  border-bottom: 1px solid #f5f8fa !important;
+}
+
+.apexcharts-tooltip .apexcharts-tooltip-series-group {
+  text-align: start;
+  justify-content: flex-start;
+}
+
+.apexcharts-tooltip .apexcharts-tooltip-marker {
+  margin: 0 0 0 0.625rem;
+}
+.apexcharts-tooltip .apexcharts-tooltip-text-y-value,
+.apexcharts-tooltip .apexcharts-tooltip-text-goals-value,
+.apexcharts-tooltip .apexcharts-tooltip-text-z-value {
+  margin: 0 0.625rem 0 0;
+}
+.apexcharts-tooltip .apexcharts-tooltip-title {
+  padding: 0.5rem 1rem;
+}
+
+.apexcharts-xaxistooltip {
+  border-radius: 0.65rem !important;
+  box-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.15) !important;
+  border: 0 !important;
+  background: #fff !important;
+  color: #3f4254;
+}
+
+.apexcharts-xaxistooltip:before {
+  border-bottom: 0 !important;
+}
+
+.apexcharts-xaxistooltip:after {
+  border-bottom-color: #fff !important;
+}
+
+.card-rounded-bottom .apexcharts-canvas svg {
+  border-bottom-left-radius: 0.65rem;
+  border-bottom-right-radius: 0.65rem;
+}
+
+.rounded .apexcharts-canvas svg {
+  border-radius: 0.65rem !important;
+}
+
+.rounded-sm .apexcharts-canvas svg {
+  border-radius: 0.3rem !important;
+}
+
+.rounded-lg .apexcharts-canvas svg {
+  border-radius: 0.85rem !important;
+}
+
+.rounded-xl .apexcharts-canvas svg {
+  border-radius: 1.25rem !important;
+}
+
+.apexcharts-bar-hover-white .apexcharts-bar-area:hover {
+  fill: #fff !important;
+}
+
+.apexcharts-bar-hover-primary .apexcharts-bar-area:hover {
+  fill: #009ef7 !important;
+}
+
+.apexcharts-bar-hover-secondary .apexcharts-bar-area:hover {
+  fill: #e4e6ef !important;
+}
+
+.apexcharts-bar-hover-light .apexcharts-bar-area:hover {
+  fill: #f5f8fa !important;
+}
+
+.apexcharts-bar-hover-success .apexcharts-bar-area:hover {
+  fill: #50cd89 !important;
+}
+
+.apexcharts-bar-hover-info .apexcharts-bar-area:hover {
+  fill: #7239ea !important;
+}
+
+.apexcharts-bar-hover-warning .apexcharts-bar-area:hover {
+  fill: #ffc700 !important;
+}
+
+.apexcharts-bar-hover-danger .apexcharts-bar-area:hover {
+  fill: #f1416c !important;
+}
+
+.apexcharts-bar-hover-dark .apexcharts-bar-area:hover {
+  fill: #181c32 !important;
+}
+
+.apexcharts-bar-hover-muted .apexcharts-bar-area:hover {
+  fill: #a1a5b7 !important;
+}
+
+.apexcharts-bar-hover-gray-100 .apexcharts-bar-area:hover {
+  fill: #f5f8fa !important;
+}
+
+.apexcharts-bar-hover-gray-200 .apexcharts-bar-area:hover {
+  fill: #eff2f5 !important;
+}
+
+.apexcharts-bar-hover-gray-300 .apexcharts-bar-area:hover {
+  fill: #e4e6ef !important;
+}
+
+.apexcharts-bar-hover-gray-400 .apexcharts-bar-area:hover {
+  fill: #b5b5c3 !important;
+}
+
+.apexcharts-bar-hover-gray-500 .apexcharts-bar-area:hover {
+  fill: #a1a5b7 !important;
+}
+
+.apexcharts-bar-hover-gray-600 .apexcharts-bar-area:hover {
+  fill: #7e8299 !important;
+}
+
+.apexcharts-bar-hover-gray-700 .apexcharts-bar-area:hover {
+  fill: #5e6278 !important;
+}
+
+.apexcharts-bar-hover-gray-800 .apexcharts-bar-area:hover {
+  fill: #3f4254 !important;
+}
+
+.apexcharts-bar-hover-gray-900 .apexcharts-bar-area:hover {
+  fill: #181c32 !important;
+}
 /* -----------------------------------------------
   Main > Dashboard
 -------------------------------------------------*/

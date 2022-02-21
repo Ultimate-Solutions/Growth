@@ -526,7 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       chart: {
         fontFamily: 'inherit',
-        type: 'area',
+        type: 'line',
         height: '30px',
         toolbar: {
           show: !1,
@@ -613,7 +613,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       chart: {
         fontFamily: 'inherit',
-        type: 'area',
+        type: 'line',
         height: '30px',
         toolbar: {
           show: !1,
@@ -700,7 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       chart: {
         fontFamily: 'inherit',
-        type: 'area',
+        type: 'line',
         height: '30px',
         toolbar: {
           show: !1,
@@ -787,7 +787,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       chart: {
         fontFamily: 'inherit',
-        type: 'area',
+        type: 'line',
         height: '30px',
         toolbar: {
           show: !1,
@@ -886,7 +886,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       chart: {
         fontFamily: 'inherit',
-        type: 'area',
+        type: 'line',
         height: 350,
         toolbar: {
           show: !1,
@@ -907,15 +907,9 @@ document.addEventListener('DOMContentLoaded', () => {
         curve: 'smooth',
         show: !0,
         width: 3,
-        colors: [
-          getCssVariableValue('--chart-blue'),
-          getCssVariableValue('--chart-pink'),
-          getCssVariableValue('--chart-yellow'),
-          getCssVariableValue('--chart-green'),
-        ],
       },
       xaxis: {
-        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        categories: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10'],
         axisBorder: {
           show: !1,
         },
@@ -988,10 +982,10 @@ document.addEventListener('DOMContentLoaded', () => {
         },
       },
       colors: [
-        getCssVariableValue('--chart-blue-opacity'),
-        getCssVariableValue('--chart-pink-opacity'),
-        getCssVariableValue('--chart-yellow-opacity'),
-        getCssVariableValue('--chart-green-opacity'),
+        getCssVariableValue('--chart-blue'),
+        getCssVariableValue('--chart-pink'),
+        getCssVariableValue('--chart-yellow'),
+        getCssVariableValue('--chart-green'),
       ],
       grid: {
         borderColor: getCssVariableValue('--chart-gray-border'),
@@ -1001,15 +995,6 @@ document.addEventListener('DOMContentLoaded', () => {
             show: !0,
           },
         },
-      },
-      markers: {
-        strokeColor: [
-          getCssVariableValue('--chart-blue'),
-          getCssVariableValue('--chart-pink'),
-          getCssVariableValue('--chart-yellow'),
-          getCssVariableValue('--chart-green'),
-        ],
-        strokeWidth: 3,
       },
     };
     // Call function
