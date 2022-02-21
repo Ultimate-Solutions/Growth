@@ -96,6 +96,27 @@
   --tooltips-border-color: #fff;
   --tooltips-color: #1e1e1f;
   --tooltips-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+  --chart-gray-border: #e2e2e2;
+  --chart-blue: #0d6efd;
+  --chart-blue-opacity: #0d6efd10;
+  --chart-indigo: #6610f2;
+  --chart-indigo-opacity: #6610f210;
+  --chart-purple: #6f42c1;
+  --chart-purple-opacity: #6f42c110;
+  --chart-pink: #d63384;
+  --chart-pink-opacity: #d6338410;
+  --chart-red: #dc3545;
+  --chart-red-opacity: #dc354510;
+  --chart-orange: #fd7e14;
+  --chart-orange-opacity: #fd7e1410;
+  --chart-yellow: #ffc107;
+  --chart-yellow-opacity: #ffc10710;
+  --chart-green: #198754;
+  --chart-green-opacity: #19875410;
+  --chart-teal: #20c997;
+  --chart-teal-opacity: #20c99710;
+  --chart-cyan: #0dcaf0;
+  --chart-cyan-opacity: #0dcaf010;
   --dashboard-sidebar-background-color: #fff;
   --dashboard-content-background-color: #f1f1f1;
   --dashboard-content-shadow: 4px 0px 20px 0px rgb(0 0 0 / 20%);
@@ -1225,7 +1246,6 @@ video,
 img {
   max-width: 100%;
 }
-
 /* -----------------------------------------------
   Main > Custom Scrollbar
 -------------------------------------------------*/
@@ -1270,7 +1290,7 @@ img {
   position: relative;
 }
 .hover-scroll-overlay-x {
-  overflow-y: hidden;
+  overflow-x: hidden;
   position: relative;
 }
 .hover-scroll-overlay-x:hover {
@@ -1391,6 +1411,7 @@ img {
     }
   }
 }
+
 /* -----------------------------------------------
   Main > Separator
 -------------------------------------------------*/
@@ -1415,6 +1436,7 @@ img {
   width: 2px;
   min-height: calc(100% - 1rem);
 }
+
 /* -----------------------------------------------
   Main > Tooltip
 -------------------------------------------------*/
@@ -1441,6 +1463,14 @@ img {
     opacity: 1;
   }
 }
+
+/* -----------------------------------------------
+  Main > Apexcharts
+-------------------------------------------------*/
+.apexcharts-yaxis {
+  transform: translate(0px, 0px);
+}
+
 /* -----------------------------------------------
   Main > Dashboard
 -------------------------------------------------*/
@@ -2845,6 +2875,72 @@ section > .header > [actions] > * > *:not(:last-child),
 section > .header > [actions] .separator.vertical > *,
 [statistics] > .content .statistics.big > .header > [actions] .separator.vertical > * {
   min-height: 100%;
+}
+[statistics] > .content .statistics.big > .list-group {
+  display: flex;
+  flex-direction: row;
+  padding: 1.25rem;
+  background: linear-gradient(270deg, rgba(5, 168, 75, 0.1) 0%, rgba(34, 68, 123, 0.1) 100%);
+  box-shadow: inset -4px 0px 10px rgb(0 0 0 / 15%);
+  margin: 1.25rem -1.25rem;
+  border-radius: 0;
+}
+[statistics] > .content .statistics.big > .list-group > .item {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-medium);
+  transition: var(--transition-normal);
+  min-width: 18.75rem;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+[statistics] > .content .statistics.big > .list-group > .item:hover,
+[statistics] > .content .statistics.big > .list-group > .item:focus,
+[statistics] > .content .statistics.big > .list-group > .item:active,
+[statistics] > .content .statistics.big > .list-group > .item.active {
+  background-color: #fff;
+  border-radius: var(--border-radius);
+}
+[statistics] > .content .statistics.big > .list-group > .item > *:not(:last-child) {
+  margin-left: 1.25rem;
+}
+[statistics] > .content .statistics.big > .list-group > .item .title {
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  color: #808080;
+  margin-bottom: 0.625rem;
+}
+[statistics] > .content .statistics.big > .list-group > .item .data {
+  font-size: var(--font-size-32);
+  font-weight: var(--font-weight-bold);
+}
+[statistics] > .content .statistics.big > .list-group > .item .chart {
+  width: 60px;
+  pointer-events: none;
+}
+[statistics] > .content .statistics.big > .list-group > .item .status {
+  position: relative;
+  padding-right: 1.25rem;
+}
+[statistics] > .content .statistics.big > .list-group > .item .status:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font: normal normal normal 1em/1 'Phosphor';
+  color: inherit;
+}
+[statistics] > .content .statistics.big > .list-group > .item .status.up:after {
+  content: '\f29e';
+  color: #05a84b;
+}
+[statistics] > .content .statistics.big > .list-group > .item .status.down:after {
+  content: '\f269';
+  color: #dc3545;
 }
 section > .content {
   clear: both;
