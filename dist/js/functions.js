@@ -1000,6 +1000,143 @@ document.addEventListener('DOMContentLoaded', () => {
     // Call function
     new ApexCharts(eleHome, options).render();
   }
+
+  // Donut Chart
+  var donutChart = document.getElementById('donutChart');
+  // Check exist
+  if (donutChart) {
+    // Options
+    var options = {
+      series: [4640, 5050, 1300],
+      labels: ['Desktop', 'Tablet', 'Phone'],
+      chart: {
+        id: 'donutChart',
+        type: 'donut',
+        height: 300,
+      },
+      plotOptions: {},
+      legend: {
+        show: !1,
+      },
+      dataLabels: {
+        enabled: !1,
+      },
+      plotOptions: {
+        pie: {
+          donut: {
+            size: '85%',
+            labels: {
+              show: !0,
+              value: {
+                fontSize: '32px',
+                formatter: function (val) {
+                  if (val < 1000) return val;
+                  else if (val >= 1000) return parseInt(val / 1000) + 'K';
+                  else if (val >= 1000000) return parseInt(val / 1000000) + 'M';
+                  else if (val >= 1000000000) return parseInt(val / 1000000000) + 'T';
+                },
+              },
+              name: {
+                fontSize: '18px',
+                formatter: function (val) {
+                  return val;
+                },
+              },
+              total: {
+                show: true,
+                showAlways: true,
+                label: 'Total',
+                fontSize: '22px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 600,
+                color: '#373d3f',
+                formatter: function (w) {
+                  let val = w.globals.seriesTotals.reduce((a, b) => {
+                    return a + b;
+                  }, 0);
+
+                  if (val < 1000) return val;
+                  else if (val >= 1000) return parseInt(val / 1000) + 'K';
+                  else if (val >= 1000000) return parseInt(val / 1000000) + 'M';
+                  else if (val >= 1000000000) return parseInt(val / 1000000000) + 'T';
+                },
+              },
+            },
+          },
+          expandOnClick: false,
+        },
+      },
+      legend: {
+        show: !1,
+      },
+      dataLabels: {
+        enabled: !1,
+      },
+      states: {
+        normal: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        hover: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        active: {
+          allowMultipleDataPointsSelection: !1,
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+      },
+      tooltip: {
+        style: {
+          fontSize: '12px',
+        },
+        y: {
+          formatter: function (val) {
+            if (val < 1000) return val;
+            else if (val >= 1000) return parseInt(val / 1000) + 'K';
+            else if (val >= 1000000) return parseInt(val / 1000000) + 'M';
+            else if (val >= 1000000000) return parseInt(val / 1000000000) + 'T';
+          },
+        },
+      },
+    };
+    // Call function
+    new ApexCharts(donutChart, options).render();
+
+    // Update Donut Chart on click tabs
+    document.querySelector('#table-deviceType').addEventListener('click', () => {
+      ApexCharts.exec(
+        'donutChart',
+        'updateOptions',
+        {
+          series: [4640, 5050, 1300],
+          labels: ['Desktop', 'Tablet', 'Phone'],
+        },
+        false,
+        true
+      );
+    });
+    // Update Donut Chart on click tabs
+    document.querySelector('#table-country').addEventListener('click', () => {
+      ApexCharts.exec(
+        'donutChart',
+        'updateOptions',
+        {
+          series: [250000, 121000, 78000, 26540],
+          labels: ['السعودية', 'مصر', 'المغرب', 'البحرين'],
+        },
+        false,
+        true
+      );
+    });
+  }
 });
 // #endregion
 

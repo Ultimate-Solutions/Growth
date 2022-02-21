@@ -745,128 +745,247 @@
             <!-- Content -->
             <div class="content bg-transparent">
               <div class="container-fluid">
-                <div class="row">
+                <div class="row g-4">
                   <!-- Statistics Big -->
-                  <div class="statistics big col-12 col-xl-7">
-                    <!-- Header -->
-                    <div class="header">
-                      <div>
-                        <div class="title">نشاط واحصائيات متجرك الإلكتروني</div>
-                        <div class="subtitle">
-                          هذا النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني
+                  <div class="col-12 col-xl-7">
+                    <div class="statistics big">
+                      <!-- Header -->
+                      <div class="header">
+                        <div>
+                          <div class="title">نشاط واحصائيات متجرك الإلكتروني</div>
+                          <div class="subtitle">
+                            هذا النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني
+                          </div>
+                        </div>
+
+                        <div actions>
+                          <!-- Action -->
+                          <!-- Export Action -->
+                          <div class="dropdown">
+                            <div
+                              id="exportDropdown"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                              <div action data-bs-toggle="tooltip" data-bs-original-title="تصدير">
+                                <em class="icon animate__rubberBand hover-parent ph-export"></em>
+                              </div>
+                            </div>
+
+                            <ul class="dropdown-menu" aria-labelledby="exportDropdown">
+                              <li>
+                                <div class="dropdown-item" action-export="copy">
+                                  نسخ إلى الحافظة
+                                </div>
+                              </li>
+                              <li>
+                                <div class="dropdown-item" action-export="excel">
+                                  تصدير بتنسيق Excel
+                                </div>
+                              </li>
+                              <li>
+                                <div class="dropdown-item" action-export="csv">
+                                  تصدير بتنسيق CSV
+                                </div>
+                              </li>
+                              <li>
+                                <div class="dropdown-item" action-export="pdf">
+                                  تصدير بتنسيق PDF
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <!-- Print Action -->
+                          <a
+                            href="#"
+                            action
+                            data-bs-toggle="tooltip"
+                            data-bs-original-title="طباعة">
+                            <em class="icon animate__rubberBand hover-parent ph-printer"></em>
+                          </a>
+
+                          <!-- Separator -->
+                          <div class="separator vertical">
+                            <span></span>
+                          </div>
+
+                          <!-- Calendar Action -->
+                          <form>
+                            <div
+                              class="input-group"
+                              action
+                              date-picker
+                              id="datePickerRange"
+                              picker-type="range"
+                              picker-container="input-group">
+                              <em
+                                class="icon animate__rubberBand hover-parent ph-calendar-blank"></em>
+                              <input id="datePickerRangeValue" readonly placeholder="1/1/2000" />
+                            </div>
+                          </form>
                         </div>
                       </div>
 
-                      <div actions>
-                        <!-- Action -->
-                        <!-- Export Action -->
-                        <div class="dropdown">
-                          <div id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <div action data-bs-toggle="tooltip" data-bs-original-title="تصدير">
-                              <em class="icon animate__rubberBand hover-parent ph-export"></em>
+                      <!-- Tabs -->
+                      <div class="list-group hover-scroll-overlay-x" scroll>
+                        <!-- Item -->
+                        <div class="item" chart-control="holol_chart_widget_1">
+                          <!-- Header -->
+                          <div>
+                            <div class="title">الأرباح</div>
+                            <div class="data">95.3K</div>
+                          </div>
+                          <!-- Chart -->
+                          <div class="chart" id="holol_chart_widget_1_small"></div>
+                          <!-- Status -->
+                          <div class="status down">-14</div>
+                        </div>
+                        <!-- Item -->
+                        <div class="item" chart-control="holol_chart_widget_1">
+                          <!-- Header -->
+                          <div>
+                            <div class="title">المبيعات</div>
+                            <div class="data">95.3K</div>
+                          </div>
+                          <!-- Chart -->
+                          <div class="chart" id="holol_chart_widget_2_small"></div>
+                          <!-- Status -->
+                          <div class="status up">+7%</div>
+                        </div>
+                        <!-- Item -->
+                        <div class="item" chart-control="holol_chart_widget_1">
+                          <!-- Header -->
+                          <div>
+                            <div class="title">الطلبات</div>
+                            <div class="data">95.3K</div>
+                          </div>
+                          <!-- Chart -->
+                          <div class="chart" id="holol_chart_widget_3_small"></div>
+                          <!-- Status -->
+                          <div class="status down">-10%</div>
+                        </div>
+                        <!-- Item -->
+                        <div class="item" chart-control="holol_chart_widget_1">
+                          <!-- Header -->
+                          <div>
+                            <div class="title">الزيارات</div>
+                            <div class="data">95.3K</div>
+                          </div>
+                          <!-- Chart -->
+                          <div class="chart" id="holol_chart_widget_4_small"></div>
+                          <!-- Status -->
+                          <div class="status up">+18%</div>
+                        </div>
+                      </div>
+
+                      <!-- Content -->
+                      <div class="content">
+                        <div id="holol_chart_widget_1"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Statistics Big -->
+                  <div class="col-12 col-xl-5">
+                    <div class="statistics big donut">
+                      <!-- Header -->
+                      <div class="header text-center">
+                        <div>
+                          <div class="title">نشاط واحصائيات متجرك الإلكتروني</div>
+                        </div>
+                      </div>
+
+                      <!-- Tabs -->
+                      <div class="list-group tabs hover-scroll-overlay-x" scroll role="tablist">
+                        <!-- Item -->
+                        <a
+                          class="action animate__tada active"
+                          id="table-deviceType"
+                          data-bs-toggle="list"
+                          href="#table-deviceType-content"
+                          role="tab"
+                          aria-controls="table-deviceType-content"
+                          >نوع الجهاز</a
+                        >
+                        <a
+                          class="action animate__tada"
+                          id="table-country"
+                          data-bs-toggle="list"
+                          href="#table-country-content"
+                          role="tab"
+                          aria-controls="table-country-content"
+                          >الدول الأكثر زيارة</a
+                        >
+                      </div>
+
+                      <!-- Chart -->
+                      <div id="donutChart" class="my-4"></div>
+
+                      <!-- Content -->
+                      <div class="content tab-content">
+                        <!-- Tab BEGIN -->
+                        <div
+                          class="tab-pane fade show active"
+                          id="table-deviceType-content"
+                          role="tabpanel"
+                          aria-labelledby="table-deviceType">
+                          <!-- List -->
+                          <div class="data-list">
+                            <!-- Item BEGIN -->
+                            <div class="item" desktop>
+                              <em class="ph-desktop"></em>
+                              <div class="title">Desktop</div>
+                              <div class="value">13%</div>
+                              <div class="status">0%</div>
+                            </div>
+                            <!-- Item END -->
+                            <div class="item" tablet>
+                              <em class="ph-device-tablet"></em>
+                              <div class="title">Tablet</div>
+                              <div class="value">36%</div>
+                              <div class="status down">-10%</div>
+                            </div>
+                            <div class="item" mobile>
+                              <em class="ph-device-mobile"></em>
+                              <div class="title">Mobile</div>
+                              <div class="value">51%</div>
+                              <div class="status up">+62%</div>
                             </div>
                           </div>
-
-                          <ul class="dropdown-menu" aria-labelledby="exportDropdown">
-                            <li>
-                              <div class="dropdown-item" action-export="copy">نسخ إلى الحافظة</div>
-                            </li>
-                            <li>
-                              <div class="dropdown-item" action-export="excel">
-                                تصدير بتنسيق Excel
-                              </div>
-                            </li>
-                            <li>
-                              <div class="dropdown-item" action-export="csv">تصدير بتنسيق CSV</div>
-                            </li>
-                            <li>
-                              <div class="dropdown-item" action-export="pdf">تصدير بتنسيق PDF</div>
-                            </li>
-                          </ul>
                         </div>
-
-                        <!-- Print Action -->
-                        <a href="#" action data-bs-toggle="tooltip" data-bs-original-title="طباعة">
-                          <em class="icon animate__rubberBand hover-parent ph-printer"></em>
-                        </a>
-
-                        <!-- Separator -->
-                        <div class="separator vertical">
-                          <span></span>
-                        </div>
-
-                        <!-- Calendar Action -->
-                        <form>
-                          <div
-                            class="input-group"
-                            action
-                            date-picker
-                            id="datePickerRange"
-                            picker-type="range"
-                            picker-container="input-group">
-                            <em
-                              class="icon animate__rubberBand hover-parent ph-calendar-blank"></em>
-                            <input id="datePickerRangeValue" readonly placeholder="1/1/2000" />
+                        <!-- Tab END -->
+                        <div
+                          class="tab-pane fade"
+                          id="table-country-content"
+                          role="tabpanel"
+                          aria-labelledby="table-country">
+                          <!-- List -->
+                          <div class="data-list column">
+                            <!-- Item BEGIN -->
+                            <div class="item">
+                              <div class="title">السعودية</div>
+                              <div class="value">2000</div>
+                              <div class="status">0%</div>
+                            </div>
+                            <!-- Item END -->
+                            <div class="item">
+                              <div class="title">مصر</div>
+                              <div class="value">850</div>
+                              <div class="status down">-10%</div>
+                            </div>
+                            <div class="item">
+                              <div class="title">اليمن</div>
+                              <div class="value">4520</div>
+                              <div class="status up">+62%</div>
+                            </div>
+                            <div class="item">
+                              <div class="title">البحرين</div>
+                              <div class="value">455</div>
+                              <div class="status up">+10%</div>
+                            </div>
                           </div>
-                        </form>
-                      </div>
-                    </div>
-
-                    <!-- Tabs -->
-                    <div class="list-group hover-scroll-overlay-x" scroll>
-                      <!-- Item -->
-                      <div class="item" chart-control="holol_chart_widget_1">
-                        <!-- Header -->
-                        <div>
-                          <div class="title">الأرباح</div>
-                          <div class="data">95.3K</div>
                         </div>
-                        <!-- Chart -->
-                        <div class="chart" id="holol_chart_widget_1_small"></div>
-                        <!-- Status -->
-                        <div class="status down">-14</div>
                       </div>
-                      <!-- Item -->
-                      <div class="item" chart-control="holol_chart_widget_1">
-                        <!-- Header -->
-                        <div>
-                          <div class="title">المبيعات</div>
-                          <div class="data">95.3K</div>
-                        </div>
-                        <!-- Chart -->
-                        <div class="chart" id="holol_chart_widget_2_small"></div>
-                        <!-- Status -->
-                        <div class="status up">+7%</div>
-                      </div>
-                      <!-- Item -->
-                      <div class="item" chart-control="holol_chart_widget_1">
-                        <!-- Header -->
-                        <div>
-                          <div class="title">الطلبات</div>
-                          <div class="data">95.3K</div>
-                        </div>
-                        <!-- Chart -->
-                        <div class="chart" id="holol_chart_widget_3_small"></div>
-                        <!-- Status -->
-                        <div class="status down">-10%</div>
-                      </div>
-                      <!-- Item -->
-                      <div class="item" chart-control="holol_chart_widget_1">
-                        <!-- Header -->
-                        <div>
-                          <div class="title">الزيارات</div>
-                          <div class="data">95.3K</div>
-                        </div>
-                        <!-- Chart -->
-                        <div class="chart" id="holol_chart_widget_4_small"></div>
-                        <!-- Status -->
-                        <div class="status up">+18%</div>
-                      </div>
-                    </div>
-
-                    <!-- Content -->
-                    <div class="content">
-                      <div id="holol_chart_widget_1"></div>
                     </div>
                   </div>
                 </div>
@@ -1122,7 +1241,6 @@
                     class="action animate__tada active"
                     id="table-ex1"
                     data-bs-toggle="list"
-                    data-type="Warning"
                     href="#table-ex1-content"
                     role="tab"
                     aria-controls="table-ex1-content"
@@ -1133,7 +1251,6 @@
                     class="action animate__tada"
                     id="table-ex2"
                     data-bs-toggle="list"
-                    data-type="Success"
                     href="#table-ex2-content"
                     role="tab"
                     aria-controls="table-ex2-content"
@@ -1143,7 +1260,6 @@
                     class="action animate__tada"
                     id="table-ex3"
                     data-bs-toggle="list"
-                    data-type="Success"
                     href="#table-ex3-content"
                     role="tab"
                     aria-controls="table-ex3-content"
@@ -1153,7 +1269,6 @@
                     class="action animate__tada"
                     id="table-ex4"
                     data-bs-toggle="list"
-                    data-type="Success"
                     href="#table-ex4-content"
                     role="tab"
                     aria-controls="table-ex4-content"
