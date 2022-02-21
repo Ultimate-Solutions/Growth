@@ -2535,6 +2535,9 @@ img {
     border: none;
     padding: 0 1.25rem 0 2.5rem;
   }
+  .searchbarFloating {
+    display: none;
+  }
 }
 /* Medium devices (tablets, less than 992px) */
 @media (max-width: 991.98px) {
@@ -2591,7 +2594,7 @@ img {
     top: 5.625rem;
     left: 0;
     width: 100%;
-    padding: 0 1.25rem;
+    padding: 0 2.5rem;
     z-index: 1;
     transform: translateY(-300%);
     -webkit-transition: var(--transition-normal);
