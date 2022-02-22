@@ -216,66 +216,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchBar.addEventListener('click', () => {
       if (window.innerWidth <= 991.98) {
-        // Toggle Active
-        searchBar.classList.toggle('active');
-
-        const targetContainer = document.body.querySelector('.searchbarFloating');
-        if (!targetContainer) {
-          // View Search bar
-          const div = document.createElement('div');
-          div.classList.add('searchbarFloating');
-          div.innerHTML = searchBar.innerHTML;
-          document.querySelector('.dashboard > .content').appendChild(div);
-          document.querySelector('.searchbarFloating [icon]').remove();
+        // Get Floating search bar
+        var searchbarFloating = document.querySelector('.searchbarFloating');
+        // Check active state
+        if (!searchbarFloating.classList.contains('active')) {
+          // View Search bar on click
+          searchBar.classList.add('active');
+          searchbarFloating.classList.add('active');
           document.querySelector('.searchbarFloating input').focus();
-
-          // Hide Search bar on click outside
-          document.addEventListener('mouseup', function (e) {
-            if (
-              document.body.querySelector('.searchbarFloating') &&
-              !searchBar.contains(e.target) &&
-              !document.body.querySelector('.searchbarFloating').contains(e.target)
-            ) {
-              // Toggle Active
-              searchBar.classList.remove('active');
-
-              let target = document.body.querySelector('.searchbarFloating');
-              let stepper = 0;
-              var fadeEffect = setInterval(function () {
-                if (!target.style.transform) {
-                  stepper = 0;
-                  target.style.transform = 'translateY(0%)';
-                }
-                if (stepper > -300) {
-                  stepper = stepper - 10;
-                  target.style.transform = 'translateY(' + stepper + '%)';
-                } else {
-                  clearInterval(fadeEffect);
-                  document.body.querySelector('.searchbarFloating').remove();
-                  document.querySelector('.searchbarFloating input').focusout();
-                }
-              }, 10);
-            }
-          });
         } else {
           // Hide Search bar on click
-          let target = document.body.querySelector('.searchbarFloating');
-          let stepper = 0;
-          var fadeEffect = setInterval(function () {
-            if (!target.style.transform) {
-              stepper = 0;
-              target.style.transform = 'translateY(0%)';
-            }
-            if (stepper > -300) {
-              stepper = stepper - 10;
-              target.style.transform = 'translateY(' + stepper + '%)';
-            } else {
-              clearInterval(fadeEffect);
-              document.body.querySelector('.searchbarFloating').remove();
-              document.querySelector('.searchbarFloating input').focusout();
-            }
-          }, 10);
+          searchBar.classList.remove('active');
+          searchbarFloating.classList.remove('active');
         }
+
+        // Hide Search bar on click outside
+        document.addEventListener('mouseup', function (e) {
+          if (searchbarFloating.classList.contains('active'))
+            if (window.innerWidth <= 991.98)
+              if (!searchbarFloating.contains(e.target) && !searchBar.contains(e.target)) {
+                searchBar.classList.remove('active');
+                searchbarFloating.classList.remove('active');
+              }
+        });
       }
     });
   }
@@ -355,6 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function rangeDatePicker(ele) {
       var start = moment().subtract(29, 'days');
       var end = moment();
+      var local;
 
       if (ele.attr('picker-container') == 'input')
         function cb(start, end) {
@@ -369,7 +333,6 @@ document.addEventListener('DOMContentLoaded', () => {
           ele.find('input').val(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
         }
 
-      var local;
       var lang = document.getElementsByTagName('html')[0].getAttribute('lang'),
         dir = document.getElementsByTagName('html')[0].getAttribute('dir');
 
@@ -386,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
           last30daysRangeLabel: 'أخر 30 يوم',
           thisMonthRangeLabel: 'هذا الشهر',
           lastMonthRangeLabel: 'أخر شهر',
-          customRangeLabel: 'مخصص',
+          lastRangeCustom: 'مخصص',
           weekLabel: 'W',
           daysOfWeek: ['الأحد', 'الأثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعة', 'السبت'],
           monthNames: [
@@ -417,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
           last30daysRangeLabel: 'Last 30 Days',
           thisMonthRangeLabel: 'This Month',
           lastMonthRangeLabel: 'Last Month',
-          customRangeLabel: 'Custom',
+          lastRangeCustom: 'Custom Range',
           weekLabel: 'W',
           daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
           monthNames: [
@@ -472,7 +435,8 @@ document.addEventListener('DOMContentLoaded', () => {
               '.ranges [data-range-key="Last 30 Days"'
             ),
             rangeThisMonth = daterangepicker.querySelector('.ranges [data-range-key="This Month"'),
-            rangeLastMonth = daterangepicker.querySelector('.ranges [data-range-key="Last Month"');
+            rangeLastMonth = daterangepicker.querySelector('.ranges [data-range-key="Last Month"'),
+            rangeCustom = daterangepicker.querySelector('.ranges [data-range-key="Custom Range"');
 
           // Change Text
           rangeToday.innerHTML = local.todayRangeLabel;
@@ -481,6 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
           rangeLast30Days.innerHTML = local.last30daysRangeLabel;
           rangeThisMonth.innerHTML = local.thisMonthRangeLabel;
           rangeLastMonth.innerHTML = local.lastMonthRangeLabel;
+          rangeCustom.innerHTML = local.lastRangeCustom;
         }
       });
 
@@ -493,37 +458,685 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 // #endregion
 
-// #region / SELECT2
-//    _____ ______ _      ______ _____ _______ ___
-//   / ____|  ____| |    |  ____/ ____|__   __|__ \
-//  | (___ | |__  | |    | |__ | |       | |     ) |
-//   \___ \|  __| | |    |  __|| |       | |    / /
-//   ____) | |____| |____| |___| |____   | |   / /_
-//  |_____/|______|______|______\_____|  |_|  |____|
-//
-//
+// #region / Dropdown with selector
+//   _____                      _                                _ _   _                _           _
+//  |  __ \                    | |                              (_) | | |              | |         | |
+//  | |  | |_ __ ___  _ __   __| | _____      ___ __   __      ___| |_| |__    ___  ___| | ___  ___| |_ ___  _ __
+//  | |  | | '__/ _ \| '_ \ / _` |/ _ \ \ /\ / / '_ \  \ \ /\ / / | __| '_ \  / __|/ _ \ |/ _ \/ __| __/ _ \| '__|
+//  | |__| | | | (_) | |_) | (_| | (_) \ V  V /| | | |  \ V  V /| | |_| | | | \__ \  __/ |  __/ (__| || (_) | |
+//  |_____/|_|  \___/| .__/ \__,_|\___/ \_/\_/ |_| |_|   \_/\_/ |_|\__|_| |_| |___/\___|_|\___|\___|\__\___/|_|
+//                   | |
+//                   |_|
 document.addEventListener('DOMContentLoaded', () => {
-  // Get all SELECT2 elements
-  var initSelect2 = function () {
-    var elements = [].slice.call(document.querySelectorAll('[data-control="select2"]'));
+  // Get all dDropdown with selector
+  const dropdownItems = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="dropdown"][data-select]')
+  );
+  // Loop all items
+  // Check exist
+  dropdownItems.map(function (dropdownItem) {
+    if (dropdownItem) {
+      // Get select container
+      var selector = document.querySelector('#' + dropdownItem.getAttribute('data-select'));
+      // Get all options
+      var options = dropdownItem.nextElementSibling.querySelectorAll('.dropdown-item');
 
-    elements.map(function (element) {
-      var options = {
-        dir: document.getElementsByTagName('html')[0].getAttribute('dir'),
-        theme: 'bootstrap5',
-        width: '100%',
-        selectionCssClass: ':all:',
-      };
+      for (let option of options) {
+        // Set active value
+        if (option.classList.contains('active')) {
+          // Set active
+          selector.value = option.getAttribute('value');
 
-      if (element.getAttribute('data-hide-search') == 'true') {
-        options.minimumResultsForSearch = Infinity;
+          // Set dropdown text
+          dropdownItem.innerText = option.getAttribute('value');
+        }
+
+        option.addEventListener('click', () => {
+          // Remove active for all
+          for (let optionInner of options) optionInner.classList.remove('active');
+
+          // Add active for current
+          option.classList.add('active');
+
+          // Add active value to selector
+          selector.value = option.getAttribute('value');
+
+          // Set dropdown text
+          dropdownItem.innerText = option.getAttribute('value');
+        });
       }
+    }
+  });
+});
+// #endregion
 
-      $(element).select2(options);
+// #region / Apexcharts
+document.addEventListener('DOMContentLoaded', () => {
+  // Small Profits Chart
+  var ele1 = document.getElementById('holol_chart_widget_1_small');
+  // Check exist
+  if (ele1) {
+    // Options
+    var options = {
+      series: [
+        {
+          name: 'Net Profit',
+          data: [10, 10, 34, 16, 10],
+        },
+      ],
+      chart: {
+        fontFamily: 'inherit',
+        type: 'line',
+        height: '30px',
+        toolbar: {
+          show: !1,
+        },
+        zoom: {
+          enabled: !1,
+        },
+        sparkline: {
+          enabled: !0,
+        },
+      },
+      plotOptions: {},
+      legend: {
+        show: !1,
+      },
+      dataLabels: {
+        enabled: !1,
+      },
+      fill: {
+        type: 'solid',
+        opacity: 1,
+      },
+      stroke: {
+        curve: 'straight',
+        show: !0,
+        width: 3,
+        colors: [getCssVariableValue('--bs-success')],
+      },
+      xaxis: {
+        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+        axisBorder: {
+          show: !1,
+        },
+        axisTicks: {
+          show: !1,
+        },
+      },
+      yaxis: {
+        labels: {
+          show: !1,
+        },
+      },
+      states: {
+        normal: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        hover: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        active: {
+          allowMultipleDataPointsSelection: !1,
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+      },
+      tooltip: {
+        show: !1,
+      },
+      colors: ['transparent'],
+    };
+    // Call function
+    new ApexCharts(ele1, options).render();
+  }
+
+  // Small Sales Chart
+  var ele2 = document.getElementById('holol_chart_widget_2_small');
+  // Check exist
+  if (ele2) {
+    // Options
+    var options = {
+      series: [
+        {
+          name: 'Net Profit',
+          data: [10, 8, 18, 16, 24],
+        },
+      ],
+      chart: {
+        fontFamily: 'inherit',
+        type: 'line',
+        height: '30px',
+        toolbar: {
+          show: !1,
+        },
+        zoom: {
+          enabled: !1,
+        },
+        sparkline: {
+          enabled: !0,
+        },
+      },
+      plotOptions: {},
+      legend: {
+        show: !1,
+      },
+      dataLabels: {
+        enabled: !1,
+      },
+      fill: {
+        type: 'solid',
+        opacity: 1,
+      },
+      stroke: {
+        curve: 'straight',
+        show: !0,
+        width: 3,
+        colors: [getCssVariableValue('--bs-indigo')],
+      },
+      xaxis: {
+        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+        axisBorder: {
+          show: !1,
+        },
+        axisTicks: {
+          show: !1,
+        },
+      },
+      yaxis: {
+        labels: {
+          show: !1,
+        },
+      },
+      states: {
+        normal: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        hover: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        active: {
+          allowMultipleDataPointsSelection: !1,
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+      },
+      tooltip: {
+        show: !1,
+      },
+      colors: ['transparent'],
+    };
+    // Call function
+    new ApexCharts(ele2, options).render();
+  }
+
+  // Small Orders Chart
+  var ele3 = document.getElementById('holol_chart_widget_3_small');
+  // Check exist
+  if (ele3) {
+    // Options
+    var options = {
+      series: [
+        {
+          name: 'Net Profit',
+          data: [10, 20, 20, 16, 10],
+        },
+      ],
+      chart: {
+        fontFamily: 'inherit',
+        type: 'line',
+        height: '30px',
+        toolbar: {
+          show: !1,
+        },
+        zoom: {
+          enabled: !1,
+        },
+        sparkline: {
+          enabled: !0,
+        },
+      },
+      plotOptions: {},
+      legend: {
+        show: !1,
+      },
+      dataLabels: {
+        enabled: !1,
+      },
+      fill: {
+        type: 'solid',
+        opacity: 1,
+      },
+      stroke: {
+        curve: 'straight',
+        show: !0,
+        width: 3,
+        colors: [getCssVariableValue('--bs-warning')],
+      },
+      xaxis: {
+        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+        axisBorder: {
+          show: !1,
+        },
+        axisTicks: {
+          show: !1,
+        },
+      },
+      yaxis: {
+        labels: {
+          show: !1,
+        },
+      },
+      states: {
+        normal: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        hover: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        active: {
+          allowMultipleDataPointsSelection: !1,
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+      },
+      tooltip: {
+        show: !1,
+      },
+      colors: ['transparent'],
+    };
+    // Call function
+    new ApexCharts(ele3, options).render();
+  }
+
+  // Small views Chart
+  var ele4 = document.getElementById('holol_chart_widget_4_small');
+  // Check exist
+  if (ele4) {
+    // Options
+    var options = {
+      series: [
+        {
+          name: 'Net Profit',
+          data: [8, 20, 18, 20, 32],
+        },
+      ],
+      chart: {
+        fontFamily: 'inherit',
+        type: 'line',
+        height: '30px',
+        toolbar: {
+          show: !1,
+        },
+        zoom: {
+          enabled: !1,
+        },
+        sparkline: {
+          enabled: !0,
+        },
+      },
+      plotOptions: {},
+      legend: {
+        show: !1,
+      },
+      dataLabels: {
+        enabled: !1,
+      },
+      fill: {
+        type: 'solid',
+        opacity: 1,
+      },
+      stroke: {
+        curve: 'straight',
+        show: !0,
+        width: 3,
+        colors: [getCssVariableValue('--bs-green')],
+      },
+      xaxis: {
+        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+        axisBorder: {
+          show: !1,
+        },
+        axisTicks: {
+          show: !1,
+        },
+      },
+      yaxis: {
+        labels: {
+          show: !1,
+        },
+      },
+      states: {
+        normal: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        hover: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        active: {
+          allowMultipleDataPointsSelection: !1,
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+      },
+      tooltip: {
+        show: !1,
+      },
+      colors: ['transparent'],
+    };
+    // Call function
+    new ApexCharts(ele4, options).render();
+  }
+
+  // Big home Chart
+  var eleHome = document.getElementById('holol_chart_widget_1');
+  // Check exist
+  if (eleHome) {
+    // Options
+    var options = {
+      series: [
+        {
+          name: 'الارباح',
+          data: [30000, 40000, 40000, 90000, 90000, 70000, 70000, 30000],
+        },
+        {
+          name: 'المبيعات',
+          data: [40000, 40000, 60000, 80000, 60000, 60000, 60000, 50000],
+        },
+        {
+          name: 'الطلبات',
+          data: [20000, 30000, 50000, 20000, 20000, 60000, 80000, 10000],
+        },
+        {
+          name: 'الزيارات',
+          data: [0000, 10000, 40000, 40000, 40000, 80000, 80000, 50000],
+        },
+      ],
+      chart: {
+        fontFamily: 'inherit',
+        type: 'line',
+        height: 350,
+        toolbar: {
+          show: !1,
+        },
+      },
+      plotOptions: {},
+      legend: {
+        show: !1,
+      },
+      dataLabels: {
+        enabled: !1,
+      },
+      fill: {
+        type: 'solid',
+        opacity: 1,
+      },
+      stroke: {
+        curve: 'smooth',
+        show: !0,
+        width: 3,
+      },
+      xaxis: {
+        categories: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10'],
+        axisBorder: {
+          show: !1,
+        },
+        axisTicks: {
+          show: !1,
+        },
+        labels: {
+          style: {
+            colors: [getCssVariableValue('--bs-gray')],
+            fontSize: '12px',
+          },
+        },
+        crosshairs: {
+          position: 'front',
+          stroke: {
+            color: getCssVariableValue('--bs-primary'),
+            width: 1,
+            dashArray: 3,
+          },
+        },
+        tooltip: {
+          enabled: !0,
+          formatter: void 0,
+          offsetY: 0,
+          style: {
+            fontSize: '12px',
+          },
+        },
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: [getCssVariableValue('--bs-gray')],
+            fontSize: '12px',
+          },
+        },
+      },
+      states: {
+        normal: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        hover: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        active: {
+          allowMultipleDataPointsSelection: !1,
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+      },
+      tooltip: {
+        style: {
+          fontSize: '12px',
+        },
+        y: {
+          formatter: function (t) {
+            if (t < 1000) return t;
+            else if (t >= 1000) return t / 1000 + 'K';
+            else if (t >= 1000000) return t / 1000000 + 'M';
+            else if (t >= 1000000000) return t / 1000000000 + 'T';
+          },
+        },
+      },
+      colors: [
+        getCssVariableValue('--chart-blue'),
+        getCssVariableValue('--chart-pink'),
+        getCssVariableValue('--chart-yellow'),
+        getCssVariableValue('--chart-green'),
+      ],
+      grid: {
+        borderColor: getCssVariableValue('--chart-gray-border'),
+        strokeDashArray: 4,
+        yaxis: {
+          lines: {
+            show: !0,
+          },
+        },
+      },
+    };
+    // Call function
+    new ApexCharts(eleHome, options).render();
+  }
+
+  // Donut Chart
+  var donutChart = document.getElementById('donutChart');
+  // Check exist
+  if (donutChart) {
+    // Options
+    var options = {
+      series: [4640, 5050, 1300],
+      labels: ['Desktop', 'Tablet', 'Phone'],
+      chart: {
+        id: 'donutChart',
+        type: 'donut',
+        height: 300,
+      },
+      plotOptions: {},
+      legend: {
+        show: !1,
+      },
+      dataLabels: {
+        enabled: !1,
+      },
+      plotOptions: {
+        pie: {
+          donut: {
+            size: '85%',
+            labels: {
+              show: !0,
+              value: {
+                fontSize: '32px',
+                formatter: function (val) {
+                  if (val < 1000) return val;
+                  else if (val >= 1000) return parseInt(val / 1000) + 'K';
+                  else if (val >= 1000000) return parseInt(val / 1000000) + 'M';
+                  else if (val >= 1000000000) return parseInt(val / 1000000000) + 'T';
+                },
+              },
+              name: {
+                fontSize: '18px',
+                formatter: function (val) {
+                  return val;
+                },
+              },
+              total: {
+                show: true,
+                showAlways: true,
+                label: 'Total',
+                fontSize: '22px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 600,
+                color: '#373d3f',
+                formatter: function (w) {
+                  let val = w.globals.seriesTotals.reduce((a, b) => {
+                    return a + b;
+                  }, 0);
+
+                  if (val < 1000) return val;
+                  else if (val >= 1000) return parseInt(val / 1000) + 'K';
+                  else if (val >= 1000000) return parseInt(val / 1000000) + 'M';
+                  else if (val >= 1000000000) return parseInt(val / 1000000000) + 'T';
+                },
+              },
+            },
+          },
+          expandOnClick: false,
+        },
+      },
+      legend: {
+        show: !1,
+      },
+      dataLabels: {
+        enabled: !1,
+      },
+      states: {
+        normal: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        hover: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        active: {
+          allowMultipleDataPointsSelection: !1,
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+      },
+      tooltip: {
+        style: {
+          fontSize: '12px',
+        },
+        y: {
+          formatter: function (val) {
+            if (val < 1000) return val;
+            else if (val >= 1000) return parseInt(val / 1000) + 'K';
+            else if (val >= 1000000) return parseInt(val / 1000000) + 'M';
+            else if (val >= 1000000000) return parseInt(val / 1000000000) + 'T';
+          },
+        },
+      },
+    };
+    // Call function
+    new ApexCharts(donutChart, options).render();
+
+    // Update Donut Chart on click tabs
+    document.querySelector('#table-deviceType').addEventListener('click', () => {
+      ApexCharts.exec(
+        'donutChart',
+        'updateOptions',
+        {
+          series: [4640, 5050, 1300],
+          labels: ['Desktop', 'Tablet', 'Phone'],
+        },
+        false,
+        true
+      );
     });
-  };
-
-  initSelect2();
+    // Update Donut Chart on click tabs
+    document.querySelector('#table-country').addEventListener('click', () => {
+      ApexCharts.exec(
+        'donutChart',
+        'updateOptions',
+        {
+          series: [250000, 121000, 78000, 26540],
+          labels: ['السعودية', 'مصر', 'المغرب', 'البحرين'],
+        },
+        false,
+        true
+      );
+    });
+  }
 });
 // #endregion
 
@@ -533,4 +1146,14 @@ function offset(el) {
     scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
     scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+}
+
+// Get CSS Variable Value helper
+function getCssVariableValue(variableName) {
+  var hex = getComputedStyle(document.documentElement).getPropertyValue(variableName);
+  if (hex && hex.length > 0) {
+    hex = hex.trim();
+  }
+
+  return hex;
 }
