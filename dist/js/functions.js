@@ -511,6 +511,14 @@ document.addEventListener('DOMContentLoaded', () => {
 // #endregion
 
 // #region / Apexcharts
+//                                _                _
+//      /\                       | |              | |
+//     /  \   _ __   _____  _____| |__   __ _ _ __| |_ ___
+//    / /\ \ | '_ \ / _ \ \/ / __| '_ \ / _` | '__| __/ __|
+//   / ____ \| |_) |  __/>  < (__| | | | (_| | |  | |_\__ \
+//  /_/    \_\ .__/ \___/_/\_\___|_| |_|\__,_|_|   \__|___/
+//           | |
+//           |_|
 document.addEventListener('DOMContentLoaded', () => {
   // Small Profits Chart
   var ele1 = document.getElementById('holol_chart_widget_1_small');
@@ -1137,6 +1145,72 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     });
   }
+});
+// #endregion
+
+// #region / Drag to Scroll
+//   _____                    _           _____                _ _
+//  |  __ \                  | |         / ____|              | | |
+//  | |  | |_ __ __ _  __ _  | |_ ___   | (___   ___ _ __ ___ | | |
+//  | |  | | '__/ _` |/ _` | | __/ _ \   \___ \ / __| '__/ _ \| | |
+//  | |__| | | | (_| | (_| | | || (_) |  ____) | (__| | | (_) | | |
+//  |_____/|_|  \__,_|\__, |  \__\___/  |_____/ \___|_|  \___/|_|_|
+//                     __/ |
+//                    |___/
+document.addEventListener('DOMContentLoaded', function () {
+  // Get all dDropdown with selector
+  const dragToScrollItems = [].slice.call(document.querySelectorAll('[drag][scroll]'));
+  // Loop all items
+  // Check exist
+  dragToScrollItems.map(function (dragToScrollItem) {
+    if (dragToScrollItem) {
+      // Change cursor to grab
+      dragToScrollItem.style.cursor = 'grab';
+
+      // Set default position
+      let pos = { top: 0, left: 0, x: 0, y: 0 };
+
+      // Mouse Down Handler
+      const mouseDownHandler = function (e) {
+        dragToScrollItem.style.cursor = 'grabbing';
+        dragToScrollItem.style.userSelect = 'none';
+
+        pos = {
+          left: dragToScrollItem.scrollLeft,
+          top: dragToScrollItem.scrollTop,
+          // Get the current mouse position
+          x: e.clientX,
+          y: e.clientY,
+        };
+
+        document.addEventListener('mousemove', mouseMoveHandler);
+        document.addEventListener('mouseup', mouseUpHandler);
+      };
+
+      // Mouse Move Handler
+      const mouseMoveHandler = function (e) {
+        // How far the mouse has been moved
+        const dx = e.clientX - pos.x;
+        const dy = e.clientY - pos.y;
+
+        // Scroll the element
+        dragToScrollItem.scrollTop = pos.top - dy;
+        dragToScrollItem.scrollLeft = pos.left - dx;
+      };
+
+      // Mouse Up Handler
+      const mouseUpHandler = function () {
+        dragToScrollItem.style.cursor = 'grab';
+        dragToScrollItem.style.removeProperty('user-select');
+
+        document.removeEventListener('mousemove', mouseMoveHandler);
+        document.removeEventListener('mouseup', mouseUpHandler);
+      };
+
+      // Attach the handler
+      dragToScrollItem.addEventListener('mousedown', mouseDownHandler);
+    }
+  });
 });
 // #endregion
 
