@@ -1,9 +1,12 @@
 'use strict';
 
+// Global variables
+window.HOLOLUtilDelegatedEventHandlers = {};
+
 var HOLOLUtil = (function () {
   return {
     /**
-     * Get GET parameter value from URL.
+     * Get parameter value from URL.
      * @param {string} paramName Parameter name.
      * @returns {string}
      */
@@ -43,7 +46,7 @@ var HOLOLUtil = (function () {
      * @returns {boolean}
      */
     isDesktopDevice: function () {
-      return KTUtil.isMobileDevice() ? false : true;
+      return HOLOLUtil.isMobileDevice() ? false : true;
     },
 
     /**
@@ -65,41 +68,30 @@ var HOLOLUtil = (function () {
       };
     },
 
+    /**
+     * Gets browser window viewport width.
+     * @returns {number}
+     */
     getViewportWidth: function () {
       return this.getViewPort().width;
     },
 
+    /**
+     * Gets browser window viewport height.
+     * @returns {number}
+     */
     getViewportHeight: function () {
       return this.getViewPort().height;
     },
 
     /**
-     * Checks whether given device mode is currently activated.
-     * @param {string} mode Responsive mode name(e.g: desktop,
-     *     desktop-and-tablet, tablet, tablet-and-mobile, mobile)
-     * @returns {boolean}
-     */
-    isBreakpointUp: function (mode) {
-      var width = this.getViewPort().width;
-      var breakpoint = this.getBreakpoint(mode);
-
-      return width >= breakpoint;
-    },
-
-    isBreakpointDown: function (mode) {
-      var width = this.getViewPort().width;
-      var breakpoint = this.getBreakpoint(mode);
-
-      return width < breakpoint;
-    },
-
-    /**
      * Gets window width for give breakpoint mode.
-     * @param {string} mode Responsive mode name(e.g: xl, lg, md, sm)
+     * @param {string} mode Responsive mode name (e.g: xl, lg, md, sm, xs) or
+     * (e.g: desktop, desktop-and-tablet, tablet, tablet-and-mobile, mobile)
      * @returns {number}
      */
     getBreakpoint: function (breakpoint) {
-      var value = this.getCssVariableValue('--bs-' + breakpoint);
+      var value = this.getCssVariableValue('--breakpoint-' + breakpoint);
 
       if (value) {
         value = parseInt(value.trim());
@@ -109,21 +101,52 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Generates unique ID for give prefix.
-     * @param {string} prefix Prefix for generated ID
+     * Checks whether given device mode is currently activated.
+     * @param {string} mode Responsive mode name (e.g: xl, lg, md, sm, xs) or
+     * (e.g: desktop, desktop-and-tablet, tablet, tablet-and-mobile, mobile)
      * @returns {boolean}
      */
-    getUniqueId: function (prefix) {
-      return prefix + Math.floor(Math.random() * new Date().getTime());
+    isBreakpointUp: function (mode) {
+      var width = this.getViewPort().width;
+      var breakpoint = this.getBreakpoint(mode);
+
+      console.log(breakpoint);
+      return width >= breakpoint;
     },
 
     /**
-     * Checks whether object has property matchs given key path.
-     * @param {object} obj Object contains values paired with given key path
-     * @param {string} keys Keys path seperated with dots
-     * @returns {object}
+     * Checks whether given device mode is currently deactivated.
+     * @param {string} mode Responsive mode name (e.g: xl, lg, md, sm, xs) or
+     * (e.g: desktop, desktop-and-tablet, tablet, tablet-and-mobile, mobile)
+     * @returns {boolean}
      */
-    isset: function (obj, keys) {
+    isBreakpointDown: function (mode) {
+      var width = this.getViewPort().width;
+      var breakpoint = this.getBreakpoint(mode);
+
+      console.log(breakpoint);
+      return width < breakpoint;
+    },
+
+    /**
+     * Generates unique ID for give prefix.
+     * @param {string} prefix Prefix for generated ID
+     * @param {string} suffix suffix for generated ID
+     * @returns {boolean}
+     */
+    getUniqueId: function (prefix, suffix) {
+      if (!suffix) suffix = '';
+      if (!prefix) prefix = '';
+      return prefix + Math.floor(Math.random() * new Date().getTime()) + suffix;
+    },
+
+    /**
+     * Checks whether object has property matches given key path.
+     * @param {object} obj Object contains values paired with given key path
+     * @param {string} keys Keys path separated with dots
+     * @returns {boolean}
+     */
+    isSet: function (obj, keys) {
       var stone;
 
       keys = keys || '';
@@ -163,14 +186,14 @@ var HOLOLUtil = (function () {
         // Ignore z-index if position is set to a value where z-index is ignored by the browser
         // This makes behavior of this function consistent across browsers
         // WebKit always returns auto if the element is positioned
-        position = KTUtil.css(el, 'position');
+        position = HOLOLUtil.css(el, 'position');
 
         if (position === 'absolute' || position === 'relative' || position === 'fixed') {
           // IE returns 0 when zIndex is not specified
           // other browsers return a string
           // we ignore the case of nested elements with an explicit value of 0
           // <div style="z-index: -10;"><div style="z-index: 0;"></div></div>
-          value = parseInt(KTUtil.css(el, 'z-index'));
+          value = parseInt(HOLOLUtil.css(el, 'z-index'));
 
           if (!isNaN(value) && value !== 0) {
             return value;
@@ -184,7 +207,7 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Checks whether the element has any parent with fixed positionfreg
+     * Checks whether the element has any parent with fixed position
      * @param {object} el jQuery element object
      * @returns {boolean}
      */
@@ -192,7 +215,7 @@ var HOLOLUtil = (function () {
       var position;
 
       while (el && el !== document) {
-        position = KTUtil.css(el, 'position');
+        position = HOLOLUtil.css(el, 'position');
 
         if (position === 'fixed') {
           return true;
@@ -206,18 +229,26 @@ var HOLOLUtil = (function () {
 
     /**
      * Simulates delay
+     * @param {number} milliseconds Time in milliseconds
      */
     sleep: function (milliseconds) {
-      var start = new Date().getTime();
-      for (var i = 0; i < 1e7; i++) {
-        if (new Date().getTime() - start > milliseconds) {
-          break;
-        }
-      }
+      return new Promise((resolve) => setTimeout(resolve, milliseconds));
     },
 
-    getBody: function () {
+    /**
+     * Get Body object
+     * @returns {object}
+     */
+    getBodyTag: function () {
       return document.getElementsByTagName('body')[0];
+    },
+
+    /**
+     * Get HTML object
+     * @returns {object}
+     */
+    getHTMLTag: function () {
+      return document.getElementsByTagName('html')[0];
     },
 
     /**
@@ -233,18 +264,22 @@ var HOLOLUtil = (function () {
     /**
      * Checks whether the element has given classes
      * @param {object} el jQuery element object
-     * @param {string} Classes string
+     * @param {string} className string with spaces between every class name for multi classes
      * @returns {boolean}
      */
-    hasClasses: function (el, classes) {
+    hasClass: function (el, className) {
       if (!el) {
         return;
       }
 
-      var classesArr = classes.split(' ');
+      var classesArr = className.split(' ');
 
       for (var i = 0; i < classesArr.length; i++) {
-        if (KTUtil.hasClass(el, KTUtil.trim(classesArr[i])) == false) {
+        let classNew = HOLOLUtil.trim(classesArr[i]),
+          hasClass = el.classList
+            ? el.classList.contains(classNew)
+            : new RegExp('\\b' + classNew + '\\b').test(el.classNew);
+        if (!hasClass) {
           return false;
         }
       }
@@ -252,16 +287,11 @@ var HOLOLUtil = (function () {
       return true;
     },
 
-    hasClass: function (el, className) {
-      if (!el) {
-        return;
-      }
-
-      return el.classList
-        ? el.classList.contains(className)
-        : new RegExp('\\b' + className + '\\b').test(el.className);
-    },
-
+    /**
+     * Add class to the given element
+     * @param {object} el jQuery element object
+     * @param {string} className string with spaces between every class name to add multi classes
+     */
     addClass: function (el, className) {
       if (!el || typeof className === 'undefined') {
         return;
@@ -272,16 +302,21 @@ var HOLOLUtil = (function () {
       if (el.classList) {
         for (var i = 0; i < classNames.length; i++) {
           if (classNames[i] && classNames[i].length > 0) {
-            el.classList.add(KTUtil.trim(classNames[i]));
+            el.classList.add(HOLOLUtil.trim(classNames[i]));
           }
         }
-      } else if (!KTUtil.hasClass(el, className)) {
+      } else if (!HOLOLUtil.hasClass(el, className)) {
         for (var x = 0; x < classNames.length; x++) {
-          el.className += ' ' + KTUtil.trim(classNames[x]);
+          el.className += ' ' + HOLOLUtil.trim(classNames[x]);
         }
       }
     },
 
+    /**
+     * Remove class from the given element
+     * @param {object} el jQuery element object
+     * @param {string} className string with spaces between every class name to remove multi classes
+     */
     removeClass: function (el, className) {
       if (!el || typeof className === 'undefined') {
         return;
@@ -291,118 +326,88 @@ var HOLOLUtil = (function () {
 
       if (el.classList) {
         for (var i = 0; i < classNames.length; i++) {
-          el.classList.remove(KTUtil.trim(classNames[i]));
+          el.classList.remove(HOLOLUtil.trim(classNames[i]));
         }
-      } else if (KTUtil.hasClass(el, className)) {
+      } else if (HOLOLUtil.hasClass(el, className)) {
         for (var x = 0; x < classNames.length; x++) {
           el.className = el.className.replace(
-            new RegExp('\\b' + KTUtil.trim(classNames[x]) + '\\b', 'g'),
+            new RegExp('\\b' + HOLOLUtil.trim(classNames[x]) + '\\b', 'g'),
             ''
           );
         }
       }
     },
 
-    addEvent: function (el, type, handler, one) {
+    /**
+     * Add Attributes to the given element
+     * @param {object} el jQuery element object
+     * @param {object} attributes Array of attributes
+     *    (e.g: {attribute_1: value_1, attribute_2: value_2})
+     */
+    addAttribute: function (el, attributes) {
+      if (!el || typeof attributes === 'undefined') {
+        return;
+      }
+
+      for (var key in attributes) {
+        el.setAttribute(key, attributes[key]);
+      }
+    },
+
+    /**
+     * Remove Attributes from the given element
+     * @param {object} el jQuery element object
+     * @param {object} attributes Array of attributes (e.g: {attribute_1, attribute_2})
+     */
+    removeAttribute: function (el, attributes) {
+      if (!el || typeof attributes === 'undefined') {
+        return;
+      }
+
+      for (var key in attributes) {
+        el.removeAttribute(key);
+      }
+    },
+
+    /**
+     * Add Event to the given element
+     * @param {object} el jQuery element object
+     * @param {string} type string for event type (e.g: click, mouseover, ...)
+     * @param {object} handler what run on event (e.g: function)
+     */
+    addEvent: function (el, type, handler) {
       if (typeof el !== 'undefined' && el !== null) {
         el.addEventListener(type, handler);
       }
     },
 
+    /**
+     * Remove Event from the given element
+     * @param {object} el jQuery element object
+     * @param {string} type string for event type (e.g: click, mouseover, ...)
+     * @param {object} handler what run on event (e.g: function)
+     */
     removeEvent: function (el, type, handler) {
       if (el !== null) {
         el.removeEventListener(type, handler);
       }
     },
 
-    triggerCustomEvent: function (el, eventName, data) {
-      var event;
-      if (window.CustomEvent) {
-        event = new CustomEvent(eventName, {
-          detail: data,
-        });
-      } else {
-        event = document.createEvent('CustomEvent');
-        event.initCustomEvent(eventName, true, true, data);
-      }
-
-      el.dispatchEvent(event);
-    },
-
-    triggerEvent: function (node, eventName) {
-      // Make sure we use the ownerDocument from the provided node to avoid cross-window problems
-      var doc;
-
-      if (node.ownerDocument) {
-        doc = node.ownerDocument;
-      } else if (node.nodeType == 9) {
-        // the node may be the document itself, nodeType 9 = DOCUMENT_NODE
-        doc = node;
-      } else {
-        throw new Error('Invalid node passed to fireEvent: ' + node.id);
-      }
-
-      if (node.dispatchEvent) {
-        // Gecko-style approach (now the standard) takes more work
-        var eventClass = '';
-
-        // Different events have different event classes.
-        // If this switch statement can't map an eventName to an eventClass,
-        // the event firing is going to fail.
-        switch (eventName) {
-          case 'click': // Dispatching of 'click' appears to not work correctly in Safari. Use 'mousedown' or 'mouseup' instead.
-          case 'mouseenter':
-          case 'mouseleave':
-          case 'mousedown':
-          case 'mouseup':
-            eventClass = 'MouseEvents';
-            break;
-
-          case 'focus':
-          case 'change':
-          case 'blur':
-          case 'select':
-            eventClass = 'HTMLEvents';
-            break;
-
-          default:
-            throw "fireEvent: Couldn't find an event class for event '" + eventName + "'.";
-            break;
-        }
-        var event = doc.createEvent(eventClass);
-
-        var bubbles = eventName == 'change' ? false : true;
-        event.initEvent(eventName, bubbles, true); // All events created as bubbling and cancelable.
-
-        event.synthetic = true; // allow detection of synthetic events
-        // The second parameter says go ahead with the default action
-        node.dispatchEvent(event, true);
-      } else if (node.fireEvent) {
-        // IE-old school style
-        var event = doc.createEventObject();
-        event.synthetic = true; // allow detection of synthetic events
-        node.fireEvent('on' + eventName, event);
-      }
-    },
-
-    eventTriggered: function (e) {
-      if (e.currentTarget.dataset.triggered) {
-        return true;
-      } else {
-        e.currentTarget.dataset.triggered = true;
-
-        return false;
-      }
-    },
-
+    /**
+     * Add Event to the given element inner selector
+     * @param {object} element jQuery element object
+     * @param {string} selector selector string
+     * @param {string} event string for event type (e.g: click, mouseover, ...)
+     * @param {object} handler what run on event (e.g: function)
+     */
     on: function (element, selector, event, handler) {
       if (element === null) {
         return;
       }
 
-      var eventId = KTUtil.getUniqueId('event');
+      var eventId = HOLOLUtil.getUniqueId('event');
 
-      window.KTUtilDelegatedEventHandlers[eventId] = function (e) {
+      window.HOLOLUtilDelegatedEventHandlers[eventId] = function (e) {
         var targets = element.querySelectorAll(selector);
         var target = e.target;
 
@@ -417,22 +422,32 @@ var HOLOLUtil = (function () {
         }
       };
 
-      KTUtil.addEvent(element, event, window.KTUtilDelegatedEventHandlers[eventId]);
+      HOLOLUtil.addEvent(element, event, window.HOLOLUtilDelegatedEventHandlers[eventId]);
 
       return eventId;
     },
 
+    /**
+     * Remove Event from the given element inner event ID
+     * @param {object} element jQuery element object
+     * @param {string} event string for event type (e.g: click, mouseover, ...)
+     * @param {string} eventId
+     */
     off: function (element, event, eventId) {
-      if (!element || !window.KTUtilDelegatedEventHandlers[eventId]) {
+      if (!element || !window.HOLOLUtilDelegatedEventHandlers[eventId]) {
         return;
       }
 
-      KTUtil.removeEvent(element, event, window.KTUtilDelegatedEventHandlers[eventId]);
+      HOLOLUtil.removeEvent(element, event, window.HOLOLUtilDelegatedEventHandlers[eventId]);
 
-      delete window.KTUtilDelegatedEventHandlers[eventId];
+      delete window.HOLOLUtilDelegatedEventHandlers[eventId];
     },
 
-    // Throttle function: Input as function which needs to be throttled and delay is the time interval in milliseconds
+    /**
+     * Throttle function
+     * @param {object} func function which needs to be throttled
+     * @param {number} delay time interval in milliseconds
+     */
     throttle: function (timer, func, delay) {
       // If setTimeout is already scheduled, no need to do anything
       if (timer) {
@@ -449,7 +464,11 @@ var HOLOLUtil = (function () {
       }, delay);
     },
 
-    // Debounce function: Input as function which needs to be debounced and delay is the debounced time in milliseconds
+    /**
+     * Debounce function
+     * @param {object} func function which needs to be debounced
+     * @param {number} delay debounced time in milliseconds
+     */
     debounce: function (timer, func, delay) {
       // Cancels the setTimeout method execution
       clearTimeout(timer);
@@ -458,6 +477,13 @@ var HOLOLUtil = (function () {
       timer = setTimeout(func, delay);
     },
 
+    /**
+     * Exchange data to/from a web server.
+     * When receiving data from a web server, the data is always a string.
+     * Parse the data with parseJson(), and the data becomes a JavaScript object
+     * @param {string} value (e.g: Web server data)
+     * @returns {object} Data after parsing
+     */
     parseJson: function (value) {
       if (typeof value === 'string') {
         value = value.replace(/'/g, '"');
@@ -474,11 +500,16 @@ var HOLOLUtil = (function () {
       return value;
     },
 
-    getResponsiveValue: function (value, defaultValue) {
+    /**
+     * Get responsive value from array of values according to breakpoints
+     * @param {object} value responsive values (e.g: {lg: '150px', sm: '100px'})
+     * @returns {string}
+     */
+    getResponsiveValue: function (value) {
       var width = this.getViewPort().width;
       var result;
 
-      value = KTUtil.parseJson(value);
+      value = HOLOLUtil.parseJson(value);
 
       if (typeof value === 'object') {
         var resultKey;
@@ -510,22 +541,42 @@ var HOLOLUtil = (function () {
       return result;
     },
 
-    index: function (el) {
-      var c = el.parentNode.children,
+    /**
+     * Get index of element according to parentNode
+     * @param {object} element jQuery element object
+     * @returns {number}
+     */
+    index: function (element) {
+      var c = element.parentNode.children,
         i = 0;
-      for (; i < c.length; i++) if (c[i] == el) return i;
+      for (; i < c.length; i++) if (c[i] == element) return i;
     },
 
+    /**
+     * Removes whitespace from both sides of a string.
+     * @param {string} string String to trim
+     * @returns {string}
+     */
     trim: function (string) {
       return string.trim();
     },
 
+    /**
+     * Removes element from DOM.
+     * @param {object} element jQuery element object
+     */
     remove: function (el) {
       if (el && el.parentNode) {
         el.parentNode.removeChild(el);
       }
     },
 
+    /**
+     * Fid element inside parent DOM.
+     * @param {object} parent jQuery element object
+     * @param {string} query selector string
+     * @returns {object}
+     */
     find: function (parent, query) {
       if (parent !== null) {
         return parent.querySelector(query);
@@ -534,6 +585,12 @@ var HOLOLUtil = (function () {
       }
     },
 
+    /**
+     * Fid elements inside parent DOM.
+     * @param {object} parent jQuery element object
+     * @param {string} query selector string
+     * @returns {object} Array of objects
+     */
     findAll: function (parent, query) {
       if (parent !== null) {
         return parent.querySelectorAll(query);
@@ -542,14 +599,35 @@ var HOLOLUtil = (function () {
       }
     },
 
-    insertAfter: function (el, referenceNode) {
-      return referenceNode.parentNode.insertBefore(el, referenceNode.nextSibling);
+    /**
+     * Insert element after referenceNode inside DOM.
+     * @param {object} element jQuery element object
+     * @param {object} referenceNode jQuery reference node object
+     * @returns {object}
+     */
+    insertAfter: function (element, referenceNode) {
+      return referenceNode.parentNode.insertBefore(element, referenceNode.nextSibling);
     },
 
-    offset: function (el) {
+    /**
+     * Insert element after referenceNode inside DOM.
+     * @param {object} element jQuery element object
+     * @param {object} referenceNode jQuery reference node object
+     * @returns {object}
+     */
+    insertBefore: function (element, referenceNode) {
+      return referenceNode.parentNode.insertBefore(element, referenceNode);
+    },
+
+    /**
+     * Get the offset width & height of element
+     * @param {object} element jQuery element object
+     * @returns {number}
+     */
+    offset: function (element) {
       var rect, win;
 
-      if (!el) {
+      if (!element) {
         return;
       }
 
@@ -557,38 +635,48 @@ var HOLOLUtil = (function () {
       // Support: IE <=11 only
       // Running getBoundingClientRect on a
       // disconnected node in IE throws an error
-
-      if (!el.getClientRects().length) {
+      if (!element.getClientRects().length) {
         return { top: 0, left: 0 };
       }
 
       // Get document-relative position by adding viewport scroll to viewport-relative gBCR
-      rect = el.getBoundingClientRect();
-      win = el.ownerDocument.defaultView;
+      rect = element.getBoundingClientRect();
+      win = element.ownerDocument.defaultView;
 
       return {
         top: rect.top + win.pageYOffset,
+        Bottom: element.offsetTop + element.offsetHeight,
         left: rect.left + win.pageXOffset,
-        right: window.innerWidth - (el.offsetLeft + el.offsetWidth),
+        right: window.innerWidth - (element.offsetLeft + element.offsetWidth),
       };
     },
 
-    outerWidth: function (el, margin) {
-      var width;
+    /**
+     * Get the outer width of element
+     * @param {object} element jQuery element object
+     * @param {boolean} withMargin (e.g: true: if has margin)
+     * @returns {number}
+     */
+    outerWidth: function (el, withMargin) {
+      var width = el.offsetWidth;
+      var style;
 
-      if (margin === true) {
-        width = parseFloat(el.offsetWidth);
-        width +=
-          parseFloat(KTUtil.css(el, 'margin-left')) + parseFloat(KTUtil.css(el, 'margin-right'));
+      if (typeof withMargin !== 'undefined' && withMargin === true) {
+        style = getComputedStyle(el);
+        width += parseInt(style.marginLeft) + parseInt(style.marginRight);
 
-        return parseFloat(width);
+        return width;
       } else {
-        width = parseFloat(el.offsetWidth);
-
         return width;
       }
     },
 
+    /**
+     * Get the outer height of element
+     * @param {object} element jQuery element object
+     * @param {boolean} withMargin (e.g: true: if has margin)
+     * @returns {number}
+     */
     outerHeight: function (el, withMargin) {
       var height = el.offsetHeight;
       var style;
@@ -603,6 +691,27 @@ var HOLOLUtil = (function () {
       }
     },
 
+    /**
+     * Get Document width
+     * @returns {number}
+     */
+    getDocumentWidth: function () {
+      var body = document.body;
+      var html = document.documentElement;
+
+      return Math.max(
+        body.scrollWidth,
+        body.offsetWidth,
+        html.clientWidth,
+        html.scrollWidth,
+        html.offsetWidth
+      );
+    },
+
+    /**
+     * Get Document height
+     * @returns {number}
+     */
     getDocumentHeight: function () {
       var body = document.body;
       var html = document.documentElement;
@@ -616,22 +725,40 @@ var HOLOLUtil = (function () {
       );
     },
 
+    /**
+     * Check if element is visible
+     * @param {object} element jQuery element object
+     * @returns {boolean}
+     */
     visible: function (el) {
       return !(el.offsetWidth === 0 && el.offsetHeight === 0);
     },
 
+    /**
+     * Show element
+     * @param {object} element jQuery element object
+     */
     show: function (el, display) {
       if (typeof el !== 'undefined') {
         el.style.display = display ? display : 'block';
       }
     },
 
+    /**
+     * Hide element
+     * @param {object} element jQuery element object
+     */
     hide: function (el) {
       if (typeof el !== 'undefined') {
         el.style.display = 'none';
       }
     },
 
+    /**
+     * Check if element is in viewport
+     * @param {object} element jQuery element object
+     * @returns {boolean}
+     */
     isInViewport: function (element) {
       var rect = element.getBoundingClientRect();
 
@@ -643,6 +770,26 @@ var HOLOLUtil = (function () {
       );
     },
 
+    /**
+     * Check if part of element is in viewport
+     * @param {object} element jQuery element object
+     * @returns {boolean}
+     */
+    isPartInViewport: function (element) {
+      var rect = element.getBoundingClientRect();
+
+      return (
+        rect.bottom > 0 &&
+        rect.right > 0 &&
+        rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.left < (window.innerWidth || document.documentElement.clientWidth)
+      );
+    },
+
+    /**
+     * Run callback on DOM content loaded
+     * @param {object} callback (e.g: function)
+     */
     onDOMContentLoaded: function (callback) {
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', callback);
@@ -651,6 +798,11 @@ var HOLOLUtil = (function () {
       }
     },
 
+    /**
+     * Check if loaded in Iframe
+     * @param {object} callback (e.g: function)
+     * @returns {boolean}
+     */
     inIframe: function () {
       try {
         return window.self !== window.top;
@@ -659,16 +811,37 @@ var HOLOLUtil = (function () {
       }
     },
 
-    attr: function (el, name, value) {
-      if (el == undefined) {
+    /**
+     * Set attribute
+     * @param {object} element jQuery element object
+     * @param {string} name attribute name
+     * @param {string} value attribute value
+     */
+    attr: function (element, name, value) {
+      if (element == undefined) {
         return;
       }
 
       if (value !== undefined) {
-        el.setAttribute(name, value);
+        element.setAttribute(name, value);
       } else {
-        return el.getAttribute(name);
+        return element.getAttribute(name);
       }
+    },
+
+    /**
+     * Set multiple attributes
+     * @param {object} element jQuery element object
+     * @param {object} attributes Array of attributes (e.g: {name: value, name2: value2})
+     */
+    setAttrs: function (element, attributes) {
+      if (element == undefined || attributes == undefined) {
+        return;
+      }
+
+      Object.keys(attributes).forEach((attr) => {
+        element.setAttribute(attr, attributes[attr]);
+      });
     },
 
     hasAttr: function (el, name) {
@@ -748,11 +921,11 @@ var HOLOLUtil = (function () {
     },
 
     height: function (el) {
-      return KTUtil.css(el, 'height');
+      return HOLOLUtil.css(el, 'height');
     },
 
     width: function (el) {
-      return KTUtil.css(el, 'width');
+      return HOLOLUtil.css(el, 'width');
     },
 
     getScroll: function (element, method) {
@@ -767,7 +940,7 @@ var HOLOLUtil = (function () {
 
     scrollTo: function (target, offset, duration) {
       var duration = duration ? duration : 500;
-      var targetPos = target ? KTUtil.offset(target).top : 0;
+      var targetPos = target ? HOLOLUtil.offset(target).top : 0;
       var scrollPos =
         window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
       var from, to;
@@ -779,7 +952,7 @@ var HOLOLUtil = (function () {
       from = scrollPos;
       to = targetPos;
 
-      KTUtil.animate(from, to, duration, function (value) {
+      HOLOLUtil.animate(from, to, duration, function (value) {
         document.documentElement.scrollTop = value;
         document.body.parentNode.scrollTop = value;
         document.body.scrollTop = value;
@@ -787,7 +960,7 @@ var HOLOLUtil = (function () {
     },
 
     scrollTop: function (offset, duration) {
-      KTUtil.scrollTo(null, offset, duration);
+      HOLOLUtil.scrollTo(null, offset, duration);
     },
 
     getScrollTop: function () {
@@ -998,7 +1171,7 @@ var HOLOLApp = function () {
         : '.btn';
 
       // Toggle Handler
-      KTUtil.on(group, selector, 'click', function (e) {
+      HOLOLUtil.on(group, selector, 'click', function (e) {
         var buttons = [].slice.call(group.querySelectorAll(selector + '.active'));
 
         buttons.map(function (button) {
@@ -1012,11 +1185,11 @@ var HOLOLApp = function () {
 
   var initCheck = function () {
     // Toggle Handler
-    KTUtil.on(document.body, '[data-holol-check="true"]', 'change', function (e) {
+    HOLOLUtil.on(document.body, '[data-holol-check="true"]', 'change', function (e) {
       var check = this;
       var targets = document.querySelectorAll(check.getAttribute('data-holol-check-target'));
 
-      KTUtil.each(targets, function (target) {
+      HOLOLUtil.each(targets, function (target) {
         if (target.type == 'checkbox') {
           target.checked = check.checked;
         } else {
@@ -1058,7 +1231,7 @@ var HOLOLApp = function () {
     );
 
     elements.map(function (element) {
-      if (KTUtil.isInViewport(element) && KTUtil.visible(element)) {
+      if (HOLOLUtil.isInViewport(element) && HOLOLUtil.visible(element)) {
         var options = {};
 
         var value = element.getAttribute('data-holol-countup-value');
@@ -1115,12 +1288,15 @@ var HOLOLApp = function () {
     if (SmoothScroll) {
       new SmoothScroll('a[data-holol-scroll-toggle][href*="#"]', {
         offset: function (anchor, toggle) {
-          // Integer or Function returning an integer. How far to offset the scrolling anchor location in pixels
-          // This example is a function, but you could do something as simple as `offset: 25`
+          // Integer or Function returning an integer. How far to
+          // offset the scrolling anchor location in pixels.
+          // This example is a function, but you could do something
+          // as simple as `offset: 25`.
 
-          // An example returning different values based on whether the clicked link was in the header nav or not
+          // An example returning different values based on whether
+          // the clicked link was in the header nav or not
           if (anchor.hasAttribute('data-holol-scroll-offset')) {
-            var val = KTUtil.getResponsiveValue(anchor.getAttribute('data-holol-scroll-offset'));
+            var val = HOLOLUtil.getResponsiveValue(anchor.getAttribute('data-holol-scroll-offset'));
 
             return val;
           } else {
@@ -1219,6 +1395,47 @@ var HOLOLApp = function () {
 };
 
 // On document ready
+
+var uiNew = function () {
+  function welcome(fn, ln) {
+    console.log(fn + ' ' + ln);
+  }
+
+  function tryit(x) {
+    if (x) welcome('majed', 'sief');
+    else welcome('sief', 'majed');
+  }
+  return {
+    welcome: function welcome(fn, ln) {
+      console.log(fn + ' ' + ln);
+    },
+    try: function (x) {
+      if (x) welcome('majed', 'sief');
+      else welcome('sief', 'majed');
+    },
+  };
+};
+function welcome(fn, ln) {
+  console.log(fn + ' ' + ln);
+
+  uiNew.try(true);
+}
+
+function tryit(x) {
+  if (x) welcome('majed', 'sief');
+  else welcome('sief', 'majed');
+}
+
 HOLOLUtil.onDOMContentLoaded(function () {
-  console.log(HOLOLUtil.majed());
+  tryit(true);
+});
+
+HOLOLUtil.onDOMContentLoaded(function () {
+  const sdfsdfsd = document.querySelector('[statistics]');
+  console.log(HOLOLUtil.setAttrs(sdfsdfsd, { majed: 'fsdf', ahmed: 'kkkkkkk' }));
+  console.log(HOLOLUtil.attr(sdfsdfsd, 'jjjjj', 'asd55555'));
+
+  // HOLOLUtil.on(sdfsdfsd, '.item[chart-control]', 'click', function () {
+  //   console.log('asdasdasdad');
+  // });
 });

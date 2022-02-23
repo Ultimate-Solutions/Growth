@@ -8,16 +8,10 @@
 //                                  __/ |
 //                                 |___/    v3.6.0
 /*!
- * jQuery JavaScript Library v3.6.0
- * https://jquery.com/
- *
- * Includes Sizzle.js
- * https://sizzlejs.com/
- *
+ * jQuery JavaScript Library v3.6.0 (https://jquery.com/)
+ * Includes Sizzle.js (https://sizzlejs.com/)
  * Copyright OpenJS Foundation and other contributors
- * Released under the MIT license
- * https://jquery.org/license
- *
+ * Released under the MIT license (https://jquery.org/license)
  * Date: 2021-03-02T17:08Z
  */
 (function (global, factory) {
@@ -10679,9 +10673,9 @@
 //             | |   | |
 //             |_|   |_|                v2.11.2
 /**
- * @popperjs/core v2.11.2 - MIT License
+ * @popperjs/core v2.11.2 (https://popper.js.org/)
+ * Released under the MIT license (https://github.com/floating-ui/floating-ui/blob/master/LICENSE)
  */
-
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined'
     ? factory(exports)
@@ -13044,7 +13038,6 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 });
-//# sourceMappingURL=popper.js.map
 // #endregion
 
 // #region / Bootstrap v5.1.1
@@ -15592,7 +15585,21 @@
     }
   );
 });
-//# sourceMappingURL=bootstrap.min.js.map
+// #endregion
+
+// #region / Moment with locales v2.29.1
+//   __  __                            _              _ _   _       _                 _
+//  |  \/  |                          | |            (_) | | |     | |               | |
+//  | \  / | ___  _ __ ___   ___ _ __ | |_  __      ___| |_| |__   | | ___   ___ __ _| | ___  ___
+//  | |\/| |/ _ \| '_ ` _ \ / _ \ '_ \| __| \ \ /\ / / | __| '_ \  | |/ _ \ / __/ _` | |/ _ \/ __|
+//  | |  | | (_) | | | | | |  __/ | | | |_   \ V  V /| | |_| | | | | | (_) | (_| (_| | |  __/\__ \
+//  |_|  |_|\___/|_| |_| |_|\___|_| |_|\__|   \_/\_/ |_|\__|_| |_| |_|\___/ \___\__,_|_|\___||___/
+//
+//                                                                                                  v2.29.1
+/*!
+ * Moment with locales v2.29.1 (https://momentjs.com/)
+ * Licensed under MIT (https://github.com/moment/moment/blob/develop/LICENSE)
+ */
 !(function (e, a) {
   'object' == typeof exports && 'undefined' != typeof module
     ? (module.exports = a())
@@ -30133,7 +30140,21 @@
     M
   );
 });
-//# sourceMappingURL=moment-with-locales.min.js.map
+// #endregion
+
+// #region / WNumb v1.2.0
+//  __          ___   _                 _
+//  \ \        / / \ | |               | |
+//   \ \  /\  / /|  \| |_   _ _ __ ___ | |__
+//    \ \/  \/ / | . ` | | | | '_ ` _ \| '_ \
+//     \  /\  /  | |\  | |_| | | | | | | |_) |
+//      \/  \/   |_| \_|\__,_|_| |_| |_|_.__/
+//
+//                                              v1.2.0
+/*!
+ * WNumb v1.2.0 (https://github.com/leongersen/wnumb)
+ * Licensed under MIT (https://github.com/leongersen/wnumb/blob/master/LICENSE.MD)
+ */
 (function (factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
@@ -30524,11 +30545,8 @@
 //
 //                                      v4.1.0
 /*!
- * Select2 4.1.0-rc.0
- * https://select2.github.io
- *
- * Released under the MIT license
- * https://github.com/select2/select2/blob/master/LICENSE.md
+ * Select2 4.1.0-rc.0 (https://select2.github.io)
+ * Released under the MIT license (https://github.com/select2/select2/blob/master/LICENSE.md)
  */
 (function (factory) {
   if (typeof define === 'function' && define.amd) {
@@ -36971,7 +36989,6 @@
 $.fn.select2.defaults.set('theme', 'bootstrap5');
 $.fn.select2.defaults.set('width', '100%');
 $.fn.select2.defaults.set('selectionCssClass', ':all:');
-
 // #endregion
 
 // #region / Bootstrap Maxlength v1.10.0
@@ -36984,12 +37001,9 @@ $.fn.select2.defaults.set('selectionCssClass', ':all:');
 //                                          | |                                      __/ |
 //                                          |_|                                     |___/             v1.10.0
 /*!
- * bootstrap-maxlength.js v1.10.0
- *
+ * bootstrap-maxlength.js v1.10.0 (https://github.com/mimo84/bootstrap-maxlength)
  * Copyright (c) 2013-2021 Maurizio Napoleoni;
- *
- * Licensed under the terms of the MIT license.
- * See: https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE
+ * Licensed under the terms of the MIT license (https://github.com/mimo84/bootstrap-maxlength/blob/master/LICENSE)
  */
 /*global  jQuery*/
 
@@ -37648,10 +37662,8 @@ $.fn.select2.defaults.set('selectionCssClass', ':all:');
 //             | |
 //             |_|                                  v2.0.10
 /*!
- * clipboard.js v2.0.10
- * https://clipboardjs.com/
- *
- * Licensed MIT © Zeno Rocha
+ * clipboard.js v2.0.10 (https://clipboardjs.com/)
+ * Licensed MIT © Zeno Rocha ()
  */
 (function webpackUniversalModuleDefinition(root, factory) {
   if (typeof exports === 'object' && typeof module === 'object') module.exports = factory();
@@ -38653,11 +38665,9 @@ $.fn.select2.defaults.set('selectionCssClass', ':all:');
 //
 //                                                                        v16.1.3
 /*!
- * smooth-scroll v16.1.2
+ * smooth-scroll v16.1.2 (https://github.com/cferdinandi/smooth-scroll)
  * Animate scrolling to anchor links
- * (c) 2020 Chris Ferdinandi
- * MIT License
- * http://github.com/cferdinandi/smooth-scroll
+ * (c) 2020 Chris Ferdinandi - MIT License (http://github.com/cferdinandi/smooth-scroll)
  */
 
 /**
@@ -39383,7 +39393,7 @@ if (window.Element && !Element.prototype.closest) {
 );
 // #endregion
 
-// #region / ApexCharts v3.27.3
+// #region / ApexCharts v3.31.0
 //                             _____ _                _
 //      /\                    / ____| |              | |
 //     /  \   _ __   _____  _| |    | |__   __ _ _ __| |_ ___
@@ -39391,11 +39401,10 @@ if (window.Element && !Element.prototype.closest) {
 //   / ____ \| |_) |  __/>  <| |____| | | | (_| | |  | |_\__ \
 //  /_/    \_\ .__/ \___/_/\_\\_____|_| |_|\__,_|_|   \__|___/
 //           | |
-//           |_|                                                v3.27.3
+//           |_|                                                v3.31.0
 /*!
- * ApexCharts v3.31.0
- * (c) 2018-2021 ApexCharts
- * Released under the MIT License.
+ * ApexCharts v3.31.0 (https://apexcharts.com/)
+ * (c) 2018-2021 ApexCharts - Released under the MIT License (https://github.com/apexcharts/apexcharts.js/blob/master/LICENSE)
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined'
@@ -74291,8 +74300,8 @@ if (window.Element && !Element.prototype.closest) {
 //
 //                                                          v11.4.4
 /*!
- * sweetalert2 v11.4.4
- * Released under the MIT License.
+ * sweetalert2 v11.4.4 (https://sweetalert2.github.io/)
+ * Released under the MIT License (https://github.com/sweetalert2/sweetalert2/blob/master/LICENSE)
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined'
@@ -78096,8 +78105,8 @@ swal.mixin({
 //                                                    __/ |
 //                                                   |___/                      v17.6.1
 /*!
- * vanilla-lazyload v17.6.1
- * Released under the MIT License.
+ * vanilla-lazyload v17.6.1 (https://www.andreaverlicchi.eu/vanilla-lazyload/)
+ * Released under the MIT License (https://github.com/verlok/vanilla-lazyload/blob/master/LICENSE)
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined'
@@ -78932,6 +78941,14 @@ swal.mixin({
 
   return LazyLoad;
 });
+
+('use strict');
+
+//
+// Vanilla Lazyload Initialization
+//
+
+$.fn.select2.defaults.set('theme', 'bootstrap5');
 // #endregion
 
 // #region / CSS Element Queries v1.2.2
