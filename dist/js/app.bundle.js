@@ -1211,7 +1211,7 @@ var HOLOLUtil = (function () {
 ('use strict');
 
 // Class definition
-var HOLOLApp = function () {
+var HOLOLApp = (function () {
   var initPageLoader = function () {
     // CSS3 Transitions only after page load
     // (.page - loading class added to body tag and remove with JS on page load)
@@ -1220,6 +1220,12 @@ var HOLOLApp = function () {
 
   var initBootstrapTooltip = function (el, options) {
     var delay = {};
+
+    // Return if element is undefined or null
+    if (!el) return;
+
+    // Set options if is undefined of null
+    if (!options) options = {};
 
     // Handle delay options
     if (el.hasAttribute('data-bs-delay-hide')) {
@@ -1256,14 +1262,21 @@ var HOLOLApp = function () {
   var initBootstrapTooltips = function (options) {
     var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 
-    HOLOLUtil.each(tooltipTriggerList, function (tooltipTriggerEl) {
-      if (options) initBootstrapTooltip(tooltipTriggerEl, options);
-      else initBootstrapTooltip(tooltipTriggerEl, {});
-    });
+    if (tooltipTriggerList)
+      HOLOLUtil.each(tooltipTriggerList, function (tooltipTriggerEl) {
+        if (options) initBootstrapTooltip(tooltipTriggerEl, options);
+        else initBootstrapTooltip(tooltipTriggerEl, {});
+      });
   };
 
   var initBootstrapPopover = function (el, options) {
     var delay = {};
+
+    // Return if element is undefined or null
+    if (!el) return;
+
+    // Set options if is undefined of null
+    if (!options) options = {};
 
     // Handle delay options
     if (el.hasAttribute('data-bs-delay-hide')) {
@@ -1544,9 +1557,8 @@ var HOLOLApp = function () {
       initSmoothScroll();
     },
   };
-};
+})();
 
 HOLOLUtil.onDOMContentLoaded(function () {
-  console.log(HOLOLUtil.getColorMode());
-  console.log(HOLOLUtil.getTheme());
+  HOLOLApp.init();
 });
