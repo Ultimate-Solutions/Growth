@@ -1559,6 +1559,13 @@ var HOLOLApp = (function () {
   };
 })();
 
-HOLOLUtil.onDOMContentLoaded(function () {
+// On document ready
+HOLOLUtil.onDOMContentLoaded(() => {
   HOLOLApp.init();
+});
+
+// On window load
+window.addEventListener('load', () => {
+  console.log('asda');
+  HOLOLApp.initPageLoader();
 });

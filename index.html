@@ -117,8 +117,11 @@
 
     <!-- #region / Loader Spinner -->
     <style>
-      #page-loader {
+      body.page-loading #page-loader {
         display: flex;
+      }
+      #page-loader {
+        display: none;
         flex-direction: column;
         position: fixed;
         width: 100%;
@@ -127,7 +130,6 @@
         top: 0;
         left: 0;
         z-index: 9999999999;
-        display: flex;
         align-items: center;
         justify-content: center;
       }
@@ -195,11 +197,10 @@
     </style>
     <script>
       window.addEventListener('load', () => {
-        const loader = document.querySelector('#page-loader');
-
-        if (loader) {
-          loader.remove();
-        }
+        // const loader = document.querySelector('#page-loader');
+        // if (loader) {
+        //   loader.remove();
+        // }
       });
     </script>
     <!-- #endregion -->
@@ -241,7 +242,7 @@
       }
     </script>
   </head>
-  <body dashboard scroll class="scroll-y">
+  <body dashboard scroll class="scroll-y page-loading">
     <!-- #region / Loader Spinner -->
     <div id="page-loader">
       <div class="spinner"></div>
