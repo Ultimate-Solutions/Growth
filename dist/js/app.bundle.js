@@ -812,10 +812,10 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Set attribute
+     * Set / Get attribute
      * @param {object} element jQuery element object
      * @param {string} name attribute name
-     * @param {string} value attribute value
+     * @param {string} value attribute value (remove if want to get attribute value)
      */
     attr: function (element, name, value) {
       if (element == undefined) {
@@ -834,45 +834,65 @@ var HOLOLUtil = (function () {
      * @param {object} element jQuery element object
      * @param {object} attributes Array of attributes (e.g: {name: value, name2: value2})
      */
-    setAttrs: function (element, attributes) {
+    attrs: function (element, attributes) {
       if (element == undefined || attributes == undefined) {
         return;
       }
 
       Object.keys(attributes).forEach((attr) => {
-        element.setAttribute(attr, attributes[attr]);
+        HOLOLUtil.attr(element, attr, attributes[attr]);
       });
     },
 
-    hasAttr: function (el, name) {
-      if (el == undefined) {
+    /**
+     * Check if element has attribute
+     * @param {object} element jQuery element object
+     * @returns {boolean}
+     */
+    hasAttr: function (element, attribute) {
+      if (element == undefined) {
         return;
       }
 
-      return el.getAttribute(name) ? true : false;
+      return element.getAttribute(attribute) ? true : false;
     },
 
-    removeAttr: function (el, name) {
-      if (el == undefined) {
+    /**
+     * Remove element has attribute
+     * @param {object} element jQuery element object
+     * @returns {boolean}
+     */
+    removeAttr: function (element, name) {
+      if (element == undefined) {
         return;
       }
 
-      el.removeAttribute(name);
+      element.removeAttribute(name);
     },
 
-    css: function (el, styleProp, value, important) {
-      if (!el) {
+    /**
+     * Get/Set inline style to element
+     * @param {object} element jQuery element object
+     * @param {string} styleProp style properties name
+     * Add @value to set style (don't add if you want to get style)
+     * @param {string} value style properties value
+     * Add @important if required
+     * @param {boolean} important Important status (true, false)
+     * @returns {string} In get case
+     */
+    css: function (element, styleProp, value, important) {
+      if (!element) {
         return;
       }
 
       if (value !== undefined) {
         if (important === true) {
-          el.style.setProperty(styleProp, value, 'important');
+          element.style.setProperty(styleProp, value, 'important');
         } else {
-          el.style[styleProp] = value;
+          element.style[styleProp] = value;
         }
       } else {
-        var defaultView = (el.ownerDocument || document).defaultView;
+        var defaultView = (element.ownerDocument || document).defaultView;
 
         // W3C standard way:
         if (defaultView && defaultView.getComputedStyle) {
@@ -880,27 +900,27 @@ var HOLOLUtil = (function () {
           // (hyphen separated words eg. font-Size)
           styleProp = styleProp.replace(/([A-Z])/g, '-$1').toLowerCase();
 
-          return defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
-        } else if (el.currentStyle) {
+          return defaultView.getComputedStyle(element, null).getPropertyValue(styleProp);
+        } else if (element.currentStyle) {
           // IE
           // sanitize property name to camelCase
           styleProp = styleProp.replace(/\-(\w)/g, function (str, letter) {
             return letter.toUpperCase();
           });
 
-          value = el.currentStyle[styleProp];
+          value = element.currentStyle[styleProp];
 
           // convert other units to pixels on IE
           if (/^\d+(em|pt|%|ex)?$/i.test(value)) {
             return (function (value) {
-              var oldLeft = el.style.left,
-                oldRsLeft = el.runtimeStyle.left;
+              var oldLeft = element.style.left,
+                oldRsLeft = element.runtimeStyle.left;
 
-              el.runtimeStyle.left = el.currentStyle.left;
-              el.style.left = value || 0;
-              value = el.style.pixelLeft + 'px';
-              el.style.left = oldLeft;
-              el.runtimeStyle.left = oldRsLeft;
+              element.runtimeStyle.left = element.currentStyle.left;
+              element.style.left = value || 0;
+              value = element.style.pixelLeft + 'px';
+              element.style.left = oldLeft;
+              element.runtimeStyle.left = oldRsLeft;
 
               return value;
             })(value);
@@ -911,6 +931,11 @@ var HOLOLUtil = (function () {
       }
     },
 
+    /**
+     * Get CSS Variable value
+     * @param {string} variableName required variable name
+     * @returns {string} variable value
+     */
     getCssVariableValue: function (variableName) {
       var hex = getComputedStyle(document.documentElement).getPropertyValue(variableName);
       if (hex && hex.length > 0) {
@@ -920,16 +945,103 @@ var HOLOLUtil = (function () {
       return hex;
     },
 
-    height: function (el) {
-      return HOLOLUtil.css(el, 'height');
+    /**
+     * Get CSS height value
+     * @param {object} element jQuery element object
+     * @returns {string} variable value
+     */
+    height: function (element) {
+      return HOLOLUtil.css(element, 'height');
     },
 
-    width: function (el) {
-      return HOLOLUtil.css(el, 'width');
+    /**
+     * Get CSS width value
+     * @param {object} element jQuery element object
+     * @returns {string} variable value
+     */
+    width: function (element) {
+      return HOLOLUtil.css(element, 'width');
     },
 
+    /**
+     * Animate value from-to (e.g: scroll , width, height, padding, ...)
+     * @param {number} from Start position
+     * @param {number} to End position
+     * @param {number} duration Duration in milliseconds (e.g: 2000 - for 2 seconds)
+     * @param {object} update Run on duration (function)
+     * @param {object} easing
+     * @param {object} done
+     */
+    animate: function (from, to, duration, update, easing, done) {
+      /**
+       * TinyAnimate.easings
+       *  Adapted from jQuery Easing
+       */
+      var easings = {};
+      var easing;
+
+      easings.linear = function (t, b, c, d) {
+        return (c * t) / d + b;
+      };
+
+      easing = easings.linear;
+
+      // Early bail out if called incorrectly
+      if (
+        typeof from !== 'number' ||
+        typeof to !== 'number' ||
+        typeof duration !== 'number' ||
+        typeof update !== 'function'
+      ) {
+        return;
+      }
+
+      // Create mock done() function if necessary
+      if (typeof done !== 'function') {
+        done = function () {};
+      }
+
+      // Pick implementation (requestAnimationFrame | setTimeout)
+      var rAF =
+        window.requestAnimationFrame ||
+        function (callback) {
+          window.setTimeout(callback, 1000 / 50);
+        };
+
+      // Animation loop
+      var canceled = false;
+      var change = to - from;
+
+      function loop(timestamp) {
+        var time = (timestamp || +new Date()) - start;
+
+        if (time >= 0) {
+          update(easing(time, from, change, duration));
+        }
+        if (time >= 0 && time >= duration) {
+          update(to);
+          done();
+        } else {
+          rAF(loop);
+        }
+      }
+
+      update(from);
+
+      // Start animation loop
+      var start =
+        window.performance && window.performance.now ? window.performance.now() : +new Date();
+
+      rAF(loop);
+    },
+
+    /**
+     * Get scrolled element value
+     * @param {object} element jQuery element object
+     * @param {string} method The passed in `method` value should be 'Top' or 'Left'
+     * @returns {number}
+     */
     getScroll: function (element, method) {
-      // The passed in `method` value should be 'Top' or 'Left'
       method = 'scroll' + method;
       return element == window || element == document
         ? self[method == 'scrollTop' ? 'pageYOffset' : 'pageXOffset'] ||
@@ -938,6 +1050,12 @@ var HOLOLUtil = (function () {
         : element[method];
     },
 
+    /**
+     * Scroll to element
+     * @param {object} target jQuery element object
+     * @param {number} offset Offset value (e.g: 100)
+     * @param {number} duration Duration in milliseconds (e.g: 2000 - for 2 seconds)
+     */
     scrollTo: function (target, offset, duration) {
       var duration = duration ? duration : 500;
       var targetPos = target ? HOLOLUtil.offset(target).top : 0;
@@ -959,15 +1077,29 @@ var HOLOLUtil = (function () {
       }); //, easing, done
     },
 
+    /**
+     * Scroll to Top
+     * @param {number} offset Offset value (e.g: 100)
+     * @param {number} duration Duration in milliseconds (e.g: 2000 - for 2 seconds)
+     */
     scrollTop: function (offset, duration) {
       HOLOLUtil.scrollTo(null, offset, duration);
     },
 
+    /**
+     * Get document scroll top
+     * @returns {number}
+     */
     getScrollTop: function () {
       return (document.scrollingElement || document.documentElement).scrollTop;
     },
 
-    numberString: function (nStr) {
+    /**
+     * Convert number to currency number (e.g: 12,000)
+     * @param {number} nStr
+     * @returns {number}
+     */
+    numberCurrency: function (nStr) {
       nStr += '';
       var x = nStr.split('.');
       var x1 = x[0];
@@ -979,61 +1111,99 @@ var HOLOLUtil = (function () {
       return x1 + x2;
     },
 
+    /**
+     * Get site direction
+     * @returns {string}
+     */
+    getDir: function () {
+      if (document.querySelector('html').getAttribute('dir'))
+        return document.querySelector('html').getAttribute('dir');
+      return 'ltr';
+    },
+
+    /**
+     * Check if Site is RTL (Right to Left view)
+     * @returns {boolean}
+     */
     isRTL: function () {
-      return document.querySelector('html').getAttribute('direction') === 'rtl';
+      return HOLOLUtil.getDir() === 'rtl' ? true : false;
     },
 
-    setHTML: function (el, html) {
-      el.innerHTML = html;
+    /**
+     * Get browser language
+     * @returns {string}
+     */
+    getLang: function () {
+      var browserLang,
+        userLang = navigator.language || navigator.userLanguage;
+
+      if (userLang.split('-')[0].length) {
+        browserLang = userLang.split('-')[0];
+      }
+
+      return browserLang;
     },
 
-    getHTML: function (el) {
-      if (el) {
-        return el.innerHTML;
+    /**
+     * Set inner element HTML
+     * @param {object} element jQuery element object
+     * @param {object, string} html
+     */
+    setHTML: function (element, html) {
+      element.innerHTML = html;
+    },
+
+    /**
+     * Convert number to currency number (e.g: 12,000)
+     * @param {object} element jQuery element object
+     * @returns {string}
+     */
+    getHTML: function (element) {
+      if (element) {
+        return element.innerHTML;
       }
     },
 
-    colorLighten: function (color, amount) {
-      const addLight = function (color, amount) {
-        let cc = parseInt(color, 16) + amount;
-        let c = cc > 255 ? 255 : cc;
-        c = c.toString(16).length > 1 ? c.toString(16) : `0${c.toString(16)}`;
-        return c;
-      };
-
-      color = color.indexOf('#') >= 0 ? color.substring(1, color.length) : color;
-      amount = parseInt((255 * amount) / 100);
-
-      return (color = `#${addLight(color.substring(0, 2), amount)}${addLight(
-        color.substring(2, 4),
-        amount
-      )}${addLight(color.substring(4, 6), amount)}`);
-    },
-
-    colorDarken: function (color, amount) {
-      const subtractLight = function (color, amount) {
-        let cc = parseInt(color, 16) - amount;
-        let c = cc < 0 ? 0 : cc;
-        c = c.toString(16).length > 1 ? c.toString(16) : `0${c.toString(16)}`;
-
-        return c;
-      };
-
-      color = color.indexOf('#') >= 0 ? color.substring(1, color.length) : color;
-      amount = parseInt((255 * amount) / 100);
-
-      return (color = `#${subtractLight(color.substring(0, 2), amount)}${subtractLight(
-        color.substring(2, 4),
-        amount
-      )}${subtractLight(color.substring(4, 6), amount)}`);
-    },
-
+    /**
+     * Loop multi elements
+     * @param {object} array Array of objects
+     * @param {object} callback Function call
+     */
     each: function (array, callback) {
       return [].slice.call(array).map(callback);
     },
 
-    majed: function () {
-      return 'Majed';
+    /**
+     * Set app color mode
+     * @param {string} mode The passed in `mode` value should be 'light' or 'dark'
+     */
+    setColorMode: function (mode) {
+      HOLOLUtil.attr(document.querySelector('html'), 'data-color-mode', mode);
+    },
+
+    /**
+     * Get app color mode
+     * @returns {string}
+     */
+    getColorMode: function () {
+      return HOLOLUtil.attr(document.querySelector('html'), 'data-color-mode');
+    },
+
+    /**
+     * Set app theme
+     * @param {string} theme The passed in `mode` value should be
+     *     'regular' or 'high_contrast' or 'colorblind'
+     */
+    setTheme: function (theme) {
+      HOLOLUtil.attr(document.querySelector('html'), 'data-theme', theme);
+    },
+
+    /**
+     * Get app theme
+     * @returns {string}
+     */
+    getTheme: function () {
+      return HOLOLUtil.attr(document.querySelector('html'), 'data-theme');
     },
   };
 })();
@@ -1043,7 +1213,8 @@ var HOLOLUtil = (function () {
 // Class definition
 var HOLOLApp = function () {
   var initPageLoader = function () {
-    // CSS3 Transitions only after page load(.page-loading class added to body tag and remove with JS on page load)
+    // CSS3 Transitions only after page load
+    // (.page - loading class added to body tag and remove with JS on page load)
     HOLOLUtil.removeClass(document.body, 'page-loading');
   };
 
@@ -1083,9 +1254,9 @@ var HOLOLApp = function () {
   };
 
   var initBootstrapTooltips = function (options) {
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    HOLOLUtil.each(tooltipTriggerList, function (tooltipTriggerEl) {
       if (options) initBootstrapTooltip(tooltipTriggerEl, options);
       else initBootstrapTooltip(tooltipTriggerEl, {});
     });
@@ -1141,18 +1312,18 @@ var HOLOLApp = function () {
   };
 
   var initBootstrapPopovers = function (options) {
-    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+    var popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
 
-    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    HOLOLUtil.each(popoverTriggerList, function (popoverTriggerEl) {
       if (options) initBootstrapPopover(popoverTriggerEl, options);
       else initBootstrapPopover(popoverTriggerEl, {});
     });
   };
 
   var initScrollSpy = function () {
-    var elements = [].slice.call(document.querySelectorAll('[data-bs-spy="scroll"]'));
+    var elements = document.querySelectorAll('[data-bs-spy="scroll"]');
 
-    elements.map(function (element) {
+    HOLOLUtil.each(elements, function (element) {
       var sel = element.getAttribute('data-bs-target');
       var scrollContent = document.querySelector(element.getAttribute('data-bs-target'));
       var scrollSpy = bootstrap.ScrollSpy.getInstance(scrollContent);
@@ -1163,18 +1334,18 @@ var HOLOLApp = function () {
   };
 
   var initButtons = function () {
-    var buttonsGroup = [].slice.call(document.querySelectorAll('[data-holol-buttons="true"]'));
+    var buttonsGroup = document.querySelectorAll('[data-holol-buttons="true"]');
 
-    buttonsGroup.map(function (group) {
+    HOLOLUtil.each(buttonsGroup, function (group) {
       var selector = group.hasAttribute('data-holol-buttons-target')
         ? group.getAttribute('data-holol-buttons-target')
         : '.btn';
 
       // Toggle Handler
       HOLOLUtil.on(group, selector, 'click', function (e) {
-        var buttons = [].slice.call(group.querySelectorAll(selector + '.active'));
+        var buttons = group.querySelectorAll(selector + '.active');
 
-        buttons.map(function (button) {
+        HOLOLUtil.each(buttons, function (button) {
           button.classList.remove('active');
         });
 
@@ -1200,11 +1371,11 @@ var HOLOLApp = function () {
   };
 
   var initSelect2 = function () {
-    var elements = [].slice.call(
-      document.querySelectorAll('[data-control="select2"], [data-holol-select2="true"]')
+    var elements = document.querySelectorAll(
+      '[data-control="select2"], [data-holol-select2="true"]'
     );
 
-    elements.map(function (element) {
+    HOLOLUtil.each(elements, function (element) {
       var options = {
         dir: document.body.getAttribute('direction'),
       };
@@ -1218,19 +1389,17 @@ var HOLOLApp = function () {
   };
 
   var initAutosize = function () {
-    var inputs = [].slice.call(document.querySelectorAll('[data-holol-autosize="true"]'));
+    var inputs = document.querySelectorAll('[data-holol-autosize="true"]');
 
-    inputs.map(function (input) {
+    HOLOLUtil.each(inputs, function (input) {
       autosize(input);
     });
   };
 
   var initCountUp = function () {
-    var elements = [].slice.call(
-      document.querySelectorAll('[data-holol-countup="true"]:not(.counted)')
-    );
+    var elements = document.querySelectorAll('[data-holol-countup="true"]:not(.counted)');
 
-    elements.map(function (element) {
+    HOLOLUtil.each(elements, function (element) {
       if (HOLOLUtil.isInViewport(element) && HOLOLUtil.visible(element)) {
         var options = {};
 
@@ -1276,10 +1445,9 @@ var HOLOLApp = function () {
     window.addEventListener('scroll', initCountUp);
 
     // Tabs shown event handler
-    var tabs = [].slice.call(
-      document.querySelectorAll('[data-holol-countup-tabs="true"][data-bs-toggle="tab"]')
-    );
-    tabs.map(function (tab) {
+    var tabs = document.querySelectorAll('[data-holol-countup-tabs="true"][data-bs-toggle="tab"]');
+
+    HOLOLUtil.each(tabs, function (tab) {
       tab.addEventListener('shown.bs.tab', initCountUp);
     });
   };
@@ -1375,67 +1543,10 @@ var HOLOLApp = function () {
     initSmoothScroll: function () {
       initSmoothScroll();
     },
-
-    setColorMode: function (mode) {
-      document.querySelector('html').setAttribute('data-color-mode', mode);
-    },
-
-    getColorMode: function () {
-      return document.querySelector('html').getAttribute('data-color-mode');
-    },
-
-    setTheme: function (theme) {
-      document.querySelector('html').setAttribute('data-theme', theme);
-    },
-
-    getTheme: function () {
-      return document.querySelector('html').getAttribute('data-theme');
-    },
   };
 };
 
-// On document ready
-
-var uiNew = function () {
-  function welcome(fn, ln) {
-    console.log(fn + ' ' + ln);
-  }
-
-  function tryit(x) {
-    if (x) welcome('majed', 'sief');
-    else welcome('sief', 'majed');
-  }
-  return {
-    welcome: function welcome(fn, ln) {
-      console.log(fn + ' ' + ln);
-    },
-    try: function (x) {
-      if (x) welcome('majed', 'sief');
-      else welcome('sief', 'majed');
-    },
-  };
-};
-function welcome(fn, ln) {
-  console.log(fn + ' ' + ln);
-
-  uiNew.try(true);
-}
-
-function tryit(x) {
-  if (x) welcome('majed', 'sief');
-  else welcome('sief', 'majed');
-}
-
 HOLOLUtil.onDOMContentLoaded(function () {
-  tryit(true);
-});
-
-HOLOLUtil.onDOMContentLoaded(function () {
-  const sdfsdfsd = document.querySelector('[statistics]');
-  console.log(HOLOLUtil.setAttrs(sdfsdfsd, { majed: 'fsdf', ahmed: 'kkkkkkk' }));
-  console.log(HOLOLUtil.attr(sdfsdfsd, 'jjjjj', 'asd55555'));
-
-  // HOLOLUtil.on(sdfsdfsd, '.item[chart-control]', 'click', function () {
-  //   console.log('asdasdasdad');
-  // });
+  console.log(HOLOLUtil.getColorMode());
+  console.log(HOLOLUtil.getTheme());
 });
