@@ -1854,6 +1854,7 @@ var HOLOLApp = (function () {
     });
   };
 
+  // Public methods
   return {
     init: function () {
       this.initPageLoader();
