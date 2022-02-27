@@ -339,33 +339,27 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Add Attributes to the given element
+     * Toggle class off the given element
      * @param {object} el jQuery element object
-     * @param {object} attributes Array of attributes
-     *    (e.g: {attribute_1: value_1, attribute_2: value_2})
+     * @param {string} className string with spaces between every class name to add multi classes
      */
-    addAttribute: function (el, attributes) {
-      if (!el || typeof attributes === 'undefined') {
+    toggleClass: function (el, className) {
+      if (!el || typeof className === 'undefined') {
         return;
       }
 
-      for (var key in attributes) {
-        el.setAttribute(key, attributes[key]);
-      }
-    },
+      var classNames = className.split(' ');
 
-    /**
-     * Remove Attributes from the given element
-     * @param {object} el jQuery element object
-     * @param {object} attributes Array of attributes (e.g: {attribute_1, attribute_2})
-     */
-    removeAttribute: function (el, attributes) {
-      if (!el || typeof attributes === 'undefined') {
-        return;
-      }
-
-      for (var key in attributes) {
-        el.removeAttribute(key);
+      if (el.classList) {
+        for (var i = 0; i < classNames.length; i++) {
+          if (classNames[i] && classNames[i].length > 0) {
+            el.classList.toggle(HOLOLUtil.trim(classNames[i]));
+          }
+        }
+      } else if (!HOLOLUtil.hasClass(el, className)) {
+        for (var x = 0; x < classNames.length; x++) {
+          el.className += ' ' + HOLOLUtil.trim(classNames[x]);
+        }
       }
     },
 
@@ -610,13 +604,33 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Insert element after referenceNode inside DOM.
+     * Insert element before referenceNode inside DOM.
      * @param {object} element jQuery element object
      * @param {object} referenceNode jQuery reference node object
      * @returns {object}
      */
     insertBefore: function (element, referenceNode) {
       return referenceNode.parentNode.insertBefore(element, referenceNode);
+    },
+
+    /**
+     * Insert element last on referenceNode DOM.
+     * @param {object} element jQuery element object
+     * @param {object} referenceNode jQuery reference node object
+     * @returns {object}
+     */
+    append: function (element, referenceNode) {
+      return referenceNode.append(element);
+    },
+
+    /**
+     * Insert element first on referenceNode DOM.
+     * @param {object} element jQuery element object
+     * @param {object} referenceNode jQuery reference node object
+     * @returns {object}
+     */
+    prepend: function (element, referenceNode) {
+      return referenceNode.prepend(element);
     },
 
     /**
@@ -847,6 +861,7 @@ var HOLOLUtil = (function () {
     /**
      * Check if element has attribute
      * @param {object} element jQuery element object
+     * @param {string} attributes attribute name (e.g: {name: value, name2: value2})
      * @returns {boolean}
      */
     hasAttr: function (element, attribute) {
@@ -854,7 +869,7 @@ var HOLOLUtil = (function () {
         return;
       }
 
-      return element.getAttribute(attribute) ? true : false;
+      return element.hasAttribute(attribute) ? true : false;
     },
 
     /**
@@ -874,10 +889,11 @@ var HOLOLUtil = (function () {
      * Get/Set inline style to element
      * @param {object} element jQuery element object
      * @param {string} styleProp style properties name
-     * Add @value to set style (don't add if you want to get style)
      * @param {string} value style properties value
-     * Add @important if required
+     * Don't add if you want to get style
+     * or add empty string to remove style property
      * @param {boolean} important Important status (true, false)
+     * Add @important if required
      * @returns {string} In get case
      */
     css: function (element, styleProp, value, important) {
@@ -886,11 +902,8 @@ var HOLOLUtil = (function () {
       }
 
       if (value !== undefined) {
-        if (important === true) {
-          element.style.setProperty(styleProp, value, 'important');
-        } else {
-          element.style[styleProp] = value;
-        }
+        if (important === true) element.style.setProperty(styleProp, value, 'important');
+        else element.style[styleProp] = value;
       } else {
         var defaultView = (element.ownerDocument || document).defaultView;
 
@@ -1154,13 +1167,33 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Convert number to currency number (e.g: 12,000)
+     * Get inner element HTML
      * @param {object} element jQuery element object
      * @returns {string}
      */
     getHTML: function (element) {
       if (element) {
         return element.innerHTML;
+      }
+    },
+
+    /**
+     * Set inner element Text
+     * @param {object} element jQuery element object
+     * @param {string} text
+     */
+    setTEXT: function (element, text) {
+      element.innerText = text;
+    },
+
+    /**
+     * Set inner element Text
+     * @param {object} element jQuery element object
+     * @returns {string}
+     */
+    getTEXT: function (element) {
+      if (element) {
+        return element.innerText;
       }
     },
 
@@ -1218,6 +1251,23 @@ var HOLOLApp = (function () {
     HOLOLUtil.removeClass(document.body, 'page-loading');
   };
 
+  var initLazyLoad = function () {
+    function logElementEvent(eventName, element) {
+      console.log(Date.now(), eventName, element.getAttribute('data-src'));
+    }
+
+    var callback_error = function (element) {
+      logElementEvent('💀 ERROR', element);
+      element.src = 'https://via.placeholder.com/440x560/?text=Error+Placeholder';
+    };
+
+    window.lazyLoadOptions = {
+      threshold: 0,
+      // Assign the callbacks defined above
+      callback_error: callback_error,
+    };
+  };
+
   var initBootstrapTooltip = function (el, options) {
     var delay = {};
 
@@ -1260,13 +1310,13 @@ var HOLOLApp = (function () {
   };
 
   var initBootstrapTooltips = function (options) {
-    var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-
-    if (tooltipTriggerList)
-      HOLOLUtil.each(tooltipTriggerList, function (tooltipTriggerEl) {
+    HOLOLUtil.each(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]'),
+      function (tooltipTriggerEl) {
         if (options) initBootstrapTooltip(tooltipTriggerEl, options);
         else initBootstrapTooltip(tooltipTriggerEl, {});
-      });
+      }
+    );
   };
 
   var initBootstrapPopover = function (el, options) {
@@ -1325,20 +1375,19 @@ var HOLOLApp = (function () {
   };
 
   var initBootstrapPopovers = function (options) {
-    var popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-
-    HOLOLUtil.each(popoverTriggerList, function (popoverTriggerEl) {
-      if (options) initBootstrapPopover(popoverTriggerEl, options);
-      else initBootstrapPopover(popoverTriggerEl, {});
-    });
+    HOLOLUtil.each(
+      document.querySelectorAll('[data-bs-toggle="popover"]'),
+      function (popoverTrigger) {
+        if (options) initBootstrapPopover(popoverTrigger, options);
+        else initBootstrapPopover(popoverTrigger, {});
+      }
+    );
   };
 
   var initScrollSpy = function () {
-    var elements = document.querySelectorAll('[data-bs-spy="scroll"]');
-
-    HOLOLUtil.each(elements, function (element) {
+    HOLOLUtil.each(document.querySelectorAll('[data-bs-spy="scroll"]'), function (element) {
       var sel = element.getAttribute('data-bs-target');
-      var scrollContent = document.querySelector(element.getAttribute('data-bs-target'));
+      var scrollContent = document.querySelector(sel);
       var scrollSpy = bootstrap.ScrollSpy.getInstance(scrollContent);
       if (scrollSpy) {
         scrollSpy.refresh();
@@ -1347,22 +1396,18 @@ var HOLOLApp = (function () {
   };
 
   var initButtons = function () {
-    var buttonsGroup = document.querySelectorAll('[data-holol-buttons="true"]');
-
-    HOLOLUtil.each(buttonsGroup, function (group) {
+    HOLOLUtil.each(document.querySelectorAll('[data-holol-buttons="true"]'), function (group) {
       var selector = group.hasAttribute('data-holol-buttons-target')
         ? group.getAttribute('data-holol-buttons-target')
         : '.btn';
 
       // Toggle Handler
       HOLOLUtil.on(group, selector, 'click', function (e) {
-        var buttons = group.querySelectorAll(selector + '.active');
-
-        HOLOLUtil.each(buttons, function (button) {
-          button.classList.remove('active');
+        HOLOLUtil.each(group.querySelectorAll(selector + '.active'), function (button) {
+          HOLOLUtil.removeClass(button, 'active');
         });
 
-        this.classList.add('active');
+        HOLOLUtil.addClass(this, 'active');
       });
     });
   };
@@ -1371,83 +1416,107 @@ var HOLOLApp = (function () {
     // Toggle Handler
     HOLOLUtil.on(document.body, '[data-holol-check="true"]', 'change', function (e) {
       var check = this;
-      var targets = document.querySelectorAll(check.getAttribute('data-holol-check-target'));
 
-      HOLOLUtil.each(targets, function (target) {
-        if (target.type == 'checkbox') {
-          target.checked = check.checked;
-        } else {
-          target.classList.toggle('active');
+      HOLOLUtil.each(
+        document.querySelectorAll(HOLOLUtil.attr(check, 'data-holol-check-target')),
+        function (target) {
+          target.type == 'checkbox'
+            ? (target.checked = check.checked)
+            : HOLOLUtil.toggleClass(target, 'active');
         }
-      });
+      );
     });
   };
 
   var initSelect2 = function () {
-    var elements = document.querySelectorAll(
-      '[data-control="select2"], [data-holol-select2="true"]'
-    );
+    HOLOLUtil.each(
+      document.querySelectorAll('[data-control="select2"], [data-holol-select2="true"]'),
+      function (element) {
+        var options = {
+          dir: HOLOLUtil.attr(document.body, 'direction'),
+        };
 
-    HOLOLUtil.each(elements, function (element) {
-      var options = {
-        dir: document.body.getAttribute('direction'),
-      };
+        if (HOLOLUtil.attr(element, 'data-hide-search') == 'true')
+          options.minimumResultsForSearch = Infinity;
 
-      if (element.getAttribute('data-hide-search') == 'true') {
-        options.minimumResultsForSearch = Infinity;
+        $(element).select2(options);
       }
-
-      $(element).select2(options);
-    });
+    );
   };
 
   var initAutosize = function () {
-    var inputs = document.querySelectorAll('[data-holol-autosize="true"]');
-
-    HOLOLUtil.each(inputs, function (input) {
+    HOLOLUtil.each(document.querySelectorAll('[data-holol-autosize="true"]'), function (input) {
       autosize(input);
     });
   };
 
   var initCountUp = function () {
-    var elements = document.querySelectorAll('[data-holol-countup="true"]:not(.counted)');
+    HOLOLUtil.each(
+      document.querySelectorAll('[data-holol-countup="true"]:not(.counted)'),
+      function (element) {
+        if (HOLOLUtil.isInViewport(element) && HOLOLUtil.visible(element)) {
+          var options = {};
 
-    HOLOLUtil.each(elements, function (element) {
-      if (HOLOLUtil.isInViewport(element) && HOLOLUtil.visible(element)) {
-        var options = {};
+          var value = HOLOLUtil.attr(element, 'data-holol-countup-value');
+          value = parseFloat(value.replace(/,/, ''));
 
-        var value = element.getAttribute('data-holol-countup-value');
-        value = parseFloat(value.replace(/,/, ''));
+          if (HOLOLUtil.hasAttr(element, 'data-holol-countup-start-val'))
+            options.startVal = parseFloat(HOLOLUtil.attr(element, 'data-holol-countup-start-val'));
 
-        if (element.hasAttribute('data-holol-countup-start-val')) {
-          options.startVal = parseFloat(element.getAttribute('data-holol-countup-start-val'));
+          if (HOLOLUtil.hasAttr(element, 'data-holol-countup-duration'))
+            options.duration = parseInt(HOLOLUtil.attr(element, 'data-holol-countup-duration'));
+
+          if (HOLOLUtil.hasAttr(element, 'data-holol-countup-decimal-places'))
+            options.decimalPlaces = parseInt(
+              HOLOLUtil.attr(element, 'data-holol-countup-decimal-places')
+            );
+
+          if (HOLOLUtil.hasAttr(element, 'data-holol-countup-prefix'))
+            options.prefix = HOLOLUtil.attr(element, 'data-holol-countup-prefix');
+
+          if (HOLOLUtil.hasAttr(element, 'data-holol-countup-suffix'))
+            options.suffix = HOLOLUtil.attr(element, 'data-holol-countup-suffix');
+
+          if (HOLOLUtil.hasAttr(element, 'data-holol-countup-short'))
+            if (value >= 1000 && value < 1000000) {
+              value = value / 1000;
+              options.suffix = 'K';
+
+              if (HOLOLUtil.hasAttr(element, 'data-holol-countup-start-val'))
+                options.startVal =
+                  parseFloat(HOLOLUtil.attr(element, 'data-holol-countup-start-val')) / 1000;
+            } else if (value >= 1000000 && value < 1000000000) {
+              value = value / 1000000;
+              options.suffix = 'M';
+
+              if (HOLOLUtil.hasAttr(element, 'data-holol-countup-start-val'))
+                options.startVal =
+                  parseFloat(HOLOLUtil.attr(element, 'data-holol-countup-start-val')) / 1000000;
+            } else if (value >= 1000000000 && value < 1000000000000) {
+              value = value / 1000000000;
+              options.suffix = 'B';
+
+              if (HOLOLUtil.hasAttr(element, 'data-holol-countup-start-val'))
+                options.startVal =
+                  parseFloat(HOLOLUtil.attr(element, 'data-holol-countup-start-val')) / 1000000000;
+            } else {
+              value = value / 1000000000000;
+              options.suffix = 'T';
+
+              if (HOLOLUtil.hasAttr(element, 'data-holol-countup-start-val'))
+                options.startVal =
+                  parseFloat(HOLOLUtil.attr(element, 'data-holol-countup-start-val')) /
+                  1000000000000;
+            }
+
+          var count = new countUp.CountUp(element, value, options);
+
+          count.start();
+
+          HOLOLUtil.addClass(element, 'counted');
         }
-
-        if (element.hasAttribute('data-holol-countup-duration')) {
-          options.duration = parseInt(element.getAttribute('data-holol-countup-duration'));
-        }
-
-        if (element.hasAttribute('data-holol-countup-decimal-places')) {
-          options.decimalPlaces = parseInt(
-            element.getAttribute('data-holol-countup-decimal-places')
-          );
-        }
-
-        if (element.hasAttribute('data-holol-countup-prefix')) {
-          options.prefix = element.getAttribute('data-holol-countup-prefix');
-        }
-
-        if (element.hasAttribute('data-holol-countup-suffix')) {
-          options.suffix = element.getAttribute('data-holol-countup-suffix');
-        }
-
-        var count = new countUp.CountUp(element, value, options);
-
-        count.start();
-
-        element.classList.add('counted');
       }
-    });
+    );
   };
 
   var initCountUpTabs = function () {
@@ -1458,11 +1527,12 @@ var HOLOLApp = (function () {
     window.addEventListener('scroll', initCountUp);
 
     // Tabs shown event handler
-    var tabs = document.querySelectorAll('[data-holol-countup-tabs="true"][data-bs-toggle="tab"]');
-
-    HOLOLUtil.each(tabs, function (tab) {
-      tab.addEventListener('shown.bs.tab', initCountUp);
-    });
+    HOLOLUtil.each(
+      document.querySelectorAll('[data-holol-countup-tabs="true"][data-bs-toggle="tab"]'),
+      function (tab) {
+        tab.addEventListener('shown.bs.tab', initCountUp);
+      }
+    );
   };
 
   var initSmoothScroll = function () {
@@ -1488,9 +1558,306 @@ var HOLOLApp = (function () {
     }
   };
 
+  var initDateRangePicker = function () {};
+
+  var initMainNavbar = function () {
+    // Main navbar
+    const mainNavbar = document.querySelector('.dashboard > .main-navbar');
+    const mainContainer = document.querySelector('.dashboard > .content');
+
+    if (mainNavbar) {
+      // Mobile view checkup
+      var windowWidth = window.innerWidth <= 991.98 ? true : false;
+
+      // Expand / Collapse Main navbar
+      HOLOLUtil.each(
+        document.querySelectorAll('[data-action="sidebar-toggler"]'),
+        function (expandCollapseAction) {
+          HOLOLUtil.addEvent(expandCollapseAction, 'click', () => {
+            if (HOLOLUtil.hasAttr(mainNavbar, 'collapse')) {
+              HOLOLUtil.removeAttr(mainNavbar, 'collapse');
+              HOLOLUtil.attr(mainNavbar, 'expand', '');
+
+              // Check window width for mobile view
+              if (windowWidth) HOLOLUtil.addClass(document.body, 'overflow-hidden h-100');
+            } else if (mainNavbar.hasAttribute('expand')) {
+              HOLOLUtil.removeAttr(mainNavbar, 'expand');
+              HOLOLUtil.attr(mainNavbar, 'collapse', '');
+              if (windowWidth) {
+                HOLOLUtil.removeClass(document.body, 'overflow-hidden h-100');
+              }
+            }
+          });
+        }
+      );
+
+      // Close Main navbar on click outside
+      if (windowWidth)
+        HOLOLUtil.addEvent(document, 'mouseup', function (e) {
+          if (HOLOLUtil.hasAttr(mainNavbar, 'expand'))
+            if (mainContainer.contains(e.target)) {
+              HOLOLUtil.removeAttr(mainNavbar, 'expand');
+              HOLOLUtil.attr(mainNavbar, 'collapse', '');
+              HOLOLUtil.removeClass(document.body, 'overflow-hidden h-100');
+            }
+        });
+      // Resize event for close Main navbar on click outside
+      HOLOLUtil.addEvent(
+        window,
+        'resize',
+        () => {
+          if (windowWidth)
+            document.addEventListener('mouseup', function (e) {
+              if (HOLOLUtil.hasAttr(mainNavbar, 'expand'))
+                if (mainContainer.contains(e.target)) {
+                  HOLOLUtil.removeAttr(mainNavbar, 'expand');
+                  HOLOLUtil.attr(mainNavbar, 'collapse', '');
+                  HOLOLUtil.removeClass(document.body, 'overflow-hidden h-100');
+                }
+            });
+        },
+        true
+      );
+
+      // Actions for dropdown links
+      // Dropdown lists
+      const dropdownLists = mainNavbar.querySelectorAll('.nav-link.dropdown');
+      HOLOLUtil.each(dropdownLists, function (dropdownListItem) {
+        HOLOLUtil.addEvent(dropdownListItem, 'click', () => {
+          if (!HOLOLUtil.hasClass(dropdownListItem, 'expand')) {
+            // Collapse All Dropdown
+            HOLOLUtil.each(dropdownLists, function (dropdownListItemNew) {
+              HOLOLUtil.removeClass(dropdownListItemNew, 'expand');
+            });
+            // Expand current dropdown
+            HOLOLUtil.addClass(dropdownListItem, 'expand');
+          } // Collapse All Dropdown
+          else
+            HOLOLUtil.each(dropdownLists, function (dropdownListItemNew) {
+              HOLOLUtil.removeClass(dropdownListItemNew, 'expand');
+            });
+        });
+      });
+
+      // Check active dropdown links
+      // Nav items
+      HOLOLUtil.each(mainNavbar.querySelectorAll('.nav-item'), function (navItem) {
+        let dropdownList = navItem.querySelector('.dropdown-list');
+        if (dropdownList && dropdownList.querySelector('.nav-item.active'))
+          HOLOLUtil.addClass(navItem.querySelector('.nav-link.dropdown'), 'expand');
+      });
+
+      // Enable tooltips
+      HOLOLUtil.each(mainNavbar.querySelectorAll('[data-tooltip'), function (tooltip) {
+        // Event to handle mouse enter event
+        HOLOLUtil.addEvent(tooltip, 'mouseenter', () => {
+          // Check if Main navbar has collapse status
+          if (HOLOLUtil.hasAttr(mainNavbar, 'collapse')) {
+            // Create Tooltip container
+            const tooltipContainer = document.createElement('div');
+            HOLOLUtil.attr(tooltipContainer, 'tooltip-container', '');
+
+            // Set tooltip data
+            HOLOLUtil.setTEXT(tooltipContainer, HOLOLUtil.attr(tooltip, 'data-title'));
+
+            // Append tooltip to view
+            HOLOLUtil.append(tooltipContainer, document.body);
+
+            // Set tooltip position
+            HOLOLUtil.css(tooltipContainer, 'top', HOLOLUtil.offset(tooltip).top + 'px');
+          }
+        });
+
+        // Remove tooltip content on leave target
+        HOLOLUtil.addEvent(tooltip, 'mouseleave', () => {
+          HOLOLUtil.remove(document.querySelector('[tooltip-container]'));
+        });
+      });
+    }
+  };
+
+  var initTopNavbar = function () {
+    // Main navbar
+    const topNavbar = document.querySelector('.dashboard > .content > .top-navbar');
+    // Check if Top navbar is exist
+    if (topNavbar) {
+      // Scroll Animation
+      HOLOLUtil.addEvent(window, 'scroll', () => {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100)
+          HOLOLUtil.addClass(topNavbar, 'scrolled');
+        else HOLOLUtil.removeClass(topNavbar, 'scrolled');
+      });
+
+      // Search bar
+      const searchBar = topNavbar.querySelector('.search-bar');
+
+      // Event for Search icon click
+      HOLOLUtil.addEvent(searchBar, 'click', () => {
+        // Check for Mobile view
+        if (window.innerWidth <= 991.98) {
+          // Get Floating search bar
+          var searchbarFloating = document.querySelector('.searchbarFloating');
+          // Check active state
+          if (!HOLOLUtil.hasClass(searchbarFloating, 'active')) {
+            // View Search bar on click
+            HOLOLUtil.addClass(searchBar, 'active');
+            HOLOLUtil.addClass(searchbarFloating, 'active');
+            document.querySelector('.searchbarFloating input').focus();
+          } else {
+            // Hide Search bar on click
+            HOLOLUtil.removeClass(searchBar, 'active');
+            HOLOLUtil.removeClass(searchbarFloating, 'active');
+          }
+
+          // Hide Search bar on click outside
+          HOLOLUtil.addEvent(document, 'mouseup', function (e) {
+            if (HOLOLUtil.hasClass(searchbarFloating, 'active') && window.innerWidth <= 991.98)
+              if (!searchbarFloating.contains(e.target) && !searchBar.contains(e.target)) {
+                HOLOLUtil.removeClass(searchBar, 'active');
+                HOLOLUtil.removeClass(searchbarFloating, 'active');
+              }
+          });
+        }
+      });
+    }
+  };
+
+  var initNotificationTabs = function () {
+    // Main navbar
+    const notifTabs = document.querySelector('.dashboard > .content [notif]'),
+      notifTabsClose = notifTabs.querySelector('[close]');
+
+    if (notifTabs) {
+      // Close Notification banal
+      HOLOLUtil.addEvent(notifTabsClose, 'click', () => {
+        HOLOLUtil.addClass(notifTabs, 'remove');
+        notifTabs.ontransitionend = function () {
+          HOLOLUtil.remove(notifTabs);
+        };
+      });
+
+      // Change Notification color
+      let notifTabsLinks = notifTabs.querySelectorAll('.action[data-bs-toggle="list"]');
+
+      HOLOLUtil.each(notifTabsLinks, function (link) {
+        // Check active link
+        if (HOLOLUtil.hasClass(link, 'active'))
+          HOLOLUtil.attr(notifTabs, 'data-type', HOLOLUtil.attr(link, 'data-type'));
+
+        // Change on click
+        HOLOLUtil.addEvent(link, 'click', () => {
+          HOLOLUtil.attr(notifTabs, 'data-type', HOLOLUtil.attr(link, 'data-type'));
+        });
+      });
+    }
+  };
+
+  var initDropdownSelect = function () {
+    // Get all Dropdown with selector
+    HOLOLUtil.each(
+      document.querySelectorAll('[data-bs-toggle="dropdown"][data-select]'),
+      function (dropdownItem) {
+        // Check exist
+        if (!dropdownItem) {
+          return;
+        }
+
+        // Get select container
+        var selector = document.querySelector('#' + HOLOLUtil.attr(dropdownItem, 'data-select'));
+        // Get all options
+        var options = dropdownItem.nextElementSibling.querySelectorAll('.dropdown-item');
+
+        HOLOLUtil.each(options, function (option) {
+          // Set active value
+          if (HOLOLUtil.hasClass(option, 'active')) {
+            // Set active
+            selector.value = HOLOLUtil.attr(option, 'value');
+
+            // Set dropdown text
+            HOLOLUtil.setTEXT(dropdownItem, HOLOLUtil.attr(option, 'value'));
+          }
+
+          // Action on click an option
+          HOLOLUtil.addEvent(option, 'click', () => {
+            // Remove active for all
+            HOLOLUtil.each(options, function (optionInner) {
+              HOLOLUtil.removeClass(optionInner, 'active');
+            });
+
+            // Add active for current
+            HOLOLUtil.addClass(option, 'active');
+
+            // Add active value to selector
+            selector.value = HOLOLUtil.attr(option, 'value');
+
+            // Set dropdown text
+            HOLOLUtil.setTEXT(dropdownItem, HOLOLUtil.attr(option, 'value'));
+          });
+        });
+      }
+    );
+  };
+
+  var initDragScroll = function () {
+    // Get all dDropdown with selector
+    HOLOLUtil.each(document.querySelectorAll('[drag][scroll]'), function (dragToScrollItem) {
+      // Check existing
+      if (!dragToScrollItem) {
+        return;
+      }
+
+      // Change cursor to grab
+      HOLOLUtil.css(dragToScrollItem, 'cursor', 'grab');
+
+      // Set default position
+      let pos = { top: 0, left: 0, x: 0, y: 0 };
+
+      // Mouse Down Handler
+      const mouseDownHandler = function (e) {
+        HOLOLUtil.css(dragToScrollItem, 'cursor', 'grabbing');
+        HOLOLUtil.css(dragToScrollItem, 'userSelect', 'none');
+
+        pos = {
+          left: dragToScrollItem.scrollLeft,
+          top: dragToScrollItem.scrollTop,
+          // Get the current mouse position
+          x: e.clientX,
+          y: e.clientY,
+        };
+
+        HOLOLUtil.addEvent(document, 'mousemove', mouseMoveHandler);
+        HOLOLUtil.addEvent(document, 'mouseup', mouseUpHandler);
+      };
+
+      // Mouse Move Handler
+      const mouseMoveHandler = function (e) {
+        // How far the mouse has been moved
+        const dx = e.clientX - pos.x;
+        const dy = e.clientY - pos.y;
+
+        // Scroll the element
+        dragToScrollItem.scrollTop = pos.top - dy;
+        dragToScrollItem.scrollLeft = pos.left - dx;
+      };
+
+      // Mouse Up Handler
+      const mouseUpHandler = function () {
+        HOLOLUtil.css(dragToScrollItem, 'cursor', 'grab');
+        HOLOLUtil.css(dragToScrollItem, 'userSelect', '');
+
+        HOLOLUtil.removeEvent(document, 'mousemove', mouseMoveHandler);
+        HOLOLUtil.removeEvent(document, 'mouseup', mouseUpHandler);
+      };
+
+      // Attach the handler
+      dragToScrollItem.addEventListener('mousedown', mouseDownHandler);
+    });
+  };
+
   return {
     init: function () {
       this.initPageLoader();
+      this.initLazyLoad();
       this.initBootstrapTooltip();
       this.initBootstrapTooltips();
       this.initBootstrapPopover();
@@ -1503,10 +1870,20 @@ var HOLOLApp = (function () {
       this.initCountUp();
       this.initCountUpTabs();
       this.initSmoothScroll();
+      this.initDateRangePicker();
+      this.initMainNavbar();
+      this.initTopNavbar();
+      this.initNotificationTabs();
+      this.initDropdownSelect();
+      this.initDragScroll();
     },
 
     initPageLoader: function () {
       initPageLoader();
+    },
+
+    initLazyLoad: function () {
+      initLazyLoad();
     },
 
     initBootstrapTooltip: function (el, options) {
@@ -1556,6 +1933,30 @@ var HOLOLApp = (function () {
     initSmoothScroll: function () {
       initSmoothScroll();
     },
+
+    initDateRangePicker: function () {
+      initDateRangePicker();
+    },
+
+    initMainNavbar: function () {
+      initMainNavbar();
+    },
+
+    initTopNavbar: function () {
+      initTopNavbar();
+    },
+
+    initNotificationTabs: function () {
+      initNotificationTabs();
+    },
+
+    initDropdownSelect: function () {
+      initDropdownSelect();
+    },
+
+    initDragScroll: function () {
+      initDragScroll();
+    },
   };
 })();
 
@@ -1566,6 +1967,5 @@ HOLOLUtil.onDOMContentLoaded(() => {
 
 // On window load
 window.addEventListener('load', () => {
-  console.log('asda');
   HOLOLApp.initPageLoader();
 });
