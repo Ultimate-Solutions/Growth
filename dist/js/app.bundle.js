@@ -556,7 +556,7 @@ var HOLOLApp = (function () {
   };
 
   var initDragScroll = function () {
-    // Get all dDropdown with selector
+    // Get all Dropdown with selector
     HOLOLUtil.each(document.querySelectorAll('[drag][scroll]'), function (dragToScrollItem) {
       // Check existing
       if (!dragToScrollItem) {
@@ -611,6 +611,153 @@ var HOLOLApp = (function () {
     });
   };
 
+  var initDaterangepicker = function () {
+    // Get all Date Pickers
+    HOLOLUtil.each($('[date-picker]'), function (picker) {
+      // Get picker
+      var picker = $(picker);
+
+      // Check existing
+      if (!picker) {
+        return;
+      }
+
+      var start = moment();
+      var end = moment();
+
+      // Locale Translation
+      var locale, ranges;
+      if (HOLOLUtil.getLang() == 'ar') {
+        locale = {
+          direction: 'rtl',
+          applyLabel: 'تاكيد',
+          cancelLabel: 'الغاء',
+          fromLabel: 'من',
+          toLabel: 'الى',
+          customRangeLabel: 'مخصص',
+          weekLabel: 'W',
+          daysOfWeek: ['الأحد', 'الأثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعة', 'السبت'],
+          monthNames: [
+            'يناير',
+            'فبراير',
+            'مارس',
+            'ابريل',
+            'مايو',
+            'يونيو',
+            'يوليو',
+            'اغسطس',
+            'سيبتمبر',
+            'اكتوبر',
+            'نوفمبر',
+            'ديسمبر',
+          ],
+        };
+        ranges = {
+          اليوم: [moment(), moment()],
+          امس: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'أخر 7 ايام': [moment().subtract(6, 'days'), moment()],
+          'أخر 30 يوم': [moment().subtract(29, 'days'), moment()],
+          'هذا الشهر': [moment().startOf('month'), moment().endOf('month')],
+          'أخر شهر': [
+            moment().subtract(1, 'month').startOf('month'),
+            moment().subtract(1, 'month').endOf('month'),
+          ],
+        };
+      } else if (HOLOLUtil.getLang == 'en') {
+        locale = {
+          direction: 'ltr',
+          applyLabel: 'Apply',
+          cancelLabel: 'Cancel',
+          fromLabel: 'From',
+          toLabel: 'To',
+          todayRangeLabel: 'Today',
+          yesterdayRangeLabel: 'Yesterday',
+          last7daysRangeLabel: 'Last 7 Days',
+          last30daysRangeLabel: 'Last 30 Days',
+          thisMonthRangeLabel: 'This Month',
+          lastMonthRangeLabel: 'Last Month',
+          customRangeLabel: 'Custom Range',
+          weekLabel: 'W',
+          daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+          monthNames: [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+          ],
+        };
+        ranges = {
+          Today: [moment(), moment()],
+          Yesterday: [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month': [moment().startOf('month'), moment().endOf('month')],
+          'Last Month': [
+            moment().subtract(1, 'month').startOf('month'),
+            moment().subtract(1, 'month').endOf('month'),
+          ],
+        };
+      }
+
+      // Label text
+      function cb(start, end, label) {
+        var title = '';
+        var range = '';
+
+        if (end - start < 100 || label == 'Today') {
+          title = 'Today:';
+          range = start.format('MMM D');
+        } else if (label == 'Yesterday') {
+          title = 'Yesterday:';
+          range = start.format('MMM D');
+        } else {
+          range = start.format('MMM D') + ' - ' + end.format('MMM D');
+        }
+
+        if ($('#datePickerRangeValue').is('input'))
+          $('#datePickerRangeValue').val(title + ' ' + range);
+        else {
+          $('#datePickerRangeValue').html(title + ' ' + range);
+          $('#datePickerRangeValue')
+            .next('input')
+            .val(start + ' - ' + end);
+        }
+      }
+
+      // Date Picker caller
+      picker.daterangepicker(
+        {
+          locale: locale,
+          startDate: start,
+          endDate: end,
+          applyClass: 'btn-primary',
+          cancelClass: 'btn-light-primary',
+          ranges: ranges,
+        },
+        cb
+      );
+      cb(start, end, '');
+
+      // Set active state on picker opened
+      picker.on('show.daterangepicker', function (ev, el) {
+        picker.addClass('active');
+      });
+
+      // Remove active state on picker closed
+      picker.on('hide.daterangepicker', function (ev, el) {
+        picker.removeClass('active');
+      });
+    });
+  };
+
   // Public methods
   return {
     init: function () {
@@ -634,6 +781,7 @@ var HOLOLApp = (function () {
       this.initNotificationTabs();
       this.initDropdownSelect();
       this.initDragScroll();
+      this.initDaterangepicker();
     },
 
     initPageLoader: function () {
@@ -714,6 +862,10 @@ var HOLOLApp = (function () {
 
     initDragScroll: function () {
       initDragScroll();
+    },
+
+    initDaterangepicker: function () {
+      initDaterangepicker();
     },
   };
 })();

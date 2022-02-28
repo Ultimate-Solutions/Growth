@@ -1129,8 +1129,8 @@ var HOLOLUtil = (function () {
      * @returns {string}
      */
     getDir: function () {
-      if (document.querySelector('html').getAttribute('dir'))
-        return document.querySelector('html').getAttribute('dir');
+      if (HOLOLUtil.attr(document.querySelector('html'), 'dir'))
+        return HOLOLUtil.attr(document.querySelector('html'), 'dir');
       return 'ltr';
     },
 
@@ -1146,7 +1146,7 @@ var HOLOLUtil = (function () {
      * Get browser language
      * @returns {string}
      */
-    getLang: function () {
+    getBrowserLang: function () {
       var browserLang,
         userLang = navigator.language || navigator.userLanguage;
 
@@ -1155,6 +1155,15 @@ var HOLOLUtil = (function () {
       }
 
       return browserLang;
+    },
+
+    /**
+     * Get Site language
+     * @returns {string}
+     */
+    getLang: function () {
+      return HOLOLUtil.attr(document.querySelector('html'), 'lang');
+      return 'en';
     },
 
     /**

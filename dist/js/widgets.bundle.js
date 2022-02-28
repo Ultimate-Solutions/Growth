@@ -235,14 +235,14 @@ var HOLOLWidgets = (function () {
         },
         labels: {
           style: {
-            colors: [getCssVariableValue('--bs-gray')],
+            colors: [HOLOLUtil.getCssVariableValue('--bs-gray')],
             fontSize: '12px',
           },
         },
         crosshairs: {
           position: 'front',
           stroke: {
-            color: getCssVariableValue('--bs-primary'),
+            color: HOLOLUtil.getCssVariableValue('--bs-primary'),
             width: 1,
             dashArray: 3,
           },
@@ -259,7 +259,7 @@ var HOLOLWidgets = (function () {
       yaxis: {
         labels: {
           style: {
-            colors: [getCssVariableValue('--bs-gray')],
+            colors: [HOLOLUtil.getCssVariableValue('--bs-gray')],
             fontSize: '12px',
           },
         },
@@ -299,13 +299,13 @@ var HOLOLWidgets = (function () {
         },
       },
       colors: [
-        getCssVariableValue('--chart-blue'),
-        getCssVariableValue('--chart-pink'),
-        getCssVariableValue('--chart-yellow'),
-        getCssVariableValue('--chart-green'),
+        HOLOLUtil.getCssVariableValue('--chart-blue'),
+        HOLOLUtil.getCssVariableValue('--chart-pink'),
+        HOLOLUtil.getCssVariableValue('--chart-yellow'),
+        HOLOLUtil.getCssVariableValue('--chart-green'),
       ],
       grid: {
-        borderColor: getCssVariableValue('--chart-gray-border'),
+        borderColor: HOLOLUtil.getCssVariableValue('--chart-gray-border'),
         strokeDashArray: 4,
         yaxis: {
           lines: {
