@@ -544,6 +544,7 @@
                 data-action="notifications"
                 data-notif="true"
                 data-action="view-site"
+                data-holol-offcanvas="#notifications_offcanvas"
                 data-bs-toggle="tooltip"
                 title="الاشعارات">
                 <em class="icon animate__rubberBand hover-parent ph-bell-ringing"></em>
@@ -2196,6 +2197,28 @@
                 <option value="العملاء">العملاء</option>
                 <option value="الشراكات">الشراكات</option>
               </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div>
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="notifications_offcanvas"
+            aria-labelledby="notifications_offcanvasLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="notifications_offcanvasLabel">Offcanvas</h5>
+              <button
+                type="button"
+                class="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              Content for the offcanvas goes here. You can place just about any Bootstrap component
+              or custom elements here.
             </div>
           </div>
         </div>

@@ -758,6 +758,25 @@ var HOLOLApp = (function () {
     });
   };
 
+  var initOffcanvas = function () {
+    HOLOLUtil.each(document.querySelectorAll('[data-holol-offcanvas]'), function (element) {
+      HOLOLUtil.addEvent(element, 'click', () => {
+        console.log(HOLOLUtil.attr(element, 'data-holol-offcanvas'));
+
+        var offcanvasElement = document.querySelector(
+          HOLOLUtil.attr(element, 'data-holol-offcanvas')
+        );
+
+        //event.preventDefault()
+        event.stopPropagation();
+        var bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
+        bsOffcanvas.show();
+
+        console.log(offcanvasElement);
+      });
+    });
+  };
+
   // Public methods
   return {
     init: function () {
@@ -782,6 +801,7 @@ var HOLOLApp = (function () {
       this.initDropdownSelect();
       this.initDragScroll();
       this.initDaterangepicker();
+      this.initOffcanvas();
     },
 
     initPageLoader: function () {
@@ -866,6 +886,10 @@ var HOLOLApp = (function () {
 
     initDaterangepicker: function () {
       initDaterangepicker();
+    },
+
+    initOffcanvas: function () {
+      initOffcanvas();
     },
   };
 })();
