@@ -712,11 +712,11 @@ var HOLOLApp = (function () {
         var title = '';
         var range = '';
 
-        if (end - start < 100 || label == 'Today') {
-          title = 'Today:';
+        if (end - start < 100 || label == Object.keys(ranges)[0]) {
+          title = Object.keys(ranges)[0] + ':';
           range = start.format('MMM D');
-        } else if (label == 'Yesterday') {
-          title = 'Yesterday:';
+        } else if (label == Object.keys(ranges)[1]) {
+          title = Object.keys(ranges)[1] + ':';
           range = start.format('MMM D');
         } else {
           range = start.format('MMM D') + ' - ' + end.format('MMM D');

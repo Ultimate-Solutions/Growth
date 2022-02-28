@@ -1162,7 +1162,8 @@ var HOLOLUtil = (function () {
      * @returns {string}
      */
     getLang: function () {
-      return HOLOLUtil.attr(document.querySelector('html'), 'lang');
+      if (HOLOLUtil.attr(document.querySelector('html'), 'lang'))
+        return HOLOLUtil.attr(document.querySelector('html'), 'lang');
       return 'en';
     },
 
