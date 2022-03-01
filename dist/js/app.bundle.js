@@ -563,9 +563,6 @@ var HOLOLApp = (function () {
         return;
       }
 
-      // Change cursor to grab
-      HOLOLUtil.css(dragToScrollItem, 'cursor', 'grab');
-
       // Set default position
       let pos = { top: 0, left: 0, x: 0, y: 0 };
 
@@ -599,7 +596,7 @@ var HOLOLApp = (function () {
 
       // Mouse Up Handler
       const mouseUpHandler = function () {
-        HOLOLUtil.css(dragToScrollItem, 'cursor', 'grab');
+        HOLOLUtil.css(dragToScrollItem, 'cursor', '');
         HOLOLUtil.css(dragToScrollItem, 'userSelect', '');
 
         HOLOLUtil.removeEvent(document, 'mousemove', mouseMoveHandler);

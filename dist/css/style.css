@@ -180,9 +180,15 @@
   --dashboard-notif-warning-nav-background-color: #ffc10733;
   --dashboard-notif-info-nav-background-color: #0dcaf033;
   --dashboard-notif-default-nav-background-color: #22447b33;
+  --dashboard-stepper-color: #808080;
+  --dashboard-stepper-background-color: #fff;
+  --dashboard-stepper-default-border-color: #dddddd;
   --dashboard-stepper-default-background-color: #dddddd;
+  --dashboard-stepper-passed-border-color: #05a84b;
   --dashboard-stepper-passed-background-color: #05a84b;
+  --dashboard-stepper-current-border-color: #22447b;
   --dashboard-stepper-current-background-color: #22447b;
+  --dashboard-stepper-current-color: #22447b;
   --dashboard-table-tabs-tab-active-background-color: #d2efdf;
   --dashboard-table-tabs-tab-active-color: #05a84b;
   --dashboard-table-background-color: #fff;
@@ -2917,14 +2923,17 @@ img {
 -------------------------------------------------*/
 [firsttimesettings] {
   margin: 2.5rem 0;
-  padding: 1.25rem;
   background-color: var(--dashboard-notif-background-color);
   border-radius: var(--border-radius);
   overflow-y: hidden;
 }
-[firsttimesettings] .header em {
-  font-size: var(--font-size-32);
-  margin-left: 0.625rem;
+[firsttimesettings] .header {
+  padding: 1.25rem;
+  text-align: center;
+  background: #d6e1f3;
+  box-shadow: inset 4px 0px 4px #d6e1f3, inset -4px 0px 4px #d6e1f3, inset 0px 4px 4px #d6e1f3,
+    inset 0px -4px 10px rgb(0 0 0 / 10%);
+  border-radius: 8px 8px 0px 0px;
 }
 [firsttimesettings] .header .title {
   font-size: var(--font-size-24);
@@ -2933,6 +2942,9 @@ img {
 }
 [firsttimesettings] .header .subtitle {
   font-size: var(--font-size-16);
+}
+[firsttimesettings] .stepper {
+  padding: 1.25rem;
 }
 [firsttimesettings] .stepper .content {
   display: flex;
@@ -2943,10 +2955,14 @@ img {
   position: relative;
   scroll-snap-align: start;
   text-align: center;
-  padding: 2.5rem 1.25rem 0.625rem;
-  max-width: 6.25rem;
+  padding: 3.5rem 1.25rem 0.625rem;
+  max-width: 15.625rem;
+  min-width: 15.625rem;
   font-size: var(--font-size-16);
-  cursor: pointer;
+  color: var(--dashboard-stepper-color);
+}
+[firsttimesettings] .stepper .content > *[passed] > * {
+  opacity: 0.6;
 }
 [firsttimesettings] .stepper .content > *:before,
 [firsttimesettings] .stepper .content > *:after {
@@ -2956,16 +2972,20 @@ img {
   left: -50%;
 }
 [firsttimesettings] .stepper .content > *:before {
-  width: 1rem;
-  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 50%;
-  background-color: var(--dashboard-stepper-default-background-color);
+  background-color: var(--dashboard-stepper-background-color);
+  border: 0.125rem solid var(--dashboard-stepper-default-border-color);
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
 }
 [firsttimesettings] .stepper .content > *:after {
-  top: 1.1875rem;
+  top: 1.375rem;
   width: 100%;
   height: 0.1875rem;
   background-color: var(--dashboard-stepper-default-background-color);
@@ -2978,11 +2998,88 @@ img {
   left: 50%;
 }
 [firsttimesettings] .stepper .content > *[current]:before {
-  background-color: var(--dashboard-stepper-current-background-color);
+  content: '⬤';
+  border-color: var(--dashboard-stepper-current-border-color);
+  color: var(--dashboard-stepper-current-color);
 }
-[firsttimesettings] .stepper .content > *[passed]:before,
+[firsttimesettings] .stepper .content > *[passed]:before {
+  border-color: var(--dashboard-stepper-passed-border-color);
+  content: '\f33e';
+  color: var(--dashboard-stepper-passed-border-color);
+  font: normal normal normal 1em/1 'Phosphor';
+}
 [firsttimesettings] .stepper .content > *[passed]:after {
   background-color: var(--dashboard-stepper-passed-background-color);
+}
+[firsttimesettings] .stepper .content > * .title {
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: 0.625rem;
+}
+[firsttimesettings] .stepper .content > *[current] .title {
+  color: var(--dashboard-stepper-current-color);
+}
+[firsttimesettings] .stepper .content > * .subtitle {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
+  margin-bottom: 1.25rem;
+}
+[firsttimesettings] .stepper .content > * [action] {
+  display: block;
+  padding: 0.5rem 1.25rem;
+  border: 0.0625rem solid;
+  border-radius: 0.5rem;
+  margin: 1.25rem auto 0;
+  width: fit-content;
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-normal);
+}
+[firsttimesettings] .stepper .content > * [action]:hover,
+[firsttimesettings] .stepper .content > * [action]:focus,
+[firsttimesettings] .stepper .content > * [action]:active,
+[firsttimesettings] .stepper .content > * [action].active {
+  color: #05a84b;
+  border-color: #05a84b;
+  transform: translateY(-0.25rem);
+}
+[firsttimesettings] .stepper .content > *[passed] [action] {
+  pointer-events: none;
+  border-color: transparent;
+}
+[firsttimesettings] .stepper .content > *[current] [action] {
+  color: #fff;
+  border-color: #05a84b;
+  background-color: #05a84b;
+}
+[firsttimesettings] .actions {
+  padding: 1.25rem;
+  border-top: 0.0625rem solid #ddd;
+}
+[firsttimesettings] .actions [action] {
+  display: block;
+  padding: 0.5rem 1.25rem;
+  border: 0.0625rem solid;
+  border-radius: 0.5rem;
+  width: fit-content;
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition-normal);
+}
+[firsttimesettings] .actions [action]:not(:last-child) {
+  margin-left: 1.25rem;
+}
+[firsttimesettings] .actions [action]:hover,
+[firsttimesettings] .actions [action]:focus,
+[firsttimesettings] .actions [action]:active,
+[firsttimesettings] .actions [action].active {
+  color: #05a84b;
+  border-color: #05a84b;
+  transform: translateY(-0.25rem);
+}
+[firsttimesettings] .actions [action].main {
+  color: #05a84b;
+  border-color: #05a84b;
 }
 
 /* -----------------------------------------------
