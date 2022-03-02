@@ -738,6 +738,7 @@ var HOLOLApp = (function () {
           applyClass: 'btn-primary',
           cancelClass: 'btn-light-primary',
           ranges: ranges,
+          drops: 'auto',
         },
         cb
       );

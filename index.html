@@ -271,7 +271,7 @@
           <ul class="navbar">
             <!-- Nav Item BEGIN -->
             <li class="nav-item active">
-              <a href="#" class="nav-link" data-tooltip data-title="الرئيسية">
+              <a href="./index.html" class="nav-link" data-tooltip data-title="الرئيسية">
                 <em class="icon animate__rubberBand hover-parent ph-storefront"></em>
                 <span class="text">الرئيسية</span>
               </a>
@@ -279,7 +279,7 @@
             <!-- Nav Item END -->
 
             <li class="nav-item">
-              <a href="#" class="nav-link" data-tooltip data-title="الطلبات">
+              <a href="./orders.html" class="nav-link" data-tooltip data-title="الطلبات">
                 <em class="icon animate__rubberBand hover-parent ph-shopping-bag-open"></em>
                 <span class="text">الطلبات</span>
                 <span class="notifications">12</span>
@@ -481,7 +481,7 @@
             <!-- Right section -->
             <div class="right d-flex">
               <!-- Sidebar Toggler -->
-              <div data-action="sidebar-toggler">
+              <div action data-action="sidebar-toggler">
                 <em class="icon animate__rubberBand hover-parent ph-list"></em>
               </div>
 
@@ -536,25 +536,21 @@
             <!-- Left section -->
             <div class="left d-flex">
               <!-- View Site -->
-              <div data-action="view-site" data-bs-toggle="tooltip" title="عرض المتجر">
+              <div action data-action="view-site" data-bs-toggle="tooltip" title="عرض المتجر">
                 <em class="icon animate__rubberBand hover-parent ph-eye"></em>
               </div>
               <!-- Notifications -->
               <div
+                action
                 data-action="notifications"
                 data-notif="true"
-                data-action="view-site"
                 data-holol-offcanvas="#notifications_offcanvas"
                 data-bs-toggle="tooltip"
                 title="الاشعارات">
                 <em class="icon animate__rubberBand hover-parent ph-bell-ringing"></em>
               </div>
               <!-- Updates -->
-              <div
-                data-action="updates"
-                data-action="view-site"
-                data-bs-toggle="tooltip"
-                title="تحديثات المنصة">
+              <div action data-action="updates" data-bs-toggle="tooltip" title="تحديثات المنصة">
                 <em class="icon animate__rubberBand hover-parent ph-arrows-counter-clockwise"></em>
               </div>
 
@@ -710,7 +706,7 @@
                 <div class="step" current>
                   <div class="title">ضبط إﻋﺪادات اﻟﺸﺤﻦ</div>
                   <div class="subtitle">حدد مناطق الشحن في متجرك، وكيفية حساب التكلفة</div>
-                  <a href="#" action>
+                  <a href="#" action action-fill>
                     <span>أضبط اعدادات الشحن</span>
                   </a>
                 </div>
@@ -719,14 +715,14 @@
                   <div class="subtitle">
                     حدد وسائل الدفع المتاحة من بين مجموعة متنوعة من وسائل الدفع
                   </div>
-                  <a href="#" action>
+                  <a href="#" action action-outline>
                     <span>أضف وسيلة دفع</span>
                   </a>
                 </div>
                 <div class="step">
                   <div class="title">تصميم المتجر</div>
                   <div class="subtitle">تطبيق الألوان والخطوط والشعار للمتجر</div>
-                  <a href="#" action>
+                  <a href="#" action action-outline>
                     <span>صمم متجرك</span>
                   </a>
                 </div>
@@ -734,11 +730,11 @@
             </div>
 
             <!-- Actions -->
-            <div class="actions d-flex justify-content-end">
-              <a href="#" action class="main">
+            <div class="justify-content-end" actions actions-group>
+              <a href="#" action action-fill class="main">
                 <span>ذكرني لاحقا</span>
               </a>
-              <a href="#" action>
+              <a href="#" action action-outline>
                 <span>لا تسألني مرة أخرى</span>
               </a>
             </div>
@@ -765,7 +761,7 @@
                 </div>
               </div>
 
-              <div actions>
+              <div actions actions-group>
                 <!-- Action -->
                 <a href="#" action>
                   <em class="icon animate__rubberBand hover-parent ph-target"></em>
@@ -794,7 +790,7 @@
                         </div>
                       </div>
 
-                      <div actions>
+                      <div actions actions-group>
                         <!-- Action -->
                         <!-- Export Action -->
                         <div class="dropdown">

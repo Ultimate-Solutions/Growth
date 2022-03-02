@@ -1,0 +1,1188 @@
+<!--
+	  _    _ _ _   _                 _          _____       _       _   _               ______                  _   
+	 | |  | | | | (_)               | |        / ____|     | |     | | (_)             |  ____|                | |  
+	 | |  | | | |_ _ _ __ ___   __ _| |_ ___  | (___   ___ | |_   _| |_ _  ___  _ __   | |__   __ _ _   _ _ __ | |_ 
+	 | |  | | | __| | '_ ` _ \ / _` | __/ _ \  \___ \ / _ \| | | | | __| |/ _ \| '_ \  |  __| / _` | | | | '_ \| __|
+	 | |__| | | |_| | | | | | | (_| | ||  __/  ____) | (_) | | |_| | |_| | (_) | | | | | |___| (_| | |_| | |_) | |_ 
+	  \____/|_|\__|_|_| |_| |_|\__,_|\__\___| |_____/ \___/|_|\__,_|\__|_|\___/|_| |_| |______\__, |\__, | .__/ \__|
+	                                                                                           __/ | __/ | |        
+	                                                                                          |___/ |___/|_|        
+																																																					
+	International leader in Enterprise Resource Solutions and Software Development.
+
+	If you're the kind of person who reads source code, you should visit our site for more awesome things.:
+  https://ultimate-eg.net
+
+	--------------------------------------------------------------------------------------------
+	                             Holol - Dashboard
+	  _    _       _       _   _____            _     _                         _ 
+	 | |  | |     | |     | | |  __ \          | |   | |                       | |
+	 | |__| | ___ | | ___ | | | |  | | __ _ ___| |__ | |__   ___   __ _ _ __ __| |
+	 |  __  |/ _ \| |/ _ \| | | |  | |/ _` / __| '_ \| '_ \ / _ \ / _` | '__/ _` |
+	 | |  | | (_) | | (_) | | | |__| | (_| \__ \ | | | |_) | (_) | (_| | | | (_| |
+	 |_|  |_|\___/|_|\___/|_| |_____/ \__,_|___/_| |_|_.__/ \___/ \__,_|_|  \__,_|
+	                                                                              
+	                                                                              
+	--------------------------------------------------------------------------------------------                                                                                
+-->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-color-mode="auto" data-theme="regular">
+  <head>
+    <meta charset="utf-8" />
+
+    <!-- Title -->
+    <title>Holol - Dashboard</title>
+
+    <!-- #region / Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta itemprop="name" content="Holol - Dashboard" />
+    <meta
+      itemprop="description"
+      content="Without technical experience and with ease, you can sell anywhere and anytime with your online store and with your commercial identity" />
+    <meta
+      itemprop="image"
+      content="https://repository-images.githubusercontent.com/451783859/b721e9a2-271c-439e-8a42-d8249525e26a" />
+    <meta property="og:title" content="Holol - Dashboard" />
+    <meta
+      property="og:description"
+      content="Without technical experience and with ease, you can sell anywhere and anytime with your online store and with your commercial identity" />
+    <meta
+      property="og:image"
+      content="https://repository-images.githubusercontent.com/451783859/b721e9a2-271c-439e-8a42-d8249525e26a" />
+    <meta property="og:site_name" content="Holol - Dashboard" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    <meta
+      name="twitter:image:src"
+      content="https://repository-images.githubusercontent.com/451783859/b721e9a2-271c-439e-8a42-d8249525e26a" />
+    <meta name="twitter:site" content="" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Holol - Dashboard" />
+    <meta
+      name="twitter:description"
+      content="Without technical experience and with ease, you can sell anywhere and anytime with your online store and with your commercial identity" />
+    <!-- #endregion -->
+
+    <!-- #region / Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="./dist/images/favicons/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="./dist/images/favicons/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="./dist/images/favicons/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="./dist/images/favicons/apple-icon-76x76.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="./dist/images/favicons/apple-icon-114x114.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="./dist/images/favicons/apple-icon-120x120.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="./dist/images/favicons/apple-icon-144x144.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="./dist/images/favicons/apple-icon-152x152.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./dist/images/favicons/apple-icon-180x180.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./dist/images/favicons/android-icon-192x192.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./dist/images/favicons/favicon-32x32.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="./dist/images/favicons/favicon-96x96.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./dist/images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="./dist/images/favicons/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="./dist/images/favicons/ms-icon-144x144.png" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="white" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
+    <!-- #endregion -->
+
+    <!-- #region / Loader Spinner -->
+    <style>
+      body.page-loading #page-loader {
+        display: flex;
+      }
+      #page-loader {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        top: 0;
+        left: 0;
+        z-index: 9999999999;
+        align-items: center;
+        justify-content: center;
+      }
+      #page-loader .spinner {
+        border-color: var(--page-loader-color);
+        -webkit-animation: spinner 0.5s linear infinite;
+        animation: spinner 0.5s linear infinite;
+        border-radius: 50%;
+        border-style: solid;
+        border-width: 2px;
+        display: inline-block;
+        height: 44px;
+        width: 44px;
+      }
+      @-webkit-keyframes spinner {
+        0% {
+          transform: translate3d(0, 0, 0) rotate(0);
+        }
+        100% {
+          transform: translate3d(0, 0, 0) rotate(359deg);
+        }
+      }
+      @keyframes spinner {
+        0% {
+          transform: translate3d(0, 0, 0) rotate(0);
+        }
+        100% {
+          transform: translate3d(0, 0, 0) rotate(359deg);
+        }
+      }
+      #page-loader .text {
+        margin-top: 2.5rem;
+        font-size: 1rem;
+      }
+      #page-loader .text-small {
+        margin-top: 0.25rem;
+        font-size: 0.75rem;
+      }
+      #page-loader a {
+        position: relative;
+        color: inherit;
+        text-decoration: none;
+        font-weight: var(--font-weight-medium);
+      }
+      #page-loader a:hover,
+      #page-loader a:focus,
+      #page-loader a:hover {
+        color: var(--page-loader-link-hover-color);
+      }
+      #page-loader a:before {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 0;
+        height: 0.0625rem;
+        background-color: var(--page-loader-link-hover-color);
+        transition: var(--transition-normal);
+      }
+      #page-loader a:hover:before,
+      #page-loader a:focus:before,
+      #page-loader a:hover:before {
+        width: 100%;
+      }
+    </style>
+    <script>
+      window.addEventListener('load', () => {
+        // const loader = document.querySelector('#page-loader');
+        // if (loader) {
+        //   loader.remove();
+        // }
+      });
+    </script>
+    <!-- #endregion -->
+
+    <!-- #region / Plugins -->
+    <!-- Bootstrap CSS -->
+    <link href="./dist/css/libs/bootstrap/5.1.3/bootstrap.rtl.min.css" rel="stylesheet" />
+
+    <!-- Fonts -->
+    <!-- Neo Sans Arabic -->
+    <link href="./dist/fonts/neo-sans-arabic/stylesheet-min.css" rel="stylesheet" />
+
+    <!-- Phosphor 1.4.2 Icons -->
+    <link href="./dist/fonts/phosphor/1.4.2/icons-min.css" rel="stylesheet" />
+
+    <!-- Date Range Picker 3.14.1 -->
+    <link href="./dist/css/libs/daterangepicker/3.14.1/daterangepicker.css" rel="stylesheet" />
+    <!-- #endregion -->
+
+    <!-- Custom Style -->
+    <link href="./dist/css/style.css" rel="stylesheet" />
+
+    <!-- Theme changer -->
+    <script>
+      localStorage.setItem('color mode', 'light');
+      localStorage.setItem('theme', 'regular');
+
+      // Set theme data
+      setAttributes(document.documentElement, {
+        'data-color-mode': localStorage.getItem('color mode'),
+        'data-theme': localStorage.getItem('theme'),
+      });
+
+      // Setting multiple attributes for an element at once
+      function setAttributes(el, attrs) {
+        for (var key in attrs) {
+          el.setAttribute(key, attrs[key]);
+        }
+      }
+    </script>
+  </head>
+  <body dashboard scroll class="scroll-y page-loading">
+    <!-- #region / Loader Spinner -->
+    <div id="page-loader">
+      <div class="spinner"></div>
+      <div class="text"><strong>Holol</strong> - Dashboard</div>
+      <div class="text-small">
+        © 2022
+        <a href="#">Ultimate Solutions</a>
+        , Inc.
+      </div>
+    </div>
+    <!-- #endregion -->
+
+    <!-- #region / Dashboard -->
+    <div class="dashboard d-flex">
+      <!-- Main navbar -->
+      <nav class="main-navbar" collapse>
+        <!-- Content -->
+        <div class="content hover-scroll-overlay-y" scroll>
+          <!-- Brand -->
+          <div class="brand">
+            <img src="./dist/images/brand.png" alt="Holol" class="lazy" regular />
+            <img src="./dist/images/brand-small.png" alt="Holol" class="lazy" small />
+          </div>
+
+          <!-- Navbar -->
+          <ul class="navbar">
+            <!-- Nav Item BEGIN -->
+            <li class="nav-item">
+              <a href="./index.html" class="nav-link" data-tooltip data-title="الرئيسية">
+                <em class="icon animate__rubberBand hover-parent ph-storefront"></em>
+                <span class="text">الرئيسية</span>
+              </a>
+            </li>
+            <!-- Nav Item END -->
+
+            <li class="nav-item active">
+              <a href="./orders.html" class="nav-link" data-tooltip data-title="الطلبات">
+                <em class="icon animate__rubberBand hover-parent ph-shopping-bag-open"></em>
+                <span class="text">الطلبات</span>
+                <span class="notifications">12</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <div class="nav-link dropdown" data-tooltip data-title="المنتجات">
+                <em class="icon animate__rubberBand hover-parent ph-package"></em>
+                <span class="text">المنتجات</span>
+              </div>
+              <!-- Dropdown -->
+              <div class="dropdown-list">
+                <ul>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link" data-tooltip data-title="المنتجات">
+                      <em class="icon animate__rubberBand hover-parent ph-package"></em>
+                      <span class="text">المنتجات</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link" data-tooltip data-title="التصنيفات">
+                      <em class="icon animate__rubberBand hover-parent ph-bookmarks"></em>
+                      <span class="text">التصنيفات</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link" data-tooltip data-title="المجموعات">
+                      <em class="icon animate__rubberBand hover-parent ph-cardholder"></em>
+                      <span class="text">المجموعات</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link" data-tooltip data-title="المركات">
+                      <em class="icon animate__rubberBand hover-parent ph-sketch-logo"></em>
+                      <span class="text">المركات</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link" data-tooltip data-title="الاوسمة">
+                      <em class="icon animate__rubberBand hover-parent ph-tag-simple"></em>
+                      <span class="text">الاوسمة</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-tooltip data-title="العملاء">
+                <em class="icon animate__rubberBand hover-parent ph-users-three"></em>
+                <span class="text">العملاء</span>
+                <span class="tooltip">العملاء</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-tooltip data-title="الأسئلة والتقييمات">
+                <em class="icon animate__rubberBand hover-parent ph-chats"></em>
+                <span class="text">الأسئلة والتقييمات</span>
+                <span class="tooltip">الأسئلة والتقييمات</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <div href="#" class="nav-link dropdown" data-tooltip data-title="التسويق">
+                <em class="icon animate__rubberBand hover-parent ph-megaphone-simple"></em>
+                <span class="text">التسويق</span>
+              </div>
+              <!-- Dropdown -->
+              <ul class="dropdown-list">
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="كوبونات الخصم">
+                    <em class="icon animate__rubberBand hover-parent ph-ticket"></em>
+                    <span class="text">كوبونات الخصم</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="التسويق بالعمولة">
+                    <em class="icon animate__rubberBand hover-parent ph-currency-dollar"></em>
+                    <span class="text">التسويق بالعمولة</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="العروض الخاصة">
+                    <em class="icon animate__rubberBand hover-parent ph-star"></em>
+                    <span class="text">العروض الخاصة</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="الحملات التسويقية">
+                    <em class="icon animate__rubberBand hover-parent ph-money"></em>
+                    <span class="text">الحملات التسويقية</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="السلات المتروكة">
+                    <em class="icon animate__rubberBand hover-parent ph-shopping-bag"></em>
+                    <span class="text">السلات المتروكة</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="الشراكات">
+                    <em class="icon animate__rubberBand hover-parent ph-users-four"></em>
+                    <span class="text">الشراكات</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <div href="#" class="nav-link dropdown" data-tooltip data-title="إدارة المتجر">
+                <em class="icon animate__rubberBand hover-parent ph-bank"></em>
+                <span class="text">إدارة المتجر</span>
+              </div>
+              <!-- Dropdown -->
+              <ul class="dropdown-list">
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="التقارير">
+                    <em class="icon animate__rubberBand hover-parent ph-files"></em>
+                    <span class="text">التقارير</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="التحليلات">
+                    <em class="icon animate__rubberBand hover-parent ph-chart-line"></em>
+                    <span class="text">التحليلات</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="المحفظة والفواتير">
+                    <em class="icon animate__rubberBand hover-parent ph-wallet"></em>
+                    <span class="text">المحفظة والفواتير</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="الصفحات التعريفية">
+                    <em class="icon animate__rubberBand hover-parent ph-newspaper"></em>
+                    <span class="text">الصفحات التعريفية</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="الصفحات القانونية">
+                    <em class="icon animate__rubberBand hover-parent ph-scales"></em>
+                    <span class="text">الصفحات القانونية</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="صانع التطبيقات">
+                    <em class="icon animate__rubberBand hover-parent ph-device-mobile-camera"></em>
+                    <span class="text">صانع التطبيقات</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" data-tooltip data-title="تصميم المتجر">
+                <em class="icon animate__rubberBand hover-parent ph-layout"></em>
+                <span class="text">تصميم المتجر</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <div href="#" class="nav-link dropdown" data-tooltip data-title="إعدادات المتجر">
+                <em class="icon animate__rubberBand hover-parent ph-gear"></em>
+                <span class="text">إعدادات المتجر</span>
+              </div>
+              <!-- Dropdown -->
+              <ul class="dropdown-list">
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="عام">
+                    <em class="icon animate__rubberBand hover-parent ph-hard-drive"></em>
+                    <span class="text">عام</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="باقة المتجر">
+                    <em class="icon animate__rubberBand hover-parent ph-archive"></em>
+                    <span class="text">باقة المتجر</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="الدفع">
+                    <em class="icon animate__rubberBand hover-parent ph-credit-card"></em>
+                    <span class="text">الدفع</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link" data-tooltip data-title="الشحن">
+                    <em class="icon animate__rubberBand hover-parent ph-truck"></em>
+                    <span class="text">الشحن</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- #region / Content -->
+      <div class="content">
+        <!-- Top Navbar -->
+        <div class="top-navbar">
+          <div class="content d-flex justify-content-between">
+            <!-- Right section -->
+            <div class="right d-flex">
+              <!-- Sidebar Toggler -->
+              <div action data-action="sidebar-toggler">
+                <em class="icon animate__rubberBand hover-parent ph-list"></em>
+              </div>
+
+              <!-- Search bar -->
+              <div class="search-bar">
+                <div class="content d-flex">
+                  <!-- Icon -->
+                  <em icon class="ph-magnifying-glass"></em>
+                  <!-- Input -->
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="أبحث عن ما تريد ..."
+                    aria-label="البحث" />
+
+                  <!-- Separator -->
+                  <div class="separator vertical">
+                    <span></span>
+                  </div>
+
+                  <!-- Select Category -->
+                  <div>
+                    <button
+                      class="btn dropdown-toggle"
+                      type="button"
+                      id="search-category-dropdown"
+                      data-select="search-category"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"></button>
+                    <ul
+                      class="dropdown-menu dropdown-menu-start"
+                      aria-labelledby="search-category-dropdown">
+                      <li><div class="dropdown-item active" value="الطلبات">الطلبات</div></li>
+                      <li><div class="dropdown-item" value="المنتجات">المنتجات</div></li>
+                      <li><div class="dropdown-item" value="العملاء">العملاء</div></li>
+                      <li><div class="dropdown-item" value="الشراكات">الشراكات</div></li>
+                    </ul>
+
+                    <select class="form-select" id="search-category">
+                      <option value="الطلبات" selected>الطلبات</option>
+                      <option value="المنتجات">المنتجات</option>
+                      <option value="العملاء">العملاء</option>
+                      <option value="الشراكات">الشراكات</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Left section -->
+            <div class="left d-flex">
+              <!-- View Site -->
+              <div action data-action="view-site" data-bs-toggle="tooltip" title="عرض المتجر">
+                <em class="icon animate__rubberBand hover-parent ph-eye"></em>
+              </div>
+              <!-- Notifications -->
+              <div
+                action
+                data-action="notifications"
+                data-notif="true"
+                data-holol-offcanvas="#notifications_offcanvas"
+                data-bs-toggle="tooltip"
+                title="الاشعارات">
+                <em class="icon animate__rubberBand hover-parent ph-bell-ringing"></em>
+              </div>
+              <!-- Updates -->
+              <div action data-action="updates" data-bs-toggle="tooltip" title="تحديثات المنصة">
+                <em class="icon animate__rubberBand hover-parent ph-arrows-counter-clockwise"></em>
+              </div>
+
+              <!-- Separator -->
+              <div class="separator vertical">
+                <span></span>
+              </div>
+
+              <!-- User Badge & Actions -->
+              <div class="user-badge">
+                <div
+                  class="d-flex"
+                  id="user-actions"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <!-- User Avatar -->
+                  <div class="avatar animate__tada hover-parent">
+                    <img src="./dist/images/avatar-example.png" alt="Avatar" />
+                  </div>
+                  <!-- User Info -->
+                  <div class="info">
+                    <div class="name">ماجد سيف النصر</div>
+                    <div class="badge" data-type="admin">مدير المتجر</div>
+                  </div>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-start" aria-labelledby="user-actions">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div content>
+          <!-- Header -->
+          <div class="header master">
+            <h1>الطلبات</h1>
+            <div class="info">
+              أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج مايكر والتي حوت أيضاً على
+              نسخ من نص لوريم إيبسوم.
+            </div>
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="#">
+                    <em class="icon animate__rubberBand hover-parent ph-house"></em>
+                    <span>الرئيسية</span>
+                  </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">الطلبات</li>
+              </ol>
+            </nav>
+          </div>
+
+          <!-- Notifications -->
+          <div notif data-type="success">
+            <div class="nav">
+              <!-- Triggers -->
+              <div class="list-group" role="tablist">
+                <!-- Tab Trigger BEGIN -->
+                <a
+                  class="action active"
+                  id="notif-list-ex1"
+                  data-bs-toggle="list"
+                  data-type="Warning"
+                  href="#notif-list-ex1-content"
+                  role="tab"
+                  aria-controls="notif-list-ex1-content"
+                  ><em class="ph-warning"></em
+                ></a>
+                <!-- Tab Trigger END -->
+                <a
+                  class="action"
+                  id="notif-list-ex2"
+                  data-bs-toggle="list"
+                  data-type="Success"
+                  href="#notif-list-ex2-content"
+                  role="tab"
+                  aria-controls="notif-list-ex2-content"
+                  ><em class="ph-check"></em
+                ></a>
+              </div>
+
+              <!-- Close -->
+              <div close>
+                <em class="ph-x"></em>
+              </div>
+            </div>
+            <div class="content">
+              <div class="tab-content" id="nav-tabContent">
+                <!-- Tab BEGIN -->
+                <div
+                  class="tab-pane fade show active"
+                  id="notif-list-ex1-content"
+                  role="tabpanel"
+                  aria-labelledby="notif-list-ex1">
+                  <!-- Header -->
+                  <div class="header">
+                    <div class="subtitle">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                    <div class="title">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                  </div>
+
+                  <!-- Content -->
+                  <div class="content">
+                    انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني .انتشر بشكل
+                    كبير في ستينيّات هذا القرن مع إصدار رقائق ليتراسيت البلاستيكية تحوي مقاطع من هذا
+                    النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج
+                    مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.
+                  </div>
+                </div>
+                <!-- Tab END -->
+                <div
+                  class="tab-pane fade"
+                  id="notif-list-ex2-content"
+                  role="tabpanel"
+                  aria-labelledby="notif-list-ex2">
+                  <!-- Header -->
+                  <div class="header">
+                    <div class="subtitle">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                    <div class="title">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                  </div>
+
+                  <!-- Content -->
+                  <div class="content">
+                    انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني .انتشر بشكل
+                    كبير في ستينيّات هذا القرن مع إصدار رقائق ليتراسيت البلاستيكية تحوي مقاطع من هذا
+                    النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج
+                    مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- First time settings -->
+          <div firstTimeSettings>
+            <!-- Header -->
+            <div class="header">
+              <div class="title">إﻋﺪاد اﻟﻤﺘﺠﺮ ﻟﺄول ﻣﺮة</div>
+              <div class="subtitle">اﻟﺨﻄﻮات اﻟﺄﺳﺎﺳﻴﺔ ﻟﺘﻬﻴﺌﺔ ﻣﺘﺠﺮك</div>
+            </div>
+
+            <!-- Steps -->
+            <div class="stepper d-flex justify-content-center">
+              <div class="content hover-scroll-overlay-x" scroll drag>
+                <div class="step" passed>
+                  <div class="title">أضافة المنتجات</div>
+                  <div class="subtitle">ابدأ الآن في إضافة أول منتج إلى متجرك الإلكتروني</div>
+                  <a href="#" action>
+                    <span>أضف منتج</span>
+                  </a>
+                </div>
+                <div class="step" passed>
+                  <div class="title">أنشاء المجموعات</div>
+                  <div class="subtitle">قم بإنشاء أول مجموعة لمتجرك الإلكتروني</div>
+                  <a href="#" action>
+                    <span>إنشاء مجموعة</span>
+                  </a>
+                </div>
+                <div class="step" current>
+                  <div class="title">ضبط إﻋﺪادات اﻟﺸﺤﻦ</div>
+                  <div class="subtitle">حدد مناطق الشحن في متجرك، وكيفية حساب التكلفة</div>
+                  <a href="#" action action-fill>
+                    <span>أضبط اعدادات الشحن</span>
+                  </a>
+                </div>
+                <div class="step">
+                  <div class="title">تهيئة وسائل الدفع</div>
+                  <div class="subtitle">
+                    حدد وسائل الدفع المتاحة من بين مجموعة متنوعة من وسائل الدفع
+                  </div>
+                  <a href="#" action action-outline>
+                    <span>أضف وسيلة دفع</span>
+                  </a>
+                </div>
+                <div class="step">
+                  <div class="title">تصميم المتجر</div>
+                  <div class="subtitle">تطبيق الألوان والخطوط والشعار للمتجر</div>
+                  <a href="#" action action-outline>
+                    <span>صمم متجرك</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="justify-content-end" actions actions-group>
+              <a href="#" action action-fill class="main">
+                <span>ذكرني لاحقا</span>
+              </a>
+              <a href="#" action action-outline>
+                <span>لا تسألني مرة أخرى</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Separator -->
+          <div class="separator horizontal">
+            <span></span>
+          </div>
+
+          <!-- Orders Table -->
+          <section>
+            <!-- Header -->
+            <div class="header">
+              <div class="d-flex">
+                <em class="ph-chart-line" icon></em>
+                <div>
+                  <div class="title" data-shadow="احدث الطلبات">احدث الطلبات</div>
+                  <div class="subtitle">
+                    هذا النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني
+                  </div>
+                </div>
+              </div>
+
+              <a href="#" action>
+                عرض كل الطلبات
+
+                <em class="icon animate__rubberBand hover-parent ph-caret-left ms-2"></em>
+              </a>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+              <div header>
+                <!-- Search bar -->
+                <div class="search-bar">
+                  <div class="content d-flex">
+                    <!-- Icon -->
+                    <em icon class="ph-magnifying-glass"></em>
+                    <!-- Input -->
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="أبحث عن ما تريد ..."
+                      aria-label="البحث" />
+                  </div>
+                </div>
+
+                <!-- Actions -->
+                <div actions actions-group>
+                  <!-- Action -->
+                  <!-- Export Action -->
+                  <div class="dropdown">
+                    <div id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                      <div action data-bs-toggle="tooltip" data-bs-original-title="تصدير">
+                        <em class="icon animate__rubberBand hover-parent ph-export"></em>
+                      </div>
+                    </div>
+
+                    <ul class="dropdown-menu" aria-labelledby="exportDropdown">
+                      <li>
+                        <div class="dropdown-item" action-export="copy">نسخ إلى الحافظة</div>
+                      </li>
+                      <li>
+                        <div class="dropdown-item" action-export="excel">تصدير بتنسيق Excel</div>
+                      </li>
+                      <li>
+                        <div class="dropdown-item" action-export="csv">تصدير بتنسيق CSV</div>
+                      </li>
+                      <li>
+                        <div class="dropdown-item" action-export="pdf">تصدير بتنسيق PDF</div>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Filter Action -->
+                  <a href="#" action data-bs-toggle="tooltip" data-bs-original-title="تنقية">
+                    <em class="icon animate__rubberBand hover-parent ph-funnel"></em>
+                  </a>
+
+                  <!-- Separator -->
+                  <div class="separator vertical">
+                    <span></span>
+                  </div>
+
+                  <!-- Add new Action -->
+                  <a href="#" action data-bs-toggle="tooltip" data-bs-original-title="اضافة طلب">
+                    <em class="icon animate__rubberBand hover-parent ph-plus"></em>
+                    <span>أضافة طلب جديد</span>
+                  </a>
+                </div>
+              </div>
+              <div class="table-responsive" scroll drag>
+                <table class="table table-hover table-striped table-borderless">
+                  <thead>
+                    <tr>
+                      <th scope="col">العميل</th>
+                      <th scope="col" id sticky>رقم الطلب</th>
+                      <th scope="col" date>تاريخ الطلب</th>
+                      <th scope="col">الشحن</th>
+                      <th scope="col" payment>طريقة الدفع</th>
+                      <th scope="col" cash>المبلغ المستحق</th>
+                      <th scope="col" status>حالة الطلب</th>
+                      <th scope="col" actions></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">ماجد سيف النصر</th>
+                      <td sticky>544654</td>
+                      <td>12/4/2022</td>
+                      <td>ﺣﺴﻴﻦ رﻳﺎض, ٥ ش اﻟﺎﺑﺮق ﻣﺘﻔﺮع ﻣﻦ مصطفى النجاس, القاهرة</td>
+                      <td>دفع عند الاستلام</td>
+                      <td>24000 ر.س</td>
+                      <td>
+                        <span class="badge rounded-pill" data-type="Delivered"> تم التوصيل </span>
+                      </td>
+                      <!-- Actions -->
+                      <td actions>
+                        <div class="dropdown">
+                          <em
+                            class="ph-dots-three-vertical"
+                            type="button"
+                            id="data-1"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"></em>
+                          <ul class="dropdown-menu" aria-labelledby="data-1">
+                            <li>
+                              <a class="dropdown-item" href="#">Action</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Another action</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">ماجد سيف النصر</th>
+                      <td sticky>544654</td>
+                      <td>12/4/2022</td>
+                      <td>ﺣﺴﻴﻦ رﻳﺎض, ٥ ش اﻟﺎﺑﺮق ﻣﺘﻔﺮع ﻣﻦ مصطفى النجاس, القاهرة</td>
+                      <td>دفع عند الاستلام</td>
+                      <td>24000 ر.س</td>
+                      <td>
+                        <span class="badge rounded-pill" data-type="Awaiting payment">
+                          بانتظار الدفع
+                        </span>
+                      </td>
+                      <!-- Actions -->
+                      <td actions>
+                        <div class="dropdown">
+                          <em
+                            class="ph-dots-three-vertical"
+                            type="button"
+                            id="data-2"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"></em>
+                          <ul class="dropdown-menu" aria-labelledby="data-2">
+                            <li>
+                              <a class="dropdown-item" href="#">Action</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Another action</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">ماجد سيف النصر</th>
+                      <td sticky>544654</td>
+                      <td>12/4/2022</td>
+                      <td>ﺣﺴﻴﻦ رﻳﺎض, ٥ ش اﻟﺎﺑﺮق ﻣﺘﻔﺮع ﻣﻦ مصطفى النجاس, القاهرة</td>
+                      <td>دفع عند الاستلام</td>
+                      <td>24000 ر.س</td>
+                      <td>
+                        <span class="badge rounded-pill" data-type="Waiting for review">
+                          بانتظار المراجعة
+                        </span>
+                      </td>
+                      <!-- Actions -->
+                      <td actions>
+                        <div class="dropdown">
+                          <em
+                            class="ph-dots-three-vertical"
+                            type="button"
+                            id="data-3"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"></em>
+                          <ul class="dropdown-menu" aria-labelledby="data-3">
+                            <li>
+                              <a class="dropdown-item" href="#">Action</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Another action</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">ماجد سيف النصر</th>
+                      <td sticky>544654</td>
+                      <td>12/4/2022</td>
+                      <td>ﺣﺴﻴﻦ رﻳﺎض, ٥ ش اﻟﺎﺑﺮق ﻣﺘﻔﺮع ﻣﻦ مصطفى النجاس, القاهرة</td>
+                      <td>دفع عند الاستلام</td>
+                      <td>24000 ر.س</td>
+                      <td>
+                        <span class="badge rounded-pill" data-type="Delivery in progress">
+                          جاري التوصيل
+                        </span>
+                      </td>
+                      <!-- Actions -->
+                      <td actions>
+                        <div class="dropdown">
+                          <em
+                            class="ph-dots-three-vertical"
+                            type="button"
+                            id="data-4"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"></em>
+                          <ul class="dropdown-menu" aria-labelledby="data-4">
+                            <li>
+                              <a class="dropdown-item" href="#">Action</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Another action</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">ماجد سيف النصر</th>
+                      <td sticky>544654</td>
+                      <td>12/4/2022</td>
+                      <td>ﺣﺴﻴﻦ رﻳﺎض, ٥ ش اﻟﺎﺑﺮق ﻣﺘﻔﺮع ﻣﻦ مصطفى النجاس, القاهرة</td>
+                      <td>دفع عند الاستلام</td>
+                      <td>24000 ر.س</td>
+                      <td>
+                        <span class="badge rounded-pill" data-type="Being retrieved">
+                          قيد الاسترجاع
+                        </span>
+                      </td>
+                      <!-- Actions -->
+                      <td actions>
+                        <div class="dropdown">
+                          <em
+                            class="ph-dots-three-vertical"
+                            type="button"
+                            id="data-5"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"></em>
+                          <ul class="dropdown-menu" aria-labelledby="data-5">
+                            <li>
+                              <a class="dropdown-item" href="#">Action</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Another action</a>
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div footer>
+                <!-- Pagination  -->
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-end">
+                    <li class="page-item disabled">
+                      <a
+                        class="page-link"
+                        action
+                        action-outline
+                        href="#"
+                        tabindex="-1"
+                        aria-disabled="true">
+                        <em class="ph-caret-right"></em>
+                      </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" action href="#">1</a></li>
+                    <li class="page-item active"><a class="page-link" action href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" action href="#">3</a></li>
+                    <li class="page-item">
+                      <a class="page-link" action action-outline href="#">
+                        <em class="ph-caret-left"></em>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+
+                <!-- Actions -->
+                <div actions actions-group>
+                  <!-- Action -->
+                  <!-- Export Action -->
+                  <div class="position-relative" action>
+                    <button
+                      class="btn dropdown-toggle"
+                      type="button"
+                      id="records-number-dropdown"
+                      data-select="records-number"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"></button>
+                    <ul
+                      class="dropdown-menu dropdown-menu-start"
+                      aria-labelledby="records-number-dropdown">
+                      <li><div class="dropdown-item active" value="20 طلب">20 طلب</div></li>
+                      <li><div class="dropdown-item" value="40 طلب">40 طلب</div></li>
+                      <li><div class="dropdown-item" value="60 طلب">60 طلب</div></li>
+                      <li><div class="dropdown-item" value="80 طلب">80 طلب</div></li>
+                    </ul>
+
+                    <select class="form-select" id="records-number">
+                      <option value="20" selected>20 طلب</option>
+                      <option value="40">40 طلب</option>
+                      <option value="60">60 طلب</option>
+                      <option value="80">80 طلب</option>
+                    </select>
+                  </div>
+
+                  <!-- Separator -->
+                  <div class="separator vertical">
+                    <span></span>
+                  </div>
+
+                  <!-- Calendar Action -->
+                  <form>
+                    <div
+                      class="input-group"
+                      action
+                      date-picker
+                      id="datePickerRange"
+                      picker-type="range"
+                      picker-container="input-group">
+                      <em class="icon animate__rubberBand hover-parent ph-calendar-blank"></em>
+                      <span id="datePickerRangeValue"></span>
+                      <input id="datePickerRangeValueInput" readonly hidden />
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Search floating bar -->
+        <div class="searchbarFloating">
+          <div class="content d-flex">
+            <!-- Icon -->
+            <em icon class="ph-magnifying-glass"></em>
+            <!-- Input -->
+            <input
+              type="text"
+              class="form-control"
+              placeholder="أبحث عن ما تريد ..."
+              aria-label="البحث" />
+
+            <!-- Separator -->
+            <div class="separator vertical">
+              <span></span>
+            </div>
+
+            <!-- Select Floating Category -->
+            <div>
+              <button
+                class="btn dropdown-toggle"
+                type="button"
+                id="search-floating-category-dropdown"
+                data-select="search-floating-category"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"></button>
+              <ul
+                class="dropdown-menu dropdown-menu-start"
+                aria-labelledby="search-floating-category-dropdown">
+                <li><div class="dropdown-item active" value="الطلبات">الطلبات</div></li>
+                <li><div class="dropdown-item" value="المنتجات">المنتجات</div></li>
+                <li><div class="dropdown-item" value="العملاء">العملاء</div></li>
+                <li><div class="dropdown-item" value="الشراكات">الشراكات</div></li>
+              </ul>
+
+              <select class="form-select" id="search-floating-category">
+                <option value="الطلبات" selected>الطلبات</option>
+                <option value="المنتجات">المنتجات</option>
+                <option value="العملاء">العملاء</option>
+                <option value="الشراكات">الشراكات</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div>
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="notifications_offcanvas"
+            aria-labelledby="notifications_offcanvasLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="notifications_offcanvasLabel">Offcanvas</h5>
+              <button
+                type="button"
+                class="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              Content for the offcanvas goes here. You can place just about any Bootstrap component
+              or custom elements here.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #endregion -->
+    </div>
+    <!-- #endregion -->
+
+    <!-- Global Javascript Bundle(used by all pages) -->
+    <script src="./dist/js/plugins.bundle.js" name="plugins"></script>
+    <script src="./dist/js/util.bundle.js" name="util"></script>
+    <script src="./dist/js/app.bundle.js" name="app"></script>
+    <script src="./dist/js/widgets.bundle.js" name="widgets"></script>
+  </body>
+</html>
