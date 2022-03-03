@@ -569,7 +569,6 @@ var HOLOLApp = (function () {
       // Mouse Down Handler
       const mouseDownHandler = function (e) {
         HOLOLUtil.css(dragToScrollItem, 'cursor', 'grabbing');
-        HOLOLUtil.css(dragToScrollItem, 'userSelect', 'none');
 
         pos = {
           left: dragToScrollItem.scrollLeft,
@@ -597,7 +596,6 @@ var HOLOLApp = (function () {
       // Mouse Up Handler
       const mouseUpHandler = function () {
         HOLOLUtil.css(dragToScrollItem, 'cursor', '');
-        HOLOLUtil.css(dragToScrollItem, 'userSelect', '');
 
         HOLOLUtil.removeEvent(document, 'mousemove', mouseMoveHandler);
         HOLOLUtil.removeEvent(document, 'mouseup', mouseUpHandler);
