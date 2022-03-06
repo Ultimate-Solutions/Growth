@@ -31,7 +31,7 @@
     <meta charset="utf-8" />
 
     <!-- Title -->
-    <title>Holol - Dashboard</title>
+    <title>Holol - Dashboard | Orders</title>
 
     <!-- #region / Required meta tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -534,9 +534,14 @@
             <!-- Left section -->
             <div class="left d-flex">
               <!-- View Site -->
-              <div action data-action="view-site" data-bs-toggle="tooltip" title="عرض المتجر">
+              <a
+                href="#"
+                action
+                data-action="view-site"
+                data-bs-toggle="tooltip"
+                title="عرض المتجر">
                 <em class="icon animate__rubberBand hover-parent ph-eye"></em>
-              </div>
+              </a>
               <!-- Notifications -->
               <div
                 action
@@ -547,8 +552,14 @@
                 title="الاشعارات">
                 <em class="icon animate__rubberBand hover-parent ph-bell-ringing"></em>
               </div>
+
               <!-- Updates -->
-              <div action data-action="updates" data-bs-toggle="tooltip" title="تحديثات المنصة">
+              <div
+                action
+                data-action="updates"
+                data-bs-toggle="tooltip"
+                title="تحديثات المنصة"
+                data-holol-offcanvas="#platform_updates_offcanvas">
                 <em class="icon animate__rubberBand hover-parent ph-arrows-counter-clockwise"></em>
               </div>
 
@@ -580,6 +591,50 @@
                   <li><a class="dropdown-item" href="#">Action</a></li>
                 </ul>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offcanvas Notifications -->
+        <div>
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="notifications_offcanvas"
+            aria-labelledby="notifications_offcanvasLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="notifications_offcanvasLabel">Offcanvas</h5>
+              <button
+                type="button"
+                class="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              Content for the offcanvas goes here. You can place just about any Bootstrap component
+              or custom elements here.
+            </div>
+          </div>
+        </div>
+
+        <!-- Offcanvas Platform Updates -->
+        <div>
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="platform_updates_offcanvas"
+            aria-labelledby="platform_updates_offcanvasLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="platform_updates_offcanvasLabel">Offcanvas</h5>
+              <button
+                type="button"
+                class="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              Content for the offcanvas goes here. You can place just about any Bootstrap component
+              or custom elements here.
             </div>
           </div>
         </div>
@@ -820,9 +875,36 @@
                   </div>
 
                   <!-- Filter Action -->
-                  <a href="#" action data-bs-toggle="tooltip" data-bs-original-title="تنقية">
+                  <a
+                    href="javascript:void(0)"
+                    action
+                    data-bs-toggle="tooltip"
+                    data-bs-original-title="تنقية"
+                    data-holol-offcanvas="#notifications_offcanvas">
                     <em class="icon animate__rubberBand hover-parent ph-funnel"></em>
                   </a>
+
+                  <!-- Offcanvas Filter -->
+                  <div>
+                    <div
+                      class="offcanvas offcanvas-end"
+                      tabindex="-1"
+                      id="filter_offcanvas"
+                      aria-labelledby="filter_offcanvasLabel">
+                      <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="filter_offcanvasLabel">Offcanvas</h5>
+                        <button
+                          type="button"
+                          class="btn-close text-reset"
+                          data-bs-dismiss="offcanvas"
+                          aria-label="Close"></button>
+                      </div>
+                      <div class="offcanvas-body">
+                        Content for the offcanvas goes here. You can place just about any Bootstrap
+                        component or custom elements here.
+                      </div>
+                    </div>
+                  </div>
 
                   <!-- Separator -->
                   <div class="separator vertical">
@@ -1737,28 +1819,6 @@
                 <option value="العملاء">العملاء</option>
                 <option value="الشراكات">الشراكات</option>
               </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- Notifications -->
-        <div>
-          <div
-            class="offcanvas offcanvas-end"
-            tabindex="-1"
-            id="notifications_offcanvas"
-            aria-labelledby="notifications_offcanvasLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="notifications_offcanvasLabel">Offcanvas</h5>
-              <button
-                type="button"
-                class="btn-close text-reset"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              Content for the offcanvas goes here. You can place just about any Bootstrap component
-              or custom elements here.
             </div>
           </div>
         </div>

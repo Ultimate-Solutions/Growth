@@ -757,8 +757,6 @@ var HOLOLApp = (function () {
   var initOffcanvas = function () {
     HOLOLUtil.each(document.querySelectorAll('[data-holol-offcanvas]'), function (element) {
       HOLOLUtil.addEvent(element, 'click', () => {
-        console.log(HOLOLUtil.attr(element, 'data-holol-offcanvas'));
-
         var offcanvasElement = document.querySelector(
           HOLOLUtil.attr(element, 'data-holol-offcanvas')
         );
@@ -767,8 +765,6 @@ var HOLOLApp = (function () {
         event.stopPropagation();
         var bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
         bsOffcanvas.show();
-
-        console.log(offcanvasElement);
       });
     });
   };

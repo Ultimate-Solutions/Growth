@@ -2484,7 +2484,7 @@ img {
   top: 1.25rem;
   -webkit-animation: topNavSticky ease-in-out 0.5s 1 alternate;
   animation: topNavSticky ease-in-out 0.5s 1 alternate;
-  z-index: 1000009;
+  z-index: 1000;
 }
 .dashboard > .content > .top-navbar > .content {
   margin-bottom: 1.25rem;
