@@ -315,8 +315,6 @@ var HOLOLApp = (function () {
     }
   };
 
-  var initDateRangePicker = function () {};
-
   var initMainNavbar = function () {
     // Main navbar
     const mainNavbar = document.querySelector('.dashboard > .main-navbar');
@@ -769,6 +767,76 @@ var HOLOLApp = (function () {
     });
   };
 
+  var initCheckboxGroup = function () {
+    HOLOLUtil.each(
+      document.querySelectorAll('[data-holol-checkbox][data-holol-checkbox-type="master"]'),
+      function (element) {
+        var sameList = document.querySelectorAll(
+          '[data-holol-checkbox=' +
+            HOLOLUtil.attr(element, 'data-holol-checkbox') +
+            ']:not([data-holol-checkbox-type="master"])'
+        );
+
+        // Master Checkbox
+        HOLOLUtil.addEvent(element, 'click', () => {
+          // Get checkbox status
+          var status = 'checked';
+          if (element.checked) status = 'checked';
+          else if (element.indeterminate) status = 'indeterminate';
+          else status = 'unchecked';
+
+          HOLOLUtil.each(sameList, function (newElement) {
+            newElement.checked = status == 'checked' ? true : false;
+          });
+        });
+
+        // Slave Checkboxes
+        HOLOLUtil.each(sameList, function (newElement) {
+          HOLOLUtil.addEvent(newElement, 'click', () => {
+            let checkerResult = checker(sameList);
+
+            if (newElement.checked) {
+              if (checkerResult.all) {
+                element.checked = true;
+                element.indeterminate = false;
+              } else {
+                element.checked = false;
+                element.indeterminate = true;
+              }
+            } else {
+              console.log(checkerResult.some);
+              if (!checkerResult.some) {
+                element.checked = false;
+                element.indeterminate = false;
+              } else {
+                element.checked = false;
+                element.indeterminate = true;
+              }
+            }
+          });
+        });
+
+        var checker = function (checkerList) {
+          let checkerCheckAll = true,
+            checkerCheckSome = false;
+
+          HOLOLUtil.each(checkerList, function (checkerListItem) {
+            if (checkerListItem.checked) {
+              checkerCheckSome = true;
+            } else {
+              checkerCheckAll = false;
+            }
+          });
+
+          return {
+            all: checkerCheckAll,
+            some: checkerCheckSome,
+          };
+        };
+      }
+    );
+  };
+
   // Public methods
   return {
     init: function () {
@@ -786,7 +854,6 @@ var HOLOLApp = (function () {
       this.initCountUp();
       this.initCountUpTabs();
       this.initSmoothScroll();
-      this.initDateRangePicker();
       this.initMainNavbar();
       this.initTopNavbar();
       this.initNotificationTabs();
@@ -794,6 +861,7 @@ var HOLOLApp = (function () {
       this.initDragScroll();
       this.initDaterangepicker();
       this.initOffcanvas();
+      this.initCheckboxGroup();
     },
 
     initPageLoader: function () {
@@ -852,10 +920,6 @@ var HOLOLApp = (function () {
       initSmoothScroll();
     },
 
-    initDateRangePicker: function () {
-      initDateRangePicker();
-    },
-
     initMainNavbar: function () {
       initMainNavbar();
     },
@@ -882,6 +946,9 @@ var HOLOLApp = (function () {
 
     initOffcanvas: function () {
       initOffcanvas();
+    },
+    initCheckboxGroup: function () {
+      initCheckboxGroup();
     },
   };
 })();

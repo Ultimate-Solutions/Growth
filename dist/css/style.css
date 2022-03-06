@@ -3873,7 +3873,12 @@ section > .content table tr > *:last-child {
 /* -----------------------------------------------
   Bootstrap > Forms
 -------------------------------------------------*/
-.form-check-input:checked {
+.form-check-input {
+  width: 1.2em;
+  height: 1.2em;
+}
+.form-check-input:checked,
+.form-check-input[type='checkbox']:indeterminate {
   background-color: #05a84b;
   border-color: #05a84b;
 }
