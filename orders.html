@@ -1102,7 +1102,7 @@
                       <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="notifications_offcanvasLabel">
                           <em class="ph-bell-ringing"></em>
-                          <span>الأشعارات</span>
+                          <span>فرز الطلبات حسب</span>
                         </h5>
 
                         <!-- Actions -->
@@ -1124,9 +1124,349 @@
                           data-bs-dismiss="offcanvas"
                           aria-label="Close"></button>
                       </div>
-                      <div class="offcanvas-body">
-                        Content for the offcanvas goes here. You can place just about any Bootstrap
-                        component or custom elements here.
+                      <div class="offcanvas-body" scroll>
+                        <div class="accordion" filters>
+                          <!-- Status -->
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="orderStatus-heading">
+                              <button
+                                class="accordion-button"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#orderStatus-collapse"
+                                aria-expanded="true"
+                                aria-controls="orderStatus-collapse">
+                                حالة الطلب
+                              </button>
+                            </h2>
+                            <div
+                              id="orderStatus-collapse"
+                              class="accordion-collapse collapse show"
+                              aria-labelledby="orderStatus-heading">
+                              <div class="accordion-body">
+                                <!-- Checkbox BEGIN -->
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderStatus"
+                                    data-holol-checkbox-type="master"
+                                    id="filterOrderStatus-all" />
+                                  <label class="form-check-label" for="filterOrderStatus-all">
+                                    الكل
+                                  </label>
+                                </div>
+                                <!-- Checkbox END -->
+
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderStatus"
+                                    id="filterOrderStatus-draft" />
+                                  <label class="form-check-label" for="filterOrderStatus-draft">
+                                    مسودة
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderStatus"
+                                    id="filterOrderStatus-deleted" />
+                                  <label class="form-check-label" for="filterOrderStatus-deleted">
+                                    محذوف
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderStatus"
+                                    id="filterOrderStatus-awaitingPayment" />
+                                  <label
+                                    class="form-check-label"
+                                    for="filterOrderStatus-awaitingPayment">
+                                    بإنتظار الدفع
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderStatus"
+                                    id="filterOrderStatus-awaitingReview" />
+                                  <label
+                                    class="form-check-label"
+                                    for="filterOrderStatus-awaitingReview">
+                                    بإنتظار المراجعة
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderStatus"
+                                    id="filterOrderStatus-underway" />
+                                  <label class="form-check-label" for="filterOrderStatus-underway">
+                                    قيد التنفيذ
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderStatus"
+                                    id="filterOrderStatus-done" />
+                                  <label class="form-check-label" for="filterOrderStatus-done">
+                                    تم التنفيذ
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderStatus"
+                                    id="filterOrderStatus-deliveryInProgress" />
+                                  <label
+                                    class="form-check-label"
+                                    for="filterOrderStatus-deliveryInProgress">
+                                    جاري التوصيل
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderStatus"
+                                    id="filterOrderStatus-delivered" />
+                                  <label class="form-check-label" for="filterOrderStatus-delivered">
+                                    تم التوصيل
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderStatus"
+                                    id="filterOrderStatus-shipped" />
+                                  <label class="form-check-label" for="filterOrderStatus-shipped">
+                                    تم الشحن
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderStatus"
+                                    id="filterOrderStatus-canceled" />
+                                  <label class="form-check-label" for="filterOrderStatus-canceled">
+                                    ملغي
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderStatus"
+                                    id="filterOrderStatus-retrieved" />
+                                  <label class="form-check-label" for="filterOrderStatus-retrieved">
+                                    مسترجع
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderStatus"
+                                    id="filterOrderStatus-beingRetrieved" />
+                                  <label
+                                    class="form-check-label"
+                                    for="filterOrderStatus-beingRetrieved">
+                                    قيد الإسترجاع
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Shipping Provider -->
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="orderShippingProvider-heading">
+                              <button
+                                class="accordion-button collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#orderShippingProvider-collapse"
+                                aria-expanded="false"
+                                aria-controls="orderShippingProvider-collapse">
+                                شركة الشحن
+                              </button>
+                            </h2>
+                            <div
+                              id="orderShippingProvider-collapse"
+                              class="accordion-collapse collapse"
+                              aria-labelledby="orderShippingProvider-heading">
+                              <div class="accordion-body">
+                                <!-- Checkbox BEGIN -->
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderShippingProvider"
+                                    data-holol-checkbox-type="master"
+                                    id="filterOrderShippingProvider-all" />
+                                  <label
+                                    class="form-check-label"
+                                    for="filterOrderShippingProvider-all">
+                                    الكل
+                                  </label>
+                                </div>
+                                <!-- Checkbox END -->
+
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderShippingProvider"
+                                    id="filterOrderShippingProvider-1" />
+                                  <label
+                                    class="form-check-label"
+                                    for="filterOrderShippingProvider-1">
+                                    مزود الخدمة 1
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderShippingProvider"
+                                    id="filterOrderShippingProvider-2" />
+                                  <label
+                                    class="form-check-label"
+                                    for="filterOrderShippingProvider-2">
+                                    مزود الخدمة 2
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderShippingProvider"
+                                    id="filterOrderShippingProvider-3" />
+                                  <label
+                                    class="form-check-label"
+                                    for="filterOrderShippingProvider-3">
+                                    مزود الخدمة 3
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterOrderShippingProvider"
+                                    id="filterOrderShippingProvider-4" />
+                                  <label
+                                    class="form-check-label"
+                                    for="filterOrderShippingProvider-4">
+                                    مزود الخدمة 4
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="paymentMethods-heading">
+                              <button
+                                class="accordion-button collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#paymentMethods-collapse"
+                                aria-expanded="false"
+                                aria-controls="paymentMethods-collapse">
+                                طريقة الدفع
+                              </button>
+                            </h2>
+                            <div
+                              id="paymentMethods-collapse"
+                              class="accordion-collapse collapse"
+                              aria-labelledby="paymentMethods-heading">
+                              <div class="accordion-body">
+                                <!-- Checkbox BEGIN -->
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterPaymentMethods"
+                                    data-holol-checkbox-type="master"
+                                    id="filterPaymentMethods-all" />
+                                  <label class="form-check-label" for="filterPaymentMethods-all">
+                                    الكل
+                                  </label>
+                                </div>
+                                <!-- Checkbox END -->
+
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterPaymentMethods"
+                                    id="filterPaymentMethods-cashOnDelivery" />
+                                  <label
+                                    class="form-check-label"
+                                    for="filterPaymentMethods-cashOnDelivery">
+                                    الدفع عند الاستلام
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterPaymentMethods"
+                                    id="filterPaymentMethods-creditCard" />
+                                  <label
+                                    class="form-check-label"
+                                    for="filterPaymentMethods-creditCard">
+                                    البطاقة الإتمانية
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterPaymentMethods"
+                                    id="filterPaymentMethods-PayPal" />
+                                  <label class="form-check-label" for="filterPaymentMethods-PayPal">
+                                    بايبال
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterPaymentMethods"
+                                    id="filterPaymentMethods-NationalCommercialBank" />
+                                  <label
+                                    class="form-check-label"
+                                    for="filterPaymentMethods-NationalCommercialBank">
+                                    البنك الأهلي التجاري
+                                  </label>
+                                </div>
+                                <div class="form-check">
+                                  <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    data-holol-checkbox="filterPaymentMethods"
+                                    id="filterPaymentMethods-AlRajhiBank" />
+                                  <label
+                                    class="form-check-label"
+                                    for="filterPaymentMethods-AlRajhiBank">
+                                    مصرف الراجحي
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
