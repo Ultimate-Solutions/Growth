@@ -603,16 +603,120 @@
             id="notifications_offcanvas"
             aria-labelledby="notifications_offcanvasLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="notifications_offcanvasLabel">Offcanvas</h5>
+              <h5 class="offcanvas-title" id="notifications_offcanvasLabel">
+                <em class="ph-bell-ringing"></em>
+                <span>الأشعارات</span>
+              </h5>
+
+              <!-- Actions -->
+              <div actions actions-group>
+                <!-- Clear -->
+                <a
+                  href="javascript:void(0)"
+                  action="clear"
+                  data-bs-toggle="tooltip"
+                  data-bs-original-title="تفريغ الاشعارات">
+                  <em class="icon animate__rubberBand hover-parent ph-trash"></em>
+                </a>
+              </div>
+
+              <!-- Close button -->
               <button
                 type="button"
                 class="btn-close text-reset"
                 data-bs-dismiss="offcanvas"
                 aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
-              Content for the offcanvas goes here. You can place just about any Bootstrap component
-              or custom elements here.
+            <div class="offcanvas-body" scroll>
+              <div class="notifications-list">
+                <!-- Item BEGIN -->
+                <a href="#" class="item" data-type="warning">
+                  <!-- Header -->
+                  <div class="header">
+                    <em class="ph-warning"></em>
+                    <div>
+                      <div class="subtitle">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                      <div class="title">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                    </div>
+                  </div>
+                  <!-- Content -->
+                  <div class="content">
+                    انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني .انتشر بشكل
+                    كبير في ستينيّات هذا القرن مع إصدار رقائق ليتراسيت البلاستيكية تحوي مقاطع من هذا
+                    النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج
+                    مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.
+                  </div>
+                </a>
+                <!-- Item END -->
+                <a href="#" class="item" data-type="info">
+                  <!-- Header -->
+                  <div class="header">
+                    <em class="ph-info"></em>
+                    <div>
+                      <div class="subtitle">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                      <div class="title">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                    </div>
+                  </div>
+                  <!-- Content -->
+                  <div class="content">
+                    انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني .انتشر بشكل
+                    كبير في ستينيّات هذا القرن مع إصدار رقائق ليتراسيت البلاستيكية تحوي مقاطع من هذا
+                    النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج
+                    مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.
+                  </div>
+                </a>
+                <a href="#" class="item" data-type="info">
+                  <!-- Header -->
+                  <div class="header">
+                    <em class="ph-info"></em>
+                    <div>
+                      <div class="subtitle">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                      <div class="title">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                    </div>
+                  </div>
+                  <!-- Content -->
+                  <div class="content">
+                    انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني .انتشر بشكل
+                    كبير في ستينيّات هذا القرن مع إصدار رقائق ليتراسيت البلاستيكية تحوي مقاطع من هذا
+                    النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج
+                    مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.
+                  </div>
+                </a>
+                <a href="#" class="item" data-type="danger">
+                  <!-- Header -->
+                  <div class="header">
+                    <em class="ph-x"></em>
+                    <div>
+                      <div class="subtitle">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                      <div class="title">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                    </div>
+                  </div>
+                  <!-- Content -->
+                  <div class="content">
+                    انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني .انتشر بشكل
+                    كبير في ستينيّات هذا القرن مع إصدار رقائق ليتراسيت البلاستيكية تحوي مقاطع من هذا
+                    النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج
+                    مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.
+                  </div>
+                </a>
+                <a href="#" class="item" data-type="success">
+                  <!-- Header -->
+                  <div class="header">
+                    <em class="ph-check"></em>
+                    <div>
+                      <div class="subtitle">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                      <div class="title">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                    </div>
+                  </div>
+                  <!-- Content -->
+                  <div class="content">
+                    انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني .انتشر بشكل
+                    كبير في ستينيّات هذا القرن مع إصدار رقائق ليتراسيت البلاستيكية تحوي مقاطع من هذا
+                    النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج
+                    مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -625,16 +729,120 @@
             id="platform_updates_offcanvas"
             aria-labelledby="platform_updates_offcanvasLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="platform_updates_offcanvasLabel">Offcanvas</h5>
+              <h5 class="offcanvas-title" id="notifications_offcanvasLabel">
+                <em class="ph-arrows-counter-clockwise"></em>
+                <span>تحديثات المنصة</span>
+              </h5>
+
+              <!-- Actions -->
+              <div actions actions-group>
+                <!-- Clear -->
+                <a
+                  href="javascript:void(0)"
+                  action="clear"
+                  data-bs-toggle="tooltip"
+                  data-bs-original-title="تفريغ التحديثات">
+                  <em class="icon animate__rubberBand hover-parent ph-trash"></em>
+                </a>
+              </div>
+
+              <!-- Close button -->
               <button
                 type="button"
                 class="btn-close text-reset"
                 data-bs-dismiss="offcanvas"
                 aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
-              Content for the offcanvas goes here. You can place just about any Bootstrap component
-              or custom elements here.
+            <div class="offcanvas-body" scroll>
+              <div class="notifications-list">
+                <!-- Item BEGIN -->
+                <a href="#" class="item" data-type="warning">
+                  <!-- Header -->
+                  <div class="header">
+                    <em class="ph-warning"></em>
+                    <div>
+                      <div class="subtitle">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                      <div class="title">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                    </div>
+                  </div>
+                  <!-- Content -->
+                  <div class="content">
+                    انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني .انتشر بشكل
+                    كبير في ستينيّات هذا القرن مع إصدار رقائق ليتراسيت البلاستيكية تحوي مقاطع من هذا
+                    النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج
+                    مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.
+                  </div>
+                </a>
+                <!-- Item END -->
+                <a href="#" class="item" data-type="info">
+                  <!-- Header -->
+                  <div class="header">
+                    <em class="ph-info"></em>
+                    <div>
+                      <div class="subtitle">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                      <div class="title">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                    </div>
+                  </div>
+                  <!-- Content -->
+                  <div class="content">
+                    انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني .انتشر بشكل
+                    كبير في ستينيّات هذا القرن مع إصدار رقائق ليتراسيت البلاستيكية تحوي مقاطع من هذا
+                    النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج
+                    مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.
+                  </div>
+                </a>
+                <a href="#" class="item" data-type="info">
+                  <!-- Header -->
+                  <div class="header">
+                    <em class="ph-info"></em>
+                    <div>
+                      <div class="subtitle">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                      <div class="title">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                    </div>
+                  </div>
+                  <!-- Content -->
+                  <div class="content">
+                    انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني .انتشر بشكل
+                    كبير في ستينيّات هذا القرن مع إصدار رقائق ليتراسيت البلاستيكية تحوي مقاطع من هذا
+                    النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج
+                    مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.
+                  </div>
+                </a>
+                <a href="#" class="item" data-type="danger">
+                  <!-- Header -->
+                  <div class="header">
+                    <em class="ph-x"></em>
+                    <div>
+                      <div class="subtitle">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                      <div class="title">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                    </div>
+                  </div>
+                  <!-- Content -->
+                  <div class="content">
+                    انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني .انتشر بشكل
+                    كبير في ستينيّات هذا القرن مع إصدار رقائق ليتراسيت البلاستيكية تحوي مقاطع من هذا
+                    النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج
+                    مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.
+                  </div>
+                </a>
+                <a href="#" class="item" data-type="success">
+                  <!-- Header -->
+                  <div class="header">
+                    <em class="ph-check"></em>
+                    <div>
+                      <div class="subtitle">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                      <div class="title">مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.</div>
+                    </div>
+                  </div>
+                  <!-- Content -->
+                  <div class="content">
+                    انه حتى صار مستخدماً وبشكله الأصلي في الطباعة والتنضيد الإلكتروني .انتشر بشكل
+                    كبير في ستينيّات هذا القرن مع إصدار رقائق ليتراسيت البلاستيكية تحوي مقاطع من هذا
+                    النص، وعاد لينتشر مرة أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج
+                    مايكر والتي حوت أيضاً على نسخ من نص لوريم إيبسوم.
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -880,7 +1088,7 @@
                     action
                     data-bs-toggle="tooltip"
                     data-bs-original-title="تنقية"
-                    data-holol-offcanvas="#notifications_offcanvas">
+                    data-holol-offcanvas="#filter_offcanvas">
                     <em class="icon animate__rubberBand hover-parent ph-funnel"></em>
                   </a>
 
@@ -892,7 +1100,24 @@
                       id="filter_offcanvas"
                       aria-labelledby="filter_offcanvasLabel">
                       <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="filter_offcanvasLabel">Offcanvas</h5>
+                        <h5 class="offcanvas-title" id="notifications_offcanvasLabel">
+                          <em class="ph-bell-ringing"></em>
+                          <span>الأشعارات</span>
+                        </h5>
+
+                        <!-- Actions -->
+                        <div actions actions-group>
+                          <!-- Clear -->
+                          <a
+                            href="javascript:void(0)"
+                            action="clear"
+                            data-bs-toggle="tooltip"
+                            data-bs-original-title="اعادة ضبط">
+                            <em class="icon animate__rubberBand hover-parent ph-backspace"></em>
+                          </a>
+                        </div>
+
+                        <!-- Close button -->
                         <button
                           type="button"
                           class="btn-close text-reset"
