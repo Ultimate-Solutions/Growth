@@ -1248,13 +1248,129 @@ var HOLOLUtil = (function () {
     getTheme: function () {
       return HOLOLUtil.attr(document.querySelector('html'), 'data-theme');
     },
+
+    /**
+     * Get browser
+     * @returns {string}
+     */
+    getBrowser: function () {
+      var browserName = (function (agent) {
+        switch (true) {
+          case agent.indexOf('edge') > -1:
+            return 'MS Edge';
+          case agent.indexOf('edg/') > -1:
+            return 'Edge ( chromium based)';
+          case agent.indexOf('opr') > -1 && !!window.opr:
+            return 'Opera';
+          case agent.indexOf('chrome') > -1 && !!window.chrome:
+            return 'Chrome';
+          case agent.indexOf('trident') > -1:
+            return 'MS IE';
+          case agent.indexOf('firefox') > -1:
+            return 'Mozilla Firefox';
+          case agent.indexOf('safari') > -1:
+            return 'Safari';
+          case agent.indexOf('iron') > -1:
+            return 'iron';
+          default:
+            return 'other';
+        }
+      })(window.navigator.userAgent.toLowerCase());
+      return browserName;
+    },
+
+    /**
+     * Get browser
+     * @returns {string}
+     */
+    getBrowserLanguage: function () {
+      var lan =
+        window.navigator.userLanguage ||
+        window.navigator.language ||
+        window.navigator.browserLanguage ||
+        window.navigator.systemLanguage;
+      return lan.slice(0, 2) || '';
+    },
+
+    /**
+     * Get OS Name
+     * @returns {string}
+     */
+    getOS: function () {
+      var userAgent = window.navigator.userAgent,
+        platform = window.navigator.platform,
+        macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+        windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+        iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+        os = null;
+
+      if (macosPlatforms.indexOf(platform) !== -1) {
+        os = 'Mac OS';
+      } else if (iosPlatforms.indexOf(platform) !== -1) {
+        os = 'iOS';
+      } else if (windowsPlatforms.indexOf(platform) !== -1) {
+        os = 'Windows';
+      } else if (/Android/.test(userAgent)) {
+        os = 'Android';
+      } else if (!os && /Linux/.test(platform)) {
+        os = 'Linux';
+      }
+
+      return os;
+    },
+
+    /**
+     * Get OS Version
+     * @returns {string}
+     */
+    getOSVersion: function () {
+      var forcedOSVersion = (document.location.search.match(/(?:[?&])ov=([0-9_]+)/) || {})[1];
+      if (typeof forcedOSVersion !== 'undefined') {
+        return forcedOSVersion;
+      }
+      var match = navigator.userAgent.match(
+        /(CrOS\ \w+|Windows\ NT|Mac\ OS\ X|Linux)\ ([\d\._]+)?/
+      );
+      return (match || [])[2] || 'unknown';
+    },
   };
 })();
 
 ('use strict');
+window.Holol = {
+  PROVIDER: 'Ultimate Solutions Egypt',
+  VERSION: '',
+  LINK: 'https://ultimate-eg.net',
+};
 
 // Class definition
 var HOLOLApp = (function () {
+  var initHello = function (provider, version, link) {
+    const PROVIDER = provider;
+    const VERSION = version;
+    const LINK = link;
+
+    // Check if Chrome
+    if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+      // Message
+      const args = [
+        `\n %c ${PROVIDER} ${VERSION} %c International leader in Enterprise Resource Solutions and Software Development | ${LINK} %c \n`,
+        'color: #fff; border: 1px solid #22447B; background: #22447B; padding:5px;',
+        'color: #000; border: 1px solid #22447B; padding:5px;',
+        'background: #fff; padding:5px 0;',
+      ];
+
+      // View message in console log
+      setTimeout(console.log.bind(console, ...args));
+    } else if (window.console)
+      setTimeout(
+        console.log.bind(
+          console,
+          `${PROVIDER} ${VERSION} - International leader in Enterprise Resource Solutions and Software Development |  ${LINK}`
+        )
+      );
+  };
+
   var initPageLoader = function () {
     // CSS3 Transitions only after page load
     // (.page - loading class added to body tag and remove with JS on page load)
@@ -2093,6 +2209,7 @@ var HOLOLApp = (function () {
   // Public methods
   return {
     init: function () {
+      this.initHello(window.Holol.PROVIDER, window.Holol.VERSION, window.Holol.LINK);
       this.initPageLoader();
       this.initLazyLoad();
       this.initBootstrapTooltip();
@@ -2115,6 +2232,10 @@ var HOLOLApp = (function () {
       this.initDaterangepicker();
       this.initOffcanvas();
       this.initCheckboxGroup();
+    },
+
+    initHello: function (provider, version, link) {
+      initHello(provider, version, link);
     },
 
     initPageLoader: function () {
