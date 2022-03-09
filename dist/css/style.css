@@ -3626,6 +3626,14 @@ section > .content table tr > *:last-child {
 /* -----------------------------------------------
   Main > Dashboard > Content > Offcanvas
 -------------------------------------------------*/
+.offcanvas-start,
+.offcanvas-end {
+  max-width: 80%;
+}
+.offcanvas-top,
+.offcanvas-bottom {
+  max-height: 80%;
+}
 .offcanvas-body > .notifications-list > .item {
   background-color: #fff;
   padding: 1.25rem;
