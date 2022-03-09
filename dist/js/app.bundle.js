@@ -128,7 +128,6 @@ var HOLOLUtil = (function () {
       var width = this.getViewPort().width;
       var breakpoint = this.getBreakpoint(mode);
 
-      console.log(breakpoint);
       return width >= breakpoint;
     },
 
@@ -142,7 +141,6 @@ var HOLOLUtil = (function () {
       var width = this.getViewPort().width;
       var breakpoint = this.getBreakpoint(mode);
 
-      console.log(breakpoint);
       return width < breakpoint;
     },
 
@@ -1409,8 +1407,6 @@ var HOLOLUtil = (function () {
       var agent = data.header.join(' '),
         os = matchItem(agent, data.os);
 
-      console.log(os);
-
       return {
         name: os.name,
         version: os.version,
@@ -1418,13 +1414,6 @@ var HOLOLUtil = (function () {
     },
   };
 })();
-
-console.log(HOLOLUtil.getOS().name, HOLOLUtil.getOS().version);
-console.log(
-  HOLOLUtil.getBrowser().name,
-  HOLOLUtil.getBrowser().version,
-  HOLOLUtil.getBrowser().language
-);
 
 ('use strict');
 
@@ -1448,7 +1437,7 @@ var HOLOLApp = (function () {
           'border: none; padding:0 5px 5px;',
         ],
         _project = [
-          `%c  ${PROJECT}  %c \n${PROJECT_INFO}\n`,
+          `%c  ${PROJECT} - ${VERSION}  %c \n${PROJECT_INFO}\n`,
           'color: #fff; border: 1px solid #05a84b; background: #05a84b; padding:5px;',
           'border: none; padding:5px;',
         ];
@@ -2267,7 +2256,6 @@ var HOLOLApp = (function () {
                 element.indeterminate = true;
               }
             } else {
-              console.log(checkerResult.some);
               if (!checkerResult.some) {
                 element.checked = false;
                 element.indeterminate = false;
