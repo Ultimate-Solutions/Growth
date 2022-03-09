@@ -1253,93 +1253,6 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Get OS & Browser info
-     * @returns {object}
-     */
-    getOSBrowser: function () {
-      const data = {
-        header: [
-          navigator.platform,
-          navigator.userAgent,
-          navigator.appVersion,
-          navigator.vendor,
-          window.opera,
-        ],
-        os: [
-          { name: 'Windows Phone', value: 'Windows Phone', version: 'OS' },
-          { name: 'Windows', value: 'Win', version: 'NT' },
-          { name: 'iPhone', value: 'iPhone', version: 'OS' },
-          { name: 'iPad', value: 'iPad', version: 'OS' },
-          { name: 'Kindle', value: 'Silk', version: 'Silk' },
-          { name: 'Android', value: 'Android', version: 'Android' },
-          { name: 'PlayBook', value: 'PlayBook', version: 'OS' },
-          { name: 'BlackBerry', value: 'BlackBerry', version: '/' },
-          { name: 'Macintosh', value: 'Mac', version: 'OS X' },
-          { name: 'Linux', value: 'Linux', version: 'rv' },
-          { name: 'Palm', value: 'Palm', version: 'PalmOS' },
-        ],
-        browser: [
-          { name: 'Chrome', value: 'Chrome', version: 'Chrome' },
-          { name: 'Firefox', value: 'Firefox', version: 'Firefox' },
-          { name: 'Safari', value: 'Safari', version: 'Version' },
-          { name: 'Internet Explorer', value: 'MSIE', version: 'MSIE' },
-          { name: 'Opera', value: 'Opera', version: 'Opera' },
-          { name: 'BlackBerry', value: 'CLDC', version: 'CLDC' },
-          { name: 'Mozilla', value: 'Mozilla', version: 'Mozilla' },
-        ],
-      };
-
-      var matchItem = function (string, data) {
-        var i = 0,
-          j = 0,
-          html = '',
-          regex,
-          regexv,
-          match,
-          matches,
-          version;
-
-        for (i = 0; i < data.length; i += 1) {
-          regex = new RegExp(data[i].value, 'i');
-          match = regex.test(string);
-          if (match) {
-            regexv = new RegExp(data[i].version + '[- /:;]([\\d._]+)', 'i');
-            matches = string.match(regexv);
-            version = '';
-            if (matches) {
-              if (matches[1]) {
-                matches = matches[1];
-              }
-            }
-            if (matches) {
-              matches = matches.split(/[._]+/);
-              for (j = 0; j < matches.length; j += 1) {
-                if (j === 0) {
-                  version += matches[j] + '.';
-                } else {
-                  version += matches[j];
-                }
-              }
-            } else {
-              version = '0';
-            }
-            return {
-              name: data[i].name,
-              version: parseFloat(version),
-            };
-          }
-        }
-        return { name: 'unknown', version: 0 };
-      };
-
-      var agent = data.header.join(' '),
-        os = matchItem(agent, data.os),
-        browser = matchItem(agent, data.browser);
-
-      return { os: os, browser: browser };
-    },
-
-    /**
      * Get browser
      * @returns {object}
      */
@@ -1528,23 +1441,26 @@ var HOLOLApp = (function () {
     // Check if Chrome
     if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
       // Message
-      const args = [
-        `\n %c ${PROVIDER} %c ${PROVIDER_INFO} | ${PROVIDER_LINK} %c \n %c ${PROJECT} %c ${PROJECT_INFO} %c \n`,
-        'color: #fff; border: 1px solid #22447B; background: #22447B; padding:5px;',
-        'color: #000; border: 1px solid #22447B; padding:5px;',
-        'border: none; padding:0;',
-        'color: #fff; border: 1px solid #05a84b; background: #05a84b; padding:5px;',
-        'color: #000; border: 1px solid #05a84b; padding:5px;',
-        'border: none; padding:0;',
-      ];
+      const _provider = [
+          `\n%c  ${PROVIDER}  %c \n${PROVIDER_INFO} %c \n${PROVIDER_LINK}`,
+          'color: #fff; border: 1px solid #22447B; background: #22447B; padding:5px;',
+          'border: none; padding:5px 5px 0;',
+          'border: none; padding:0 5px 5px;',
+        ],
+        _project = [
+          `%c  ${PROJECT}  %c \n${PROJECT_INFO}\n`,
+          'color: #fff; border: 1px solid #05a84b; background: #05a84b; padding:5px;',
+          'border: none; padding:5px;',
+        ];
 
       // View message in console log
-      setTimeout(console.log.bind(console, ...args));
+      setTimeout(console.log.bind(console, ..._provider));
+      setTimeout(console.log.bind(console, ..._project));
     } else if (window.console)
       setTimeout(
         console.log.bind(
           console,
-          `${PROVIDER} ${VERSION} - International leader in Enterprise Resource Solutions and Software Development |  ${LINK}`
+          `\n  ${PROVIDER}  \n ${PROVIDER_INFO}  \n ${PROVIDER_LINK} \n ${PROJECT}  \n ${PROJECT_INFO}\n`
         )
       );
   };

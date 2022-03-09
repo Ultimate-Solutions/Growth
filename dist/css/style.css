@@ -1412,16 +1412,42 @@ img {
   background-color: var(--scrollbar-thumb-hover-background-color);
 }
 .scroll {
-  overflow: overlay;
+  overflow: auto;
   position: relative;
 }
 .scroll-x {
-  overflow-x: overlay;
+  overflow-x: auto;
   position: relative;
 }
 .scroll-y {
-  overflow-y: overlay;
+  overflow-y: auto;
   position: relative;
+}
+.scroll-overlay-x {
+  overflow-x: hidden;
+  position: relative;
+}
+.scroll-overlay-x {
+  overflow-x: overlay;
+}
+@-moz-document url-prefix() {
+  .scroll-overlay-x {
+    overflow-x: scroll;
+    position: relative;
+  }
+}
+.scroll-overlay-y {
+  overflow-y: hidden;
+  position: relative;
+}
+.scroll-overlay-y {
+  overflow-y: overlay;
+}
+@-moz-document url-prefix() {
+  .scroll-overlay-y {
+    overflow-y: scroll;
+    position: relative;
+  }
 }
 .hover-scroll {
   position: relative;
