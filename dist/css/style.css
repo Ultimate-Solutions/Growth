@@ -3227,7 +3227,6 @@ section > .header .subtitle {
 section [header] .search-bar {
   align-self: center;
   max-width: 31.25rem;
-  margin-right: 0.625rem;
   width: 100%;
 }
 section [header] .search-bar .content {
