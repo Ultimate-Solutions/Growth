@@ -1430,21 +1430,15 @@ var HOLOLApp = (function () {
     // Check if Chrome
     if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
       // Message
-      const _provider = [
-          `\n%c  ${PROVIDER}  %c \n${PROVIDER_INFO} %c \n${PROVIDER_LINK}`,
-          'color: #fff; border: 1px solid #22447B; background: #22447B; padding:5px;',
-          'border: none; padding:5px 5px 0;',
-          'border: none; padding:0 5px 5px;',
-        ],
-        _project = [
-          `%c  ${PROJECT} - ${VERSION}  %c \n${PROJECT_INFO}\n`,
-          'color: #fff; border: 1px solid #05a84b; background: #05a84b; padding:5px;',
-          'border: none; padding:5px;',
-        ];
+      const _log = [
+        `\n%c  ${PROVIDER}  %c \n${PROVIDER_INFO} \n${PROVIDER_LINK}  \n\n${PROJECT} - ${VERSION} %c  \n${PROJECT_INFO}`,
+        'color: #fff; border: 1px solid #22447B; background: #22447B; padding:5px;',
+        'border: none; padding:5px 5px 0;',
+        'border: none; padding:0 5px 5px;',
+      ];
 
       // View message in console log
-      setTimeout(console.log.bind(console, ..._provider));
-      setTimeout(console.log.bind(console, ..._project));
+      setTimeout(console.log.bind(console, ..._log));
     } else if (window.console)
       setTimeout(
         console.log.bind(
