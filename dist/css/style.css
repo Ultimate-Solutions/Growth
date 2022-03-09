@@ -129,6 +129,7 @@
   --chart-teal-opacity: #20c99710;
   --chart-cyan: #0dcaf0;
   --chart-cyan-opacity: #0dcaf010;
+  --dashboard-preloader-background-color: #f1f1f1;
   --dashboard-action-color: #808080;
   --dashboard-action-hover-color: #05a84b;
   --dashboard-action-hover-background-color: #d2efdf;
@@ -318,7 +319,7 @@ body.page-loading #page-loader {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: #fff;
+  background: var(--dashboard-preloader-background-color);
   top: 0;
   left: 0;
   z-index: 9999999999;
