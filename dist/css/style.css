@@ -3513,7 +3513,7 @@ section > .content {
   box-shadow: var(--dashboard-section-content-shadow);
 }
 section > .content > *:not(:last-child) {
-  margin-bottom: 0.625rem;
+  margin-bottom: 1.25rem;
   border-bottom: 0.0625rem solid #ddd;
   padding-bottom: 1.25rem;
 }
