@@ -1449,9 +1449,15 @@ var HOLOLApp = (function () {
   };
 
   var initPageLoader = function () {
-    // CSS3 Transitions only after page load
-    // (.page - loading class added to body tag and remove with JS on page load)
-    HOLOLUtil.removeClass(document.body, 'page-loading');
+    // On window load
+    window.addEventListener('load', () => {
+      HOLOLUtil.removeClass(document.body, 'page-loading');
+    });
+
+    // On page before unload
+    window.addEventListener('beforeunload', function (e) {
+      return document.body.classList.add('page-loading');
+    });
   };
 
   var initLazyLoad = function () {
@@ -2406,9 +2412,4 @@ var HOLOLApp = (function () {
 // On document ready
 HOLOLUtil.onDOMContentLoaded(() => {
   HOLOLApp.init();
-});
-
-// On window load
-window.addEventListener('load', () => {
-  HOLOLApp.initPageLoader();
 });
