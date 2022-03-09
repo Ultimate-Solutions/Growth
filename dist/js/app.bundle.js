@@ -2230,7 +2230,7 @@ var HOLOLApp = (function () {
         );
 
         // Master Checkbox
-        HOLOLUtil.addEvent(element, 'click', () => {
+        HOLOLUtil.addEvent(element, 'change', () => {
           // Get checkbox status
           var status = 'checked';
           if (element.checked) status = 'checked';
@@ -2244,7 +2244,7 @@ var HOLOLApp = (function () {
 
         // Slave Checkboxes
         HOLOLUtil.each(sameList, function (newElement) {
-          HOLOLUtil.addEvent(newElement, 'click', () => {
+          HOLOLUtil.addEvent(newElement, 'change', () => {
             let checkerResult = checker(sameList);
 
             if (newElement.checked) {
@@ -2294,15 +2294,14 @@ var HOLOLApp = (function () {
       var table = el.previousElementSibling,
         checkboxes = table.querySelectorAll('[type="checkbox"]');
 
-      checker(checkboxes).some == true
-        ? el.classList.add('view', 'select')
-        : el.classList.remove('view', 'select');
-
+      // Check if checkbox is checked
+      checker(checkboxes).some == true ? el.classList.add('select') : el.classList.remove('select');
+      // Check on state changes
       HOLOLUtil.each(checkboxes, function (checkbox) {
         HOLOLUtil.addEvent(checkbox, 'change', () => {
           checker(checkboxes).some == true
-            ? el.classList.add('view', 'select')
-            : el.classList.remove('view', 'select');
+            ? el.classList.add('select')
+            : el.classList.remove('select');
         });
       });
     });
