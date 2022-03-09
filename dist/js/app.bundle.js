@@ -1357,7 +1357,7 @@ var HOLOLApp = (function () {
         `\n %c ${PROVIDER} ${VERSION} %c International leader in Enterprise Resource Solutions and Software Development | ${LINK} %c \n`,
         'color: #fff; border: 1px solid #22447B; background: #22447B; padding:5px;',
         'color: #000; border: 1px solid #22447B; padding:5px;',
-        'background: #fff; padding:5px 0;',
+        'border: none; padding:0;',
       ];
 
       // View message in console log
