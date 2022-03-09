@@ -9,7 +9,7 @@ window.Holol = {
     PROJECT: 'HOLOL - Smart shopping platform',
     PROJECT_INFO:
       'Without technical experience and with ease, you can sell anywhere and anytime with your online store and with your commercial identity',
-    VERSION: '',
+    VERSION: 'beta',
   },
   LOCAL: {
     BROWSER: {
@@ -2288,6 +2288,44 @@ var HOLOLApp = (function () {
     );
   };
 
+  var initTableSelectorActions = function () {
+    HOLOLUtil.each(document.querySelectorAll('table + .select-actions'), function (el) {
+      // Get Table
+      var table = el.previousElementSibling,
+        checkboxes = table.querySelectorAll('[type="checkbox"]');
+
+      checker(checkboxes).some == true
+        ? el.classList.add('view', 'select')
+        : el.classList.remove('view', 'select');
+
+      HOLOLUtil.each(checkboxes, function (checkbox) {
+        HOLOLUtil.addEvent(checkbox, 'change', () => {
+          checker(checkboxes).some == true
+            ? el.classList.add('view', 'select')
+            : el.classList.remove('view', 'select');
+        });
+      });
+    });
+
+    function checker(checkerList) {
+      let checkerCheckAll = true,
+        checkerCheckSome = false;
+
+      HOLOLUtil.each(checkerList, function (checkerListItem) {
+        if (checkerListItem.checked) {
+          checkerCheckSome = true;
+        } else {
+          checkerCheckAll = false;
+        }
+      });
+
+      return {
+        all: checkerCheckAll,
+        some: checkerCheckSome,
+      };
+    }
+  };
+
   // Public methods
   return {
     init: function () {
@@ -2314,6 +2352,7 @@ var HOLOLApp = (function () {
       this.initDaterangepicker();
       this.initOffcanvas();
       this.initCheckboxGroup();
+      this.initTableSelectorActions();
     },
 
     initHello: function (provider, version, link) {
@@ -2405,6 +2444,9 @@ var HOLOLApp = (function () {
     },
     initCheckboxGroup: function () {
       initCheckboxGroup();
+    },
+    initTableSelectorActions: function () {
+      initTableSelectorActions();
     },
   };
 })();

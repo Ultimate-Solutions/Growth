@@ -3617,6 +3617,59 @@ section > .content table tr > *:first-child {
 section > .content table tr > *:last-child {
   border-radius: var(--border-radius) 0 0 var(--border-radius);
 }
+section > .content table + .select-actions {
+  position: fixed;
+  bottom: 0;
+  padding: 0.625rem;
+  border-radius: 6.25rem;
+  margin: 1.25rem;
+  background-color: #fff;
+  color: #000;
+  max-width: calc(100% - 2.5rem);
+  box-shadow: var(--shadow-depth-04);
+  border: 0.0625rem solid #e6e6e6;
+  transition: var(--transition-normal);
+  transform: translateY(25rem);
+  z-index: 11;
+}
+section > .content table + .select-actions.view.select {
+  transform: translateY(0);
+}
+section > .content table + .select-actions [action],
+section > .content table + .select-actions [action] em {
+  color: #000;
+}
+section > .content table + .select-actions [action]:hover em,
+section > .content table + .select-actions [action]:focus em,
+section > .content table + .select-actions [action]:active em,
+section > .content table + .select-actions [action].active em {
+  color: var(--dashboard-action-hover-color);
+}
+section > .content table + .select-actions [action='delete'] {
+  background: #d2efdf;
+  border-radius: 6.25rem;
+  padding: 0.5rem 01.5rem;
+  margin-right: 1.25rem;
+}
+section > .content table + .select-actions [action='delete']:hover,
+section > .content table + .select-actions [action='delete']:focus,
+section > .content table + .select-actions [action='delete']:active,
+section > .content table + .select-actions [action='delete'].active {
+  background-color: #05a84b;
+  color: #fff;
+}
+section > .content table + .select-actions [action='delete']:hover em,
+section > .content table + .select-actions [action='delete']:focus em,
+section > .content table + .select-actions [action='delete']:active em,
+section > .content table + .select-actions [action='delete'].active em {
+  color: #fff;
+}
+section > .content table + .select-actions [action='close']:hover,
+section > .content table + .select-actions [action='close']:focus,
+section > .content table + .select-actions [action='close']:active,
+section > .content table + .select-actions [action='close'].active {
+  background-color: transparent;
+}
 [statistics] > .content {
   background-color: none;
   padding: 0;
