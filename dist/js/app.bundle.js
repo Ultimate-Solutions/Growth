@@ -11,6 +11,11 @@ window.Holol = {
       'Without technical experience and with ease, you can sell anywhere and anytime with your online store and with your commercial identity',
     VERSION: '',
   },
+  LOCAL: {
+    BROWSER: {
+      LANGUAGE: '',
+    },
+  },
   UTIL: {
     DelegatedEventHandlers: {},
   },
@@ -1156,31 +1161,6 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Get browser language
-     * @returns {string}
-     */
-    getBrowserLang: function () {
-      var browserLang,
-        userLang = navigator.language || navigator.userLanguage;
-
-      if (userLang.split('-')[0].length) {
-        browserLang = userLang.split('-')[0];
-      }
-
-      return browserLang;
-    },
-
-    /**
-     * Get Site language
-     * @returns {string}
-     */
-    getLang: function () {
-      if (HOLOLUtil.attr(document.querySelector('html'), 'lang'))
-        return HOLOLUtil.attr(document.querySelector('html'), 'lang');
-      return 'en';
-    },
-
-    /**
      * Set inner element HTML
      * @param {object} element jQuery element object
      * @param {object, string} html
@@ -1263,91 +1243,275 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Get browser
+     * Get Site language
      * @returns {string}
+     */
+    getSiteLanguage: function () {
+      if (HOLOLUtil.attr(document.querySelector('html'), 'lang'))
+        return HOLOLUtil.attr(document.querySelector('html'), 'lang');
+      return 'en';
+    },
+
+    /**
+     * Get OS & Browser info
+     * @returns {object}
+     */
+    getOSBrowser: function () {
+      const data = {
+        header: [
+          navigator.platform,
+          navigator.userAgent,
+          navigator.appVersion,
+          navigator.vendor,
+          window.opera,
+        ],
+        os: [
+          { name: 'Windows Phone', value: 'Windows Phone', version: 'OS' },
+          { name: 'Windows', value: 'Win', version: 'NT' },
+          { name: 'iPhone', value: 'iPhone', version: 'OS' },
+          { name: 'iPad', value: 'iPad', version: 'OS' },
+          { name: 'Kindle', value: 'Silk', version: 'Silk' },
+          { name: 'Android', value: 'Android', version: 'Android' },
+          { name: 'PlayBook', value: 'PlayBook', version: 'OS' },
+          { name: 'BlackBerry', value: 'BlackBerry', version: '/' },
+          { name: 'Macintosh', value: 'Mac', version: 'OS X' },
+          { name: 'Linux', value: 'Linux', version: 'rv' },
+          { name: 'Palm', value: 'Palm', version: 'PalmOS' },
+        ],
+        browser: [
+          { name: 'Chrome', value: 'Chrome', version: 'Chrome' },
+          { name: 'Firefox', value: 'Firefox', version: 'Firefox' },
+          { name: 'Safari', value: 'Safari', version: 'Version' },
+          { name: 'Internet Explorer', value: 'MSIE', version: 'MSIE' },
+          { name: 'Opera', value: 'Opera', version: 'Opera' },
+          { name: 'BlackBerry', value: 'CLDC', version: 'CLDC' },
+          { name: 'Mozilla', value: 'Mozilla', version: 'Mozilla' },
+        ],
+      };
+
+      var matchItem = function (string, data) {
+        var i = 0,
+          j = 0,
+          html = '',
+          regex,
+          regexv,
+          match,
+          matches,
+          version;
+
+        for (i = 0; i < data.length; i += 1) {
+          regex = new RegExp(data[i].value, 'i');
+          match = regex.test(string);
+          if (match) {
+            regexv = new RegExp(data[i].version + '[- /:;]([\\d._]+)', 'i');
+            matches = string.match(regexv);
+            version = '';
+            if (matches) {
+              if (matches[1]) {
+                matches = matches[1];
+              }
+            }
+            if (matches) {
+              matches = matches.split(/[._]+/);
+              for (j = 0; j < matches.length; j += 1) {
+                if (j === 0) {
+                  version += matches[j] + '.';
+                } else {
+                  version += matches[j];
+                }
+              }
+            } else {
+              version = '0';
+            }
+            return {
+              name: data[i].name,
+              version: parseFloat(version),
+            };
+          }
+        }
+        return { name: 'unknown', version: 0 };
+      };
+
+      var agent = data.header.join(' '),
+        os = matchItem(agent, data.os),
+        browser = matchItem(agent, data.browser);
+
+      return { os: os, browser: browser };
+    },
+
+    /**
+     * Get browser
+     * @returns {object}
      */
     getBrowser: function () {
-      var browserName = (function (agent) {
-        switch (true) {
-          case agent.indexOf('edge') > -1:
-            return 'MS Edge';
-          case agent.indexOf('edg/') > -1:
-            return 'Edge ( chromium based)';
-          case agent.indexOf('opr') > -1 && !!window.opr:
-            return 'Opera';
-          case agent.indexOf('chrome') > -1 && !!window.chrome:
-            return 'Chrome';
-          case agent.indexOf('trident') > -1:
-            return 'MS IE';
-          case agent.indexOf('firefox') > -1:
-            return 'Mozilla Firefox';
-          case agent.indexOf('safari') > -1:
-            return 'Safari';
-          case agent.indexOf('iron') > -1:
-            return 'iron';
-          default:
-            return 'other';
+      const data = {
+        header: [
+          navigator.platform,
+          navigator.userAgent,
+          navigator.appVersion,
+          navigator.vendor,
+          window.opera,
+        ],
+        browser: [
+          { name: 'Chrome', value: 'Chrome', version: 'Chrome' },
+          { name: 'Firefox', value: 'Firefox', version: 'Firefox' },
+          { name: 'Safari', value: 'Safari', version: 'Version' },
+          { name: 'Internet Explorer', value: 'MSIE', version: 'MSIE' },
+          { name: 'Opera', value: 'Opera', version: 'Opera' },
+          { name: 'BlackBerry', value: 'CLDC', version: 'CLDC' },
+          { name: 'Mozilla', value: 'Mozilla', version: 'Mozilla' },
+        ],
+      };
+
+      var matchItem = function (string, data) {
+        var i = 0,
+          j = 0,
+          html = '',
+          regex,
+          regexv,
+          match,
+          matches,
+          version;
+
+        for (i = 0; i < data.length; i += 1) {
+          regex = new RegExp(data[i].value, 'i');
+          match = regex.test(string);
+          if (match) {
+            regexv = new RegExp(data[i].version + '[- /:;]([\\d._]+)', 'i');
+            matches = string.match(regexv);
+            version = '';
+            if (matches) {
+              if (matches[1]) {
+                matches = matches[1];
+              }
+            }
+            if (matches) {
+              matches = matches.split(/[._]+/);
+              for (j = 0; j < matches.length; j += 1) {
+                if (j === 0) {
+                  version += matches[j] + '.';
+                } else {
+                  version += matches[j];
+                }
+              }
+            } else {
+              version = '0';
+            }
+            return {
+              name: data[i].name,
+              version: parseFloat(version),
+            };
+          }
         }
-      })(window.navigator.userAgent.toLowerCase());
-      return browserName;
+        return { name: 'unknown', version: 0 };
+      };
+
+      var agent = data.header.join(' '),
+        browser = matchItem(agent, data.browser);
+
+      return {
+        name: browser.name,
+        version: browser.version,
+        language:
+          (
+            window.navigator.userLanguage ||
+            window.navigator.language ||
+            window.navigator.browserLanguage ||
+            window.navigator.systemLanguage
+          ).slice(0, 2) || '',
+      };
     },
 
     /**
-     * Get browser
-     * @returns {string}
-     */
-    getBrowserLanguage: function () {
-      var lan =
-        window.navigator.userLanguage ||
-        window.navigator.language ||
-        window.navigator.browserLanguage ||
-        window.navigator.systemLanguage;
-      return lan.slice(0, 2) || '';
-    },
-
-    /**
-     * Get OS Name
-     * @returns {string}
+     * Get OS
+     * @returns {object}
      */
     getOS: function () {
-      var userAgent = window.navigator.userAgent,
-        platform = window.navigator.platform,
-        macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
-        windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
-        iosPlatforms = ['iPhone', 'iPad', 'iPod'],
-        os = null;
+      const data = {
+        header: [
+          navigator.platform,
+          navigator.userAgent,
+          navigator.appVersion,
+          navigator.vendor,
+          window.opera,
+        ],
+        os: [
+          { name: 'Windows Phone', value: 'Windows Phone', version: 'OS' },
+          { name: 'Windows', value: 'Win', version: 'NT' },
+          { name: 'iPhone', value: 'iPhone', version: 'OS' },
+          { name: 'iPad', value: 'iPad', version: 'OS' },
+          { name: 'Kindle', value: 'Silk', version: 'Silk' },
+          { name: 'Android', value: 'Android', version: 'Android' },
+          { name: 'PlayBook', value: 'PlayBook', version: 'OS' },
+          { name: 'BlackBerry', value: 'BlackBerry', version: '/' },
+          { name: 'Macintosh', value: 'Mac', version: 'OS X' },
+          { name: 'Linux', value: 'Linux', version: 'rv' },
+          { name: 'Palm', value: 'Palm', version: 'PalmOS' },
+        ],
+      };
 
-      if (macosPlatforms.indexOf(platform) !== -1) {
-        os = 'Mac OS';
-      } else if (iosPlatforms.indexOf(platform) !== -1) {
-        os = 'iOS';
-      } else if (windowsPlatforms.indexOf(platform) !== -1) {
-        os = 'Windows';
-      } else if (/Android/.test(userAgent)) {
-        os = 'Android';
-      } else if (!os && /Linux/.test(platform)) {
-        os = 'Linux';
-      }
+      var matchItem = function (string, data) {
+        var i = 0,
+          j = 0,
+          html = '',
+          regex,
+          regexv,
+          match,
+          matches,
+          version;
 
-      return os;
-    },
+        for (i = 0; i < data.length; i += 1) {
+          regex = new RegExp(data[i].value, 'i');
+          match = regex.test(string);
+          if (match) {
+            regexv = new RegExp(data[i].version + '[- /:;]([\\d._]+)', 'i');
+            matches = string.match(regexv);
+            version = '';
+            if (matches) {
+              if (matches[1]) {
+                matches = matches[1];
+              }
+            }
+            if (matches) {
+              matches = matches.split(/[._]+/);
+              for (j = 0; j < matches.length; j += 1) {
+                if (j === 0) {
+                  version += matches[j] + '.';
+                } else {
+                  version += matches[j];
+                }
+              }
+            } else {
+              version = '0';
+            }
+            return {
+              name: data[i].name,
+              version: parseFloat(version),
+            };
+          }
+        }
+        return { name: 'unknown', version: 0 };
+      };
 
-    /**
-     * Get OS Version
-     * @returns {string}
-     */
-    getOSVersion: function () {
-      var forcedOSVersion = (document.location.search.match(/(?:[?&])ov=([0-9_]+)/) || {})[1];
-      if (typeof forcedOSVersion !== 'undefined') {
-        return forcedOSVersion;
-      }
-      var match = navigator.userAgent.match(
-        /(CrOS\ \w+|Windows\ NT|Mac\ OS\ X|Linux)\ ([\d\._]+)?/
-      );
-      return (match || [])[2] || 'unknown';
+      var agent = data.header.join(' '),
+        os = matchItem(agent, data.os);
+
+      console.log(os);
+
+      return {
+        name: os.name,
+        version: os.version,
+      };
     },
   };
 })();
+
+console.log(HOLOLUtil.getOS().name, HOLOLUtil.getOS().version);
+console.log(
+  HOLOLUtil.getBrowser().name,
+  HOLOLUtil.getBrowser().version,
+  HOLOLUtil.getBrowser().language
+);
 
 ('use strict');
 
@@ -2003,7 +2167,7 @@ var HOLOLApp = (function () {
 
       // Locale Translation
       var locale, ranges;
-      if (HOLOLUtil.getLang() == 'ar') {
+      if (HOLOLUtil.getSiteLanguage() == 'ar') {
         locale = {
           direction: 'rtl',
           applyLabel: 'تاكيد',
@@ -2039,7 +2203,7 @@ var HOLOLApp = (function () {
             moment().subtract(1, 'month').endOf('month'),
           ],
         };
-      } else if (HOLOLUtil.getLang == 'en') {
+      } else if (HOLOLUtil.getSiteLanguage == 'en') {
         locale = {
           direction: 'ltr',
           applyLabel: 'Apply',
