@@ -2754,7 +2754,7 @@ img {
     width: 100%;
     padding: 0 2.5rem;
     z-index: 1;
-    transform: translateY(-300%);
+    transform: translateY(-350%);
     -webkit-transition: var(--transition-normal);
     transition: var(--transition-normal);
   }
