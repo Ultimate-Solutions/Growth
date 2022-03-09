@@ -1,7 +1,20 @@
 'use strict';
 
 // Global variables
-window.HOLOLUtilDelegatedEventHandlers = {};
+window.Holol = {
+  INFO: {
+    PROVIDER: 'Ultimate Solutions Egypt',
+    PROVIDER_INFO: 'International leader in Enterprise Resource Solutions and Software Development',
+    PROVIDER_LINK: 'https://ultimate-eg.net',
+    PROJECT: 'HOLOL - Smart shopping platform',
+    PROJECT_INFO:
+      'Without technical experience and with ease, you can sell anywhere and anytime with your online store and with your commercial identity',
+    VERSION: '',
+  },
+  UTIL: {
+    DelegatedEventHandlers: {},
+  },
+};
 
 var HOLOLUtil = (function () {
   return {
@@ -401,7 +414,7 @@ var HOLOLUtil = (function () {
 
       var eventId = HOLOLUtil.getUniqueId('event');
 
-      window.HOLOLUtilDelegatedEventHandlers[eventId] = function (e) {
+      window.Holol.UTIL.DelegatedEventHandlers[eventId] = function (e) {
         var targets = element.querySelectorAll(selector);
         var target = e.target;
 
@@ -416,7 +429,7 @@ var HOLOLUtil = (function () {
         }
       };
 
-      HOLOLUtil.addEvent(element, event, window.HOLOLUtilDelegatedEventHandlers[eventId]);
+      HOLOLUtil.addEvent(element, event, window.Holol.UTIL.DelegatedEventHandlers[eventId]);
 
       return eventId;
     },
@@ -428,13 +441,13 @@ var HOLOLUtil = (function () {
      * @param {string} eventId
      */
     off: function (element, event, eventId) {
-      if (!element || !window.HOLOLUtilDelegatedEventHandlers[eventId]) {
+      if (!element || !window.Holol.UTIL.DelegatedEventHandlers[eventId]) {
         return;
       }
 
-      HOLOLUtil.removeEvent(element, event, window.HOLOLUtilDelegatedEventHandlers[eventId]);
+      HOLOLUtil.removeEvent(element, event, window.Holol.UTIL.DelegatedEventHandlers[eventId]);
 
-      delete window.HOLOLUtilDelegatedEventHandlers[eventId];
+      delete window.Holol.UTIL.DelegatedEventHandlers[eventId];
     },
 
     /**
@@ -1337,26 +1350,27 @@ var HOLOLUtil = (function () {
 })();
 
 ('use strict');
-window.Holol = {
-  PROVIDER: 'Ultimate Solutions Egypt',
-  VERSION: '',
-  LINK: 'https://ultimate-eg.net',
-};
 
 // Class definition
 var HOLOLApp = (function () {
-  var initHello = function (provider, version, link) {
-    const PROVIDER = provider;
-    const VERSION = version;
-    const LINK = link;
+  var initHello = function () {
+    const PROVIDER = window.Holol.INFO.PROVIDER,
+      PROVIDER_INFO = window.Holol.INFO.PROVIDER_INFO,
+      PROVIDER_LINK = window.Holol.INFO.PROVIDER_LINK,
+      PROJECT = window.Holol.INFO.PROJECT,
+      PROJECT_INFO = window.Holol.INFO.PROJECT_INFO,
+      VERSION = window.Holol.INFO.VERSION;
 
     // Check if Chrome
     if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
       // Message
       const args = [
-        `\n %c ${PROVIDER} ${VERSION} %c International leader in Enterprise Resource Solutions and Software Development | ${LINK} %c \n`,
+        `\n %c ${PROVIDER} %c ${PROVIDER_INFO} | ${PROVIDER_LINK} %c \n %c ${PROJECT} %c ${PROJECT_INFO} %c \n`,
         'color: #fff; border: 1px solid #22447B; background: #22447B; padding:5px;',
         'color: #000; border: 1px solid #22447B; padding:5px;',
+        'border: none; padding:0;',
+        'color: #fff; border: 1px solid #05a84b; background: #05a84b; padding:5px;',
+        'color: #000; border: 1px solid #05a84b; padding:5px;',
         'border: none; padding:0;',
       ];
 
