@@ -436,9 +436,15 @@ body.page-loading #page-loader {
 [action][action-outline]:focus,
 [action][action-outline]:active,
 [action][action-outline].active {
-  color: #fff;
-  border-color: #05a84b;
-  background-color: #05a84b;
+  color: #1e1e1f;
+  border-color: #d2efdf;
+  background-color: #d2efdf;
+}
+[action][action-outline]:hover > em,
+[action][action-outline]:focus > em,
+[action][action-outline]:active > em,
+[action][action-outline].active > em {
+  color: #05a84b;
 }
 [action][action-fill]:hover,
 [action][action-fill]:focus,
@@ -447,10 +453,6 @@ body.page-loading #page-loader {
   border-color: #158b48;
   background-color: #158b48;
 }
-[action][action-outline]:hover > em,
-[action][action-outline]:focus > em,
-[action][action-outline]:active > em,
-[action][action-outline].active > em,
 [action][action-fill]:hover > em,
 [action][action-fill]:focus > em,
 [action][action-fill]:active > em,
