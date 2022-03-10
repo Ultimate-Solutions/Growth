@@ -218,7 +218,8 @@
   --dashboard-badge-published-background-color: #05a84b33;
   --dashboard-badge-unpublished-background-color: #dc354533;
   --dashboard-date-picker-background-color: #fff;
-  --dashboard-date-picker-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.15);
+  --dashboard-date-picker-shadow: 0 0 50px 0 rgb(82 63 105 / 15%);
+  --dashboard-date-picker-border-color: rgb(0 0 0 / 8%);
   --dashboard-date-picker-ranges-border-color: #eff2f5;
   --dashboard-date-picker-ranges-item-color: #7e8299;
   --dashboard-date-picker-ranges-item-hover-background-color: #f1faff;
@@ -1975,7 +1976,7 @@ img {
   width: auto;
   background-color: var(--dashboard-date-picker-background-color);
   box-shadow: var(--dashboard-date-picker-shadow);
-  /* font-family: Poppins, Helvetica, sans-serif; */
+  border: 0.0625rem solid var(--dashboard-date-picker-border-color);
   z-index: 1000;
   border-radius: var(--border-radius);
 }
