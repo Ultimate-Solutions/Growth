@@ -3665,7 +3665,6 @@ section > .content table + .select-actions [action='delete'] {
   background: #d2efdf;
   border-radius: 6.25rem;
   padding: 0.5rem 01.5rem;
-  margin-right: 1.25rem;
 }
 section > .content table + .select-actions [action='delete']:hover,
 section > .content table + .select-actions [action='delete']:focus,
@@ -3770,6 +3769,20 @@ section > .content table + .select-actions [action='close'].active {
   }
   [statistics] > .content .statistics.big > .header {
     margin-bottom: 2.5rem;
+  }
+}
+/* Extra Small devices (mobile phones, less than 768px) */
+@media (max-width: 767.98px) {
+  section > .content table + .select-actions {
+    right: 0;
+  }
+  section > .content table + .select-actions [number],
+  section > .content table + .select-actions .separator,
+  section > .content table + .select-actions [action='delete'] > *:not(em) {
+    display: none;
+  }
+  section > .content table + .select-actions [action='delete'] > em {
+    margin: 0;
   }
 }
 
