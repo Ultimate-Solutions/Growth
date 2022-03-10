@@ -1412,6 +1412,19 @@ var HOLOLUtil = (function () {
         version: os.version,
       };
     },
+
+    /**
+     * Get Mutation Observer
+     * @param {object} element jQuery element object
+     * @param {object} options Array of options
+     * @param {object} callback Function call
+     */
+    mutationObserver: function (element, options, callback) {
+      const mutationObserver = new MutationObserver(function (mutationsList, observer) {
+        callback();
+      });
+      mutationObserver.observe(element, options);
+    },
   };
 })();
 
@@ -2367,6 +2380,94 @@ var HOLOLApp = (function () {
       };
     }
   };
+  var initResponsiveTableStickyColumns = function () {
+    // Helper function
+    var columnNumber = function (list, el) {
+      // Reset count
+      var count = 0,
+        current = 0;
+
+      HOLOLUtil.each(list, function (item) {
+        count += 1;
+        if (item === el) {
+          current = count;
+        }
+      });
+      return current;
+    };
+
+    // Get all responsive tables
+    HOLOLUtil.each(document.querySelectorAll('.table-responsive table'), function (table) {
+      var selectorColumn = table.querySelector('th[selector]'),
+        selectorColumnNumber,
+        actionsColumn = table.querySelector('th[actions]'),
+        actionsColumnNumber;
+
+      // Get table Header
+      var tableHeaderItems = table.querySelectorAll('thead > tr > th');
+
+      // Set selector & actions columns number
+      selectorColumnNumber = columnNumber(tableHeaderItems, selectorColumn);
+      actionsColumnNumber = columnNumber(tableHeaderItems, actionsColumn);
+
+      // Set sticky to selector & actions columns
+      if (selectorColumn)
+        selectorColumn.style.cssText = 'position: -webkit-sticky; position: sticky; right: 0;';
+      if (actionsColumn)
+        actionsColumn.style.cssText = 'position: -webkit-sticky; position: sticky; left: 0;';
+
+      // Set sticky to selector columns
+      var tableBodySelectorItems = table.querySelectorAll(
+        'tbody > tr > *:nth-child(' + selectorColumnNumber + ')'
+      );
+      HOLOLUtil.each(tableBodySelectorItems, function (item) {
+        item.style.cssText = 'position: -webkit-sticky; position: sticky; right: 0;';
+      });
+
+      // Set sticky to actions columns
+      var tableBodyActionsItems = table.querySelectorAll(
+        'tbody > tr > *:nth-child(' + actionsColumnNumber + ')'
+      );
+      HOLOLUtil.each(tableBodyActionsItems, function (item) {
+        item.style.cssText = 'position: -webkit-sticky; position: sticky; left: 0;';
+      });
+
+      // Check if table element is sticky for dropdown menus &
+      var tableBodyItems = table.querySelectorAll('tbody > tr > *');
+      HOLOLUtil.each(tableBodyItems, function (item) {
+        // Check if element is sticky
+        if (window.getComputedStyle(item).getPropertyValue('position').includes('sticky')) {
+          // Check if element has dropdown
+          var stickyItemDropdown = item.querySelector('[data-bs-toggle="dropdown"]');
+          // Check if dropdown is exist
+          if (stickyItemDropdown)
+            HOLOLUtil.mutationObserver(stickyItemDropdown, { attributes: true }, () => {
+              item.style.zIndex = stickyItemDropdown.classList.contains('show') ? '1' : '';
+            });
+        }
+      });
+
+      // Check if sticky to selector columns exist
+      if (selectorColumnNumber) {
+        // Get table sticky items
+        var tableBodyStickyItems = table.querySelectorAll('tr > *[sticky]');
+
+        // Set sticky position for another sticky columns
+        var tableBodyStickyItemsResize = function () {
+          HOLOLUtil.each(tableBodyStickyItems, function (item) {
+            item.style.setProperty(
+              '--table-sticky-column-right',
+              HOLOLUtil.css(selectorColumn, 'width')
+            );
+          });
+        };
+        tableBodyStickyItemsResize();
+        HOLOLUtil.addEvent(window, 'resize', () => {
+          tableBodyStickyItemsResize();
+        });
+      }
+    });
+  };
 
   // Public methods
   return {
@@ -2395,6 +2496,7 @@ var HOLOLApp = (function () {
       this.initOffcanvas();
       this.initCheckboxGroup();
       this.initTableSelectorActions();
+      this.initResponsiveTableStickyColumns();
     },
 
     initHello: function (provider, version, link) {
@@ -2489,6 +2591,9 @@ var HOLOLApp = (function () {
     },
     initTableSelectorActions: function () {
       initTableSelectorActions();
+    },
+    initResponsiveTableStickyColumns: function () {
+      initResponsiveTableStickyColumns();
     },
   };
 })();

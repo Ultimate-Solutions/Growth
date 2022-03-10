@@ -3620,9 +3620,10 @@ section > .content table > tbody > tr:nth-of-type(odd):active {
 }
 section > .content table th[sticky],
 section > .content table td[sticky] {
+  --table-sticky-column-right: 0;
   position: -webkit-sticky;
   position: sticky;
-  right: 0;
+  right: var(--table-sticky-column-right);
 }
 section > .content table th {
   font-weight: var(--font-weight-medium);
@@ -3786,6 +3787,10 @@ section > .content table + .select-actions [action='close'].active {
   }
   section > .content table + .select-actions [action='delete'] > em {
     margin: 0;
+  }
+  section > .content table th[sticky],
+  section > .content table td[sticky] {
+    position: unset;
   }
 }
 
