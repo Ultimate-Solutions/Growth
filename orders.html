@@ -1003,23 +1003,35 @@
                   <!-- Export Action -->
                   <div class="dropdown">
                     <div id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                      <div action data-bs-toggle="tooltip" data-bs-original-title="تصدير الكل">
+                      <div action data-bs-toggle="tooltip" data-bs-original-title="تصدير">
                         <em class="icon animate__rubberBand hover-parent ph-export"></em>
                       </div>
                     </div>
 
                     <ul class="dropdown-menu" aria-labelledby="exportDropdown">
                       <li>
-                        <div class="dropdown-item" action-export="copy">نسخ إلى الحافظة</div>
+                        <div class="dropdown-item" action-export="copy">
+                          <em class="icon animate__rubberBand hover-parent ph-copy"></em>
+                          <span>نسخ إلى الحافظة</span>
+                        </div>
                       </li>
                       <li>
-                        <div class="dropdown-item" action-export="excel">تصدير بتنسيق Excel</div>
+                        <div class="dropdown-item" action-export="excel">
+                          <em class="icon animate__rubberBand hover-parent ph-file-xls"></em>
+                          <span>تصدير بتنسيق Excel</span>
+                        </div>
                       </li>
                       <li>
-                        <div class="dropdown-item" action-export="csv">تصدير بتنسيق CSV</div>
+                        <div class="dropdown-item" action-export="csv">
+                          <em class="icon animate__rubberBand hover-parent ph-file-csv"></em>
+                          <span>تصدير بتنسيق CSV</span>
+                        </div>
                       </li>
                       <li>
-                        <div class="dropdown-item" action-export="pdf">تصدير بتنسيق PDF</div>
+                        <div class="dropdown-item" action-export="pdf">
+                          <em class="icon animate__rubberBand hover-parent ph-file-pdf"></em>
+                          <span>تصدير بتنسيق PDF</span>
+                        </div>
                       </li>
                     </ul>
                   </div>
@@ -1034,12 +1046,16 @@
 
                     <ul class="dropdown-menu" aria-labelledby="importDropdown">
                       <li>
-                        <div class="dropdown-item" action-export="excel">
-                          استيراد من تنسيق Excel
+                        <div class="dropdown-item" action-import="excel">
+                          <em class="icon animate__rubberBand hover-parent ph-file-xls"></em>
+                          <span>استيراد من تنسيق Excel</span>
                         </div>
                       </li>
                       <li>
-                        <div class="dropdown-item" action-export="csv">استيراد من تنسيق CSV</div>
+                        <div class="dropdown-item" action-import="csv">
+                          <em class="icon animate__rubberBand hover-parent ph-file-csv"></em>
+                          <span>استيراد من تنسيق CSV</span>
+                        </div>
                       </li>
                     </ul>
                   </div>
@@ -1050,14 +1066,13 @@
                   </div>
 
                   <!-- Filter Action -->
-                  <a
-                    href="javascript:void(0)"
+                  <div
                     action
                     data-bs-toggle="tooltip"
                     data-bs-original-title="تنقية"
                     data-holol-offcanvas="#filter_offcanvas">
                     <em class="icon animate__rubberBand hover-parent ph-funnel"></em>
-                  </a>
+                  </div>
 
                   <!-- Offcanvas Filter -->
                   <div>
@@ -2370,16 +2385,28 @@
 
                     <ul class="dropdown-menu" aria-labelledby="exportDropdown">
                       <li>
-                        <div class="dropdown-item" action-export="copy">نسخ إلى الحافظة</div>
+                        <div class="dropdown-item" action-export="copy">
+                          <em class="icon animate__rubberBand hover-parent ph-copy"></em>
+                          <span>نسخ إلى الحافظة</span>
+                        </div>
                       </li>
                       <li>
-                        <div class="dropdown-item" action-export="excel">تصدير بتنسيق Excel</div>
+                        <div class="dropdown-item" action-export="excel">
+                          <em class="icon animate__rubberBand hover-parent ph-file-xls"></em>
+                          <span>تصدير بتنسيق Excel</span>
+                        </div>
                       </li>
                       <li>
-                        <div class="dropdown-item" action-export="csv">تصدير بتنسيق CSV</div>
+                        <div class="dropdown-item" action-export="csv">
+                          <em class="icon animate__rubberBand hover-parent ph-file-csv"></em>
+                          <span>تصدير بتنسيق CSV</span>
+                        </div>
                       </li>
                       <li>
-                        <div class="dropdown-item" action-export="pdf">تصدير بتنسيق PDF</div>
+                        <div class="dropdown-item" action-export="pdf">
+                          <em class="icon animate__rubberBand hover-parent ph-file-pdf"></em>
+                          <span>تصدير بتنسيق PDF</span>
+                        </div>
                       </li>
                     </ul>
                   </div>
