@@ -2380,6 +2380,7 @@ var HOLOLApp = (function () {
       };
     }
   };
+
   var initResponsiveTableStickyColumns = function () {
     // Helper function
     var columnNumber = function (list, el) {
