@@ -1606,6 +1606,22 @@ var HOLOLApp = (function () {
     );
   };
 
+  var initBootstrapDropdownInResponsiveTable = function () {
+    $('.table-responsive').on('shown.bs.dropdown', function (e) {
+      var $table = $(this),
+        $menu = $(e.target).siblings('.dropdown-menu'),
+        tableOffsetHeight = $table.offset().top + $table.height(),
+        menuOffsetHeight = $menu.offset().top + $menu.outerHeight(true);
+
+      if (menuOffsetHeight > tableOffsetHeight)
+        $table.css('padding-bottom', menuOffsetHeight - tableOffsetHeight);
+    });
+
+    $('.table-responsive').on('hide.bs.dropdown', function () {
+      $(this).css('padding-bottom', 0);
+    });
+  };
+
   var initScrollSpy = function () {
     HOLOLUtil.each(document.querySelectorAll('[data-bs-spy="scroll"]'), function (element) {
       var sel = element.getAttribute('data-bs-target');
@@ -2480,6 +2496,7 @@ var HOLOLApp = (function () {
       this.initBootstrapTooltips();
       this.initBootstrapPopover();
       this.initBootstrapPopovers();
+      this.initBootstrapDropdownInResponsiveTable();
       this.initScrollSpy();
       this.initButtons();
       this.initCheck();
@@ -2522,6 +2539,10 @@ var HOLOLApp = (function () {
 
     initBootstrapPopovers: function () {
       initBootstrapPopovers();
+    },
+
+    initBootstrapDropdownInResponsiveTable: function () {
+      initBootstrapDropdownInResponsiveTable();
     },
 
     initBootstrapPopover: function (el, options) {

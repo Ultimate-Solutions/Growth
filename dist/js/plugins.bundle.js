@@ -82177,3 +82177,59 @@ $.fn.select2.defaults.set('theme', 'bootstrap5');
   return ElementQueries;
 });
 // #endregion
+
+// #region / Bootstrap Submenu 3.0.1
+//   ____              _       _                      _____       _
+//  |  _ \            | |     | |                    / ____|     | |
+//  | |_) | ___   ___ | |_ ___| |_ _ __ __ _ _ __   | (___  _   _| |__  _ __ ___   ___ _ __  _   _
+//  |  _ < / _ \ / _ \| __/ __| __| '__/ _` | '_ \   \___ \| | | | '_ \| '_ ` _ \ / _ \ '_ \| | | |
+//  | |_) | (_) | (_) | |_\__ \ |_| | | (_| | |_) |  ____) | |_| | |_) | | | | | |  __/ | | | |_| |
+//  |____/ \___/ \___/ \__|___/\__|_|  \__,_| .__/  |_____/ \__,_|_.__/|_| |_| |_|\___|_| |_|\__,_|
+//                                          | |
+//                                          |_|                                                     3.0.1
+(function ($bs) {
+  const CLASS_NAME = 'has-child-dropdown-show';
+  $bs.Dropdown.prototype.toggle = (function (_orginal) {
+    return function () {
+      document.querySelectorAll('.' + CLASS_NAME).forEach(function (e) {
+        e.classList.remove(CLASS_NAME);
+      });
+      let dd = this._element.closest('.dropdown').parentNode.closest('.dropdown');
+      for (; dd && dd !== document; dd = dd.parentNode.closest('.dropdown')) {
+        dd.classList.add(CLASS_NAME);
+      }
+      return _orginal.call(this);
+    };
+  })($bs.Dropdown.prototype.toggle);
+
+  document.querySelectorAll('.dropdown').forEach(function (dd) {
+    dd.addEventListener('hide.bs.dropdown', function (e) {
+      if (this.classList.contains(CLASS_NAME)) {
+        this.classList.remove(CLASS_NAME);
+        e.preventDefault();
+      }
+      e.stopPropagation(); // do not need pop in multi level mode
+    });
+  });
+
+  // for hover
+  document
+    .querySelectorAll('.dropdown-hover, .dropdown-hover-all .dropdown')
+    .forEach(function (dd) {
+      dd.addEventListener('mouseenter', function (e) {
+        let toggle = e.target.querySelector(':scope>[data-bs-toggle="dropdown"]');
+        if (!toggle.classList.contains('show')) {
+          $bs.Dropdown.getOrCreateInstance(toggle).toggle();
+          dd.classList.add(CLASS_NAME);
+          $bs.Dropdown.clearMenus();
+        }
+      });
+      dd.addEventListener('mouseleave', function (e) {
+        let toggle = e.target.querySelector(':scope>[data-bs-toggle="dropdown"]');
+        if (toggle.classList.contains('show')) {
+          $bs.Dropdown.getOrCreateInstance(toggle).toggle();
+        }
+      });
+    });
+})(bootstrap);
+// #endregion

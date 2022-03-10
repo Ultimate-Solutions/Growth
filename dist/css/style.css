@@ -3966,6 +3966,9 @@ section > .content table + .select-actions [action='close'].active {
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 }
+.dropdown-menu .dropdown-menu.show {
+  margin: 0.625rem !important;
+}
 .dropdown-menu .dropdown-item {
   display: flex;
   cursor: pointer;
@@ -3978,7 +3981,9 @@ section > .content table + .select-actions [action='close'].active {
   outline: 0 !important;
   border-radius: var(--border-radius);
 }
-.dropdown-menu .dropdown-item:hover:not(.disabled):not(.active):not(.here) {
+.dropdown-menu .dropdown-item:hover:not(.disabled):not(.active):not(.here),
+.dropdown-menu .dropdown-item:focus:not(.disabled):not(.active):not(.here),
+.dropdown-menu .dropdown-item.show:not(.disabled):not(.active):not(.here) {
   transition: color 0.2s ease, background-color 0.2s ease;
   background-color: var(--dropdown-menu-item-hover-background-color);
   color: var(--dropdown-menu-item-hover-color);
@@ -3992,24 +3997,7 @@ section > .content table + .select-actions [action='close'].active {
 .dropdown-menu .dropdown-divider {
   background-color: #ddd;
 }
-.dropdown-menu li {
-  position: relative;
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
-}
-.dropdown-menu .dropdown-submenu {
-  display: none;
-  position: absolute;
-  left: 100%;
-  top: -7px;
-}
-.dropdown-menu .dropdown-submenu-left {
-  right: 100%;
-  left: auto;
-}
-.dropdown-menu > li:hover > .dropdown-submenu {
-  display: block;
-}
+
 .dropdown-toggle.btn {
   padding-left: 2.5rem;
 }
@@ -4040,6 +4028,23 @@ section > .content table + .select-actions [action='close'].active {
 .dropdown-item:active {
   background-color: var(--dropdown-menu-item-active-background-color);
   color: var(--dropdown-menu-item-active-color);
+}
+.dropstart .dropdown-item {
+  padding-right: 2.5rem;
+}
+.dropend .dropdown-item {
+  padding-left: 2.5rem;
+}
+.dropstart .dropdown-toggle:before,
+.dropend .dropdown-toggle:after {
+  content: '\f31a';
+  position: absolute;
+  top: 50%;
+  font: normal normal normal 1em/1 'Phosphor';
+  font-size: var(--font-size-18);
+  transition: var(--transition-normal);
+  margin: 0 10px;
+  border: none;
 }
 /* -----------------------------------------------
   Bootstrap > Buttons
