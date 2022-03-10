@@ -2658,11 +2658,21 @@ img {
   flex: 1 1 auto;
   margin-left: 2.5rem;
 }
-.dashboard > .content > .top-navbar .content .left [data-action] {
+.dashboard > .content > .top-navbar .content .left [data-action],
+.dashboard > .content > .top-navbar .content[min-width~='400px'] .left .user-badge [data-action],
+.dashboard
+  > .content
+  > .top-navbar
+  .content[min-width~='400px']
+  .left
+  .user-badge
+  .dropdown-divider[mobile] {
   display: none;
 }
-.dashboard > .content > .top-navbar .content[min-width~='400px'] .left [data-action] {
-  display: unset;
+.dashboard > .content > .top-navbar .content[min-width~='400px'] .left [data-action],
+.dashboard > .content > .top-navbar .content .left .user-badge [data-action],
+.dashboard > .content > .top-navbar .content .left .user-badge .dropdown-divider[mobile] {
+  display: flex;
 }
 .dashboard > .content > .top-navbar [data-action][data-notif='true'] {
   position: relative;
@@ -3934,6 +3944,7 @@ section > .content table + .select-actions [action='close'].active {
   padding-left: 0.75rem;
 }
 .dropdown-menu .dropdown-item {
+  display: flex;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -3948,6 +3959,15 @@ section > .content table + .select-actions [action='close'].active {
   transition: color 0.2s ease, background-color 0.2s ease;
   background-color: var(--dropdown-menu-item-hover-background-color);
   color: var(--dropdown-menu-item-hover-color);
+}
+.dropdown-menu .dropdown-item > em {
+  font-size: var(--font-size-18);
+}
+.dropdown-menu .dropdown-item > *:not(:last-child) {
+  margin-left: 0.625rem;
+}
+.dropdown-menu .dropdown-divider {
+  background-color: #ddd;
 }
 .dropdown-toggle.btn {
   padding-left: 2.5rem;
