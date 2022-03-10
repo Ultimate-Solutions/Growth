@@ -2292,20 +2292,63 @@ var HOLOLApp = (function () {
     HOLOLUtil.each(document.querySelectorAll('table + .select-actions'), function (el) {
       // Get Table
       var table = el.previousElementSibling,
-        checkboxes = table.querySelectorAll('[type="checkbox"]');
+        checkboxes = table.querySelectorAll('[type="checkbox"]'),
+        checkboxMaster = table.querySelector(
+          '[type="checkbox"][data-holol-checkbox-type="master"]'
+        ),
+        checkboxesCount;
 
       // Check if checkbox is checked
       checker(checkboxes).some == true ? el.classList.add('select') : el.classList.remove('select');
       // Check on state changes
       HOLOLUtil.each(checkboxes, function (checkbox) {
         HOLOLUtil.addEvent(checkbox, 'change', () => {
+          // View / Hide Selector actions
           checker(checkboxes).some == true
             ? el.classList.add('select')
             : el.classList.remove('select');
+
+          // Reset counter
+          checkboxesCount = 0;
+
+          // Get checkboxes checked count
+          HOLOLUtil.each(checkboxes, function (checkboxCount) {
+            if (checkboxCount != checkboxMaster)
+              checkboxesCount = checkboxCount.checked ? (checkboxesCount += 1) : checkboxesCount;
+          });
+
+          // Set checkboxes checked number
+          el.querySelector('[number] > span:first-child').innerText = checkboxesCount;
+        });
+      });
+
+      // Check if table is in viewport
+      HOLOLUtil.isPartInViewport(table)
+        ? el.classList.add('inViewport')
+        : el.classList.remove('inViewport');
+
+      // View Selector actions on scroll to view
+      HOLOLUtil.addEvent(window, 'scroll', () => {
+        // Check if table is in viewport
+        HOLOLUtil.isPartInViewport(table)
+          ? el.classList.add('inViewport')
+          : el.classList.remove('inViewport');
+      });
+
+      // Close BTN
+      HOLOLUtil.addEvent(el.querySelector('[action="close"'), 'click', () => {
+        // Un-check all related checkboxes
+        HOLOLUtil.each(checkboxes, function (checkbox) {
+          checkbox.checked = false;
+          checkbox.indeterminate = false;
+
+          // Hide Selector actions
+          el.classList.remove('select');
         });
       });
     });
 
+    // List active checker
     function checker(checkerList) {
       let checkerCheckAll = true,
         checkerCheckSome = false;

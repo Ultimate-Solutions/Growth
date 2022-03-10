@@ -3632,7 +3632,7 @@ section > .content table + .select-actions {
   transform: translateY(25rem);
   z-index: 11;
 }
-section > .content table + .select-actions.view.select {
+section > .content table + .select-actions.inViewport.select {
   transform: translateY(0);
 }
 section > .content table + .select-actions [action],
