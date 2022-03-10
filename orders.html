@@ -977,7 +977,7 @@
                   <!-- Export Action -->
                   <div class="dropdown">
                     <div id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                      <div action data-bs-toggle="tooltip" data-bs-original-title="تصدير">
+                      <div action data-bs-toggle="tooltip" data-bs-original-title="تصدير الكل">
                         <em class="icon animate__rubberBand hover-parent ph-export"></em>
                       </div>
                     </div>
@@ -996,6 +996,31 @@
                         <div class="dropdown-item" action-export="pdf">تصدير بتنسيق PDF</div>
                       </li>
                     </ul>
+                  </div>
+
+                  <!-- Import Action -->
+                  <div class="dropdown">
+                    <div id="importDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                      <div action data-bs-toggle="tooltip" data-bs-original-title="استيراد">
+                        <em class="icon animate__rubberBand hover-parent ph-download-simple"></em>
+                      </div>
+                    </div>
+
+                    <ul class="dropdown-menu" aria-labelledby="importDropdown">
+                      <li>
+                        <div class="dropdown-item" action-export="excel">
+                          استيراد من تنسيق Excel
+                        </div>
+                      </li>
+                      <li>
+                        <div class="dropdown-item" action-export="csv">استيراد من تنسيق CSV</div>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Print Action -->
+                  <div action="print" data-bs-toggle="tooltip" data-bs-original-title="طباعة">
+                    <em class="icon animate__rubberBand hover-parent ph-printer"></em>
                   </div>
 
                   <!-- Filter Action -->
@@ -2329,26 +2354,6 @@
                       </li>
                       <li>
                         <div class="dropdown-item" action-export="pdf">تصدير بتنسيق PDF</div>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <!-- Import Action -->
-                  <div class="dropdown">
-                    <div id="importDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                      <div action data-bs-toggle="tooltip" data-bs-original-title="استيراد">
-                        <em class="icon animate__rubberBand hover-parent ph-download-simple"></em>
-                      </div>
-                    </div>
-
-                    <ul class="dropdown-menu" aria-labelledby="importDropdown">
-                      <li>
-                        <div class="dropdown-item" action-export="excel">
-                          استيراد من تنسيق Excel
-                        </div>
-                      </li>
-                      <li>
-                        <div class="dropdown-item" action-export="csv">استيراد من تنسيق CSV</div>
                       </li>
                     </ul>
                   </div>
