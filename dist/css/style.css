@@ -1465,6 +1465,39 @@ body.page-loading #page-loader {
 }
 
 /* -----------------------------------------------
+  Main > Animation > Rotate Close
+-------------------------------------------------*/
+@-webkit-keyframes rotateClose {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotateClose {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.animate__animated.animate__rotateClose,
+.animate__rotateClose.hover:hover,
+*:hover > .animate__rotateClose.hover-parent,
+.animate__rotateClose.active,
+*.active > .animate__rotateClose.active-parent {
+  -webkit-animation-name: rotateClose;
+  animation-name: rotateClose;
+}
+
+/* -----------------------------------------------
   Main > Images & Videos 
 -------------------------------------------------*/
 .video,
