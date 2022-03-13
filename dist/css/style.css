@@ -3832,7 +3832,7 @@ section > .content table + .select-actions [action='close'].active {
 -------------------------------------------------*/
 .offcanvas-start,
 .offcanvas-end {
-  max-width: 80%;
+  max-width: 85%;
 }
 .offcanvas-top,
 .offcanvas-bottom {
