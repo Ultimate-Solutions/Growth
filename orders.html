@@ -1083,7 +1083,7 @@
                       aria-labelledby="filter_offcanvasLabel">
                       <div class="offcanvas-header">
                         <h5 class="offcanvas-title" id="notifications_offcanvasLabel">
-                          <em class="ph-bell-funnel"></em>
+                          <em class="ph-funnel"></em>
                           <span>فرز الطلبات حسب</span>
                         </h5>
                         <!-- Close button -->
@@ -1465,10 +1465,296 @@
                   </div>
 
                   <!-- Add new Action -->
-                  <a href="#" action>
+                  <div action data-holol-offcanvas="#addNew_offcanvas">
                     <em class="icon animate__rubberBand hover-parent ph-plus"></em>
                     <span>أضافة طلب جديد</span>
-                  </a>
+                  </div>
+
+                  <!-- Offcanvas Add new -->
+                  <div>
+                    <div
+                      class="offcanvas offcanvas-end"
+                      tabindex="-1"
+                      id="addNew_offcanvas"
+                      data-holol-offcanvas-form
+                      aria-labelledby="addNew_offcanvasLabel">
+                      <div class="offcanvas-header">
+                        <!-- Header -->
+                        <div>
+                          <div class="uptitle">ﺑﻴﺎﻧﺎت الطلب</div>
+                          <div class="title">
+                            طلب رقم
+                            <span>#122154</span>
+                          </div>
+                          <div class="subtitle">
+                            أخرى مؤخراَ مع ظهور برامج النشر الإلكتروني مثل ألدوس بايج مايكر والتي
+                            حوت أيضاً على نسخ من نص لوريم إيبسوم.
+                          </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div actions actions-group>
+                          <div class="form-check form-switch">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="sendEmailToCLient"
+                              checked />
+                            <label class="form-check-label" for="sendEmailToCLient">
+                              اخطار العميل بالبريد الالكتروني
+                            </label>
+                          </div>
+
+                          <div action action-fill data-holol-form data-bs-dismiss="offcanvas">
+                            <em class="icon animate__rubberBand hover-parent ph-floppy-disk"></em>
+                            <span>تاكيد الطلب</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="offcanvas-body hover-scroll-overlay-y" scroll>
+                        <form action="#">
+                          <div section>
+                            <div class="header">تفاصيل الطلب</div>
+                            <div class="container-fluid">
+                              <div class="row mb-3">
+                                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                  <label for="exampleFormControlInput1" class="form-label">
+                                    حالة الطلب
+                                  </label>
+                                  <select class="form-select" aria-label="Default select example">
+                                    <option selected>حالة الطلب</option>
+                                    <option value="1">بإنتظار الدفع</option>
+                                    <option value="2">بإنتظار المراجعة</option>
+                                    <option value="3">قيد التنفيذ</option>
+                                    <option value="4">تم التنفيذ</option>
+                                    <option value="5">جاري التوصيل</option>
+                                    <option value="6">تم التوصيل</option>
+                                    <option value="7">تم الشحن</option>
+                                    <option value="8">ملغي</option>
+                                    <option value="9">مسترجع</option>
+                                    <option value="10">قيد الإسترجاع</option>
+                                  </select>
+                                </div>
+                                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                  <label for="exampleFormControlInput1" class="form-label">
+                                    العميل
+                                  </label>
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    id="exampleFormControlInput1"
+                                    placeholder="العميل" />
+                                </div>
+                              </div>
+                              <div class="row mb-3">
+                                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                  <label for="exampleFormControlInput1" class="form-label">
+                                    وسيلة الدفع
+                                  </label>
+                                  <select class="form-select" aria-label="Default select example">
+                                    <option selected>وسيلة الدفع</option>
+                                    <option value="1">الدفع عند الاستلام</option>
+                                    <option value="2">البطاقة الإتمانية</option>
+                                    <option value="3">بايبال</option>
+                                  </select>
+                                </div>
+                                <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                  <label for="exampleFormControlInput1" class="form-label">
+                                    ملاحظات العميل
+                                  </label>
+                                  <textarea
+                                    class="form-control"
+                                    id="exampleFormControlTextarea1"
+                                    rows="1"></textarea>
+                                </div>
+                              </div>
+
+                              <!-- Use user data switch -->
+                              <div
+                                class="form-check form-switch mb-3"
+                                data-holol-switch="useUserDataContent">
+                                <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="useUserData"
+                                  checked="" />
+                                <label class="form-check-label" for="useUserData">
+                                  استخدام نفس بيانات العميل كبيانات للفاتورة
+                                </label>
+                              </div>
+                              <div class="row" id="useUserDataContent">
+                                <div class="header">بيانات الفاتورة</div>
+
+                                <div class="container-fluid">
+                                  <div class="row mb-3">
+                                    <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                      <label for="exampleFormControlInput1" class="form-label">
+                                        الاسم كامل
+                                      </label>
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="exampleFormControlInput1"
+                                        placeholder="الاسم كامل" />
+                                    </div>
+                                    <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                      <label for="exampleFormControlInput1" class="form-label">
+                                        الشركة
+                                      </label>
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="exampleFormControlInput1"
+                                        placeholder="الشركة" />
+                                    </div>
+                                  </div>
+                                  <div class="row mb-3">
+                                    <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                      <label for="exampleFormControlInput1" class="form-label">
+                                        العنوان
+                                      </label>
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="exampleFormControlInput1"
+                                        placeholder="العنوان" />
+                                    </div>
+                                    <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                      <label for="exampleFormControlInput1" class="form-label">
+                                        الرمز البريدي
+                                      </label>
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="exampleFormControlInput1"
+                                        placeholder="الرمز البريدي" />
+                                    </div>
+                                  </div>
+                                  <div class="row mb-3">
+                                    <div class="col-12 col-lg-4 mb-3 mb-lg-0">
+                                      <label for="exampleFormControlInput1" class="form-label">
+                                        الدولة
+                                      </label>
+                                      <input
+                                        class="form-control"
+                                        list="datalistOptions1"
+                                        id="exampleDataList"
+                                        placeholder="Type to search..." />
+                                      <datalist id="datalistOptions1">
+                                        <option value="San Francisco"></option>
+                                        <option value="New York"></option>
+                                        <option value="Seattle"></option>
+                                        <option value="Los Angeles"></option>
+                                        <option value="Chicago"></option>
+                                      </datalist>
+                                    </div>
+                                    <div class="col-12 col-lg-4 mb-3 mb-lg-0">
+                                      <label for="exampleFormControlInput1" class="form-label">
+                                        المحافظة / الولاية / المنطقة
+                                      </label>
+                                      <input
+                                        class="form-control"
+                                        list="datalistOptions2"
+                                        id="exampleDataList"
+                                        placeholder="Type to search..." />
+                                      <datalist id="datalistOptions2">
+                                        <option value="San Francisco"></option>
+                                        <option value="New York"></option>
+                                        <option value="Seattle"></option>
+                                        <option value="Los Angeles"></option>
+                                        <option value="Chicago"></option>
+                                      </datalist>
+                                    </div>
+                                    <div class="col-12 col-lg-4 mb-3 mb-lg-0">
+                                      <label for="exampleFormControlInput1" class="form-label">
+                                        المدينة
+                                      </label>
+                                      <input
+                                        class="form-control"
+                                        list="datalistOptions3"
+                                        id="exampleDataList"
+                                        placeholder="Type to search..." />
+                                      <datalist id="datalistOptions3">
+                                        <option value="San Francisco"></option>
+                                        <option value="New York"></option>
+                                        <option value="Seattle"></option>
+                                        <option value="Los Angeles"></option>
+                                        <option value="Chicago"></option>
+                                      </datalist>
+                                    </div>
+                                  </div>
+
+                                  <!-- Use bill data switch -->
+                                  <div
+                                    class="form-check form-switch mb-3"
+                                    data-holol-switch="useBillDataContent">
+                                    <input
+                                      class="form-check-input"
+                                      type="checkbox"
+                                      id="useBillData"
+                                      checked="" />
+                                    <label class="form-check-label" for="useBillData">
+                                      استخدام نفس بيانات الفاتورة كبيانات للشحن
+                                    </label>
+                                  </div>
+                                  <div class="row" id="useBillDataContent">
+                                    <div class="header">بيانات الفاتورة</div>
+
+                                    <div class="container-fluid">
+                                      <div class="row mb-3">
+                                        <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                          <label for="exampleFormControlInput1" class="form-label">
+                                            الاسم كامل
+                                          </label>
+                                          <input
+                                            type="text"
+                                            class="form-control"
+                                            id="exampleFormControlInput1"
+                                            placeholder="الاسم كامل" />
+                                        </div>
+                                        <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                          <label for="exampleFormControlInput1" class="form-label">
+                                            الشركة
+                                          </label>
+                                          <input
+                                            type="text"
+                                            class="form-control"
+                                            id="exampleFormControlInput1"
+                                            placeholder="الشركة" />
+                                        </div>
+                                      </div>
+                                      <div class="row mb-3">
+                                        <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                          <label for="exampleFormControlInput1" class="form-label">
+                                            العنوان
+                                          </label>
+                                          <input
+                                            type="text"
+                                            class="form-control"
+                                            id="exampleFormControlInput1"
+                                            placeholder="العنوان" />
+                                        </div>
+                                        <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+                                          <label for="exampleFormControlInput1" class="form-label">
+                                            الرمز البريدي
+                                          </label>
+                                          <input
+                                            type="text"
+                                            class="form-control"
+                                            id="exampleFormControlInput1"
+                                            placeholder="الرمز البريدي" />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="table-responsive" scroll drag>

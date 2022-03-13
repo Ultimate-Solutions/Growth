@@ -859,15 +859,11 @@ var HOLOLUtil = (function () {
      * @param {string} value attribute value (remove if want to get attribute value)
      */
     attr: function (element, name, value) {
-      if (element == undefined) {
-        return;
-      }
+      if (element == undefined) return;
 
-      if (value !== undefined) {
-        element.setAttribute(name, value);
-      } else {
-        return element.getAttribute(name);
-      }
+      if (value !== undefined) element.setAttribute(name, value);
+      else if (element.getAttribute(name) == '') return true;
+      else return element.getAttribute(name);
     },
 
     /**
@@ -876,9 +872,7 @@ var HOLOLUtil = (function () {
      * @param {object} attributes Array of attributes (e.g: {name: value, name2: value2})
      */
     attrs: function (element, attributes) {
-      if (element == undefined || attributes == undefined) {
-        return;
-      }
+      if (!element || !attributes) return;
 
       Object.keys(attributes).forEach((attr) => {
         HOLOLUtil.attr(element, attr, attributes[attr]);
@@ -892,9 +886,7 @@ var HOLOLUtil = (function () {
      * @returns {boolean}
      */
     hasAttr: function (element, attribute) {
-      if (element == undefined) {
-        return;
-      }
+      if (!element) return;
 
       return element.hasAttribute(attribute) ? true : false;
     },
@@ -905,9 +897,7 @@ var HOLOLUtil = (function () {
      * @returns {boolean}
      */
     removeAttr: function (element, name) {
-      if (element == undefined) {
-        return;
-      }
+      if (element == undefined) return;
 
       element.removeAttribute(name);
     },
@@ -2247,6 +2237,7 @@ var HOLOLApp = (function () {
 
   var initOffcanvas = function () {
     HOLOLUtil.each(document.querySelectorAll('[data-holol-offcanvas]'), function (element) {
+      // View Offcanvas
       HOLOLUtil.addEvent(element, 'click', () => {
         var offcanvasElement = document.querySelector(
           HOLOLUtil.attr(element, 'data-holol-offcanvas')
@@ -2256,6 +2247,28 @@ var HOLOLApp = (function () {
         event.stopPropagation();
         var bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
         bsOffcanvas.show();
+
+        // Prevent close on click backdrop for form offcanvas
+        if (HOLOLUtil.attr(offcanvasElement, 'data-holol-offcanvas-form')) {
+          // Reset
+          var isAllowedToHide = false;
+
+          // Add click handler to dismiss buttons for allowing the exit and repeat the hide action
+          HOLOLUtil.each(
+            offcanvasElement.querySelectorAll('[data-bs-dismiss="offcanvas"]'),
+            function (button) {
+              HOLOLUtil.addEvent(button, 'click', () => {
+                isAllowedToHide = true;
+                bsOffcanvas.hide();
+              });
+            }
+          );
+
+          // Checks if hide is allowed and prevents the event if not
+          HOLOLUtil.addEvent(offcanvasElement, 'hide.bs.offcanvas', (event) => {
+            if (!isAllowedToHide) event.preventDefault();
+          });
+        }
       });
     });
   };
