@@ -68,6 +68,17 @@ var HOLOLUtil = (function () {
     },
 
     /**
+     * Checks whether current device is touch device.
+     * @returns {boolean}
+     */
+    isTouchDevice: function () {
+      return (
+        true ==
+        ('ontouchstart' in window || (window.DocumentTouch && document instanceof DocumentTouch))
+      );
+    },
+
+    /**
      * Gets browser window viewport size. Ref:
      * http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/
      * @returns {object}
@@ -1535,8 +1546,9 @@ var HOLOLApp = (function () {
     HOLOLUtil.each(
       document.querySelectorAll('[data-bs-toggle="tooltip"]'),
       function (tooltipTriggerEl) {
-        if (options) initBootstrapTooltip(tooltipTriggerEl, options);
-        else initBootstrapTooltip(tooltipTriggerEl, {});
+        if (!HOLOLUtil.isTouchDevice())
+          if (options) initBootstrapTooltip(tooltipTriggerEl, options);
+          else initBootstrapTooltip(tooltipTriggerEl, {});
       }
     );
   };
