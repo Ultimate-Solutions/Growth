@@ -2511,6 +2511,38 @@ var HOLOLApp = (function () {
     });
   };
 
+  var initInputSwitch = function () {
+    HOLOLUtil.each(document.querySelectorAll('[data-holol-switch]'), function (element) {
+      // get type
+      var type = HOLOLUtil.attr(element, 'data-holol-switch-type');
+
+      // get target container
+      var targetContainer = document.querySelector(
+        '#' + HOLOLUtil.attr(element, 'data-holol-switch')
+      );
+
+      // Set view status on init
+      if (element.checked && type === 'reverse') HOLOLUtil.addClass(targetContainer, 'd-none');
+      else if (!element.checked && type === 'reverse')
+        HOLOLUtil.removeClass(targetContainer, 'd-none');
+      else if (element.checked && type !== 'reverse')
+        HOLOLUtil.removeClass(targetContainer, 'd-none');
+      else if (!element.checked && type !== 'reverse')
+        HOLOLUtil.addClass(targetContainer, 'd-none');
+
+      // Set view status on value change (checked or not)
+      HOLOLUtil.addEvent(element, 'change', () => {
+        if (element.checked && type === 'reverse') HOLOLUtil.addClass(targetContainer, 'd-none');
+        else if (!element.checked && type === 'reverse')
+          HOLOLUtil.removeClass(targetContainer, 'd-none');
+        else if (element.checked && type !== 'reverse')
+          HOLOLUtil.removeClass(targetContainer, 'd-none');
+        else if (!element.checked && type !== 'reverse')
+          HOLOLUtil.addClass(targetContainer, 'd-none');
+      });
+    });
+  };
+
   // Public methods
   return {
     init: function () {
@@ -2540,6 +2572,7 @@ var HOLOLApp = (function () {
       this.initCheckboxGroup();
       this.initTableSelectorActions();
       this.initResponsiveTableStickyColumns();
+      this.initInputSwitch();
     },
 
     initHello: function (provider, version, link) {
@@ -2641,6 +2674,9 @@ var HOLOLApp = (function () {
     },
     initResponsiveTableStickyColumns: function () {
       initResponsiveTableStickyColumns();
+    },
+    initInputSwitch: function () {
+      initInputSwitch();
     },
   };
 })();

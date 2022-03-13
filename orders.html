@@ -1570,16 +1570,16 @@
                               </div>
 
                               <!-- Use user data switch -->
-                              <div
-                                class="form-check form-switch mb-3"
-                                data-holol-switch="useUserDataContent">
+                              <div class="form-check form-switch mb-3">
                                 <input
                                   class="form-check-input"
                                   type="checkbox"
                                   id="useUserData"
-                                  checked="" />
+                                  data-holol-switch="useUserDataContent"
+                                  data-holol-switch-type="reverse"
+                                  checked />
                                 <label class="form-check-label" for="useUserData">
-                                  استخدام نفس بيانات العميل كبيانات للفاتورة
+                                  استخدام نفس بيانات العميل كبيانات للفاتورة والشحن
                                 </label>
                               </div>
                               <div class="row" id="useUserDataContent">
@@ -1685,14 +1685,14 @@
                                   </div>
 
                                   <!-- Use bill data switch -->
-                                  <div
-                                    class="form-check form-switch mb-3"
-                                    data-holol-switch="useBillDataContent">
+                                  <div class="form-check form-switch mb-3">
                                     <input
                                       class="form-check-input"
                                       type="checkbox"
                                       id="useBillData"
-                                      checked="" />
+                                      data-holol-switch="useBillDataContent"
+                                      data-holol-switch-type="reverse"
+                                      checked />
                                     <label class="form-check-label" for="useBillData">
                                       استخدام نفس بيانات الفاتورة كبيانات للشحن
                                     </label>
