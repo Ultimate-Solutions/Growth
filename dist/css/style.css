@@ -1,4 +1,15 @@
 @charset "UTF-8";
+
+/* -----------------------------------------------
+  Fonts > Neo Sans Arabic
+-------------------------------------------------*/
+@import url('http://fonts.cdnfonts.com/css/neo-sans-arabic');
+
+/* -----------------------------------------------
+  Fonts > Phosphor icons 1.4.2
+-------------------------------------------------*/
+@import url('https://unpkg.com/phosphor-icons@1.4.2/src/css/icons.css');
+
 /* #region / Variables */
 /*  __      __        _       _     _           
 /*  \ \    / /       (_)     | |   | |          
