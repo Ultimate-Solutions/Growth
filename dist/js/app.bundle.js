@@ -45,22 +45,20 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Checks whether current device is mobile touch.
+     * Checks whether current device is mobile device.
      * @returns {boolean}
      */
     isMobileDevice: function () {
-      var test = this.getViewPort().width < this.getBreakpoint('lg') ? true : false;
+      var isMobileDevice = this.getViewPort().width < this.getBreakpoint('lg') ? true : false;
 
-      if (test === false) {
-        // For use within normal web clients
-        test = navigator.userAgent.match(/iPad/i) != null;
-      }
+      // For use within normal web clients
+      if (isMobileDevice === false) isMobileDevice = navigator.userAgent.match(/iPad/i) != null;
 
-      return test;
+      return isMobileDevice;
     },
 
     /**
-     * Checks whether current device is desktop.
+     * Checks whether current device is desktop device.
      * @returns {boolean}
      */
     isDesktopDevice: function () {
@@ -115,9 +113,9 @@ var HOLOLUtil = (function () {
 
     /**
      * Gets window width for give breakpoint mode.
-     * @param {string} mode Responsive mode name (e.g: xl, lg, md, sm, xs) or
+     * @param {string} breakpoint Responsive mode name (e.g: xl, lg, md, sm, xs) or
      * (e.g: desktop, desktop-and-tablet, tablet, tablet-and-mobile, mobile)
-     * @returns {number}
+     * @returns {number} (e.g: xxl: 1400)
      */
     getBreakpoint: function (breakpoint) {
       var value = this.getCssVariableValue('--breakpoint-' + breakpoint);
@@ -130,41 +128,33 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Checks whether given device mode is currently activated.
-     * @param {string} mode Responsive mode name (e.g: xl, lg, md, sm, xs) or
+     * Checks whether given device breakpoint is currently activated.
+     * @param {string} breakpoint Responsive breakpoint name (e.g: xl, lg, md, sm, xs) or
      * (e.g: desktop, desktop-and-tablet, tablet, tablet-and-mobile, mobile)
      * @returns {boolean}
      */
-    isBreakpointUp: function (mode) {
-      var width = this.getViewPort().width;
-      var breakpoint = this.getBreakpoint(mode);
-
-      return width >= breakpoint;
+    isBreakpointUp: function (breakpoint) {
+      return this.getViewPort().width >= this.getBreakpoint(breakpoint);
     },
 
     /**
-     * Checks whether given device mode is currently deactivated.
-     * @param {string} mode Responsive mode name (e.g: xl, lg, md, sm, xs) or
+     * Checks whether given device breakpoint is currently deactivated.
+     * @param {string} breakpoint Responsive breakpoint name (e.g: xl, lg, md, sm, xs) or
      * (e.g: desktop, desktop-and-tablet, tablet, tablet-and-mobile, mobile)
      * @returns {boolean}
      */
-    isBreakpointDown: function (mode) {
-      var width = this.getViewPort().width;
-      var breakpoint = this.getBreakpoint(mode);
-
-      return width < breakpoint;
+    isBreakpointDown: function (breakpoint) {
+      return this.getViewPort().width < this.getBreakpoint(breakpoint);
     },
 
     /**
-     * Generates unique ID for give prefix.
-     * @param {string} prefix Prefix for generated ID
-     * @param {string} suffix suffix for generated ID
+     * Generates unique ID for give prefix & suffix.
+     * @param {string} prefix Prefix for generated ID, can be empty
+     * @param {string} suffix suffix for generated ID, can be empty
      * @returns {boolean}
      */
-    getUniqueId: function (prefix, suffix) {
-      if (!suffix) suffix = '';
-      if (!prefix) prefix = '';
-      return prefix + Math.floor(Math.random() * new Date().getTime()) + suffix;
+    getUniqueID: function (prefix, suffix) {
+      return (prefix || '') + Math.floor(Math.random() * new Date().getTime()) + (suffix || '');
     },
 
     /**
@@ -178,22 +168,16 @@ var HOLOLUtil = (function () {
 
       keys = keys || '';
 
-      if (keys.indexOf('[') !== -1) {
-        throw new Error('Unsupported object path notation.');
-      }
+      if (keys.indexOf('[') !== -1) throw new Error('Unsupported object path notation.');
 
       keys = keys.split('.');
 
       do {
-        if (obj === undefined) {
-          return false;
-        }
+        if (obj === undefined) return false;
 
         stone = keys.shift();
 
-        if (!obj.hasOwnProperty(stone)) {
-          return false;
-        }
+        if (!obj.hasOwnProperty(stone)) return false;
 
         obj = obj[stone];
       } while (keys.length);
@@ -222,9 +206,7 @@ var HOLOLUtil = (function () {
           // <div style="z-index: -10;"><div style="z-index: 0;"></div></div>
           value = parseInt(HOLOLUtil.css(el, 'z-index'));
 
-          if (!isNaN(value) && value !== 0) {
-            return value;
-          }
+          if (!isNaN(value) && value !== 0) return value;
         }
 
         el = el.parentNode;
@@ -244,9 +226,7 @@ var HOLOLUtil = (function () {
       while (el && el !== document) {
         position = HOLOLUtil.css(el, 'position');
 
-        if (position === 'fixed') {
-          return true;
-        }
+        if (position === 'fixed') return true;
 
         el = el.parentNode;
       }
@@ -263,217 +243,13 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Get Body object
-     * @returns {object}
-     */
-    getBodyTag: function () {
-      return document.getElementsByTagName('body')[0];
-    },
-
-    /**
-     * Get HTML object
-     * @returns {object}
-     */
-    getHTMLTag: function () {
-      return document.getElementsByTagName('html')[0];
-    },
-
-    /**
-     * Gets randomly generated integer value within given min and max range
-     * @param {number} min Range start value
-     * @param {number} max Range end value
-     * @returns {number}
-     */
-    getRandomInt: function (min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    },
-
-    /**
-     * Checks whether the element has given classes
-     * @param {object} el jQuery element object
-     * @param {string} className string with spaces between every class name for multi classes
-     * @returns {boolean}
-     */
-    hasClass: function (el, className) {
-      if (!el) {
-        return;
-      }
-
-      var classesArr = className.split(' ');
-
-      for (var i = 0; i < classesArr.length; i++) {
-        let classNew = HOLOLUtil.trim(classesArr[i]),
-          hasClass = el.classList
-            ? el.classList.contains(classNew)
-            : new RegExp('\\b' + classNew + '\\b').test(el.classNew);
-        if (!hasClass) {
-          return false;
-        }
-      }
-
-      return true;
-    },
-
-    /**
-     * Add class to the given element
-     * @param {object} el jQuery element object
-     * @param {string} className string with spaces between every class name to add multi classes
-     */
-    addClass: function (el, className) {
-      if (!el || typeof className === 'undefined') {
-        return;
-      }
-
-      var classNames = className.split(' ');
-
-      if (el.classList) {
-        for (var i = 0; i < classNames.length; i++) {
-          if (classNames[i] && classNames[i].length > 0) {
-            el.classList.add(HOLOLUtil.trim(classNames[i]));
-          }
-        }
-      } else if (!HOLOLUtil.hasClass(el, className)) {
-        for (var x = 0; x < classNames.length; x++) {
-          el.className += ' ' + HOLOLUtil.trim(classNames[x]);
-        }
-      }
-    },
-
-    /**
-     * Remove class from the given element
-     * @param {object} el jQuery element object
-     * @param {string} className string with spaces between every class name to remove multi classes
-     */
-    removeClass: function (el, className) {
-      if (!el || typeof className === 'undefined') {
-        return;
-      }
-
-      var classNames = className.split(' ');
-
-      if (el.classList) {
-        for (var i = 0; i < classNames.length; i++) {
-          el.classList.remove(HOLOLUtil.trim(classNames[i]));
-        }
-      } else if (HOLOLUtil.hasClass(el, className)) {
-        for (var x = 0; x < classNames.length; x++) {
-          el.className = el.className.replace(
-            new RegExp('\\b' + HOLOLUtil.trim(classNames[x]) + '\\b', 'g'),
-            ''
-          );
-        }
-      }
-    },
-
-    /**
-     * Toggle class off the given element
-     * @param {object} el jQuery element object
-     * @param {string} className string with spaces between every class name to add multi classes
-     */
-    toggleClass: function (el, className) {
-      if (!el || typeof className === 'undefined') {
-        return;
-      }
-
-      var classNames = className.split(' ');
-
-      if (el.classList) {
-        for (var i = 0; i < classNames.length; i++) {
-          if (classNames[i] && classNames[i].length > 0) {
-            el.classList.toggle(HOLOLUtil.trim(classNames[i]));
-          }
-        }
-      } else if (!HOLOLUtil.hasClass(el, className)) {
-        for (var x = 0; x < classNames.length; x++) {
-          el.className += ' ' + HOLOLUtil.trim(classNames[x]);
-        }
-      }
-    },
-
-    /**
-     * Add Event to the given element
-     * @param {object} el jQuery element object
-     * @param {string} type string for event type (e.g: click, mouseover, ...)
-     * @param {object} handler what run on event (e.g: function)
-     */
-    addEvent: function (el, type, handler) {
-      if (typeof el !== 'undefined' && el !== null) {
-        el.addEventListener(type, handler);
-      }
-    },
-
-    /**
-     * Remove Event from the given element
-     * @param {object} el jQuery element object
-     * @param {string} type string for event type (e.g: click, mouseover, ...)
-     * @param {object} handler what run on event (e.g: function)
-     */
-    removeEvent: function (el, type, handler) {
-      if (el !== null) {
-        el.removeEventListener(type, handler);
-      }
-    },
-
-    /**
-     * Add Event to the given element inner selector
-     * @param {object} element jQuery element object
-     * @param {string} selector selector string
-     * @param {string} event string for event type (e.g: click, mouseover, ...)
-     * @param {object} handler what run on event (e.g: function)
-     */
-    on: function (element, selector, event, handler) {
-      if (element === null) {
-        return;
-      }
-
-      var eventId = HOLOLUtil.getUniqueId('event');
-
-      window.Holol.UTIL.DelegatedEventHandlers[eventId] = function (e) {
-        var targets = element.querySelectorAll(selector);
-        var target = e.target;
-
-        while (target && target !== element) {
-          for (var i = 0, j = targets.length; i < j; i++) {
-            if (target === targets[i]) {
-              handler.call(target, e);
-            }
-          }
-
-          target = target.parentNode;
-        }
-      };
-
-      HOLOLUtil.addEvent(element, event, window.Holol.UTIL.DelegatedEventHandlers[eventId]);
-
-      return eventId;
-    },
-
-    /**
-     * Remove Event from the given element inner event ID
-     * @param {object} element jQuery element object
-     * @param {string} event string for event type (e.g: click, mouseover, ...)
-     * @param {string} eventId
-     */
-    off: function (element, event, eventId) {
-      if (!element || !window.Holol.UTIL.DelegatedEventHandlers[eventId]) {
-        return;
-      }
-
-      HOLOLUtil.removeEvent(element, event, window.Holol.UTIL.DelegatedEventHandlers[eventId]);
-
-      delete window.Holol.UTIL.DelegatedEventHandlers[eventId];
-    },
-
-    /**
      * Throttle function
      * @param {object} func function which needs to be throttled
      * @param {number} delay time interval in milliseconds
      */
     throttle: function (timer, func, delay) {
       // If setTimeout is already scheduled, no need to do anything
-      if (timer) {
-        return;
-      }
+      if (timer) return;
 
       // Schedule a setTimeout after delay seconds
       timer = setTimeout(function () {
@@ -496,6 +272,180 @@ var HOLOLUtil = (function () {
 
       // Executes the func after delay time.
       timer = setTimeout(func, delay);
+    },
+
+    /**
+     * Get Body object
+     * @returns {object}
+     */
+    getBodyTag: function () {
+      return document.getElementsByTagName('body')[0];
+    },
+
+    /**
+     * Get HTML object
+     * @returns {object}
+     */
+    getHTMLTag: function () {
+      return document.getElementsByTagName('html')[0];
+    },
+
+    /**
+     * Gets randomly generated integer value within given min and max range
+     * @param {number} min Range start value, default: -1000
+     * @param {number} max Range end value, default: 1000
+     * @returns {number}
+     */
+    getRandomInt: function (min, max) {
+      return Math.floor(Math.random() * ((max || 1000) - (min || -1000) + 1)) + (min || -1000);
+    },
+
+    /**
+     * Checks whether the element has given classes
+     * @param {object} element jQuery element object
+     * @param {string} className string with spaces between every class name for multi classes
+     * @returns {boolean}
+     */
+    hasClass: function (element, className) {
+      if (!element || typeof className === 'undefined') return;
+
+      var classesArr = className.split(' ');
+
+      for (var i = 0; i < classesArr.length; i++) {
+        let classNew = HOLOLUtil.trim(classesArr[i]),
+          hasClass = element.classList
+            ? element.classList.contains(classNew)
+            : new RegExp('\\b' + classNew + '\\b').test(element.classNew);
+
+        if (!hasClass) return false;
+      }
+
+      return true;
+    },
+
+    /**
+     * Add class to the given element
+     * @param {object} element jQuery element object
+     * @param {string} className string with spaces between every class name to add multi classes
+     */
+    addClass: function (element, className) {
+      if (!element || typeof className === 'undefined') return;
+
+      var classNames = className.split(' ');
+
+      if (element.classList) {
+        for (var i = 0; i < classNames.length; i++)
+          if (classNames[i] && classNames[i].length > 0)
+            element.classList.add(HOLOLUtil.trim(classNames[i]));
+      } else if (!HOLOLUtil.hasClass(element, className)) {
+        for (var x = 0; x < classNames.length; x++)
+          element.className += ' ' + HOLOLUtil.trim(classNames[x]);
+      }
+    },
+
+    /**
+     * Remove class from the given element
+     * @param {object} element jQuery element object
+     * @param {string} className string with spaces between every class name to remove multi classes
+     */
+    removeClass: function (element, className) {
+      if (!element || typeof className === 'undefined') return;
+
+      var classNames = className.split(' ');
+
+      if (element.classList)
+        for (var i = 0; i < classNames.length; i++)
+          element.classList.remove(HOLOLUtil.trim(classNames[i]));
+      else if (HOLOLUtil.hasClass(element, className))
+        for (var x = 0; x < classNames.length; x++)
+          element.className = element.className.replace(
+            new RegExp('\\b' + HOLOLUtil.trim(classNames[x]) + '\\b', 'g'),
+            ''
+          );
+    },
+
+    /**
+     * Toggle class off the given element
+     * @param {object} element jQuery element object
+     * @param {string} className string with spaces between every class name to add multi classes
+     */
+    toggleClass: function (element, className) {
+      if (!element || typeof className === 'undefined') return;
+
+      var classNames = className.split(' ');
+
+      if (element.classList) {
+        for (var i = 0; i < classNames.length; i++)
+          if (classNames[i] && classNames[i].length > 0)
+            element.classList.toggle(HOLOLUtil.trim(classNames[i]));
+      } else if (!HOLOLUtil.hasClass(element, className)) {
+        for (var x = 0; x < classNames.length; x++)
+          element.className += ' ' + HOLOLUtil.trim(classNames[x]);
+      }
+    },
+
+    /**
+     * Add Event to the given element
+     * @param {object} element jQuery element object
+     * @param {string} type string for event type (e.g: click, mouseover, ...)
+     * @param {object} handler what run on event (e.g: function)
+     */
+    addEvent: function (element, type, handler) {
+      if (typeof element !== 'undefined' && element !== null)
+        element.addEventListener(type, handler);
+    },
+
+    /**
+     * Remove Event from the given element
+     * @param {object} element jQuery element object
+     * @param {string} type string for event type (e.g: click, mouseover, ...)
+     * @param {object} handler what run on event (e.g: function)
+     */
+    removeEvent: function (element, type, handler) {
+      if (element !== null) element.removeEventListener(type, handler);
+    },
+
+    /**
+     * Add Event to the given element inner selector
+     * @param {object} element jQuery element object
+     * @param {string} selector selector string
+     * @param {string} event string for event type (e.g: click, mouseover, ...)
+     * @param {object} handler what run on event (e.g: function)
+     */
+    on: function (element, selector, event, handler) {
+      if (element === null) return;
+
+      var eventId = HOLOLUtil.getUniqueID('event');
+
+      window.Holol.UTIL.DelegatedEventHandlers[eventId] = function (e) {
+        var targets = element.querySelectorAll(selector);
+        var target = e.target;
+
+        while (target && target !== element) {
+          for (var i = 0, j = targets.length; i < j; i++)
+            if (target === targets[i]) handler.call(target, e);
+
+          target = target.parentNode;
+        }
+      };
+
+      HOLOLUtil.addEvent(element, event, window.Holol.UTIL.DelegatedEventHandlers[eventId]);
+
+      return eventId;
+    },
+
+    /**
+     * Remove Event from the given element inner event ID
+     * @param {object} element jQuery element object
+     * @param {string} event string for event type (e.g: click, mouseover, ...)
+     * @param {string} eventId
+     */
+    off: function (element, event, eventId) {
+      if (!element || !window.Holol.UTIL.DelegatedEventHandlers[eventId]) return;
+
+      HOLOLUtil.removeEvent(element, event, window.Holol.UTIL.DelegatedEventHandlers[eventId]);
+
+      delete window.Holol.UTIL.DelegatedEventHandlers[eventId];
     },
 
     /**
@@ -523,7 +473,8 @@ var HOLOLUtil = (function () {
 
     /**
      * Get responsive value from array of values according to breakpoints
-     * @param {object} value responsive values (e.g: {lg: '150px', sm: '100px'})
+     * @param {object} value responsive values (e.g: {default: '100px', lg: '150px', sm: '100px'})
+     * default for breakpoint 0
      * @returns {string}
      */
     getResponsiveValue: function (value) {
@@ -538,11 +489,8 @@ var HOLOLUtil = (function () {
         var breakpoint;
 
         for (var key in value) {
-          if (key === 'default') {
-            breakpoint = 0;
-          } else {
-            breakpoint = this.getBreakpoint(key) ? this.getBreakpoint(key) : parseInt(key);
-          }
+          if (key === 'default') breakpoint = 0;
+          else breakpoint = this.getBreakpoint(key) ? this.getBreakpoint(key) : parseInt(key);
 
           if (breakpoint <= width && breakpoint > resultBreakpoint) {
             resultKey = key;
@@ -550,14 +498,9 @@ var HOLOLUtil = (function () {
           }
         }
 
-        if (resultKey) {
-          result = value[resultKey];
-        } else {
-          result = value;
-        }
-      } else {
-        result = value;
-      }
+        if (resultKey) result = value[resultKey];
+        else return;
+      } else return;
 
       return result;
     },
@@ -568,6 +511,8 @@ var HOLOLUtil = (function () {
      * @returns {number}
      */
     index: function (element) {
+      if (!element) return;
+
       var c = element.parentNode.children,
         i = 0;
       for (; i < c.length; i++) if (c[i] == element) return i;
@@ -583,13 +528,59 @@ var HOLOLUtil = (function () {
     },
 
     /**
+     * Convert string to legal DOM ID
+     * @param {string} string String to convert
+     * @param {string} validation (eg: h: for HTML, h5: for HTML5, base64: for base64 ) default: base64
+     * @returns {string}
+     */
+    stringToID: function (string, validation) {
+      if (!string) return;
+
+      var newString;
+
+      // base64
+      if (!validation || validation === 'base64') {
+        string = btoa(string);
+        // Check exist
+        return document.getElementById(string) ? HOLOLUtil.getUniqueID(string + '_') : string;
+      }
+
+      // Remove white spaces from begin & end
+      newString = HOLOLUtil.trim(string);
+
+      // Replace inner white spaces to "_"
+      newString = string.replace(/ /g, '_');
+
+      // Remove illegal characters from DOM ID for HTML standards
+      if (validation === 'h') {
+        newString = newString.replace(/[^a-z0-9\-_:\.]|^[^a-z]+/gi, '');
+        // Check exist
+        return document.getElementById(newString)
+          ? HOLOLUtil.getUniqueID(newString + '_')
+          : newString;
+      }
+
+      // Remove illegal characters from DOM ID for HTML5 standards
+      if (validation === 'h5') {
+        newString = newString.replace(/\s+/g, '');
+        // Check exist
+        return document.getElementById(newString)
+          ? HOLOLUtil.getUniqueID(newString + '_')
+          : newString;
+      }
+
+      // base64 (default)
+      string = btoa(string);
+      // Check exist
+      return document.getElementById(string) ? HOLOLUtil.getUniqueID(string + '_') : string;
+    },
+
+    /**
      * Removes element from DOM.
      * @param {object} element jQuery element object
      */
-    remove: function (el) {
-      if (el && el.parentNode) {
-        el.parentNode.removeChild(el);
-      }
+    remove: function (element) {
+      if (element && element.parentNode) element.parentNode.removeChild(element);
     },
 
     /**
@@ -599,11 +590,8 @@ var HOLOLUtil = (function () {
      * @returns {object}
      */
     find: function (parent, query) {
-      if (parent !== null) {
-        return parent.querySelector(query);
-      } else {
-        return null;
-      }
+      if (parent !== null) return parent.querySelector(query);
+      else return null;
     },
 
     /**
@@ -613,11 +601,8 @@ var HOLOLUtil = (function () {
      * @returns {object} Array of objects
      */
     findAll: function (parent, query) {
-      if (parent !== null) {
-        return parent.querySelectorAll(query);
-      } else {
-        return null;
-      }
+      if (parent !== null) return parent.querySelectorAll(query);
+      else return null;
     },
 
     /**
@@ -668,17 +653,13 @@ var HOLOLUtil = (function () {
     offset: function (element) {
       var rect, win;
 
-      if (!element) {
-        return;
-      }
+      if (!element) return;
 
       // Return zeros for disconnected and hidden (display: none) elements (gh-2310)
       // Support: IE <=11 only
       // Running getBoundingClientRect on a
       // disconnected node in IE throws an error
-      if (!element.getClientRects().length) {
-        return { top: 0, left: 0 };
-      }
+      if (!element.getClientRects().length) return { top: 0, left: 0 };
 
       // Get document-relative position by adding viewport scroll to viewport-relative gBCR
       rect = element.getBoundingClientRect();
@@ -698,18 +679,18 @@ var HOLOLUtil = (function () {
      * @param {boolean} withMargin (e.g: true: if has margin)
      * @returns {number}
      */
-    outerWidth: function (el, withMargin) {
-      var width = el.offsetWidth;
+    outerWidth: function (element, withMargin) {
+      if (!element) return;
+
+      var width = element.offsetWidth;
       var style;
 
       if (typeof withMargin !== 'undefined' && withMargin === true) {
-        style = getComputedStyle(el);
+        style = getComputedStyle(element);
         width += parseInt(style.marginLeft) + parseInt(style.marginRight);
 
         return width;
-      } else {
-        return width;
-      }
+      } else return width;
     },
 
     /**
@@ -718,18 +699,18 @@ var HOLOLUtil = (function () {
      * @param {boolean} withMargin (e.g: true: if has margin)
      * @returns {number}
      */
-    outerHeight: function (el, withMargin) {
-      var height = el.offsetHeight;
+    outerHeight: function (element, withMargin) {
+      if (!element) return;
+
+      var height = element.offsetHeight;
       var style;
 
       if (typeof withMargin !== 'undefined' && withMargin === true) {
-        style = getComputedStyle(el);
+        style = getComputedStyle(element);
         height += parseInt(style.marginTop) + parseInt(style.marginBottom);
 
         return height;
-      } else {
-        return height;
-      }
+      } else return height;
     },
 
     /**
@@ -771,18 +752,19 @@ var HOLOLUtil = (function () {
      * @param {object} element jQuery element object
      * @returns {boolean}
      */
-    visible: function (el) {
-      return !(el.offsetWidth === 0 && el.offsetHeight === 0);
+    visible: function (element) {
+      if (!element) return;
+
+      return !(element.offsetWidth === 0 && element.offsetHeight === 0);
     },
 
     /**
      * Show element
      * @param {object} element jQuery element object
+     * @param {string} display display type (e.g: block, inline, none ...)
      */
-    show: function (el, display) {
-      if (typeof el !== 'undefined') {
-        el.style.display = display ? display : 'block';
-      }
+    show: function (element, display) {
+      if (typeof element !== 'undefined') element.style.display = display ? display : 'block';
     },
 
     /**
@@ -790,9 +772,7 @@ var HOLOLUtil = (function () {
      * @param {object} element jQuery element object
      */
     hide: function (el) {
-      if (typeof el !== 'undefined') {
-        el.style.display = 'none';
-      }
+      if (typeof el !== 'undefined') el.style.display = 'none';
     },
 
     /**
@@ -801,6 +781,8 @@ var HOLOLUtil = (function () {
      * @returns {boolean}
      */
     isInViewport: function (element) {
+      if (!element) return;
+
       var rect = element.getBoundingClientRect();
 
       return (
@@ -817,6 +799,8 @@ var HOLOLUtil = (function () {
      * @returns {boolean}
      */
     isPartInViewport: function (element) {
+      if (!element) return;
+
       var rect = element.getBoundingClientRect();
 
       return (
@@ -829,19 +813,18 @@ var HOLOLUtil = (function () {
 
     /**
      * Run callback on DOM content loaded
-     * @param {object} callback (e.g: function)
+     * @param {function} callback (e.g: function)
      */
     onDOMContentLoaded: function (callback) {
-      if (document.readyState === 'loading') {
+      if (typeof callback !== 'function') return;
+
+      if (document.readyState === 'loading')
         document.addEventListener('DOMContentLoaded', callback);
-      } else {
-        callback();
-      }
+      else callback();
     },
 
     /**
      * Check if loaded in Iframe
-     * @param {object} callback (e.g: function)
      * @returns {boolean}
      */
     inIframe: function () {
@@ -855,15 +838,16 @@ var HOLOLUtil = (function () {
     /**
      * Set / Get attribute
      * @param {object} element jQuery element object
-     * @param {string} name attribute name
+     * @param {string} attribute attribute name
      * @param {string} value attribute value (remove if want to get attribute value)
      */
-    attr: function (element, name, value) {
-      if (element == undefined) return;
+    attr: function (element, attribute, value) {
+      if (!element) return;
 
-      if (value !== undefined) element.setAttribute(name, value);
-      else if (element.getAttribute(name) == '') return true;
-      else return element.getAttribute(name);
+      if (value !== undefined && value !== null) element.setAttribute(attribute, value);
+      else if (!attribute && attribute !== null) return;
+      else if (element.getAttribute(attribute) == '') return true;
+      else return element.getAttribute(attribute);
     },
 
     /**
@@ -886,20 +870,21 @@ var HOLOLUtil = (function () {
      * @returns {boolean}
      */
     hasAttr: function (element, attribute) {
-      if (!element) return;
+      if (!element || !attribute) return;
 
       return element.hasAttribute(attribute) ? true : false;
     },
 
     /**
-     * Remove element has attribute
+     * Remove element with attribute
      * @param {object} element jQuery element object
+     * @param {string} attribute attribute name
      * @returns {boolean}
      */
-    removeAttr: function (element, name) {
-      if (element == undefined) return;
+    removeAttr: function (element, attribute) {
+      if (!element || !attribute) return;
 
-      element.removeAttribute(name);
+      element.removeAttribute(attribute);
     },
 
     /**
@@ -909,19 +894,16 @@ var HOLOLUtil = (function () {
      * @param {string} value style properties value
      * Don't add if you want to get style
      * or add empty string to remove style property
-     * @param {boolean} important Important status (true, false)
-     * Add @important if required
+     * @param {boolean} important Important status (true, false), add if required
      * @returns {string} In get case
      */
     css: function (element, styleProp, value, important) {
-      if (!element) {
-        return;
-      }
+      if (!element || !styleProp) return;
 
-      if (value !== undefined) {
+      if (value !== undefined)
         if (important === true) element.style.setProperty(styleProp, value, 'important');
         else element.style[styleProp] = value;
-      } else {
+      else {
         var defaultView = (element.ownerDocument || document).defaultView;
 
         // W3C standard way:
@@ -967,10 +949,10 @@ var HOLOLUtil = (function () {
      * @returns {string} variable value
      */
     getCssVariableValue: function (variableName) {
+      if (!variableName) return;
+
       var hex = getComputedStyle(document.documentElement).getPropertyValue(variableName);
-      if (hex && hex.length > 0) {
-        hex = hex.trim();
-      }
+      if (hex && hex.length > 0) hex = hex.trim();
 
       return hex;
     },
@@ -981,6 +963,8 @@ var HOLOLUtil = (function () {
      * @returns {string} variable value
      */
     height: function (element) {
+      if (!element) return;
+
       return HOLOLUtil.css(element, 'height');
     },
 
@@ -990,46 +974,196 @@ var HOLOLUtil = (function () {
      * @returns {string} variable value
      */
     width: function (element) {
+      if (!element) return;
+
       return HOLOLUtil.css(element, 'width');
     },
 
     /**
-     * Animate value from-to (e.g: scroll , width, height, padding, ...)
-     * @param {number} from Start position
-     * @param {number} to End position
-     * @param {number} duration Duration in milliseconds (e.g: 2000 - for 2 seconds)
-     * @param {object} update Run on duration (function)
-     * @param {object} easing
-     * @param {object} done
+     * Animate value from-to
+     * https://github.com/branneman/TinyAnimate
+     * @param {int} from Property value to animate from
+     * @param {int} to Property value to animate to
+     * @param {int} duration Duration in milliseconds (e.g: 2000 - for 2 seconds)
+     * @param {function} update  Function to implement updating the DOM, get's called
+     * with a value between from and to
+     * @param {string | function} easing Optional: A string when the easing function is
+     * available in TinyAnimate.easings, or a function with the signature: function(t, b, c, d) {...}
+     * @param {function} done Optional: To be executed when the animation has completed
      */
     animate: function (from, to, duration, update, easing, done) {
-      /**
-       * TinyAnimate.easings
-       *  Adapted from jQuery Easing
-       */
-      var easings = {};
-      var easing;
-
-      easings.linear = function (t, b, c, d) {
-        return (c * t) / d + b;
-      };
-
-      easing = easings.linear;
-
       // Early bail out if called incorrectly
       if (
         typeof from !== 'number' ||
         typeof to !== 'number' ||
         typeof duration !== 'number' ||
         typeof update !== 'function'
-      ) {
+      )
         return;
-      }
+
+      /**
+       * TinyAnimate.easings
+       *  Adapted from jQuery Easing
+       */
+      var easings = {};
+      easings.linear = function (t, b, c, d) {
+        return (c * t) / d + b;
+      };
+      easings.easeInQuad = function (t, b, c, d) {
+        return c * (t /= d) * t + b;
+      };
+      easings.easeOutQuad = function (t, b, c, d) {
+        return -c * (t /= d) * (t - 2) + b;
+      };
+      easings.easeInOutQuad = function (t, b, c, d) {
+        if ((t /= d / 2) < 1) return (c / 2) * t * t + b;
+        return (-c / 2) * (--t * (t - 2) - 1) + b;
+      };
+      easings.easeInCubic = function (t, b, c, d) {
+        return c * (t /= d) * t * t + b;
+      };
+      easings.easeOutCubic = function (t, b, c, d) {
+        return c * ((t = t / d - 1) * t * t + 1) + b;
+      };
+      easings.easeInOutCubic = function (t, b, c, d) {
+        if ((t /= d / 2) < 1) return (c / 2) * t * t * t + b;
+        return (c / 2) * ((t -= 2) * t * t + 2) + b;
+      };
+      easings.easeInQuart = function (t, b, c, d) {
+        return c * (t /= d) * t * t * t + b;
+      };
+      easings.easeOutQuart = function (t, b, c, d) {
+        return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+      };
+      easings.easeInOutQuart = function (t, b, c, d) {
+        if ((t /= d / 2) < 1) return (c / 2) * t * t * t * t + b;
+        return (-c / 2) * ((t -= 2) * t * t * t - 2) + b;
+      };
+      easings.easeInQuint = function (t, b, c, d) {
+        return c * (t /= d) * t * t * t * t + b;
+      };
+      easings.easeOutQuint = function (t, b, c, d) {
+        return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
+      };
+      easings.easeInOutQuint = function (t, b, c, d) {
+        if ((t /= d / 2) < 1) return (c / 2) * t * t * t * t * t + b;
+        return (c / 2) * ((t -= 2) * t * t * t * t + 2) + b;
+      };
+      easings.easeInSine = function (t, b, c, d) {
+        return -c * Math.cos((t / d) * (Math.PI / 2)) + c + b;
+      };
+      easings.easeOutSine = function (t, b, c, d) {
+        return c * Math.sin((t / d) * (Math.PI / 2)) + b;
+      };
+      easings.easeInOutSine = function (t, b, c, d) {
+        return (-c / 2) * (Math.cos((Math.PI * t) / d) - 1) + b;
+      };
+      easings.easeInExpo = function (t, b, c, d) {
+        return t == 0 ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
+      };
+      easings.easeOutExpo = function (t, b, c, d) {
+        return t == d ? b + c : c * (-Math.pow(2, (-10 * t) / d) + 1) + b;
+      };
+      easings.easeInOutExpo = function (t, b, c, d) {
+        if (t == 0) return b;
+        if (t == d) return b + c;
+        if ((t /= d / 2) < 1) return (c / 2) * Math.pow(2, 10 * (t - 1)) + b;
+        return (c / 2) * (-Math.pow(2, -10 * --t) + 2) + b;
+      };
+      easings.easeInCirc = function (t, b, c, d) {
+        return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
+      };
+      easings.easeOutCirc = function (t, b, c, d) {
+        return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
+      };
+      easings.easeInOutCirc = function (t, b, c, d) {
+        if ((t /= d / 2) < 1) return (-c / 2) * (Math.sqrt(1 - t * t) - 1) + b;
+        return (c / 2) * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
+      };
+      easings.easeInElastic = function (t, b, c, d) {
+        var p = 0;
+        var a = c;
+        if (t == 0) return b;
+        if ((t /= d) == 1) return b + c;
+        if (!p) p = d * 0.3;
+        if (a < Math.abs(c)) {
+          a = c;
+          var s = p / 4;
+        } else var s = (p / (2 * Math.PI)) * Math.asin(c / a);
+        return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin(((t * d - s) * (2 * Math.PI)) / p)) + b;
+      };
+      easings.easeOutElastic = function (t, b, c, d) {
+        var p = 0;
+        var a = c;
+        if (t == 0) return b;
+        if ((t /= d) == 1) return b + c;
+        if (!p) p = d * 0.3;
+        if (a < Math.abs(c)) {
+          a = c;
+          var s = p / 4;
+        } else var s = (p / (2 * Math.PI)) * Math.asin(c / a);
+        return a * Math.pow(2, -10 * t) * Math.sin(((t * d - s) * (2 * Math.PI)) / p) + c + b;
+      };
+      easings.easeInOutElastic = function (t, b, c, d) {
+        var p = 0;
+        var a = c;
+        if (t == 0) return b;
+        if ((t /= d / 2) == 2) return b + c;
+        if (!p) p = d * (0.3 * 1.5);
+        if (a < Math.abs(c)) {
+          a = c;
+          var s = p / 4;
+        } else var s = (p / (2 * Math.PI)) * Math.asin(c / a);
+        if (t < 1)
+          return (
+            -0.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin(((t * d - s) * (2 * Math.PI)) / p)) +
+            b
+          );
+        return (
+          a * Math.pow(2, -10 * (t -= 1)) * Math.sin(((t * d - s) * (2 * Math.PI)) / p) * 0.5 +
+          c +
+          b
+        );
+      };
+      easings.easeInBack = function (t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        return c * (t /= d) * t * ((s + 1) * t - s) + b;
+      };
+      easings.easeOutBack = function (t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
+      };
+      easings.easeInOutBack = function (t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        if ((t /= d / 2) < 1) return (c / 2) * (t * t * (((s *= 1.525) + 1) * t - s)) + b;
+        return (c / 2) * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2) + b;
+      };
+      easings.easeInBounce = function (t, b, c, d) {
+        return c - easings.easeOutBounce(d - t, 0, c, d) + b;
+      };
+      easings.easeOutBounce = function (t, b, c, d) {
+        if ((t /= d) < 1 / 2.75) {
+          return c * (7.5625 * t * t) + b;
+        } else if (t < 2 / 2.75) {
+          return c * (7.5625 * (t -= 1.5 / 2.75) * t + 0.75) + b;
+        } else if (t < 2.5 / 2.75) {
+          return c * (7.5625 * (t -= 2.25 / 2.75) * t + 0.9375) + b;
+        } else {
+          return c * (7.5625 * (t -= 2.625 / 2.75) * t + 0.984375) + b;
+        }
+      };
+      easings.easeInOutBounce = function (t, b, c, d) {
+        if (t < d / 2) return easings.easeInBounce(t * 2, 0, c, d) * 0.5 + b;
+        return easings.easeOutBounce(t * 2 - d, 0, c, d) * 0.5 + c * 0.5 + b;
+      };
+
+      // Determine easing
+      if (typeof easing === 'string' && easings[easing]) easing = easings[easing];
+
+      if (typeof easing !== 'function') easing = easings.linear;
 
       // Create mock done() function if necessary
-      if (typeof done !== 'function') {
-        done = function () {};
-      }
+      if (typeof done !== 'function') done = function () {};
 
       // Pick implementation (requestAnimationFrame | setTimeout)
       var rAF =
@@ -1041,19 +1175,17 @@ var HOLOLUtil = (function () {
       // Animation loop
       var canceled = false;
       var change = to - from;
-
       function loop(timestamp) {
+        if (canceled) return;
+
         var time = (timestamp || +new Date()) - start;
 
-        if (time >= 0) {
-          update(easing(time, from, change, duration));
-        }
+        if (time >= 0) update(easing(time, from, change, duration));
+
         if (time >= 0 && time >= duration) {
           update(to);
           done();
-        } else {
-          rAF(loop);
-        }
+        } else rAF(loop);
       }
 
       update(from);
@@ -1063,6 +1195,12 @@ var HOLOLUtil = (function () {
         window.performance && window.performance.now ? window.performance.now() : +new Date();
 
       rAF(loop);
+
+      return {
+        cancel: function () {
+          canceled = true;
+        },
+      };
     },
 
     /**
@@ -1072,6 +1210,8 @@ var HOLOLUtil = (function () {
      * @returns {number}
      */
     getScroll: function (element, method) {
+      if (!element || !method || method !== 'Top' || method !== 'Left') return;
+
       method = 'scroll' + method;
       return element == window || element == document
         ? self[method == 'scrollTop' ? 'pageYOffset' : 'pageXOffset'] ||
@@ -1085,17 +1225,19 @@ var HOLOLUtil = (function () {
      * @param {object} target jQuery element object
      * @param {number} offset Offset value (e.g: 100)
      * @param {number} duration Duration in milliseconds (e.g: 2000 - for 2 seconds)
+     * @param {string | function} easing Optional: A string when the easing function is
+     * available in TinyAnimate.easings, or a function with the signature: function(t, b, c, d) {...}
      */
     scrollTo: function (target, offset, duration) {
+      if (typeof target === undefined) return;
+
       var duration = duration ? duration : 500;
       var targetPos = target ? HOLOLUtil.offset(target).top : 0;
       var scrollPos =
         window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
       var from, to;
 
-      if (offset) {
-        targetPos = targetPos - offset;
-      }
+      if (offset) targetPos = targetPos - offset;
 
       from = scrollPos;
       to = targetPos;
@@ -1113,6 +1255,7 @@ var HOLOLUtil = (function () {
      * @param {number} duration Duration in milliseconds (e.g: 2000 - for 2 seconds)
      */
     scrollTop: function (offset, duration) {
+      offset = offset * -1;
       HOLOLUtil.scrollTo(null, offset, duration);
     },
 
@@ -2684,4 +2827,16 @@ var HOLOLApp = (function () {
 // On document ready
 HOLOLUtil.onDOMContentLoaded(() => {
   HOLOLApp.init();
+
+  // Tests
+  // console.log(HOLOLUtil.scrollTop(500, 5000));
+  HOLOLUtil.animate(
+    0,
+    1000,
+    5000,
+    function (value) {
+      console.log(value);
+    },
+    'easeInOutCubic'
+  );
 });
