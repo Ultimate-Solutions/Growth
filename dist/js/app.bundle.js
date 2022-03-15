@@ -244,7 +244,7 @@ var HOLOLUtil = (function () {
 
     /**
      * Throttle function
-     * @param {object} func function which needs to be throttled
+     * @param {function} func function which needs to be throttled
      * @param {number} delay time interval in milliseconds
      */
     throttle: function (timer, func, delay) {
@@ -263,7 +263,7 @@ var HOLOLUtil = (function () {
 
     /**
      * Debounce function
-     * @param {object} func function which needs to be debounced
+     * @param {function} func function which needs to be debounced
      * @param {number} delay debounced time in milliseconds
      */
     debounce: function (timer, func, delay) {
@@ -980,230 +980,6 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Animate value from-to
-     * https://github.com/branneman/TinyAnimate
-     * @param {int} from Property value to animate from
-     * @param {int} to Property value to animate to
-     * @param {int} duration Duration in milliseconds (e.g: 2000 - for 2 seconds)
-     * @param {function} update  Function to implement updating the DOM, get's called
-     * with a value between from and to
-     * @param {string | function} easing Optional: A string when the easing function is
-     * available in TinyAnimate.easings, or a function with the signature: function(t, b, c, d) {...}
-     * @param {function} done Optional: To be executed when the animation has completed
-     */
-    animate: function (from, to, duration, update, easing, done) {
-      // Early bail out if called incorrectly
-      if (
-        typeof from !== 'number' ||
-        typeof to !== 'number' ||
-        typeof duration !== 'number' ||
-        typeof update !== 'function'
-      )
-        return;
-
-      /**
-       * TinyAnimate.easings
-       *  Adapted from jQuery Easing
-       */
-      var easings = {};
-      easings.linear = function (t, b, c, d) {
-        return (c * t) / d + b;
-      };
-      easings.easeInQuad = function (t, b, c, d) {
-        return c * (t /= d) * t + b;
-      };
-      easings.easeOutQuad = function (t, b, c, d) {
-        return -c * (t /= d) * (t - 2) + b;
-      };
-      easings.easeInOutQuad = function (t, b, c, d) {
-        if ((t /= d / 2) < 1) return (c / 2) * t * t + b;
-        return (-c / 2) * (--t * (t - 2) - 1) + b;
-      };
-      easings.easeInCubic = function (t, b, c, d) {
-        return c * (t /= d) * t * t + b;
-      };
-      easings.easeOutCubic = function (t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t + 1) + b;
-      };
-      easings.easeInOutCubic = function (t, b, c, d) {
-        if ((t /= d / 2) < 1) return (c / 2) * t * t * t + b;
-        return (c / 2) * ((t -= 2) * t * t + 2) + b;
-      };
-      easings.easeInQuart = function (t, b, c, d) {
-        return c * (t /= d) * t * t * t + b;
-      };
-      easings.easeOutQuart = function (t, b, c, d) {
-        return -c * ((t = t / d - 1) * t * t * t - 1) + b;
-      };
-      easings.easeInOutQuart = function (t, b, c, d) {
-        if ((t /= d / 2) < 1) return (c / 2) * t * t * t * t + b;
-        return (-c / 2) * ((t -= 2) * t * t * t - 2) + b;
-      };
-      easings.easeInQuint = function (t, b, c, d) {
-        return c * (t /= d) * t * t * t * t + b;
-      };
-      easings.easeOutQuint = function (t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
-      };
-      easings.easeInOutQuint = function (t, b, c, d) {
-        if ((t /= d / 2) < 1) return (c / 2) * t * t * t * t * t + b;
-        return (c / 2) * ((t -= 2) * t * t * t * t + 2) + b;
-      };
-      easings.easeInSine = function (t, b, c, d) {
-        return -c * Math.cos((t / d) * (Math.PI / 2)) + c + b;
-      };
-      easings.easeOutSine = function (t, b, c, d) {
-        return c * Math.sin((t / d) * (Math.PI / 2)) + b;
-      };
-      easings.easeInOutSine = function (t, b, c, d) {
-        return (-c / 2) * (Math.cos((Math.PI * t) / d) - 1) + b;
-      };
-      easings.easeInExpo = function (t, b, c, d) {
-        return t == 0 ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
-      };
-      easings.easeOutExpo = function (t, b, c, d) {
-        return t == d ? b + c : c * (-Math.pow(2, (-10 * t) / d) + 1) + b;
-      };
-      easings.easeInOutExpo = function (t, b, c, d) {
-        if (t == 0) return b;
-        if (t == d) return b + c;
-        if ((t /= d / 2) < 1) return (c / 2) * Math.pow(2, 10 * (t - 1)) + b;
-        return (c / 2) * (-Math.pow(2, -10 * --t) + 2) + b;
-      };
-      easings.easeInCirc = function (t, b, c, d) {
-        return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
-      };
-      easings.easeOutCirc = function (t, b, c, d) {
-        return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
-      };
-      easings.easeInOutCirc = function (t, b, c, d) {
-        if ((t /= d / 2) < 1) return (-c / 2) * (Math.sqrt(1 - t * t) - 1) + b;
-        return (c / 2) * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
-      };
-      easings.easeInElastic = function (t, b, c, d) {
-        var p = 0;
-        var a = c;
-        if (t == 0) return b;
-        if ((t /= d) == 1) return b + c;
-        if (!p) p = d * 0.3;
-        if (a < Math.abs(c)) {
-          a = c;
-          var s = p / 4;
-        } else var s = (p / (2 * Math.PI)) * Math.asin(c / a);
-        return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin(((t * d - s) * (2 * Math.PI)) / p)) + b;
-      };
-      easings.easeOutElastic = function (t, b, c, d) {
-        var p = 0;
-        var a = c;
-        if (t == 0) return b;
-        if ((t /= d) == 1) return b + c;
-        if (!p) p = d * 0.3;
-        if (a < Math.abs(c)) {
-          a = c;
-          var s = p / 4;
-        } else var s = (p / (2 * Math.PI)) * Math.asin(c / a);
-        return a * Math.pow(2, -10 * t) * Math.sin(((t * d - s) * (2 * Math.PI)) / p) + c + b;
-      };
-      easings.easeInOutElastic = function (t, b, c, d) {
-        var p = 0;
-        var a = c;
-        if (t == 0) return b;
-        if ((t /= d / 2) == 2) return b + c;
-        if (!p) p = d * (0.3 * 1.5);
-        if (a < Math.abs(c)) {
-          a = c;
-          var s = p / 4;
-        } else var s = (p / (2 * Math.PI)) * Math.asin(c / a);
-        if (t < 1)
-          return (
-            -0.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin(((t * d - s) * (2 * Math.PI)) / p)) +
-            b
-          );
-        return (
-          a * Math.pow(2, -10 * (t -= 1)) * Math.sin(((t * d - s) * (2 * Math.PI)) / p) * 0.5 +
-          c +
-          b
-        );
-      };
-      easings.easeInBack = function (t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        return c * (t /= d) * t * ((s + 1) * t - s) + b;
-      };
-      easings.easeOutBack = function (t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
-      };
-      easings.easeInOutBack = function (t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        if ((t /= d / 2) < 1) return (c / 2) * (t * t * (((s *= 1.525) + 1) * t - s)) + b;
-        return (c / 2) * ((t -= 2) * t * (((s *= 1.525) + 1) * t + s) + 2) + b;
-      };
-      easings.easeInBounce = function (t, b, c, d) {
-        return c - easings.easeOutBounce(d - t, 0, c, d) + b;
-      };
-      easings.easeOutBounce = function (t, b, c, d) {
-        if ((t /= d) < 1 / 2.75) {
-          return c * (7.5625 * t * t) + b;
-        } else if (t < 2 / 2.75) {
-          return c * (7.5625 * (t -= 1.5 / 2.75) * t + 0.75) + b;
-        } else if (t < 2.5 / 2.75) {
-          return c * (7.5625 * (t -= 2.25 / 2.75) * t + 0.9375) + b;
-        } else {
-          return c * (7.5625 * (t -= 2.625 / 2.75) * t + 0.984375) + b;
-        }
-      };
-      easings.easeInOutBounce = function (t, b, c, d) {
-        if (t < d / 2) return easings.easeInBounce(t * 2, 0, c, d) * 0.5 + b;
-        return easings.easeOutBounce(t * 2 - d, 0, c, d) * 0.5 + c * 0.5 + b;
-      };
-
-      // Determine easing
-      if (typeof easing === 'string' && easings[easing]) easing = easings[easing];
-
-      if (typeof easing !== 'function') easing = easings.linear;
-
-      // Create mock done() function if necessary
-      if (typeof done !== 'function') done = function () {};
-
-      // Pick implementation (requestAnimationFrame | setTimeout)
-      var rAF =
-        window.requestAnimationFrame ||
-        function (callback) {
-          window.setTimeout(callback, 1000 / 50);
-        };
-
-      // Animation loop
-      var canceled = false;
-      var change = to - from;
-      function loop(timestamp) {
-        if (canceled) return;
-
-        var time = (timestamp || +new Date()) - start;
-
-        if (time >= 0) update(easing(time, from, change, duration));
-
-        if (time >= 0 && time >= duration) {
-          update(to);
-          done();
-        } else rAF(loop);
-      }
-
-      update(from);
-
-      // Start animation loop
-      var start =
-        window.performance && window.performance.now ? window.performance.now() : +new Date();
-
-      rAF(loop);
-
-      return {
-        cancel: function () {
-          canceled = true;
-        },
-      };
-    },
-
-    /**
      * Get scrolled element value
      * @param {object} element jQuery element object
      * @param {string} method The passed in `method` value should be 'Top' or 'Left'
@@ -1228,25 +1004,17 @@ var HOLOLUtil = (function () {
      * @param {string | function} easing Optional: A string when the easing function is
      * available in TinyAnimate.easings, or a function with the signature: function(t, b, c, d) {...}
      */
-    scrollTo: function (target, offset, duration) {
+    scrollTo: function (target, offset) {
       if (typeof target === undefined) return;
 
-      var duration = duration ? duration : 500;
       var targetPos = target ? HOLOLUtil.offset(target).top : 0;
-      var scrollPos =
-        window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-      var from, to;
 
-      if (offset) targetPos = targetPos - offset;
+      if (typeof offset === 'number') targetPos = targetPos - offset;
 
-      from = scrollPos;
-      to = targetPos;
-
-      HOLOLUtil.animate(from, to, duration, function (value) {
-        document.documentElement.scrollTop = value;
-        document.body.parentNode.scrollTop = value;
-        document.body.scrollTop = value;
-      }); //, easing, done
+      window.scroll({
+        top: targetPos,
+        behavior: 'smooth',
+      });
     },
 
     /**
@@ -1254,9 +1022,10 @@ var HOLOLUtil = (function () {
      * @param {number} offset Offset value (e.g: 100)
      * @param {number} duration Duration in milliseconds (e.g: 2000 - for 2 seconds)
      */
-    scrollTop: function (offset, duration) {
-      offset = offset * -1;
-      HOLOLUtil.scrollTo(null, offset, duration);
+    scrollTop: function (offset) {
+      offset = typeof offset === 'number' ? offset * -1 : 0;
+
+      HOLOLUtil.scrollTo(null, offset);
     },
 
     /**
@@ -1268,9 +1037,9 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Convert number to currency number (e.g: 12,000)
+     * Convert number to currency number string (e.g: 12,000)
      * @param {number} nStr
-     * @returns {number}
+     * @returns {string}
      */
     numberCurrency: function (nStr) {
       nStr += '';
@@ -1303,11 +1072,14 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Set inner element HTML
+     * Set / Remove inner element HTML
      * @param {object} element jQuery element object
-     * @param {object, string} html
+     * @param {object, string} html leave empty or don't enter to remove element content
      */
     setHTML: function (element, html) {
+      if (!element) return;
+
+      html = html ? html : '';
       element.innerHTML = html;
     },
 
@@ -1317,17 +1089,18 @@ var HOLOLUtil = (function () {
      * @returns {string}
      */
     getHTML: function (element) {
-      if (element) {
-        return element.innerHTML;
-      }
+      if (element) return element.innerHTML;
     },
 
     /**
-     * Set inner element Text
+     * Set / Remove inner element Text
      * @param {object} element jQuery element object
-     * @param {string} text
+     * @param {string} text leave empty or don't enter to remove element text
      */
     setTEXT: function (element, text) {
+      if (!element) return;
+
+      text = text ? text : '';
       element.innerText = text;
     },
 
@@ -1337,15 +1110,13 @@ var HOLOLUtil = (function () {
      * @returns {string}
      */
     getTEXT: function (element) {
-      if (element) {
-        return element.innerText;
-      }
+      if (element) return element.innerText;
     },
 
     /**
      * Loop multi elements
      * @param {object} array Array of objects
-     * @param {object} callback Function call
+     * @param {function} callback Function call
      */
     each: function (array, callback) {
       return [].slice.call(array).map(callback);
@@ -1353,10 +1124,11 @@ var HOLOLUtil = (function () {
 
     /**
      * Set app color mode
-     * @param {string} mode The passed in `mode` value should be 'light' or 'dark'
+     * @param {string} mode The passed in `mode` value must be 'light' or 'dark'
      */
     setColorMode: function (mode) {
-      HOLOLUtil.attr(document.querySelector('html'), 'data-color-mode', mode);
+      if (['light', 'dark'].includes(mode))
+        HOLOLUtil.attr(document.querySelector('html'), 'data-color-mode', mode);
     },
 
     /**
@@ -1369,11 +1141,12 @@ var HOLOLUtil = (function () {
 
     /**
      * Set app theme
-     * @param {string} theme The passed in `mode` value should be
+     * @param {string} theme The passed in `mode` value must be
      *     'regular' or 'high_contrast' or 'colorblind'
      */
     setTheme: function (theme) {
-      HOLOLUtil.attr(document.querySelector('html'), 'data-theme', theme);
+      if (['regular', 'high_contrast', 'colorblind'].includes(theme))
+        HOLOLUtil.attr(document.querySelector('html'), 'data-theme', theme);
     },
 
     /**
@@ -1574,6 +1347,14 @@ var HOLOLUtil = (function () {
 
 ('use strict');
 
+//   _    _  ____  _      ____  _
+//  | |  | |/ __ \| |    / __ \| |        /\
+//  | |__| | |  | | |   | |  | | |       /  \   _ __  _ __
+//  |  __  | |  | | |   | |  | | |      / /\ \ | '_ \| '_ \
+//  | |  | | |__| | |___| |__| | |____ / ____ \| |_) | |_) |
+//  |_|  |_|\____/|______\____/|______/_/    \_\ .__/| .__/
+//                                             | |   | |
+//                                             |_|   |_|
 // Class definition
 var HOLOLApp = (function () {
   var initHello = function () {
@@ -1612,12 +1393,15 @@ var HOLOLApp = (function () {
     });
 
     // On page before unload
-    window.addEventListener('beforeunload', function (e) {
-      return document.body.classList.add('page-loading');
+    window.addEventListener('beforeunload', () => {
+      HOLOLUtil.addClass(document.body, 'page-loading');
+      // return document.body.classList.add('page-loading');
     });
   };
 
   var initLazyLoad = function () {
+    if (!document.querySelector('.lazy')) return;
+
     function logElementEvent(eventName, element) {
       console.log(Date.now(), eventName, element.getAttribute('data-src'));
     }
@@ -2829,14 +2613,6 @@ HOLOLUtil.onDOMContentLoaded(() => {
   HOLOLApp.init();
 
   // Tests
-  // console.log(HOLOLUtil.scrollTop(500, 5000));
-  HOLOLUtil.animate(
-    0,
-    1000,
-    5000,
-    function (value) {
-      console.log(value);
-    },
-    'easeInOutCubic'
-  );
+  console.log(HOLOLUtil.getBrowser());
+  console.log(HOLOLUtil.getOS());
 });
