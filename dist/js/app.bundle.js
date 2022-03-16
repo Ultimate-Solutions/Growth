@@ -24,6 +24,44 @@ window.Holol = {
 var HOLOLUtil = (function () {
   return {
     /**
+     * Load JS script to DOM
+     * @param {string} name
+     * @param {string} version
+     * @param {string} url
+     * @param {string} integrity
+     * @param {string} crossorigin
+     * @param {string} type
+     * @param {string} referrerpolicy
+     * @returns {Promise}
+     */
+    loadScript: function (name, version, url, integrity, crossorigin, type, referrerpolicy) {
+      if (!url) return;
+
+      return new Promise(function (resolve, reject) {
+        let comment;
+        if (name && version) comment = document.createComment(name + ' v' + version);
+        if (name && !version) comment = document.createComment(name);
+        let script = document.createElement('script');
+        script.src = url;
+        if (integrity) script.integrity = integrity;
+        if (crossorigin) script.setAttribute('crossorigin', crossorigin);
+        if (type) script.type = type;
+        if (referrerpolicy) {
+          script.setAttribute('referrerpolicy', referrerpolicy);
+        }
+        script.async = false;
+        script.onload = function () {
+          resolve(url);
+        };
+        script.onerror = function () {
+          reject(url);
+        };
+        if (comment) document.body.appendChild(comment);
+        document.body.appendChild(script);
+      });
+    },
+
+    /**
      * Get parameter value from URL.
      * @param {string} paramName Parameter name.
      * @returns {string}
@@ -1382,6 +1420,39 @@ var HOLOLApp = (function () {
     });
   };
 
+  var initScriptsLoader = function () {
+    let scripts = window.globalScripts;
+
+    console.log(scripts);
+
+    if (!scripts) return;
+
+    // save all Promises as array
+    let promises = [];
+    scripts.forEach(function (target) {
+      promises.push(
+        HOLOLUtil.loadScript(
+          target.name,
+          target.version,
+          target.url,
+          target.integrity,
+          target.crossorigin,
+          target.type,
+          target.referrerpolicy
+        )
+      );
+    });
+
+    Promise.all(promises)
+      .then(function () {
+        console.log('all scripts loaded');
+        HOLOLApp.init();
+      })
+      .catch(function (script) {
+        console.log(script + ' failed to load');
+      });
+  };
+
   var initLazyLoad = function () {
     if (!document.querySelector('.lazy')) return;
 
@@ -2476,6 +2547,10 @@ var HOLOLApp = (function () {
       initPageLoader();
     },
 
+    initScriptsLoader: function () {
+      initScriptsLoader();
+    },
+
     initLazyLoad: function () {
       initLazyLoad();
     },
@@ -2572,5 +2647,5 @@ var HOLOLApp = (function () {
 
 // On document ready
 HOLOLUtil.onDOMContentLoaded(() => {
-  HOLOLApp.init();
+  HOLOLApp.initScriptsLoader();
 });
