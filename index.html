@@ -121,46 +121,86 @@
       content="hsl(24.3, 97.4%, 54.3%)" />
     <!-- #endregion -->
 
-    <!-- #region / Fonts + Plugins -->
-    <!-- Fonts -->
-    <!-- Neo Sans Arabic -->
-    <link href="http://fonts.cdnfonts.com/css/neo-sans-arabic" rel="stylesheet" />
-    <!-- Phosphor 1.4.2 Icons -->
-    <link href="https://unpkg.com/phosphor-icons@1.4.2/src/css/icons.css" rel="stylesheet" />
-
-    <!-- Plugins -->
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.rtl.min.css"
-      integrity="sha512-LbSN0zUc47h+h7KpimHiKIjJWcf2lLP5+mtzJFXcklWfITRR1pv4+qWFkHt5qIAdy8RrX7ejRym0JxtKj6I45w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
-    <!-- Date Range Picker 3.1.0 -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.1/daterangepicker.min.css"
-      integrity="sha512-CliXBuHwQxr4nHkBGnjI8GeVo/P3u+GN0OlXB22b7/0YZkMCKdt2a2G8CEHFk+fwGhRWyyAFib64f90kZoWBvQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
-    <!-- ApexCharts v3.33.2 -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.33.2/apexcharts.min.css"
-      integrity="sha512-72LrFm5Wau6YFp7GGd7+qQJYkzRKj5UMQZ4aFuEo3WcRzO0xyAkVjK3NEw8wXjEsEG/skqvXKR5+VgOuzuqPtA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
-    <!-- Bootstrap Select v1.13.18 -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css"
-      integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
-    <!-- #endregion -->
-
-    <!-- Custom Style -->
-    <link href="./dist/css/style.css" rel="stylesheet" />
+    <!-- Preloader -->
+    <style>
+      body.page-loading #page-loader {
+        display: flex;
+      }
+      #page-loader {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background: #f1f1f1;
+        top: 0;
+        left: 0;
+        z-index: 9999999999;
+        align-items: center;
+        justify-content: center;
+      }
+      #page-loader .spinner {
+        border-color: #000000 rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1);
+        -webkit-animation: spinner 0.5s linear infinite;
+        animation: spinner 0.5s linear infinite;
+        border-radius: 50%;
+        border-style: solid;
+        border-width: 2px;
+        display: inline-block;
+        height: 44px;
+        width: 44px;
+      }
+      @-webkit-keyframes spinner {
+        0% {
+          transform: translate3d(0, 0, 0) rotate(0);
+        }
+        100% {
+          transform: translate3d(0, 0, 0) rotate(359deg);
+        }
+      }
+      @keyframes spinner {
+        0% {
+          transform: translate3d(0, 0, 0) rotate(0);
+        }
+        100% {
+          transform: translate3d(0, 0, 0) rotate(359deg);
+        }
+      }
+      #page-loader .text {
+        margin-top: 2.5rem;
+        font-size: 1rem;
+      }
+      #page-loader .text-small {
+        margin-top: 0.25rem;
+        font-size: 0.75rem;
+      }
+      #page-loader a {
+        position: relative;
+        color: inherit;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      #page-loader a:hover,
+      #page-loader a:focus,
+      #page-loader a:hover {
+        color: #05a84b;
+      }
+      #page-loader a:before {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 0;
+        height: 0.0625rem;
+        background-color: #05a84b;
+        transition: all 0.4s ease;
+      }
+      #page-loader a:hover:before,
+      #page-loader a:focus:before,
+      #page-loader a:hover:before {
+        width: 100%;
+      }
+    </style>
   </head>
   <body dashboard scroll class="scroll-overlay-y page-loading">
     <!-- #region / Loader Spinner -->
@@ -2775,6 +2815,47 @@
     </div>
     <!-- #endregion -->
 
+    <!-- #region / Styles -->
+    <!-- Fonts -->
+    <!-- Neo Sans Arabic -->
+    <link href="http://fonts.cdnfonts.com/css/neo-sans-arabic" rel="stylesheet" />
+    <!-- Phosphor 1.4.2 Icons -->
+    <link href="https://unpkg.com/phosphor-icons@1.4.2/src/css/icons.css" rel="stylesheet" />
+
+    <!-- Plugins -->
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.rtl.min.css"
+      integrity="sha512-LbSN0zUc47h+h7KpimHiKIjJWcf2lLP5+mtzJFXcklWfITRR1pv4+qWFkHt5qIAdy8RrX7ejRym0JxtKj6I45w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <!-- Date Range Picker 3.1.0 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.1/daterangepicker.min.css"
+      integrity="sha512-CliXBuHwQxr4nHkBGnjI8GeVo/P3u+GN0OlXB22b7/0YZkMCKdt2a2G8CEHFk+fwGhRWyyAFib64f90kZoWBvQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <!-- ApexCharts v3.33.2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.33.2/apexcharts.min.css"
+      integrity="sha512-72LrFm5Wau6YFp7GGd7+qQJYkzRKj5UMQZ4aFuEo3WcRzO0xyAkVjK3NEw8wXjEsEG/skqvXKR5+VgOuzuqPtA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <!-- Bootstrap Select v1.13.18 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css"
+      integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+
+    <!-- Custom Style -->
+    <link href="./dist/css/style.css" rel="stylesheet" />
+    <!-- #endregion -->
+
     <!-- #region Scripts -->
     <!-- Page Scripts -->
     <!-- JQuery v3.6.0 -->
@@ -2841,7 +2922,7 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.1.0/countUp.withPolyfill.min.js"
       integrity="sha512-5voDk+ni/FGXlDgtNGbHSIZYA0QYBkohZYWhw/WjJOjOzhNakpmeJxhqROZVIdr+BbT9gkfV48f4GRpxYMfdMQ=="
       crossorigin="anonymous"
-      type="module" 
+      type="module"
       referrerpolicy="no-referrer"></script>
     <!-- Smooth Scroll v16.1.3 -->
     <script
