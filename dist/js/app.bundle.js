@@ -1423,8 +1423,6 @@ var HOLOLApp = (function () {
   var initScriptsLoader = function () {
     let scripts = window.globalScripts;
 
-    console.log(scripts);
-
     if (!scripts) return;
 
     // save all Promises as array
