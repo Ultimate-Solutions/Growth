@@ -121,44 +121,46 @@
       content="hsl(24.3, 97.4%, 54.3%)" />
     <!-- #endregion -->
 
+    <!-- #region / Fonts + Plugins -->
     <!-- Fonts -->
     <!-- Neo Sans Arabic -->
     <link href="http://fonts.cdnfonts.com/css/neo-sans-arabic" rel="stylesheet" />
-
     <!-- Phosphor 1.4.2 Icons -->
     <link href="https://unpkg.com/phosphor-icons@1.4.2/src/css/icons.css" rel="stylesheet" />
 
-    <!-- #region / Plugins -->
+    <!-- Plugins -->
     <!-- Bootstrap CSS -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.rtl.min.css"
-      rel="stylesheet" />
-
-    <!-- Date Range Picker 3.14.1 -->
-    <link href="./dist/css/libs/daterangepicker/3.14.1/daterangepicker.css" rel="stylesheet" />
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.rtl.min.css"
+      integrity="sha512-LbSN0zUc47h+h7KpimHiKIjJWcf2lLP5+mtzJFXcklWfITRR1pv4+qWFkHt5qIAdy8RrX7ejRym0JxtKj6I45w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <!-- Date Range Picker 3.1.0 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.1/daterangepicker.min.css"
+      integrity="sha512-CliXBuHwQxr4nHkBGnjI8GeVo/P3u+GN0OlXB22b7/0YZkMCKdt2a2G8CEHFk+fwGhRWyyAFib64f90kZoWBvQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <!-- ApexCharts v3.33.2 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.33.2/apexcharts.min.css"
+      integrity="sha512-72LrFm5Wau6YFp7GGd7+qQJYkzRKj5UMQZ4aFuEo3WcRzO0xyAkVjK3NEw8wXjEsEG/skqvXKR5+VgOuzuqPtA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <!-- Bootstrap Select v1.13.18 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css"
+      integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
     <!-- #endregion -->
 
     <!-- Custom Style -->
     <link href="./dist/css/style.css" rel="stylesheet" />
-
-    <!-- Theme changer -->
-    <script>
-      localStorage.setItem('color mode', 'light');
-      localStorage.setItem('theme', 'regular');
-
-      // Set theme data
-      setAttributes(document.documentElement, {
-        'data-color-mode': localStorage.getItem('color mode'),
-        'data-theme': localStorage.getItem('theme'),
-      });
-
-      // Setting multiple attributes for an element at once
-      function setAttributes(el, attrs) {
-        for (var key in attrs) {
-          el.setAttribute(key, attrs[key]);
-        }
-      }
-    </script>
   </head>
   <body dashboard scroll class="scroll-overlay-y page-loading">
     <!-- #region / Loader Spinner -->
@@ -2773,9 +2775,102 @@
     </div>
     <!-- #endregion -->
 
+    <!-- #region Scripts -->
+    <!-- Page Scripts -->
+    <!-- JQuery v3.6.0 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap v5.1.3 + Popper v2.11.4 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"
+      integrity="sha512-pax4MlgXjHEPfCwcJLQhigY7+N8rt6bVvWLFyUMuxShv170X53TRzGPmPkZmGBhk+jikR8WBM4yl7A9WMHHqvg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- Vanilla Lazyload v17.3.1 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/17.3.1/lazyload.min.js"
+      integrity="sha512-lVcnjCLGjJTaZU55wD7H3f8SJVi6VV5cQRcmGuYcyIY607N/rzZGEl90lNgsiEhKygATryG/i6e5u2moDFs5kQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- CSS Element Queries v1.2.3 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/css-element-queries/1.2.3/ResizeSensor.min.js"
+      integrity="sha512-Li66vFTPdL3BpG7YUS8/TdT+mpL4QWYe9N3f39LLZzxnPJL/w1Ih3C/CgEJmsQjSEy8Xx8+vTFDAS3A2s5NBUg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/css-element-queries/1.2.3/ElementQueries.min.js"
+      integrity="sha512-ggR6eS+dyTcPruG+XYlKG8V90GTV6cSIbPafzqflZei2g2opJ/rOzgQog3kE2k0o9fyR9iUAUjGiwXSchBKnkw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- Moment with locales v2.29.1 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"
+      integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- Daterangepicker v3.1.0 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.1/daterangepicker.min.js"
+      integrity="sha512-FEzFjtAJCunp3uJTwYfcHtJHlRbgkzRYNpvsShtjVu5jSoejpExyzHHSDOUJ46IgV7VoNAkuVxjbid5pkoLASg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- WNumb v1.2.0 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"
+      integrity="sha512-igVQ7hyQVijOUlfg3OmcTZLwYJIBXU63xL9RC12xBHNpmGJAktDnzl9Iw0J4yrSaQtDxTTVlwhY730vphoVqJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- Autosize v5.0.1 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/autosize.js/5.0.1/autosize.min.js"
+      integrity="sha512-aBxhlAogg9r6Gtes+dsuqW6IQ4Ee0MtjexckbMNOVdxAfi5NSEd38BNEgFiaBWS6cl67r+8OImzxVKDdmswhnA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- Clipboard v2.0.10 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"
+      integrity="sha512-PIisRT8mFfdxx99gMs7WAY5Gp+CtjYYxKvF93w8yWAvX548UBNADHu7Qkavgr6yRG+asocqfuk5crjNd5z9s6Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- CountUp.js with Polyfill  2.1.0 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.1.0/countUp.withPolyfill.min.js"
+      integrity="sha512-5voDk+ni/FGXlDgtNGbHSIZYA0QYBkohZYWhw/WjJOjOzhNakpmeJxhqROZVIdr+BbT9gkfV48f4GRpxYMfdMQ=="
+      crossorigin="anonymous"
+      type="module" 
+      referrerpolicy="no-referrer"></script>
+    <!-- Smooth Scroll v16.1.3 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js"
+      integrity="sha512-LZ6YBzwuQvIG41twjliX3HUVeAd+ErnJ0UsqRnkI4firX2l71jxbKJoax/hu7XY2tiyLl0YA2kcnz/XEW+9O3g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- ApexCharts v3.33.2 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.33.2/apexcharts.min.js"
+      integrity="sha512-iBEfFld2z1SAXCPmgoA40VQtqGP0cEJw4fy+t3ARW30uEfzf8hyrmm4mc5qdth3wZRPdKTv/auk5WH52klRVDg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap Sub-Menus v3.0.1 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-submenu/3.0.1/js/bootstrap-submenu.min.js"
+      integrity="sha512-ZtmgPGHBz4urgkpw5zhk5UGlbt+4LH9crB4zsAEkCenTr+Y+8Jpy1ipole0cIrLsBUrsscpK4C/PZdaQBgtZsg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap Select v1.13.18 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"
+      integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+
     <!-- Global Javascript Bundle(used by all pages) -->
-    <script src="./dist/js/plugins.bundle.js" name="plugins"></script>
     <script src="./dist/js/app.bundle.js" name="app"></script>
     <script src="./dist/js/widgets.bundle.js" name="widgets"></script>
+    <!-- #endregion -->
   </body>
 </html>

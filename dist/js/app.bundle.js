@@ -1,4 +1,4 @@
-'use strict';
+('use strict');
 
 // Global variables
 window.Holol = {
@@ -1037,23 +1037,6 @@ var HOLOLUtil = (function () {
     },
 
     /**
-     * Convert number to currency number string (e.g: 12,000)
-     * @param {number} nStr
-     * @returns {string}
-     */
-    numberCurrency: function (nStr) {
-      nStr += '';
-      var x = nStr.split('.');
-      var x1 = x[0];
-      var x2 = x.length > 1 ? '.' + x[1] : '';
-      var rgx = /(\d+)(\d{3})/;
-      while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + ',' + '$2');
-      }
-      return x1 + x2;
-    },
-
-    /**
      * Get site direction
      * @returns {string}
      */
@@ -1334,7 +1317,7 @@ var HOLOLUtil = (function () {
      * Get Mutation Observer
      * @param {object} element jQuery element object
      * @param {object} options Array of options
-     * @param {object} callback Function call
+     * @param {function} callback Function call
      */
     mutationObserver: function (element, options, callback) {
       const mutationObserver = new MutationObserver(function (mutationsList, observer) {
@@ -1593,22 +1576,6 @@ var HOLOLApp = (function () {
         }
       );
     });
-  };
-
-  var initSelect2 = function () {
-    HOLOLUtil.each(
-      document.querySelectorAll('[data-control="select2"], [data-holol-select2="true"]'),
-      function (element) {
-        var options = {
-          dir: HOLOLUtil.attr(document.body, 'direction'),
-        };
-
-        if (HOLOLUtil.attr(element, 'data-hide-search') == 'true')
-          options.minimumResultsForSearch = Infinity;
-
-        $(element).select2(options);
-      }
-    );
   };
 
   var initAutosize = function () {
@@ -2484,7 +2451,6 @@ var HOLOLApp = (function () {
       this.initScrollSpy();
       this.initButtons();
       this.initCheck();
-      this.initSelect2();
       this.initAutosize();
       this.initCountUp();
       this.initCountUpTabs();
@@ -2544,10 +2510,6 @@ var HOLOLApp = (function () {
 
     initCheck: function () {
       initCheck();
-    },
-
-    initSelect2: function () {
-      initSelect2();
     },
 
     initCountUp: function () {
@@ -2611,8 +2573,4 @@ var HOLOLApp = (function () {
 // On document ready
 HOLOLUtil.onDOMContentLoaded(() => {
   HOLOLApp.init();
-
-  // Tests
-  console.log(HOLOLUtil.getBrowser());
-  console.log(HOLOLUtil.getOS());
 });
