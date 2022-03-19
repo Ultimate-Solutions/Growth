@@ -169,7 +169,7 @@
   --dashboard-top-navbar-search-bar-background-color: #fff;
   --dashboard-top-navbar-sticky-search-bar-background-color: #f1f1f1;
   --dashboard-top-navbar-search-bar-shadow: 0 0 0 2px #7171710d;
-  --dashboard-top-navbar-search-bar-mobile-shadow: 0 0 0 2px #05a84b59;
+  --dashboard-top-navbar-search-bar-mobile-shadow: 0 0 0 2px #05a84b;
   --dashboard-top-navbar-search-bar-close-background-color: #dee3e9;
   --dashboard-top-navbar-search-bar-close-hover-background-color: #ccd9e9;
   --dashboard-top-navbar-user-badge-dropdown-active-icon-color: #05a84b;
@@ -2715,6 +2715,9 @@ img {
     background-color: var(--dashboard-top-navbar-search-bar-background-color);
     border-radius: var(--border-radius);
     box-shadow: var(--dashboard-top-navbar-search-bar-shadow);
+  }
+  .dashboard > .content > .top-navbar .search-bar.focus .content {
+    box-shadow: 0 0 0 2px #05a84b;
   }
   .dashboard > .content > .top-navbar.scrolled .search-bar .content {
     background-color: var(--dashboard-top-navbar-sticky-search-bar-background-color);

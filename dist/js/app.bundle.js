@@ -1923,6 +1923,25 @@ var HOLOLApp = (function () {
     }
   };
 
+  var initSearchbarInput = function () {
+    // Focus search bar input
+    const searchBar = document.querySelectorAll('.search-bar');
+
+    HOLOLUtil.each(searchBar, (searchbarElement) => {
+      var searchbarInput;
+      if (searchbarElement) searchbarInput = searchbarElement.querySelector('input[type="text"]');
+
+      if (searchbarInput) {
+        HOLOLUtil.addEvent(searchbarInput, 'focusin', () => {
+          HOLOLUtil.addClass(searchbarElement, 'focus');
+        });
+        HOLOLUtil.addEvent(searchbarInput, 'focusout', () => {
+          HOLOLUtil.removeClass(searchbarElement, 'focus');
+        });
+      }
+    });
+  };
+
   var initNotificationTabs = function () {
     // Main navbar
     const notifTabs = document.querySelector('.dashboard > .content [notif]'),
@@ -2526,6 +2545,7 @@ var HOLOLApp = (function () {
       this.initSmoothScroll();
       this.initMainNavbar();
       this.initTopNavbar();
+      this.initSearchbarInput();
       this.initNotificationTabs();
       this.initDropdownSelect();
       this.initDragScroll();
@@ -2609,6 +2629,10 @@ var HOLOLApp = (function () {
       initTopNavbar();
     },
 
+    initSearchbarInput: function () {
+      initSearchbarInput();
+    },
+
     initNotificationTabs: function () {
       initNotificationTabs();
     },
@@ -2646,52 +2670,4 @@ var HOLOLApp = (function () {
 // On document ready
 HOLOLUtil.onDOMContentLoaded(() => {
   HOLOLApp.initScriptsLoader();
-
-  function listAllEventListeners() {
-    const allElements = Array.prototype.slice.call(document.querySelectorAll('*'));
-    allElements.push(document);
-    allElements.push(window);
-
-    const types = [];
-
-    for (let ev in window) {
-      if (/^on/.test(ev)) types[types.length] = ev;
-    }
-
-    let elements = [];
-    for (let i = 0; i < allElements.length; i++) {
-      const currentElement = allElements[i];
-
-      // Events defined in attributes
-      for (let j = 0; j < types.length; j++) {
-        if (typeof currentElement[types[j]] === 'function') {
-          elements.push({
-            node: currentElement,
-            type: types[j],
-            func: currentElement[types[j]].toString(),
-          });
-        }
-      }
-
-      // Events defined with addEventListener
-      if (typeof currentElement._getEventListeners === 'function') {
-        evts = currentElement._getEventListeners();
-        if (Object.keys(evts).length > 0) {
-          for (let evt of Object.keys(evts)) {
-            for (k = 0; k < evts[evt].length; k++) {
-              elements.push({
-                node: currentElement,
-                type: evt,
-                func: evts[evt][k].listener.toString(),
-              });
-            }
-          }
-        }
-      }
-    }
-
-    return elements.sort();
-  }
-
-  console.table(listAllEventListeners());
 });
