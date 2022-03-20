@@ -3293,6 +3293,9 @@ section [header] .search-bar .content {
   border-radius: var(--border-radius);
   box-shadow: var(--dashboard-top-navbar-search-bar-shadow);
 }
+section [header] .search-bar.focus .content {
+  box-shadow: 0 0 0 2px #05a84b;
+}
 section [header] .search-bar [icon] {
   font-size: var(--font-size-24);
   padding: 0.5rem 0.625rem;
