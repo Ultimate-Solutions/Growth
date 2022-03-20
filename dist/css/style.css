@@ -3495,7 +3495,7 @@ section > .content > *:not(:last-child) {
 section > .content .table-tabs > .list-group {
   display: flex;
   flex-direction: row;
-  padding: 1.25rem 0;
+  padding: 0 0 1.25rem 0;
 }
 section > .content .table-tabs > .list-group[min-width~='700px'] {
   justify-content: center;
