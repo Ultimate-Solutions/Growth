@@ -59,16 +59,15 @@ var HOLOLUtil = (function () {
         if (integrity) script.integrity = integrity;
         if (crossorigin) script.setAttribute('crossorigin', crossorigin);
         if (type) script.type = type;
-        if (referrerpolicy) {
-          script.setAttribute('referrerpolicy', referrerpolicy);
-        }
+        if (referrerpolicy) script.setAttribute('referrerpolicy', referrerpolicy);
         script.async = false;
-        script.onload = function () {
+        script.onload = () => {
           resolve(url);
         };
-        script.onerror = function () {
+        script.onerror = () => {
           reject(url);
         };
+
         if (comment) document.body.appendChild(comment);
         document.body.appendChild(script);
       });
@@ -1439,6 +1438,8 @@ var HOLOLApp = (function () {
 
     if (!scripts) return;
 
+    document.body.appendChild(document.createComment('Code injected by HOLOL Scripts loader'));
+
     // save all Promises as array
     let promises = [];
     scripts.forEach(function (target) {
@@ -1527,7 +1528,7 @@ var HOLOLApp = (function () {
     // Loop errors
     script.forEach((result) => {
       const errorItem = document.createElement('div');
-      HOLOLUtil.setTEXT(errorItem, 'لم يتم تحميل ملف: ' + result.reason);
+      HOLOLUtil.setTEXT(errorItem, 'لم يتم تحميل ملف: ' + result);
       HOLOLUtil.append(errorItem, errorsBox);
     });
 
@@ -3273,13 +3274,13 @@ HOLOLUtil.onDOMContentLoaded(() => {
       resultsHandler.forEach((result) => {
         if (result.status !== 'fulfilled') {
           errors = true;
-          errorsArr.push(result);
+          errorsArr.push(result.reason);
         }
       });
     })
     .then(function () {
       if (errorsArr.length > 0) {
-        console.log(errorsArr);
+        console.table(errorsArr);
         HOLOLApp.initScriptsLoaderFailed(errorsArr);
       } else {
         console.log('all scripts loaded');
