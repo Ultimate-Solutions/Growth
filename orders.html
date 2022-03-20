@@ -139,12 +139,13 @@
         background: #f1f1f1;
         top: 0;
         left: 0;
+        padding: 20px;
         z-index: 9999999999;
         align-items: center;
         justify-content: center;
       }
       #page-loader .spinner {
-        border-color: #000000 rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1);
+        border-color: #000 rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1);
         -webkit-animation: spinner 0.5s linear infinite;
         animation: spinner 0.5s linear infinite;
         border-radius: 50%;
@@ -203,6 +204,74 @@
       #page-loader a:focus:before,
       #page-loader a:hover:before {
         width: 100%;
+      }
+      #page-loader.failed .spinner {
+        display: none;
+      }
+      #page-loader.failed .failed-container {
+        margin: auto;
+        text-align: center;
+      }
+      #page-loader.failed .failed-container .icon {
+        border-radius: 50%;
+        border: 4px solid #f8bb86;
+        box-sizing: content-box;
+        height: 80px;
+        margin: 20px auto;
+        padding: 0;
+        position: relative;
+        width: 80px;
+      }
+      #page-loader.failed .failed-container .icon .body {
+        background-color: #f8bb86;
+        border-radius: 2px;
+        height: 47px;
+        left: 50%;
+        margin-left: -2px;
+        position: absolute;
+        top: 10px;
+        width: 5px;
+        z-index: 2;
+      }
+      #page-loader.failed .failed-container .icon .dot {
+        background-color: #f8bb86;
+        border-radius: 50%;
+        bottom: 10px;
+        height: 7px;
+        left: 50%;
+        margin-left: -3px;
+        position: absolute;
+        width: 7px;
+        z-index: 2;
+      }
+      #page-loader.failed .failed-container .title {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 10px;
+      }
+      #page-loader.failed .failed-container .message {
+        font-size: 18px;
+      }
+      #page-loader.failed .failed-container [actions] {
+        margin-top: 40px;
+        justify-content: center;
+      }
+      #page-loader.failed .failed-container [actions] > *:not(:last-child) {
+        margin-left: 20px;
+      }
+      #page-loader.failed .failed-container .errorBox {
+        display: none;
+        padding: 20px;
+        margin: 20px auto;
+        background-color: #ff000014;
+        width: 1000px;
+        text-align: start;
+      }
+      #page-loader.failed .failed-container .errorBox.view {
+        display: block;
+      }
+      #page-loader.failed .failed-container .errorBox > *:not(:last-child) {
+        margin-bottom: 4px;
       }
     </style>
 
