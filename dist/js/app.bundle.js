@@ -19,8 +19,21 @@ window.Holol = {
   UTIL: {
     DelegatedEventHandlers: {},
   },
+  ERROR: {
+    HELP_CENTER: '/help-center',
+    LOAD_SCRIPT: '',
+  },
 };
 
+//   _    _  ____  _      ____  _        _    _ _   _ _ _ _
+//  | |  | |/ __ \| |    / __ \| |      | |  | | | (_) (_) |
+//  | |__| | |  | | |   | |  | | |      | |  | | |_ _| |_| |_ _   _
+//  |  __  | |  | | |   | |  | | |      | |  | | __| | | | __| | | |
+//  | |  | | |__| | |___| |__| | |____  | |__| | |_| | | | |_| |_| |
+//  |_|  |_|\____/|______\____/|______|  \____/ \__|_|_|_|\__|\__, |
+//                                                             __/ |
+//                                                            |___/
+// HOLOL Utility
 var HOLOLUtil = (function () {
   return {
     /**
@@ -1369,13 +1382,14 @@ var HOLOLUtil = (function () {
 ('use strict');
 
 //   _    _  ____  _      ____  _
-//  | |  | |/ __ \| |    / __ \| |        /\
-//  | |__| | |  | | |   | |  | | |       /  \   _ __  _ __
-//  |  __  | |  | | |   | |  | | |      / /\ \ | '_ \| '_ \
-//  | |  | | |__| | |___| |__| | |____ / ____ \| |_) | |_) |
-//  |_|  |_|\____/|______\____/|______/_/    \_\ .__/| .__/
-//                                             | |   | |
-//                                             |_|   |_|
+//  | |  | |/ __ \| |    / __ \| |          /\
+//  | |__| | |  | | |   | |  | | |         /  \   _ __  _ __
+//  |  __  | |  | | |   | |  | | |        / /\ \ | '_ \| '_ \
+//  | |  | | |__| | |___| |__| | |____   / ____ \| |_) | |_) |
+//  |_|  |_|\____/|______\____/|______| /_/    \_\ .__/| .__/
+//                                               | |   | |
+//                                               |_|   |_|
+// HOLOL App
 // Class definition
 var HOLOLApp = (function () {
   var initHello = function () {
@@ -1441,14 +1455,92 @@ var HOLOLApp = (function () {
       );
     });
 
-    Promise.all(promises)
-      .then(function () {
-        console.log('all scripts loaded');
-        HOLOLApp.init();
-      })
-      .catch(function (script) {
-        console.log(script + ' failed to load');
-      });
+    return promises;
+  };
+
+  var initScriptsLoaderFailed = function (script) {
+    const pageLoader = document.querySelector('#page-loader');
+    const errorContainer = document.createElement('div');
+
+    // Add failed to loader
+    HOLOLUtil.addClass(pageLoader, 'failed');
+
+    // Change loader content
+    const failedIcon = document.createElement('div');
+    const failedIconBody = document.createElement('span');
+    const failedIconDot = document.createElement('span');
+    const failedTitle = document.createElement('div');
+    const failedMessage = document.createElement('div');
+    const failedActions = document.createElement('div');
+    const failedActions_help = document.createElement('div');
+    const failedActions_tray = document.createElement('div');
+    const failedActions_viewErrors = document.createElement('div');
+
+    // Failed Container
+    HOLOLUtil.addClass(errorContainer, 'failed-container');
+
+    // Failed Icon
+    HOLOLUtil.addClass(failedIcon, 'icon');
+    HOLOLUtil.addClass(failedIconBody, 'body');
+    HOLOLUtil.addClass(failedIconDot, 'dot');
+
+    HOLOLUtil.append(failedIconBody, failedIcon);
+    HOLOLUtil.append(failedIconDot, failedIcon);
+    HOLOLUtil.append(failedIcon, errorContainer);
+
+    // Failed Data
+    HOLOLUtil.addClass(failedTitle, 'title');
+    HOLOLUtil.append(failedTitle, errorContainer);
+    HOLOLUtil.setTEXT(failedTitle, 'خطأ فى تحميل الصفحة.');
+
+    HOLOLUtil.addClass(failedMessage, 'message');
+    HOLOLUtil.append(failedMessage, errorContainer);
+    HOLOLUtil.setTEXT(failedMessage, 'حدثت مشكلة. يرجى المحاولة مرة أخرى.');
+
+    // Failed Actions
+    HOLOLUtil.attr(failedActions, 'actions', '');
+    HOLOLUtil.attr(failedActions, 'actions-group', '');
+    HOLOLUtil.attr(failedActions_tray, 'action', '');
+    HOLOLUtil.attr(failedActions_tray, 'action-fill', '');
+    HOLOLUtil.attr(failedActions_tray, 'onclick', 'location.reload();');
+    HOLOLUtil.setTEXT(failedActions_tray, 'حاول مره أخري');
+    HOLOLUtil.attr(failedActions_help, 'action', '');
+    HOLOLUtil.attr(failedActions_help, 'action-outline', '');
+    HOLOLUtil.attr(
+      failedActions_help,
+      'onclick',
+      'window.open("' + window.Holol.ERROR.HELP_CENTER + '", "_blank").focus();'
+    );
+    HOLOLUtil.setTEXT(failedActions_help, 'مركذ المساعدة');
+    HOLOLUtil.attr(failedActions_viewErrors, 'action', '');
+    HOLOLUtil.setTEXT(failedActions_viewErrors, 'عرض الاخطاء');
+
+    HOLOLUtil.append(failedActions_tray, failedActions);
+    HOLOLUtil.append(failedActions_help, failedActions);
+    HOLOLUtil.append(failedActions_viewErrors, failedActions);
+    HOLOLUtil.append(failedActions, errorContainer);
+
+    // View Errors box
+    const errorsBox = document.createElement('div');
+    HOLOLUtil.addClass(errorsBox, 'errorBox');
+
+    // Loop errors
+    script.forEach((result) => {
+      const errorItem = document.createElement('div');
+      HOLOLUtil.setTEXT(errorItem, 'لم يتم تحميل ملف: ' + result.reason);
+      HOLOLUtil.append(errorItem, errorsBox);
+    });
+
+    // Add error box to view
+    HOLOLUtil.append(errorsBox, errorContainer);
+
+    HOLOLUtil.addEvent(failedActions_viewErrors, 'click', () => {
+      HOLOLUtil.toggleClass(errorsBox, 'view');
+      HOLOLUtil.toggleClass(failedActions_viewErrors, 'active');
+    });
+
+    // Add Error container to preloader
+    HOLOLUtil.prepend(errorContainer, pageLoader);
   };
 
   var initLazyLoad = function () {
@@ -2566,7 +2658,11 @@ var HOLOLApp = (function () {
     },
 
     initScriptsLoader: function () {
-      initScriptsLoader();
+      return initScriptsLoader();
+    },
+
+    initScriptsLoaderFailed: function (script) {
+      initScriptsLoaderFailed(script);
     },
 
     initLazyLoad: function () {
@@ -2667,7 +2763,518 @@ var HOLOLApp = (function () {
   };
 })();
 
+//   _    _  ____  _      ____  _       __          ___     _            _
+//  | |  | |/ __ \| |    / __ \| |      \ \        / (_)   | |          | |
+//  | |__| | |  | | |   | |  | | |       \ \  /\  / / _  __| | __ _  ___| |_ ___
+//  |  __  | |  | | |   | |  | | |        \ \/  \/ / | |/ _` |/ _` |/ _ \ __/ __|
+//  | |  | | |__| | |___| |__| | |____     \  /\  /  | | (_| | (_| |  __/ |_\__ \
+//  |_|  |_|\____/|______\____/|______|     \/  \/   |_|\__,_|\__, |\___|\__|___/
+//                                                             __/ |
+//                                                            |___/
+// HOLOL Widgets
+('use strict');
+
+// Class definition
+var HOLOLWidgets = (function () {
+  // Charts widgets > Global variables
+  const lineColorChartLine = HOLOLUtil.getCssVariableValue('--bs-indigo');
+  const globalOptionsChartLine = {
+    chart: {
+      fontFamily: 'inherit',
+      type: 'line',
+      height: '30px',
+      toolbar: {
+        show: !1,
+      },
+      zoom: {
+        enabled: !1,
+      },
+      sparkline: {
+        enabled: !0,
+      },
+    },
+    plotOptions: {},
+    legend: {
+      show: !1,
+    },
+    dataLabels: {
+      enabled: !1,
+    },
+    fill: {
+      type: 'solid',
+      opacity: 1,
+    },
+    stroke: {
+      curve: 'smooth',
+      show: !0,
+      width: 3,
+      colors: lineColorChartLine,
+    },
+    xaxis: {
+      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'],
+      axisBorder: {
+        show: !1,
+      },
+      axisTicks: {
+        show: !1,
+      },
+    },
+    yaxis: {
+      labels: {
+        show: !1,
+      },
+    },
+    states: {
+      normal: {
+        filter: {
+          type: 'none',
+          value: 0,
+        },
+      },
+      hover: {
+        filter: {
+          type: 'none',
+          value: 0,
+        },
+      },
+      active: {
+        allowMultipleDataPointsSelection: !1,
+        filter: {
+          type: 'none',
+          value: 0,
+        },
+      },
+    },
+    tooltip: {
+      show: !1,
+    },
+    colors: ['transparent'],
+  };
+
+  // Charts widget small 1
+  var initChartsWidgetSmall1 = function () {
+    var element = document.getElementById('holol_chart_widget_1_small');
+
+    var lineColor = HOLOLUtil.getCssVariableValue('--bs-success');
+
+    if (!element) {
+      return;
+    }
+
+    // Set default options
+    var options = globalOptionsChartLine;
+    // Set Series data
+    options.series = [
+      {
+        data: [10, 10, 34, 16, 10],
+      },
+    ]; // Set stroke color
+    options.stroke.colors = lineColor;
+
+    var chart = new ApexCharts(element, options);
+    chart.render();
+  };
+
+  // Charts widget small 2
+  var initChartsWidgetSmall2 = function () {
+    var element = document.getElementById('holol_chart_widget_2_small');
+
+    var lineColor = HOLOLUtil.getCssVariableValue('--bs-indigo');
+
+    if (!element) {
+      return;
+    }
+
+    // Set default options
+    var options = globalOptionsChartLine;
+    // Set Series data
+    options.series = [
+      {
+        data: [10, 8, 18, 16, 24],
+      },
+    ]; // Set stroke color
+    options.stroke.colors = lineColor;
+
+    var chart = new ApexCharts(element, options);
+    chart.render();
+  };
+
+  // Charts widget small 3
+  var initChartsWidgetSmall3 = function () {
+    var element = document.getElementById('holol_chart_widget_3_small');
+
+    var lineColor = HOLOLUtil.getCssVariableValue('--bs-warning');
+
+    if (!element) {
+      return;
+    }
+
+    // Set default options
+    var options = globalOptionsChartLine;
+    // Set Series data
+    options.series = [
+      {
+        data: [10, 20, 20, 16, 10],
+      },
+    ]; // Set stroke color
+    options.stroke.colors = lineColor;
+
+    var chart = new ApexCharts(element, options);
+    chart.render();
+  };
+
+  // Charts widget small 4
+  var initChartsWidgetSmall4 = function () {
+    var element = document.getElementById('holol_chart_widget_4_small');
+
+    var lineColor = HOLOLUtil.getCssVariableValue('--bs-blue');
+
+    if (!element) {
+      return;
+    }
+
+    // Set default options
+    var options = globalOptionsChartLine;
+    // Set Series data
+    options.series = [
+      {
+        data: [8, 20, 18, 20, 32],
+      },
+    ]; // Set stroke color
+    options.stroke.colors = lineColor;
+
+    var chart = new ApexCharts(element, options);
+    chart.render();
+  };
+
+  // Charts widget Home main
+  var initChartsWidgetMain = function () {
+    var element = document.getElementById('holol_chart_widget_1');
+
+    if (!element) {
+      return;
+    }
+
+    // Set default options
+    var options = {
+      series: [
+        {
+          name: 'الارباح',
+          data: [30000, 40000, 40000, 90000, 90000, 70000, 70000, 30000],
+        },
+        {
+          name: 'المبيعات',
+          data: [40000, 40000, 60000, 80000, 60000, 60000, 60000, 50000],
+        },
+        {
+          name: 'الطلبات',
+          data: [20000, 30000, 50000, 20000, 20000, 60000, 80000, 10000],
+        },
+        {
+          name: 'الزيارات',
+          data: [0, 10000, 40000, 40000, 40000, 80000, 80000, 50000],
+        },
+      ],
+      chart: {
+        fontFamily: 'inherit',
+        type: 'line',
+        height: 350,
+        toolbar: {
+          show: !1,
+        },
+      },
+      plotOptions: {},
+      legend: {
+        show: !1,
+      },
+      dataLabels: {
+        enabled: !1,
+      },
+      fill: {
+        type: 'solid',
+        opacity: 1,
+      },
+      stroke: {
+        curve: 'smooth',
+        show: !0,
+        width: 3,
+      },
+      xaxis: {
+        categories: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10'],
+        axisBorder: {
+          show: !1,
+        },
+        axisTicks: {
+          show: !1,
+        },
+        labels: {
+          style: {
+            colors: [HOLOLUtil.getCssVariableValue('--bs-gray')],
+            fontSize: '12px',
+          },
+        },
+        crosshairs: {
+          position: 'front',
+          stroke: {
+            color: HOLOLUtil.getCssVariableValue('--bs-primary'),
+            width: 1,
+            dashArray: 3,
+          },
+        },
+        tooltip: {
+          enabled: !0,
+          formatter: void 0,
+          offsetY: 0,
+          style: {
+            fontSize: '12px',
+          },
+        },
+      },
+      yaxis: {
+        labels: {
+          style: {
+            colors: [HOLOLUtil.getCssVariableValue('--bs-gray')],
+            fontSize: '12px',
+          },
+        },
+      },
+      states: {
+        normal: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        hover: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        active: {
+          allowMultipleDataPointsSelection: !1,
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+      },
+      tooltip: {
+        style: {
+          fontSize: '12px',
+        },
+        y: {
+          formatter: function (t) {
+            if (t < 1000) return t;
+            else if (t >= 1000) return t / 1000 + 'K';
+            else if (t >= 1000000) return t / 1000000 + 'M';
+            else if (t >= 1000000000) return t / 1000000000 + 'T';
+          },
+        },
+      },
+      colors: [
+        HOLOLUtil.getCssVariableValue('--chart-blue'),
+        HOLOLUtil.getCssVariableValue('--chart-pink'),
+        HOLOLUtil.getCssVariableValue('--chart-yellow'),
+        HOLOLUtil.getCssVariableValue('--chart-green'),
+      ],
+      grid: {
+        borderColor: HOLOLUtil.getCssVariableValue('--chart-gray-border'),
+        strokeDashArray: 4,
+        yaxis: {
+          lines: {
+            show: !0,
+          },
+        },
+      },
+    };
+
+    var chart = new ApexCharts(element, options);
+    chart.render();
+  };
+
+  // Charts widget Home Donuts
+  var initChartsWidgetMainDonuts = function () {
+    var element = document.getElementById('donutChart');
+
+    if (!element) {
+      return;
+    }
+
+    // Set default options
+    var options = {
+      series: [4640, 5050, 1300],
+      labels: ['Desktop', 'Tablet', 'Phone'],
+      chart: {
+        id: 'donutChart',
+        type: 'donut',
+        height: 300,
+      },
+      plotOptions: {},
+      legend: {
+        show: !1,
+      },
+      dataLabels: {
+        enabled: !1,
+      },
+      plotOptions: {
+        pie: {
+          donut: {
+            size: '85%',
+            labels: {
+              show: !0,
+              value: {
+                fontSize: '32px',
+                formatter: function (val) {
+                  if (val < 1000) return val;
+                  else if (val >= 1000) return parseInt(val / 1000) + 'K';
+                  else if (val >= 1000000) return parseInt(val / 1000000) + 'M';
+                  else if (val >= 1000000000) return parseInt(val / 1000000000) + 'T';
+                },
+              },
+              name: {
+                fontSize: '18px',
+                formatter: function (val) {
+                  return val;
+                },
+              },
+              total: {
+                show: true,
+                showAlways: true,
+                label: 'Total',
+                fontSize: '22px',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontWeight: 600,
+                color: '#373d3f',
+                formatter: function (w) {
+                  let val = w.globals.seriesTotals.reduce((a, b) => {
+                    return a + b;
+                  }, 0);
+
+                  if (val < 1000) return val;
+                  else if (val >= 1000) return parseInt(val / 1000) + 'K';
+                  else if (val >= 1000000) return parseInt(val / 1000000) + 'M';
+                  else if (val >= 1000000000) return parseInt(val / 1000000000) + 'T';
+                },
+              },
+            },
+          },
+          expandOnClick: false,
+        },
+      },
+      legend: {
+        show: !1,
+      },
+      dataLabels: {
+        enabled: !1,
+      },
+      states: {
+        normal: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        hover: {
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+        active: {
+          allowMultipleDataPointsSelection: !1,
+          filter: {
+            type: 'none',
+            value: 0,
+          },
+        },
+      },
+      tooltip: {
+        style: {
+          fontSize: '12px',
+        },
+        y: {
+          formatter: function (val) {
+            if (val < 1000) return val;
+            else if (val >= 1000) return parseInt(val / 1000) + 'K';
+            else if (val >= 1000000) return parseInt(val / 1000000) + 'M';
+            else if (val >= 1000000000) return parseInt(val / 1000000000) + 'T';
+          },
+        },
+      },
+    };
+
+    var chart = new ApexCharts(element, options).render();
+
+    // Update Donut Chart on click tabs
+    HOLOLUtil.addEvent(document.querySelector('#table-deviceType'), 'click', () => {
+      ApexCharts.exec(
+        'donutChart',
+        'updateOptions',
+        {
+          series: [4640, 5050, 1300],
+          labels: ['Desktop', 'Tablet', 'Phone'],
+        },
+        false,
+        true
+      );
+    });
+    // Update Donut Chart on click tabs
+    HOLOLUtil.addEvent(document.querySelector('#table-country'), 'click', () => {
+      ApexCharts.exec(
+        'donutChart',
+        'updateOptions',
+        {
+          series: [250000, 121000, 78000, 26540],
+          labels: ['السعودية', 'مصر', 'المغرب', 'البحرين'],
+        },
+        false,
+        true
+      );
+    });
+  };
+
+  // Public methods
+  return {
+    init: function () {
+      // Charts widgets
+      initChartsWidgetSmall1();
+      initChartsWidgetSmall2();
+      initChartsWidgetSmall3();
+      initChartsWidgetSmall4();
+      initChartsWidgetMain();
+      initChartsWidgetMainDonuts();
+    },
+  };
+})();
+
 // On document ready
 HOLOLUtil.onDOMContentLoaded(() => {
-  HOLOLApp.initScriptsLoader();
+  // Check scripts loads
+  var promises = HOLOLApp.initScriptsLoader();
+  var resultsHandler = [];
+  var errors = false;
+  var errorsArr = [];
+
+  // If scripts loads correct (no-errors)
+  Promise.allSettled(promises)
+    .then((results) => (resultsHandler = results))
+    .then(function () {
+      resultsHandler.forEach((result) => {
+        if (result.status !== 'fulfilled') {
+          errors = true;
+          errorsArr.push(result);
+        }
+      });
+    })
+    .then(function () {
+      if (errorsArr.length > 0) {
+        console.log(errorsArr);
+        HOLOLApp.initScriptsLoaderFailed(errorsArr);
+      } else {
+        console.log('all scripts loaded');
+        HOLOLApp.init();
+        HOLOLWidgets.init();
+      }
+    });
 });
