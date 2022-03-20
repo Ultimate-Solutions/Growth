@@ -1534,7 +1534,17 @@ var HOLOLApp = (function () {
     // Add error box to view
     HOLOLUtil.append(errorsBox, errorContainer);
 
+    // View Error box by clicking
+    var failedActions_viewErrorsStatus = false;
     HOLOLUtil.addEvent(failedActions_viewErrors, 'click', () => {
+      if (failedActions_viewErrorsStatus) {
+        failedActions_viewErrorsStatus = false;
+        HOLOLUtil.setTEXT(failedActions_viewErrors, 'عرض الاخطاء');
+      } else {
+        failedActions_viewErrorsStatus = true;
+        HOLOLUtil.setTEXT(failedActions_viewErrors, 'أخفاء الاخطاء');
+      }
+
       HOLOLUtil.toggleClass(errorsBox, 'view');
       HOLOLUtil.toggleClass(failedActions_viewErrors, 'active');
     });
