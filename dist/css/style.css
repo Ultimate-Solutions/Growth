@@ -3640,7 +3640,7 @@ section > .content table + .select-actions [action='delete']:hover em,
 section > .content table + .select-actions [action='delete']:focus em,
 section > .content table + .select-actions [action='delete']:active em,
 section > .content table + .select-actions [action='delete'].active em {
-  color: #fff;
+  color: #fff !important;
 }
 section > .content table + .select-actions [action='close']:hover,
 section > .content table + .select-actions [action='close']:focus,
