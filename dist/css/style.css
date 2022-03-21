@@ -2417,7 +2417,7 @@ img {
   position: absolute;
   top: 50%;
   left: 1.25rem;
-  font: normal normal normal 1em/1 'Phosphor';
+  font: normal normal normal 1em/1 'holol-dashboard';
   font-size: var(--font-size-18);
   transform: translateY(-50%);
   transition: var(--transition-normal);
@@ -2668,7 +2668,7 @@ img {
   position: absolute;
   top: 50%;
   left: 0.625rem;
-  font: normal normal normal 1em/1 'Phosphor';
+  font: normal normal normal 1em/1 'holol-dashboard';
   font-size: var(--font-size-18);
   transform: translateY(-50%);
   transition: var(--transition-normal);
@@ -3215,7 +3215,7 @@ img {
   border-color: var(--dashboard-stepper-passed-border-color);
   content: '\f33e';
   color: var(--dashboard-stepper-passed-border-color);
-  font: normal normal normal 1em/1 'Phosphor';
+  font: normal normal normal 1em/1 'holol-dashboard';
 }
 [firsttimesettings] .stepper .content > *[passed]:after {
   background-color: var(--dashboard-stepper-passed-background-color);
@@ -3369,7 +3369,7 @@ section [header] .search-bar input:focus {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  font: normal normal normal 1em/1 'Phosphor';
+  font: normal normal normal 1em/1 'holol-dashboard';
   color: inherit;
 }
 [statistics] > .content .statistics.big > .list-group > .item .status.up:after {
@@ -3475,7 +3475,7 @@ section [header] .search-bar input:focus {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  font: normal normal normal 1em/1 'Phosphor';
+  font: normal normal normal 1em/1 'holol-dashboard';
   color: inherit;
 }
 [statistics] > .content .statistics.big .data-list .item .status.down:after {
@@ -4028,7 +4028,7 @@ section > .content table + .select-actions [action='close'].active {
   position: absolute;
   top: 50%;
   left: 0.625rem;
-  font: normal normal normal 1em/1 'Phosphor';
+  font: normal normal normal 1em/1 'holol-dashboard';
   font-size: var(--font-size-18);
   transform: translateY(-50%);
   transition: var(--transition-normal);
@@ -4054,7 +4054,7 @@ section > .content table + .select-actions [action='close'].active {
   content: '\f31a';
   position: absolute;
   top: 50%;
-  font: normal normal normal 1em/1 'Phosphor';
+  font: normal normal normal 1em/1 'holol-dashboard';
   font-size: var(--font-size-18);
   transition: var(--transition-normal);
   margin: 0 10px;
