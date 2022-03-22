@@ -1573,6 +1573,10 @@ var HOLOLApp = (function () {
     };
   };
 
+  var initCSSElementQueries = function () {
+    ElementQueries.init();
+  };
+
   var initBootstrapTooltip = function (el, options) {
     var delay = {};
 
@@ -2634,6 +2638,7 @@ var HOLOLApp = (function () {
       this.initHello(window.Holol.PROVIDER, window.Holol.VERSION, window.Holol.LINK);
       this.initPageLoader();
       this.initLazyLoad();
+      this.initCSSElementQueries();
       this.initBootstrapTooltip();
       this.initBootstrapTooltips();
       this.initBootstrapPopover();
@@ -2678,6 +2683,10 @@ var HOLOLApp = (function () {
 
     initLazyLoad: function () {
       initLazyLoad();
+    },
+
+    initCSSElementQueries: function () {
+      initCSSElementQueries();
     },
 
     initBootstrapTooltip: function (el, options) {
