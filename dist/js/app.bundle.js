@@ -2632,6 +2632,14 @@ var HOLOLApp = (function () {
     });
   };
 
+  var initJQueryTableShrinker = function () {
+    var options = {
+      useZebra: false,
+    };
+
+    $('table[shrink]').chained().tableShrinker(options);
+  };
+
   // Public methods
   return {
     init: function () {
@@ -2663,6 +2671,7 @@ var HOLOLApp = (function () {
       this.initTableSelectorActions();
       this.initResponsiveTableStickyColumns();
       this.initInputSwitch();
+      this.initJQueryTableShrinker();
     },
 
     initHello: function (provider, version, link) {
@@ -2779,6 +2788,9 @@ var HOLOLApp = (function () {
     },
     initInputSwitch: function () {
       initInputSwitch();
+    },
+    initJQueryTableShrinker: function () {
+      initJQueryTableShrinker();
     },
   };
 })();
