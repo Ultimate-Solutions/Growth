@@ -2635,9 +2635,17 @@ var HOLOLApp = (function () {
   var initJQueryTableShrinker = function () {
     var options = {
       useZebra: false,
+      showToggleAll: true,
+      customToggleAll: [
+        '<em class="icon ph-caret-down"></em>',
+        '<em class="icon ph-caret-up"></em>',
+      ],
+      ignoreWhenHit:
+        'input, button, a, .btn, [data-bs-toggle="dropdown"], .dropdown-menu [data-bs-toggle="dropdown"]',
+      customToggle: ['<em class="icon ph-caret-down"></em>', '<em class="icon ph-caret-up"></em>'],
     };
 
-    $('table[shrink]').chained().tableShrinker(options);
+    $('table[shrink]').tableShrinker(options);
   };
 
   // Public methods

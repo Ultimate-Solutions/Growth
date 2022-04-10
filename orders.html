@@ -312,6 +312,8 @@
       integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer" />
+    <!-- jquery.table-shrinker v1.0.0 -->
+    <link href="./dist/css/plugins/jquery.table-shrinker.css" rel="stylesheet" />
 
     <!-- Custom Style -->
     <link href="./dist/css/style.css" rel="stylesheet" />
@@ -1912,12 +1914,12 @@
                   </div>
                 </div>
               </div>
-              <div class="table-responsive" scroll drag>
+              <div>
                 <!-- Table -->
-                <table class="table table-hover table-striped table-borderless">
+                <table shrink>
                   <thead>
                     <tr>
-                      <th scope="col" width="40px" selector>
+                      <th scope="col" selector>
                         <input
                           class="form-check-input"
                           type="checkbox"
@@ -1926,13 +1928,13 @@
                           data-holol-checkbox-type="master"
                           id="masterCheck" />
                       </th>
-                      <th scope="col" width="150px" sticky>العميل</th>
-                      <th scope="col" width="100px" id>رقم الطلب</th>
-                      <th scope="col" width="100px" date>تاريخ الطلب</th>
-                      <th scope="col" width="300px" shipping>الشحن</th>
-                      <th scope="col" width="150px" payment>طريقة الدفع</th>
-                      <th scope="col" width="150px" cash>المبلغ المستحق</th>
-                      <th scope="col" width="150px" status>حالة الطلب</th>
+                      <th scope="col">العميل</th>
+                      <th scope="col" class="shrink-xs" id>رقم الطلب</th>
+                      <th scope="col" class="shrink-md" date>تاريخ الطلب</th>
+                      <th scope="col" class="shrink-md" shipping>الشحن</th>
+                      <th scope="col" class="shrink-lg" payment>طريقة الدفع</th>
+                      <th scope="col" class="shrink-lg" cash>المبلغ المستحق</th>
+                      <th scope="col" class="shrink-lg" status>حالة الطلب</th>
                       <th scope="col" actions></th>
                     </tr>
                   </thead>
@@ -4494,6 +4496,11 @@
             'sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==',
           crossorigin: 'anonymous',
           referrerpolicy: 'no-referrer',
+        },
+        {
+          name: 'jquery.table-shrinker',
+          version: '1.0.0',
+          url: './dist/js/plugins/jquery.table-shrinker.js',
         },
       ];
     </script>

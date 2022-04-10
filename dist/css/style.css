@@ -3529,22 +3529,42 @@ section > .content table {
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-regular);
   margin: 0;
-  table-layout: fixed;
-  min-width: 50rem;
+  width: 100%;
+}
+section > .content table tr.shrink-wrapper > td {
+  padding: 0 1rem !important;
+  border-radius: var(--border-radius) !important;
+}
+section > .content table tr.shrink-wrapper > td div.shrinked-row div {
+  float: right;
+}
+section > .content table th.shrink-toggle-all {
+  width: 1.25rem;
+  text-shadow: none;
+}
+section
+  > .content
+  table
+  tr.shrink-wrapper
+  > td
+  div.shrinked-row:not(.shrink-has-table)
+  > div
+  > div {
+  padding: 0.5rem;
 }
 section > .content table > :not(caption) > * > * {
   padding: 1rem 1rem;
   background-color: var(--dashboard-table-accent-background-color);
   box-shadow: none;
-  min-width: 8rem;
+  word-break: break-word;
 }
-section > .content table.table-borderless > thead > tr > * {
+section > .content table > thead > tr > * {
   border-bottom: 1px solid var(--dashboard-table-header-border-color) !important;
 }
-section > .content table.table-borderless > thead > tr > *[actions] {
+section > .content table > thead > tr > *[actions] {
   width: 4rem;
 }
-section > .content table.table-borderless > tbody > tr > *[actions] .dropdown > em {
+section > .content table > tbody > tr > *[actions] .dropdown > em {
   font-size: var(--font-size-32);
 }
 section > .content table > :not(caption) > * > *[thumbnail] > * {
@@ -3563,16 +3583,10 @@ section > .content table > tbody > tr:nth-of-type(odd) {
 }
 section > .content table > tbody > tr:nth-of-type(even):hover,
 section > .content table > tbody > tr:nth-of-type(even):focus,
-section > .content table > tbody > tr:nth-of-type(even):active {
-  --dashboard-table-accent-background-color: var(--dashboard-table-hover-background-color);
-  color: var(--dashboard-table-hover-color);
-}
+section > .content table > tbody > tr:nth-of-type(even):active,
 section > .content table > tbody > tr:nth-of-type(odd):hover,
 section > .content table > tbody > tr:nth-of-type(odd):focus,
 section > .content table > tbody > tr:nth-of-type(odd):active {
-  --dashboard-table-accent-background-color: var(
-    --dashboard-table-hover-accent-striped-background-color
-  );
   color: var(--dashboard-table-hover-striped-color);
 }
 section > .content table th[sticky],
