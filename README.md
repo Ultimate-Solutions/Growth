@@ -4,7 +4,7 @@
 </p>
 <br />
 
-<h1 align="center">Holol - Dashboard</h1>
+<h1 align="center">Growth - Dashboard</h1>
 
 <h3 align="center">Without technical experience and with ease, you can sell anywhere and anytime with your online store and with your commercial identity</h3>
 
